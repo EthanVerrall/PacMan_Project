@@ -6,12 +6,15 @@
 There are four ghosts, each of the ghosts have different behaviours. 
 - Red - Follows pacman
 - Pink - Goes 4 steps ahead of pacman
-- 
+- Blue
+- Orange
 
 ## Ghost Algorithm
 
 
 ## The Board
+
+
 
 
 ## Pacman
@@ -28,14 +31,15 @@ There are four sections,
 ## Responsibilities
 - Joshua
 1) Make the ghost struct? (You can make one that is the same for all 4 OR they can each have their own unique struct)
-2) Algorithms for the ghost, You will get pacmans postion through my point/pacman struct and then you will do as needed.
-3) Get assets for us to use and draw
+2) Algorithms for the ghost, You will get pacmans postion through my point/pacman struct and then you will do as needed. (Week one)
+3) Work on the music and sound
 
 - Ethan
 1) Finish Point
 2) Finish board/grid
 3) -Make the board static and singleton since it's always the same.
 4) Make the PacMan and movement
+5) Draw the board
 
 - Illa
 1) Create basic home screen that matches the image.
@@ -45,3 +49,20 @@ There are four sections,
 
 PS: Try to group your menus in structs, that point to other structs that will describe what the current screen looks like and what state must be drawn.
     I might provide you with a basic struct state. 
+
+
+## Considerations
+ - We have 4068 bytes to work with
+ - Attempt to make ints uint8_t = 8 bytes
+ - In the case that there would not be enough space for an int, then uint16_t
+ ### Structs
+ - All structs
+ - - 4 ghosts and pacman: 
+ - - 
+
+# Deliverables
+## Next Weekend Deadline (6th February, 2026)
+- We have tests this week.... So not much work is expected to be done this week
+- Ethan - Would get the board done by next week
+- Joshua - Plans to get the BFS done by Sunday
+- Illa - Would be able to do the menu by 
