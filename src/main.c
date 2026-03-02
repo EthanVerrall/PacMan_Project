@@ -1,5 +1,5 @@
 #include <stm32f031x6.h>
-#include "display.h"
+#include "../include/display.h"
 void initClock(void);
 void initSysTick(void);
 void SysTick_Handler(void);
@@ -113,6 +113,7 @@ int main()
 	}
 	return 0;
 }
+
 void initSysTick(void)
 {
 	SysTick->LOAD = 48000;
@@ -120,10 +121,12 @@ void initSysTick(void)
 	SysTick->VAL = 10;
 	__asm(" cpsie i "); // enable interrupts
 }
+
 void SysTick_Handler(void)
 {
 	milliseconds++;
 }
+
 void initClock(void)
 {
 // This is potentially a dangerous function as it could
@@ -152,6 +155,7 @@ void initClock(void)
         // set PLL as system clock source 
         RCC->CFGR |= (1<<1);
 }
+
 void delay(volatile uint32_t dly)
 {
 	uint32_t end_time = dly + milliseconds;
@@ -164,6 +168,7 @@ void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber)
 	Port->PUPDR = Port->PUPDR &~(3u << BitNumber*2); // clear pull-up resistor bits
 	Port->PUPDR = Port->PUPDR | (1u << BitNumber*2); // set pull-up bit
 }
+
 void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
 {
 	/*
@@ -174,6 +179,7 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
 	mode_value = mode_value | Mode;
 	Port->MODER = mode_value;
 }
+
 int isInside(uint16_t x1, uint16_t y1, uint16_t w, uint16_t h, uint16_t px, uint16_t py)
 {
 	// checks to see if point px,py is within the rectange defined by x,y,w,h
