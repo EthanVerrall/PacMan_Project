@@ -54,7 +54,7 @@ PS: Try to group your menus in structs, that point to other structs that will de
 
 ## Considerations
  - We have 4068 bytes to work with
- - Attempt to make ints uint8_t = 8 bytes
+ - Attempt to make ints uint8_t = 8 bits / one byte
  - In the case that there would not be enough space for an int, then uint16_t
  ### Structs
  - All structs
