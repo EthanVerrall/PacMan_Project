@@ -10,6 +10,12 @@
 
 #include "../../point.h"
 
+//check for pacman creation
+#ifdef PACMAN_H
+   typedef Pacman Pacman;
+#endif
+
+
 typedef struct
 {
     char ghost_type;
