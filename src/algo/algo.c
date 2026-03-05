@@ -39,7 +39,8 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
         //If the current_smallest is the target node, we have reached our target... Yay
         if(compare_points(current_smallest, target)) {
             push(current_smallest, closed_points);
-            break;
+            current_smallest = NULL; //return makes this not needed, but I am just being very protective here.... y'know
+            return closed_points;
         }
 
         /** 
@@ -71,6 +72,7 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
 
                 //just add the neighbour to the open list to be checked in the next iteration
                 push(temp_neighbour, open_points);
+                temp_neighbour = NULL; // open points owns temp_neighbour now
             }
         }
 
