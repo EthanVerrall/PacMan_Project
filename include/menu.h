@@ -9,7 +9,7 @@ enum menu_selection {
     SETTINGS
 };
 
-void display_menu(char* text[]);
-void draw_menu_cursor();
-void next_menu_item();
-void next_prev_item();
+void display_menu();
+void draw_menu_cursor(enum menu_selection current_selection);
+void next_menu_item(enum menu_selection current_selection);
+void prev_menu_item(enum menu_selection current_selection);
