@@ -5,11 +5,6 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
     //check for nullness
     if(!current || !target) return NULL;
 
-    if(compare_points(current, target)){
-        //this means that we are already at our target
-        return current;
-    }
-
     //track our open and closed points
     //this is just in the case that max path is changed maybe or removed
     //so that we do not scratch our heads over errors later
@@ -17,29 +12,36 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
         const Point* open_points[MAX_PATH_STORE];
         const Point* closed_points[MAX_PATH_STORE];
     #else
-        const Point* open_points[10];
-        const Point* closed_points[10];
+        const Point* open_points[30];
+        const Point* closed_points[30];
     #endif
 
-    //Because we are working with arrays and cannot pop or push
-    //I will create a sort of placeholder to remove and resize and check the size
-    //two numbers storing current size of the array
-    uint8_t open_arr_capacity = 0;
-    uint8_t closed_arr_capacity = 0;
+    if(compare_points(current, target)){
+        //this means that we are already at our target
+        push(current, closed_points);
+        return closed_points;
+    }
 
+    //add the current to open_points
+    push(current, open_points);
+    
     while (is_not_empty(open_points))
     {
-        //find the node with the lowest
-    
         //We are starting from 1 as the cost from block to block is 1
         uint8_t current_cost = 1;
 
-        //determine our heuristic
+        //find the node with the lowest
         Point* current_smallest = find_smallest_heuristic_node(open_points, target);
 
+        //remove from the open points
         remove_item(current_smallest, open_points);
 
-        //first successor
+        //If the current_smallest is the target node, we have reached our target... Yay
+        if(compare_points(current_smallest, target)) {
+            push(current_smallest, closed_points);
+            break;
+        }
+
         /** 
          * MENTAL NOTE:
          * each successor is a section just one layer above the current smallest
@@ -54,28 +56,29 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
                 if (i == 0 && j == 0) continue;
                 //NOTE: ask ethan for a function that checks if a place on the grid is a wall
                 if(is_wall(board, (get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j))) continue;
-                //if the item successor is in the open list, we ignore
-                //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(create_point(
+
+                Point* temp_neighbour = create_point(
                     get_x_point_coord(current_smallest) + i,
                     get_y_point_coord(current_smallest) + j
-                ),open_points)) continue;
+                );
+                //if the item successor is in the open list, we ignore
+                //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
+                if(search_item(temp_neighbour,open_points)) continue;
 
                 //if the item successor is in the closed list, and it has a lower f(n) than the successor, we ignore
                 //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(create_point(
-                    get_x_point_coord(current_smallest) + i,
-                    get_y_point_coord(current_smallest) + j
-                ),open_points)) continue;
-                else {
-                    push(create_point(get_x_point_coord(current_smallest) + i, get_y_point_coord(current_smallest) + j), open_points);
-                }
+                if(search_item(temp_neighbour,open_points)) continue;
+
+                //just add the neighbour to the open list to be checked in the next iteration
+                push(temp_neighbour, open_points);
             }
         }
 
         //push the current_smallest into the closed list
         push(current_smallest, closed_points);
     }
+    //free the open points, closed points might be freed by the user of this function
+    free_arr(open_points);
 
     //are we returning the closed list or the open one
     return closed_points;
@@ -119,7 +122,6 @@ Point* find_smallest_heuristic_node(Point* list[], const Point* target){
     {
         if (list){
             uint8_t heuristic = calculate_heuristics_h(list, target);
-
         } 
         
     }

@@ -7,10 +7,14 @@
 #include "../grid.h"
 #include <stdint.h> 
 #include <math.h>
-#include "../../../util/arr.c"
+#include "util/arr.c"
 
 /** 
  * This path tracing uses the A* algorithm to check the 
+ * 
+ * 
+ *  NOTE: Important Information
+ * REMEMBER TO FREE THE ARRAY RETURNED BY THE A STAR ALGORITHM
 */
 Point* trace_path_a_star(const Point* current,const Point* target,const Grid* board);
 
