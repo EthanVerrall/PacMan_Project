@@ -1,10 +1,21 @@
 #include "../include/grid.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
+
+/*
+128 by 160
+the score at the top will be 16 pixels in height
+grid must fit 128 by 144
+4*4 pixels = one tile
+grid array is now [32][36] = 1152 bytes
+each array element is a uint8_t for a bitmask tracking the games pixels/state
+Sprites will therefore move by 4 units of x and y when moving since they will be drawn to fill an entire tile
+*/
 
 struct Grid {
 
-    uint8_t grid_index [grid_rows][grid_cols]; 
+    uint8_t grid_index [GRID_TILE_ROW][GRID_TILE_COL]; 
 };
 
 Grid* get_instance() {
@@ -45,21 +56,26 @@ Grid* get_instance() {
 
 bool set_reset_grid(Grid* const singleton_grid) {
 
-    
-}
+    uint8_t cols_entered = 0;
 
-void update_grid_position_type(const uint8_t grid_index[][], const uint8_t state_bit_mask) {
 
-    
-} 
+    const uint8_t grid_pattern[] = 
+    {   
+        //First row - one above the board
+        blank, 28, 
 
-Grid* destroy_grid(Grid* _grid) {
+        //Second row - row of walls
+        wall, 28,
 
-    if (!_grid) {
+        //Third row
+        wall, 1, pellet, 12, wall, 2, pellet, 12, wall, 1,
 
-        printf("Your grid was already NULL, nothing to free.\n");
-    }
+        //Fourth row
+        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, pellet, 1, wall, 1,
 
-    free(_grid);
-    return NULL;
+        //Fith row
+        
+
+    };
+
 }
