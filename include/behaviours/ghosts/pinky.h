@@ -13,4 +13,6 @@
 
 typedef Ghosts Pinky;
 
+Point* get_pinky_target_position(Pinky* pinky);
+
 #endif

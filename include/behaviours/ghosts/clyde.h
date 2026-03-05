@@ -14,4 +14,5 @@
 
 typedef Ghosts Clyde;
 
+Point* get_clyde_target_position(Clyde* clyde);
 #endif

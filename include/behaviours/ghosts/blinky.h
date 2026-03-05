@@ -13,6 +13,6 @@
 
 typedef Ghosts Blinky;
 
-Point get_blinky_next_position(Blinky* blinky);
+Point* get_blinky_target_position(Blinky* blinky);
 
 #endif

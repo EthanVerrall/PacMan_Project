@@ -12,4 +12,6 @@
 #include "../../point.h"
 
 typedef Ghosts Inky;
+
+Point* get_inky_target_position(Inky* inky);
 #endif
