@@ -3,28 +3,30 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define grid_rows 128
-#define grid_cols 160
+#define grid_tile_row 
+#define grid_tile_col 
 
-enum grid_states{
-    
-    pacman = 0,
-    ghost = 1,
-    blank = 2,
-    fruit = 3,
-    cherry = 4,
-    power_up = 5,
-    wall = 6,
-    gate = 7,
-
-
-};
+//
+#define pacman 1<<0
+#define ghost 1<<1
+#define blank 1<<2
+#define fruit 1<<3
+#define cherry 1<<4
+#define power_up 1<<5
+#define wall 1<<6
+#define gate 1<<7
 
 typedef struct Grid Grid;
 
 Grid* get_instance();
 
-bool destroy_grid();
+bool set_reset_grid();
+
+void update_grid_position_type(const uint8_t grid_index[][], const uint8_t state_bit_mask);
+
+Grid* destroy_grid(Grid* _grid);
  
 
 #endif //GRID_H
+
+
