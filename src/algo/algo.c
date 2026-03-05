@@ -67,7 +67,7 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
 
                 //if the item successor is in the closed list, and it has a lower f(n) than the successor, we ignore
                 //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(temp_neighbour,open_points)) continue;
+                if(search_item(temp_neighbour,closed_points)) continue;
 
                 //just add the neighbour to the open list to be checked in the next iteration
                 push(temp_neighbour, open_points);
@@ -82,10 +82,6 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
 
     //are we returning the closed list or the open one
     return closed_points;
-}
-
-Point* trace_path_dfs(const Point* current, const Point* target,const Grid* board){
-    return create_point(7,8);
 }
 
 //Kindly note that this function does not check the values of the points
@@ -117,13 +113,19 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
 
 //TODO: Work on this later
 Point* find_smallest_heuristic_node(Point* list[], const Point* target){
-    uint8_t max_heuristic = 0;
-    for (size_t i = 0; i < get_list_size(list); i++)
+    uint8_t smallest_heuristic = calculate_heuristics_h(list[0], target);
+    Point* smallest_heuristic_point = list[0];
+    for (size_t i = 1; i < get_list_size(list); i++)
     {
-        if (list){
-            uint8_t heuristic = calculate_heuristics_h(list, target);
-        } 
-        
+        if (list[i]){
+            uint8_t current_heuristic = calculate_heuristics_h(list[i], target);
+            if (current_heuristic < smallest_heuristic)
+            {
+                smallest_heuristic = current_heuristic;
+            }   
+        }
     }
-    
+
+    return smallest_heuristic_point;
+
 }
