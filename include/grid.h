@@ -15,6 +15,7 @@ grid array is now [28][32] = 896 bytes
 each array element is a uint8_t for a bitmask tracking the games pixels/state
 Sprites will therefore move by 4 units of x and y when moving since they will be drawn to fill an entire tile
 */
+
 #define pacman 1<<0
 #define ghost 1<<1
 #define blank 1<<2
