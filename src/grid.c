@@ -25,12 +25,12 @@ Grid* get_instance() {
     //Creating a new grid, since we don't have one yet
     if (!singleton_grid) {
 
-        singleton_grid = calloc(1,sizeof(Grid));
+        singleton_grid = malloc(sizeof(Grid));
 
-        //Checking if calloc failed
+        //Checking if malloc failed
         if (!singleton_grid) {
 
-            printf("Error with creating a grid. Calloc failed, function returned NULL.\n");
+            printf("Error with creating a grid. Malloc failed, function returned NULL.\n");
             return NULL;
         } 
         //Calloc succeeded, return the address of our static heap grid
@@ -56,15 +56,17 @@ Grid* get_instance() {
 
 bool set_reset_grid(Grid* const singleton_grid) {
 
-    uint8_t cols_entered = 0;
+    //Tracks the number of enteries before moving to the next row
+    int selected_pair = 0;
+    uint8_t no_of_col_entered = 0;
 
-
+    //Original states that the board/grid will always start at 
     const uint8_t grid_pattern[] = 
     {   
         //1st row - one above the board
         blank, 28, 
 
-        //2nd row - row of walls
+        //2nd row - row of walls top edge of the board/grid
         wall, 28,
 
         //3rd row
@@ -154,10 +156,33 @@ bool set_reset_grid(Grid* const singleton_grid) {
         //31st row
         wall, 1, pellet, 26, wall, 1,
 
-        //32nd row
+        //32nd row - row of walls bottom edge of the board/grid
         wall, 28
     };
 
-    
+    /*
+    for (int i = 0; i < sizeof(grid_pattern); i += 2)
+    {
+        for (uint8_t j = 0; j < grid_pattern[i + 1]; j++)
+        {
+            singleton_grid[][] =
+        }
+        
+    }
+    */
 
+    //Selecting row for singletion array [current_row][]
+    for (uint8_t current_row = 0; current_row < GRID_TILE_ROW; ++current_row) {
+
+        for (uint8_t current_col = 0; current_col < GRID_TILE_COL; ++current_col) {
+
+             
+        }
+    }
+
+}
+
+void update_grid_position_type(const uint8_t grid_index[][], const uint8_t state_bit_mask) {
+
+    
 }
