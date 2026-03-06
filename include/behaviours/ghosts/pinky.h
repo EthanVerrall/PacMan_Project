@@ -13,6 +13,10 @@
 
 typedef Ghosts Pinky;
 
-Point* get_pinky_target_position(Pinky* pinky);
+const Pinky* _pinky();
+
+const Point* get_pinky_target_position();
+
+const Point* get_pinky_position();
 
 #endif

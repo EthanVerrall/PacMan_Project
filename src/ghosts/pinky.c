@@ -1,6 +1,6 @@
 #include "../../include/behaviours/ghosts/pinky.h"
 
-Point* get_pinky_target_position(Pinky* pinky){
+const Point* get_pinky_target_position(){
     //get pacman direction
     uint8_t pacman_direction = get_pacman_direction();
     Point* pacman_position = get_pacman_position();
@@ -12,8 +12,8 @@ Point* get_pinky_target_position(Pinky* pinky){
     if (pacman_direction == 1) //left
     {
         //check that the position left is not outside the board
-        #ifdef MAX_BOARD_X_SIZE
-            if (pacman_x_pos + 4 > MAX_BOARD_X_SIZE)
+        #ifdef GRID_TILE_ROW
+            if (pacman_x_pos + 4 > GRID_TILE_ROW)
         #else
             if (pacman_x_pos + 4 > 38)
         #endif
@@ -30,8 +30,8 @@ Point* get_pinky_target_position(Pinky* pinky){
             {pinky_x_pos -= 4;}    
     }
     if (pacman_direction == 2){
-        #ifdef MAX_BOARD_Y_SIZE
-            if (pacman_y_pos + 4 > MAX_BOARD_Y_SIZE)
+        #ifdef GRID_TILE_COL
+            if (pacman_y_pos + 4 > GRID_TILE_COL)
         #else
             if (pacman_x_pos + 4 > 28) //????? is this actually 28.... I will just take it as is... 
             // define changes this afterwards
@@ -48,4 +48,34 @@ Point* get_pinky_target_position(Pinky* pinky){
     }
     
     return create_point(pinky_x_pos, pinky_y_pos);
+}
+
+
+
+const Point* get_pinky_scatter_position(){
+    return get_ghost_scatter_position(_pinky());
+}
+
+const Point* get_pinky_position(){
+    return get_ghost_position(_pinky());
+}
+
+const Pinky* _pinky(){
+    static Pinky* current_pinky = NULL;
+    
+    if (!current_pinky)
+    {
+        //create pinky
+        current_pinky = create_ghost(
+            'P',
+            create_point(0,0),//need to get pinky starting position
+            chase, //start in chase mode?
+            create_point(0,0)
+        );
+
+        return current_pinky;
+    }
+    
+    //else pinky already exists, do not create a new instance
+    return current_pinky;
 }

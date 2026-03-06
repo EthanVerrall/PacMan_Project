@@ -1,8 +1,5 @@
 /**
- * This file includes the behaviours and movement patterns for blinky
- * 
- * Blinky (red ghost) has a more agressive chase
- * meaning he chases pac man directly 
+ * This file includes the behaviours and movement patterns for Inky
 */
 
 #ifndef _GHOST_INKY
@@ -13,5 +10,13 @@
 
 typedef Ghosts Inky;
 
-Point* get_inky_target_position(Inky* inky);
+const Inky* _inky();
+
+const Point* get_inky_scatter_position();
+
+const Point* get_inky_position();
+
+const Point* get_inky_target_position();
+
+
 #endif

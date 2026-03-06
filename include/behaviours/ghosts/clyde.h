@@ -14,5 +14,12 @@
 
 typedef Ghosts Clyde;
 
-Point* get_clyde_target_position(Clyde* clyde);
+const Clyde* _clyde();
+
+const Point* get_clyde_target_position();
+
+const Point* get_clyde_position();
+
+const Point* get_clyde_target_position();
+
 #endif

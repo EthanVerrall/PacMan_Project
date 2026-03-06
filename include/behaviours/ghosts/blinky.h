@@ -8,11 +8,18 @@
 #ifndef _GHOST_BLINKY
 #define _GHOST_BLINKY
 
+
 #include "ghosts.h"
 #include "../../point.h"
 
 typedef Ghosts Blinky;
 
-Point* get_blinky_target_position(Blinky* blinky);
+const Blinky* _blinky();
+
+const Point* get_blinky_target_position();
+
+const Point* get_blinky_position();
+
+const Point* get_blinky_target_position();
 
 #endif
