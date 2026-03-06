@@ -67,6 +67,29 @@ bool search_item(Point* item, Point* list[]){
 
 bool remove_item(Point* item, Point* list[]){
     uint8_t i = 0;
+    bool found_and_removed = 0;
+    while (list[i]){
+        if (found_and_removed) break;
+
+        //on break, does not get to the last line
+        
+        if (compare_points(list[i], item))
+        {
+            //toggle removed state
+            found_and_removed = !found_and_removed;
+        }
+        i++;
+    }
+    if (found_and_removed)
+    {
+        //remove the item from the point .... we will use the index later
+        list[i] = NULL;
+        i++; //latent increase as we would be checking for NULLNESS
+        //reorder the list
+        while (i < MAXARRSIZE && list[i])
+            list[i - 1] = list[i]; 
+    }
+    
 }
 
 bool free_arr(Point* list[]){

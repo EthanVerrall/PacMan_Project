@@ -12,12 +12,40 @@ Point* get_pinky_target_position(Pinky* pinky){
     if (pacman_direction == 1) //left
     {
         //check that the position left is not outside the board
+        #ifdef MAX_BOARD_X_SIZE
+            if (pacman_x_pos + 4 > MAX_BOARD_X_SIZE)
+        #else
+            if (pacman_x_pos + 4 > 38)
+        #endif
+            {pinky_x_pos += 4;}        
     }
     if (pacman_direction == 0) //right
     {
         //check that the position right is not outside the board
-        
+        #ifdef MIN_BOARD_X_SIZE
+            if (pacman_x_pos - 4 < 0)
+        #else
+            if (pacman_x_pos - 4 < 0)
+        #endif
+            {pinky_x_pos -= 4;}    
+    }
+    if (pacman_direction == 2){
+        #ifdef MAX_BOARD_Y_SIZE
+            if (pacman_y_pos + 4 > MAX_BOARD_Y_SIZE)
+        #else
+            if (pacman_x_pos + 4 > 28) //????? is this actually 28.... I will just take it as is... 
+            // define changes this afterwards
+        #endif
+            {pinky_y_pos += 4;}    
+    }
+    if (pacman_direction == 3){
+        #ifdef MIN_BOARD_Y_SIZE
+            if (pacman_y_pos + 4 < MIN_BOARD_Y_SIZE)
+        #else
+            if (pacman_y_pos + 4 < 0)
+        #endif
+            {pinky_y_pos -= 4;}    
     }
     
-    
+    return create_point(pinky_x_pos, pinky_y_pos);
 }

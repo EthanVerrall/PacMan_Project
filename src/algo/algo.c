@@ -10,16 +10,16 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
     //so that we do not scratch our heads over errors later
     #ifdef MAX_PATH_STORE
         const Point* open_points[MAX_PATH_STORE];
-        const Point* closed_points[MAX_PATH_STORE];
+        const Point* found_points[MAX_PATH_STORE];
     #else
         const Point* open_points[30];
-        const Point* closed_points[30];
+        const Point* found_points[30];
     #endif
 
     if(compare_points(current, target)){
         //this means that we are already at our target
-        push(current, closed_points);
-        return closed_points;
+        push(current, found_points);
+        return found_points;
     }
 
     //add the current to open_points
@@ -38,9 +38,9 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
 
         //If the current_smallest is the target node, we have reached our target... Yay
         if(compare_points(current_smallest, target)) {
-            push(current_smallest, closed_points);
+            push(current_smallest, found_points);
             current_smallest = NULL; //return makes this not needed, but I am just being very protective here.... y'know
-            return closed_points;
+            return found_points;
         }
 
         /** 
@@ -49,9 +49,13 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
          * so N,E,W,S, N-E, S-E, S-W, N-W
         */
 
-        for (uint8_t i = -1; i <= 1 ; i++)
+        //TODO: We do not need to check the diagonals
+        /** 
+         * Since we are using the manhattan algorithm
+        */
+        for (int8_t i = -1; i <= 1 ; i++)
         {
-            for (uint8_t j = -1; j <= 1; j++)
+            for (int8_t j = -1; j <= 1; j++)
             {
                 //ignore [0][0], that is our current spot
                 if (i == 0 && j == 0) continue;
@@ -68,7 +72,7 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
 
                 //if the item successor is in the closed list, and it has a lower f(n) than the successor, we ignore
                 //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(temp_neighbour,closed_points)) continue;
+                if(search_item(temp_neighbour,found_points)) continue;
 
                 //just add the neighbour to the open list to be checked in the next iteration
                 push(temp_neighbour, open_points);
@@ -77,13 +81,13 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
         }
 
         //push the current_smallest into the closed list
-        push(current_smallest, closed_points);
+        push(current_smallest, found_points);
     }
     //free the open points, closed points might be freed by the user of this function
     free_arr(open_points);
 
-    //are we returning the closed list or the open one
-    return closed_points;
+    //returned the closed points
+    return found_points;
 }
 
 //Kindly note that this function does not check the values of the points
@@ -96,7 +100,7 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
         //use the manhattan formula to work out the heuristic value
         //since we heuristic val can be negative, we use an int here to just prevent overflow
         //we would cast to an unsigned int afterwards
-        int _heuristic_val = (
+        int8_t _heuristic_val = (
             get_x_point_coord(current) - get_x_point_coord(target)
         ) 
         + (
@@ -110,10 +114,10 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
     }
 
     //in the case that any of the points passed in are not valid
-    return 0;
+    return 0; //? TODO: check that another iteration of this is not zero
 }
 
-//TODO: Work on this later
+//This algorithm calculates the smallest heuristic node in the a list (most likely the open list)
 Point* find_smallest_heuristic_node(Point* list[], const Point* target){
     uint8_t smallest_heuristic = calculate_heuristics_h(list[0], target);
     Point* smallest_heuristic_point = list[0];
