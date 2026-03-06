@@ -30,15 +30,27 @@ typedef struct Grid Grid;
 //Function done
 Grid* get_instance();
 
-//Busy here
+//Busy here -- will do after lunch/breakfast
 bool set_reset_grid();
 
-//Not done
-void update_grid_position_type(const uint8_t grid_index[][], const uint8_t state_bit_mask);
+//Function done
+void set_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
 
-//Not Done
+//Function done
+void add_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+
+//Function done
+uint8_t get_grid_state(uint8_t x_point, uint8_t y_point);
+
+//Function done
+bool is_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+
+//Function done
+bool compare_grid_states(uint8_t x_point_1, uint8_t y_point_1, uint8_t x_point_2, uint8_t y_point_2);
+
+//Function done
 Grid* destroy_grid(Grid* _grid);
+
+//@joshua what other grid functionality would you need.
  
 #endif //GRID_H
-
-

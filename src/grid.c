@@ -182,7 +182,117 @@ bool set_reset_grid(Grid* const singleton_grid) {
 
 }
 
-void update_grid_position_type(const uint8_t grid_index[][], const uint8_t state_bit_mask) {
+void set_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
 
-    
+    Grid* singleton_grid = get_instance();
+
+    if (!singleton_grid) {
+
+        printf("Unable to update grid position, grid does not exist!\n");
+    } 
+    else {
+
+        x_point /= 4;
+        y_point /= 4;
+
+        singleton_grid->grid_index[x_point][y_point] = state_bit_mask;
+    }
+}
+
+void add_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
+
+    Grid* singleton_grid = get_instance();
+
+    if (!singleton_grid) {
+
+        printf("Unable to update grid position, grid does not exist!\n");
+    } 
+    else {
+
+        x_point /= 4;
+        y_point /= 4;
+
+        singleton_grid->grid_index[x_point][y_point] |= state_bit_mask;
+    }
+}
+
+uint8_t get_grid_state(uint8_t x_point, uint8_t y_point) {
+
+    Grid* singleton_grid = get_instance();
+
+    if (!singleton_grid) {
+
+        printf("Unable to retrieve grid positions state, grid does not exist!\n");
+        
+        return 0;
+    } 
+    else {
+
+        x_point /= 4;
+        y_point /= 4;
+
+        return singleton_grid->grid_index[x_point][y_point];
+    }
+}
+
+bool is_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
+
+    Grid* singleton_grid = get_instance();
+
+    if (!singleton_grid) {
+
+        printf("Unable to check grid positions state, grid does not exist!\n");
+        
+        return false;
+    } 
+    else {
+
+        x_point /= 4;
+        y_point /= 4;
+
+        if (singleton_grid->grid_index[x_point][y_point] == state_bit_mask) {
+
+            return true;
+        }
+
+        return false;
+    }
+}
+
+bool compare_grid_states(uint8_t x_point_1, uint8_t y_point_1, uint8_t x_point_2, uint8_t y_point_2) {
+
+    Grid* singleton_grid = get_instance();
+
+    if (!singleton_grid) {
+
+        printf("Unable to compare both grid position states, grid does not exist!\n");
+        
+        return false;
+    } 
+    else {
+
+        x_point_1 /= 4;
+        y_point_1 /= 4;
+
+        x_point_2 /= 4;
+        y_point_2 /= 4;
+
+        if (singleton_grid->grid_index[x_point_1][y_point_1] == singleton_grid->grid_index[x_point_2][y_point_2]) {
+
+            return true;
+        }
+
+        return false;
+    }
+}
+
+Grid* destroy_grid(Grid* _grid) {
+
+    if (!_grid) {
+
+        printf("Your grid was already NULL, nothing to free.\n");
+    }
+
+    free(_grid);
+    return NULL;
 }
