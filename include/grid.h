@@ -16,6 +16,37 @@ Each array element is a uint8_t for a bitmask tracking the games pixels/state
 Sprites will therefore move by 4 units of x and y when moving since they will be drawn to fill an entire tile
 */
 
+/*
+    How this "class" works.
+
+    The grid is a singleton design pattern. When creating a grid you can only ever have one alive at a time.
+    The grid class will make sure it tracks itself and does not dangle, you will never have a pointer to it or need to track it's
+    lifetime yourself. 
+    
+    You simply call the function create_reset_grid() and a new grid will be made. When you are done with your grid you simply call
+    the function destroy_grid() and the grid will be free'd from memory. You can always check if your grid is alive with the function
+    is_grid_alive().
+
+    Note if you ever try to make another grid with create_reset_grid() - you will just reset the same grid to default 
+    starting game values. If you ever try to use a grid function without having created one, you will just get an error message
+    and a boolean false value.
+    
+    Example:
+    
+    int main () {
+
+        if (create_reset_grid();) 
+        {
+
+            //Do what you must here on the grid
+        }   
+
+        destroy_grid();
+
+        return 0;
+    }
+*/
+
 #define pacman (1<<0)
 #define ghost (1<<1)
 #define blank (1<<2)
