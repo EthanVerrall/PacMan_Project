@@ -1,4 +1,4 @@
-#include <../assets/textures/texture_include/clyde_textures.h>
+#include "../assets/textures/texture_include/clyde_textures.h"
 #include <stdint.h>
 
 /*

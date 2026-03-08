@@ -1,4 +1,4 @@
-#include <../assets/textures/texture_include/blinky_textures.h>
+#include "../assets/textures/texture_include/blinky_textures.h"
 #include <stdint.h>
 
 /*
