@@ -4,7 +4,8 @@
 */
 
 #include <stdbool.h>
-#include <stdint.h> 
+#include <stdint.h>
+#include <stdlib.h>
 #include "../include/point.h"
 
 #define ARRHELPERS
@@ -23,8 +24,8 @@ Point* pop(Point* list[]){
     uint8_t i = 0;
     while (list[i])
         i++;
-    Point* temp_point = list[i];
-    list[i] = NULL; //We cannot free at this point, since we are still returning the pointer to the memory address.
+    Point* temp_point = list[i - 1];
+    list[i - 1] = NULL; //We cannot free at this point, since we are still returning the pointer to the memory address.
     //the user of this function, would, in their code, free this item after using it
     return temp_point;
 }
@@ -38,12 +39,12 @@ uint8_t get_list_size(Point* list[]){
 
 bool push(Point* item, Point* list[]){
     if (get_list_size(list) >= MAXARRSIZE){
-        printf("Array is full");
+       // printf("Array is full");
         return false;
     }
     if (item == NULL)
     {
-        printf("item being passed is a null item, it would be a waste to add");
+        //printf("item being passed is a null item, it would be a waste to add");
         return false;
     }
 
@@ -51,7 +52,7 @@ bool push(Point* item, Point* list[]){
     while (list[i])
         i++;
     
-    list[i + 1] = item;
+    list[i] = item;
     return true;
 }
 
@@ -59,7 +60,8 @@ bool search_item(Point* item, Point* list[]){
     uint8_t i = 0;
     while (list[i])
     {
-        if (compare_points(item, list[i])) return true;   
+        if (compare_points(item, list[i])) return true;
+        i++; 
     }
 
     return false;
@@ -67,16 +69,12 @@ bool search_item(Point* item, Point* list[]){
 
 bool remove_item(Point* item, Point* list[]){
     uint8_t i = 0;
-    bool found_and_removed = 0;
-    while (list[i]){
-        if (found_and_removed) break;
-
-        //on break, does not get to the last line
-        
+    bool found_and_removed = false;
+    while (i < MAXARRSIZE && list[i]){
         if (compare_points(list[i], item))
         {
-            //toggle removed state
-            found_and_removed = !found_and_removed;
+            found_and_removed = true;
+            break;
         }
         i++;
     }
@@ -86,9 +84,14 @@ bool remove_item(Point* item, Point* list[]){
         list[i] = NULL;
         i++; //latent increase as we would be checking for NULLNESS
         //reorder the list
-        while (i < MAXARRSIZE && list[i])
-            list[i - 1] = list[i]; 
+        while (i < MAXARRSIZE && list[i]){
+            list[i - 1] = list[i];
+            i++;
+        }
+        list[i - 1] = NULL;
     }
+
+    return found_and_removed;
     
 }
 
@@ -98,5 +101,6 @@ bool free_arr(Point* list[]){
     {
         free(list[i]);
         list[i] = NULL;
+        i++;
     }
 }
