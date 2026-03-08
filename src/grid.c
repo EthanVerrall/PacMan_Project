@@ -49,120 +49,137 @@ bool create_reset_grid() {
         }
     }
 
-    //Original states that the board/grid will always start at 
+    //Original states that the board/grid will always start with 
     const uint8_t grid_pattern[] = 
     {   
-        //1st row - one above the board
-        blank, 28, 
+        //1st row -- one above the board -- The score goes here
+        cell_blank, 16,
 
-        //2nd row - row of walls top edge of the board/grid
-        wall, 28,
+        //2nd row -- row of walls top edge of the board/grid
+        cell_wall, 16,
 
         //3rd row
-        wall, 1, pellet, 12, wall, 2, pellet, 12, wall, 1,
+        cell_wall, 1, cell_power_up, 1, cell_pellet, 12, cell_power_up, 1, cell_wall, 1,
 
         //4th row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, pellet, 1, wall, 1,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 2, cell_pellet, 1, cell_wall, 1, cell_pellet, 1, 
+        cell_wall, 2, 
+        cell_pellet, 1, cell_wall, 1, cell_pellet, 1, cell_wall, 2, cell_pellet, 1, cell_wall, 1,
 
         //5th row
-        wall, 1, power_up, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, power_up, 1, wall, 1,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 2, cell_pellet, 1, cell_wall, 1,
+        cell_pellet, 4,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 2, cell_pellet, 1, cell_wall, 1,
 
         //6th row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, pellet, 1, wall, 1,
+        cell_wall, 1, cell_pellet, 4, cell_wall, 1, cell_pellet, 1,
+        cell_wall, 2,
+        cell_pellet, 1, cell_wall, 1, cell_pellet, 4, cell_wall, 1,
 
         //7th row
-        wall, 1, pellet, 26, wall, 1,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 2, cell_pellet, 3, 
+        cell_wall, 2,
+        cell_pellet, 3, cell_wall, 2, cell_pellet, 1, cell_wall, 1,
 
         //8th row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 2, pellet, 1, wall, 8, pellet, 1, wall, 2, pellet, 1, wall, 4, pellet, 1, wall, 1,
+        cell_wall, 1, cell_pellet, 4, 
+        cell_wall, 6,
+        cell_pellet, 4, cell_wall, 1,
 
         //9th row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 2, pellet, 1, wall, 8, pellet, 1, wall, 2, pellet, 1, wall, 4, pellet, 1, wall, 1,
+        cell_wall, 4, cell_pellet, 1, cell_blank, 6, cell_pellet, 1, cell_wall, 4,
 
         //10th row
-        wall, 1, pellet, 6, wall, 2, pellet, 4, wall, 2, pellet, 4, wall, 2, pellet, 6, wall, 1,
+        cell_wall, 4, cell_pellet, 1, cell_wall, 2, 
+        cell_gate, 2, 
+        cell_wall, 2, cell_pellet, 1, cell_wall, 4,
 
-        //11th row
-        wall, 6, pellet, 1, wall, 5, blank, 1, wall, 2, blank, 1, wall, 5, pellet, 1, wall, 6,
+        //11th row -- middle of the board/grid pacman can wrap to the other side in this row
+        cell_blank, 4, cell_pellet, 1, cell_wall, 1, 
+        cell_ghost, 4, 
+        cell_wall, 1, cell_pellet, 1, cell_blank, 4,
 
         //12th row
-        blank, 5, wall, 1, pellet, 1, wall, 5, blank, 1, wall, 2, blank, 1, wall, 5, pellet, 1, wall, 1, blank, 5,
+        cell_wall, 4, cell_pellet, 1, cell_wall, 6, cell_pellet, 1, cell_wall, 4,
 
-        //13th row
-        blank, 5, wall, 1, pellet, 1, wall, 2, blank, 4, ghost, 2, blank, 4, wall, 2, pellet, 1, wall, 1, blank, 5,
+        //13th row -- this row has the cherry, cherry will spawn more left in the row
+        cell_wall, 4, cell_pellet, 1, cell_blank, 2, 
+        cell_cherry, 1, 
+        cell_blank, 3, cell_pellet, 1, cell_wall, 4,
 
         //14th row
-        blank, 5, wall, 1, pellet, 1, wall, 2, blank, 1, wall, 3, gate, 2, wall, 3, blank, 1, wall, 2, pellet, 1, wall, 1, blank, 5,
+        cell_wall, 1, cell_pellet, 4, cell_wall, 1, cell_pellet, 1,
+        cell_wall, 2,
+        cell_pellet, 1, cell_wall, 1, cell_pellet, 4, cell_wall, 1,
 
         //15th row
-        wall, 6, pellet, 1, wall, 2, blank, 1, wall, 1, blank, 6, wall, 1, blank, 1, wall, 2, pellet, 1, wall, 6,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 4, cell_pellet, 1,
+        cell_wall, 2,
+        cell_pellet, 1, cell_wall, 4, cell_pellet, 1, cell_wall, 1,
 
-        //16th row
-        blank, 6, pellet, 1, blank, 3, wall, 1, ghost, 6, wall, 1, blank, 3, pellet, 1, blank, 6,
+        //16th row -- this row has pacman, he will also spawn more to the left, same column as the cherry
+        cell_wall, 1, cell_pellet, 3, cell_wall, 1, cell_pellet, 2, 
+        cell_pacman, 1,
+        cell_pellet, 3, cell_wall, 1, cell_pellet, 3, cell_wall, 1,
 
         //17th row,
-        wall, 6, pellet, 1, wall, 2, blank, 1, wall, 1, blank, 6, wall, 1, blank, 1, wall, 2, pellet, 1, wall, 6,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 1, cell_pellet, 3, 
+        cell_wall, 4, 
+        cell_pellet, 3, cell_wall, 1, cell_pellet, 1, cell_wall, 1,
 
         //18th row
-        blank, 5, wall, 1, pellet, 1, wall, 2, blank, 1, wall, 8, blank, 1, wall, 2, pellet, 1, wall, 1, blank, 5,
+        cell_wall, 1, cell_pellet, 1, cell_wall, 3, 
+        cell_pellet, 6,
+        cell_wall, 3, cell_pellet, 1, cell_wall, 1,
 
         //19th row
-        blank, 5, wall, 1, pellet, 1, wall, 2, blank, 10, wall, 2, pellet, 1, wall, 1, blank, 5,
+        cell_wall, 1, cell_power_up, 1, cell_pellet, 4,
+        cell_wall, 4,
+        cell_pellet, 4, cell_power_up, 1, cell_wall, 1,
 
-        //20th row
-        blank, 5, wall, 1, pellet, 1, wall, 2, blank, 10, wall, 2, pellet, 1, wall, 1, blank, 5,
-
-        //21st row
-        wall, 6, pellet, 1, wall, 2, blank, 1, wall, 8, blank, 1, wall, 2, pellet, 1, wall, 6,
-
-        //22nd row
-        wall, 1, pellet, 12, wall, 2, pellet, 12, wall, 1,
-
-        //23rd row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, pellet, 1, wall, 1,
-
-        //24th row
-        wall, 1, pellet, 1, wall, 4, pellet, 1, wall, 5, pellet, 1, wall, 2, pellet, 1, wall, 5, pellet, 1, wall, 4, pellet, 1, wall, 1,
-
-        //25th row
-        wall, 1, power_up, 1, pellet, 2, wall, 2, pellet, 7, pacman, 2, pellet, 7, wall, 2, pellet, 2, power_up, 1, wall, 1,
-
-        //26th row
-        wall, 3, pellet, 1, wall, 2, pellet, 1, wall, 2, pellet, 1, wall, 8, pellet, 1, wall, 2, pellet, 1, wall, 2, pellet, 1, wall, 3,
-
-        //27th row
-        wall, 3, pellet, 1, wall, 2, pellet, 1, wall, 2, pellet, 1, wall, 8, pellet, 1, wall, 2, pellet, 1,wall, 2,pellet, 1,wall, 3,
-
-        //28th row
-        wall, 1, pellet, 6, wall, 2, pellet, 4, wall, 2, pellet, 4,wall, 2,pellet, 6, wall, 1,
-
-        //29th row
-        wall, 1, pellet, 1, wall, 10, pellet, 1, wall, 2, pellet, 1, wall, 10, pellet, 1, wall, 1,
-
-        //30th row
-        wall, 1, pellet, 1, wall, 10, pellet, 1, wall, 2, pellet, 1, wall, 10, pellet, 1, wall, 1,
-
-        //31st row
-        wall, 1, pellet, 26, wall, 1,
-
-        //32nd row - row of walls bottom edge of the board/grid
-        wall, 28
+        //20th row -- row of walls bottom edge of the board/grid, 
+        //Note: blank space unreachable is okay :) was a design choice 
+        cell_wall, 7, cell_blank, 2, cell_wall, 7
     };
 
+    //Safety check to assure my pattern has 320 cell enteries
+    //Must pass otherwise game is impossible and grid will refuse to draw
+    //Consider a critical failure!
+    {
+        int safety_check = 0;
+        int i = 1; 
+        while (i < sizeof(grid_pattern)) {
+
+            safety_check += grid_pattern[i];
+            i += 2;
+        }
+        
+        if (safety_check != 320) {
+
+            printf("Grid was not created, pattern used to fill grid did not contain 320 total cell enteries.\n"
+            "Grid was destroyed, heap memory was freed.\n");
+
+            free(singleton_grid);
+            singleton_grid = NULL;
+            return false;
+        }
+    }
+
+
     /*
-        Below is the algorithm used to fill our grid with a defualt starting state based
+        Below is the algorithm used to fill our grid cells with a default starting state based
         on the above preset const pattern, the idea is that if I want to modify my grids
-        level layout, I just adjust the pattern of pairs and the blow algorithm will go ahead
-        and always fill the rows and cols to match the above pairs.
+        level layout, I just adjust the pattern of pairs above and the below algorithm will
+        fill the rows and cols to match the above pairs.
     */
 
-    //Tracks the number of states I have entered
-    //Once I have entered 28 different states I know my row is done
+    //Tracks the number of cells I have entered
+    //Once I have entered 20 different cells I know my row is done
     uint8_t no_of_enteries = 0;
 
     //Tracks the starting position of my current pair from my const pattern
     //The pair index will always increment in twos, so the pair always points to
-    //the bit mask, add one to see how many times to add our current pairs bit mask
+    //the bitmask, add one index onto this value to see how many columns we need to enter that bitmask for
     int current_pair = 0;
 
     //Loop through every row in our grid
@@ -171,17 +188,17 @@ bool create_reset_grid() {
         //Tracks the current col we are indexing in our grid
         uint8_t col = 0;
 
-        //Reset enteries to 0 after entering 28 col bit masks -- this lets us know when we are moving to a new row
+        //Reset enteries to 0 after entering 20 column bit masks -- this lets us know when we are moving to a new row
         no_of_enteries = 0;
 
-        //If less than 28, we are still in the same row
+        //If less than 20, we are still in the same row
         while (no_of_enteries < GRID_COL_COUNT) {
 
-            //See how many enteries we have to use for the current pairs bit mask into our grid array
+            //Inserting the current pair bitmask into our grid array
             for (uint8_t i = 0; i < grid_pattern[current_pair + 1]; ++i) {
 
-                //Here we now set our grids[row][col] to the bit mask we wanted from the pattern pair
-                //and then just increment our counters
+                //Here we now set our grids[row][col] to the bitmask we wanted from the pattern pair
+                //and then just increment our counters afterwards and repeat until done
                 singleton_grid->grid_index[row][col] = grid_pattern[current_pair];
                 ++col;
                 ++no_of_enteries;
@@ -204,9 +221,9 @@ void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     } 
     else {
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
-            singleton_grid->grid_index[x_point][y_point] = state_bit_mask;
+            singleton_grid->grid_index[y_point][x_point] = state_bit_mask;
         } 
         else 
         {
@@ -224,9 +241,9 @@ void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     } 
     else {
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
-            singleton_grid->grid_index[x_point][y_point] |= state_bit_mask;
+            singleton_grid->grid_index[y_point][x_point] |= state_bit_mask;
         } 
         else 
         {
@@ -246,9 +263,9 @@ uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
     } 
     else {
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
-            return singleton_grid->grid_index[x_point][y_point];
+            return singleton_grid->grid_index[y_point][x_point];
         } 
         else 
         {
@@ -269,9 +286,9 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
     } 
     else {
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
-            if (singleton_grid->grid_index[x_point][y_point] == state_bit_mask) {
+            if (singleton_grid->grid_index[y_point][x_point] == state_bit_mask) {
 
                 return true;
             }
@@ -281,6 +298,33 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
         } 
 
         printf("Out of range for x and y point when accessing the grid, is_grid_state() failed\n.Returned false.\n");
+        return false;
+    }
+}
+
+bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        printf("Unable to check grid positions state, grid does not exist!\n");
+        
+        return false;
+    } 
+    else {
+        //Checking if our points our in valid arrray bounds
+        if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
+        {
+            if (singleton_grid->grid_index[y_point][x_point] = state_bit_mask) {
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        } 
+
+        printf("Out of range for x and y point when accessing the grid, has_grid_state() failed\n.Returned false.\n");
         return false;
     }
 }
@@ -297,9 +341,9 @@ bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1,
     } 
     else {
         //Checking if our points our in valid arrray bounds
-        if (x_point_1 < GRID_ROW_COUNT && x_point_2 < GRID_ROW_COUNT && y_point_1 < GRID_COL_COUNT && y_point_2 < GRID_COL_COUNT) {
+        if (y_point_1 < GRID_ROW_COUNT && y_point_2 < GRID_ROW_COUNT && x_point_1 < GRID_COL_COUNT && x_point_2 < GRID_COL_COUNT) {
 
-            if (singleton_grid->grid_index[x_point_1][y_point_1] == singleton_grid->grid_index[x_point_2][y_point_2]) {
+            if (singleton_grid->grid_index[y_point_1][x_point_1] == singleton_grid->grid_index[y_point_2][x_point_2]) {
 
                 return true;
             } 
