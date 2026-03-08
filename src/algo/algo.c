@@ -5,13 +5,22 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
 
-    uint8_t g_cost[GRID_W][GRID_H];
+    //I keep forgetting the size of the board
+    #ifndef MAX_COL
+    #define MAX_COL 38
+    #endif
+
+    #ifndef MAX_ROW
+    #define MAX_ROW 22
+    #endif
+
+    uint8_t g_cost[MAX_ROW][MAX_COL];
 
     //initialise the g_cost grid with a default value of 255 (which is the maximum value for an unsigned 8 bit integer, 
     //it is also a value that is not possible to be reached by the g_cost since the maximum path length is 29)
-    for (size_t i = 0; i < GRID_W; i++)
+    for (size_t i = 0; i < MAX_ROW; i++)
     {
-        for (size_t j = 0; j < GRID_H; j++)
+        for (size_t j = 0; j < MAX_COL; j++)
         {
             g_cost[i][j] = 255;
         }
@@ -169,7 +178,7 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
 }
 
 //This algorithm calculates the smallest heuristic node in the a list (most likely the open list)
-Point* find_smallest_heuristic_node(Point* list[], const Point* target, uint8_t g_cost[][BOARD_SIZE]){
+Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][MAX_COL]){
     uint8_t smallest_heuristic_f = g_cost[get_x_point_coord(list[0])][get_y_point_coord(list[0])] + calculate_heuristics_h(list[0], target);
     Point* smallest_heuristic_point = list[0];
     for (size_t i = 1; i < get_list_size(list); i++)
