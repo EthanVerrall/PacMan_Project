@@ -1,22 +1,5 @@
-#ifndef PACMAN_TEXTURES_H
-#define PACMAN_TEXTURES_H
+#include <../assets/textures/texture_include/pacman_textures.h>
 #include <stdint.h>
-
-//Selecting the correct texture for when pacman is moving
-enum pacman_textures {
-
-    //Mouth is closed
-    right_closed = 0, 
-    bottom_closed = 1,
-    left_closed = 2,
-    top_closed = 3,
-
-    //Mouth is open
-    right_open = 4,
-    bottom_open = 5,
-    left_open = 6,
-    top_open = 7
-};
 
 const uint16_t pacman_textures[8][64] = 
 {
@@ -45,5 +28,3 @@ const uint16_t pacman_textures[8][64] =
 34346,34346,34346,34346,34346,34346,34346,34346,34346,0,0,34346,34346,34346,0,34346,0,65287,65287,0,34346,0,65287,0,0,65287,65287,65287,0,65287,65287,0,0,65287,0,65287,65287,65287,65287,0,0,65287,65287,65287,65287,65287,65287,0,34346,0,65287,65287,65287,65287,0,34346,34346,34346,0,0,0,0,34346,34346,
 
 };
-
-#endif //PACMAN_TEXTURES_H

@@ -1,19 +1,5 @@
-#ifndef CLYDE_TEXTURES_H
-#define CLYDE_TEXTURES_H
-
+#include <../assets/textures/texture_include/clyde_textures.h>
 #include <stdint.h>
-
-//Selecting the correct texture for when clyde is moving
-enum clyde_textures {
-
-    //Direction the eye is looking in,
-    //matches the way he moves
-    right_eye = 0,
-    bottom_eye = 1,
-    left_eye = 2,
-    top_eye = 3
-
-};
 
 const uint16_t clyde_textures[4][64] = 
 {
@@ -30,5 +16,3 @@ const uint16_t clyde_textures[4][64] =
 34346,34346,0,0,0,0,34346,34346,34346,0,16142,16142,16142,16142,0,34346,0,65535,252,16142,16142,252,65535,0,0,65535,65535,16142,16142,65535,65535,0,0,65535,65535,16142,16142,65535,65535,0,0,16142,16142,16142,16142,16142,16142,0,0,16142,0,16142,16142,0,16142,0,0,0,34346,0,0,34346,0,0,
 
 };
-
-#endif //CLYDE_TEXTURES_H

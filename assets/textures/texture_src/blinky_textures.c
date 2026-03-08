@@ -1,19 +1,5 @@
-#ifndef BLINKY_TEXTURES_H
-#define BLINKY_TEXTURES_H
-
+#include <../assets/textures/texture_include/blinky_textures.h>
 #include <stdint.h>
-
-//Selecting the correct texture for when blinky is moving
-enum blinky_textures {
-
-    //Direction the eye is looking in,
-    //matches the way he moves
-    right_eye = 0,
-    bottom_eye = 1,
-    left_eye = 2,
-    top_eye = 3
-
-};
 
 const uint16_t blinky_textures[4][64] = 
 {
@@ -30,5 +16,3 @@ const uint16_t blinky_textures[4][64] =
 34346,34346,0,0,0,0,34346,34346,34346,0,40224,40224,40224,40224,0,34346,0,65535,252,40224,40224,252,65535,0,0,65535,65535,40224,40224,65535,65535,0,0,65535,65535,40224,40224,65535,65535,0,0,40224,40224,40224,40224,40224,40224,0,0,40224,0,40224,40224,0,40224,0,0,0,34346,0,0,34346,0,0,
 
 };
-
-#endif //BLINKY_TEXTURES_H

@@ -1,19 +1,5 @@
-#ifndef INKY_TEXTURES_H
-#define INKY_TEXTURES_H
-
+#include <../assets/textures/texture_include/inky_textures.h>
 #include <stdint.h>
-
-//Selecting the correct texture for when inky is moving
-enum inky_textures {
-
-    //Direction the eye is looking in,
-    //matches the way he moves
-    right_eye = 0,
-    bottom_eye = 1,
-    left_eye = 2,
-    top_eye = 3
-
-};
 
 const uint16_t inky_textures[4][64] = 
 {
@@ -30,5 +16,3 @@ const uint16_t inky_textures[4][64] =
 34346,34346,0,0,0,0,34346,34346,34346,0,57599,57599,57599,57599,0,34346,0,65535,252,57599,57599,252,65535,0,0,65535,65535,57599,57599,65535,65535,0,0,65535,65535,57599,57599,65535,65535,0,0,57599,57599,57599,57599,57599,57599,0,0,57599,0,57599,57599,0,57599,0,0,0,34346,0,0,34346,0,0,
 
 };
-
-#endif //INKY_TEXTURES_H

@@ -1,19 +1,5 @@
-#ifndef PINKY_TEXTURES_H
-#define PINKY_TEXTURES_H
-
+#include <../assets/textures/texture_include/pinky_textures.h>
 #include <stdint.h>
-
-//Selecting the correct texture for when pinky is moving
-enum pinky_textures {
-
-    //Direction the eye is looking in,
-    //matches the way he moves
-    right_eye = 0,
-    bottom_eye = 1,
-    left_eye = 2,
-    top_eye = 3
-
-};
 
 const uint16_t pinky_textures[4][64] = 
 {
@@ -30,5 +16,3 @@ const uint16_t pinky_textures[4][64] =
 34346,34346,0,0,0,0,34346,34346,34346,0,57293,57293,57293,57293,0,34346,0,65535,252,57293,57293,252,65535,0,0,65535,65535,57293,57293,65535,65535,0,0,65535,65535,57293,57293,65535,65535,0,0,57293,57293,57293,57293,57293,57293,0,0,57293,0,57293,57293,0,57293,0,0,0,34346,0,0,34346,0,0,
 
 };
-
-#endif //PINKY_TEXTURES_H
