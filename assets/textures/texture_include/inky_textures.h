@@ -13,6 +13,9 @@ enum inky_textures {
     inky_top_eye = 3
 };
 
+//Foward declaring to save space, in the case this
+//needs to be including in mutiple files
+
 extern const uint16_t inky_textures[4][64];
 
 #endif //INKY_TEXTURES_H

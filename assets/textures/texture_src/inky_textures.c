@@ -1,6 +1,13 @@
 #include <../assets/textures/texture_include/inky_textures.h>
 #include <stdint.h>
 
+/*
+Array holding all of inky's textures.
+Two dimensional array[][]
+
+First dimension is the texture type, -- Access with enum
+Second dimension holds the hex colour code for each pixel
+*/
 const uint16_t inky_textures[4][64] = 
 {
 //Looking right

@@ -18,5 +18,8 @@ enum pacman_textures {
     pacman_top_open = 7
 };
 
+//Foward declaring to save space, in the case this
+//needs to be including in mutiple files
+
 extern const uint16_t pacman_textures[8][64];
 #endif //PACMAN_TEXTURES_H

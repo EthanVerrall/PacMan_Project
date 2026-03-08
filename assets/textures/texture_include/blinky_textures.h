@@ -16,7 +16,6 @@ enum blinky_textures {
 //Foward declaring to save space, in the case this
 //needs to be including in mutiple files
 
-
 extern const uint16_t blinky_textures[4][64];
 
 #endif //BLINKY_TEXTURES_H
