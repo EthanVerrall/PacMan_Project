@@ -1,10 +1,6 @@
 #include <stm32f031x6.h>
 #include "../include/font5x7.h"
 #include "../include/display.h"
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 160
-
-
 
 void clear(void);
 static uint32_t mystrlen(const char *s);

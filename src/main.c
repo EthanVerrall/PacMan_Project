@@ -18,11 +18,10 @@ int main()
 	initSysTick();
 	setupIO();
 	
+	draw_starting_grid();
 	while(1)
 	{	
-		putImage(0,0,8,8,pacman_array[pacman_right_closed],0,0);
-		putImage(120,152,8,8,blinky_array[blinky_top_eye],0,0);
-		putImage(50,50,8,8,inky_array[inky_bottom_eye],0,0);
+		
 	}
 	return 0;
 }

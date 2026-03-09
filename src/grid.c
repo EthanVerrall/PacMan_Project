@@ -212,7 +212,7 @@ bool create_reset_grid() {
     return true;
 }
 
-void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+void set_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -220,6 +220,11 @@ void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
         printf("Unable to update grid position, grid does not exist!\n");
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point /= 8;
+        y_point /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -232,7 +237,7 @@ void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+void add_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -240,6 +245,11 @@ void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
         printf("Unable to update grid position, grid does not exist!\n");
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point /= 8;
+        y_point /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -252,7 +262,7 @@ void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
+uint8_t get_grid_state(uint8_t x_point, uint8_t y_point) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -262,6 +272,11 @@ uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
         return 0;
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point /= 8;
+        y_point /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -275,7 +290,7 @@ uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
     }
 }
 
-bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+bool is_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -285,6 +300,11 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
         return false;
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point /= 8;
+        y_point /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -302,7 +322,7 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
     }
 }
 
-bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+bool has_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -312,6 +332,11 @@ bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
         return false;
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point /= 8;
+        y_point /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -329,8 +354,8 @@ bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1, 
-                         const uint8_t x_point_2, const uint8_t y_point_2) {
+bool compare_grid_states(uint8_t x_point_1, uint8_t y_point_1, 
+                         uint8_t x_point_2, uint8_t y_point_2 ) {
     
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -340,6 +365,13 @@ bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1,
         return false;
     } 
     else {
+
+        //Converting pixels to grid indexing values, scaled in 8*8
+        x_point_1 /= 8;
+        y_point_1 /= 8;
+        x_point_2 /= 8;
+        y_point_2 /= 8;
+
         //Checking if our points our in valid arrray bounds
         if (y_point_1 < GRID_ROW_COUNT && y_point_2 < GRID_ROW_COUNT && x_point_1 < GRID_COL_COUNT && x_point_2 < GRID_COL_COUNT) {
 
