@@ -1,0 +1,35 @@
+/**
+ * This file includes the behaviours and movement patterns for blinky
+ * 
+ * Blinky (red ghost) has a more agressive chase
+ * meaning he chases pac man directly 
+*/
+
+#ifndef _GHOST_BLINKY
+#define _GHOST_BLINKY
+
+
+#include "ghosts.h"
+#include "../../point.h"
+
+ 
+typedef Ghosts Blinky;
+
+const Blinky* _blinky();
+
+const Point* get_blinky_scatter_position();
+
+const Point* get_blinky_position();
+
+const Point* get_blinky_target_position();
+
+/** 
+ * Get the next position that Inky is to move to based on pacmans position and its AI behaviours
+ * Internally, it uses a cache to prevent multiple pathfinding check calls on every cycle/ call to the function
+ * 
+ * 
+ * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
+*/
+const Point* _blinky_feed_next(const bool reset);
+
+#endif

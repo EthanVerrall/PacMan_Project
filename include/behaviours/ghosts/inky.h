@@ -1,0 +1,31 @@
+/**
+ * This file includes the behaviours and movement patterns for Inky
+*/
+
+#ifndef _GHOST_INKY
+#define _GHOST_INKY
+
+#include "ghosts.h"
+#include "../../point.h"
+
+typedef Ghosts Inky;
+
+const Inky* _inky();
+
+const Point* get_inky_scatter_position();
+
+const Point* get_inky_position();
+
+const Point* get_inky_target_position();
+
+/** 
+ * Get the next position that Inky is to move to based on pacmans position and its AI behaviours
+ * Internally, it uses a cache to prevent multiple pathfinding check calls on every cycle/ call to the function
+ * 
+ * 
+ * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
+*/
+const Point* _inky_feed_next(const bool reset);
+
+
+#endif
