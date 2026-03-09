@@ -1,4 +1,4 @@
-#include "../assets/textures/texture_include/inky_textures.h"
+#include "../assets/texture_include/inky_textures.h"
 #include <stdint.h>
 
 /*
@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t inky_textures[4][64] = 
+const uint16_t inky_array[4][64] = 
 {
 //Looking right
 34346,34346,0,0,0,0,34346,34346,34346,0,57599,57599,57599,57599,0,34346,0,65535,65535,57599,57599,65535,65535,0,0,65535,252,57599,57599,65535,252,0,0,65535,65535,57599,57599,65535,65535,0,0,57599,57599,57599,57599,57599,57599,0,0,57599,0,57599,57599,0,57599,0,0,0,34346,0,0,34346,0,0,

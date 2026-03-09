@@ -2,5 +2,5 @@
 
 void draw_starting_grid () {
 
-
+    
 }

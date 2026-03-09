@@ -315,7 +315,7 @@ bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
-            if (singleton_grid->grid_index[y_point][x_point] = state_bit_mask) {
+            if (singleton_grid->grid_index[y_point][x_point] == state_bit_mask) {
 
                 return true;
             }

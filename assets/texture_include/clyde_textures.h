@@ -16,6 +16,6 @@ enum clyde_textures {
 //Foward declaring to save space, in the case this
 //needs to be including in mutiple files
 
-extern const uint16_t clyde_textures[4][64];
+extern const uint16_t clyde_array[4][64];
 
 #endif //CLYDE_TEXTURES_H

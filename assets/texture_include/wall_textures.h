@@ -30,6 +30,6 @@ enum wall_textures {
 //Foward declaring to save space, in the case this
 //needs to be including in mutiple files
 
-const extern uint16_t wall_textures[12][64];
+const extern uint16_t wall_array[12][64];
 
 #endif //WALL_TEXTURES_H

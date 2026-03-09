@@ -1,4 +1,4 @@
-#include "../assets/textures/texture_include/pickups_textures.h"
+#include "../assets/texture_include/pickups_textures.h"
 #include <stdint.h>
 
 /*
@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t pickups_textures[3][64] = {
+const uint16_t pickups_array[3][64] = {
 //Pellet
 34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,40862,40862,34346,34346,34346,34346,34346,34346,40862,40862,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,
 

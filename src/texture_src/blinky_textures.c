@@ -1,4 +1,4 @@
-#include "../assets/textures/texture_include/blinky_textures.h"
+#include "../assets/texture_include/blinky_textures.h"
 #include <stdint.h>
 
 /*
@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t blinky_textures[4][64] = 
+const uint16_t blinky_array[4][64] = 
 {
 //Looking right
 34346,34346,0,0,0,0,34346,34346,34346,0,40224,40224,40224,40224,0,34346,0,65535,65535,40224,40224,65535,65535,0,0,65535,252,40224,40224,65535,252,0,0,65535,65535,40224,40224,65535,65535,0,0,40224,40224,40224,40224,40224,40224,0,0,40224,0,40224,40224,0,40224,0,0,0,34346,0,0,34346,0,0,

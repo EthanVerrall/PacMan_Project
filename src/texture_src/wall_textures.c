@@ -1,4 +1,4 @@
-#include "../assets/textures/texture_include/wall_textures.h"
+#include "../assets/texture_include/wall_textures.h"
 #include <stdint.h>
 
 /*
@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t wall_textures[12][64] = {
+const uint16_t wall_array[12][64] = {
 //wall_curve_top_left
 34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,34346,248,248,248,248,248,34346,34346,248,248,248,248,248,248,34346,34346,248,248,248,248,248,248,34346,34346,248,248,248,248,248,248,34346,34346,248,248,248,248,34346,34346,34346,34346,248,248,248,248,34346,34346,
 
