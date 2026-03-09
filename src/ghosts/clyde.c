@@ -15,6 +15,35 @@ const Point* get_clyde_target_position(Clyde* clyde){
     return pacman_position;
 }
 
+const Point* _clyde_feed_next(const bool reset, const bool end){
+    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
+    static uint8_t feed_pointer = 0;
+
+    //game is finished, free all memory
+    if (end)
+    {
+        free_arr(feed_cache);
+        return NULL;
+    }
+
+    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty or reset is passed
+    {
+        //free the cache first
+        free_arr(feed_cache);
+        //get the ghosts target position
+        //get the ghosts actual position
+        //the algorithm would trace a path based on both positions
+        feed_cache = trace_path_a_star(
+            get_clyde_position(),
+            get_clyde_target_position()
+        );
+        feed_pointer = 0; //set back to zero to restart
+    }
+    Point* curr_point_to_return = feed_cache[feed_pointer];
+    feed_pointer++;
+    return curr_point_to_return;
+}
+
 const Point* get_clyde_scatter_position(){
     return get_ghost_scatter_position(_clyde());
 }

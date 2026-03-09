@@ -1,6 +1,6 @@
 #include "../../include/behaviours/algo.h"
 
-Point* trace_path_a_star(const Point* current, const Point* target, const Grid* board){
+Point* trace_path_a_star(const Point* current, const Point* target){
 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
@@ -98,7 +98,7 @@ Point* trace_path_a_star(const Point* current, const Point* target, const Grid* 
                 //NOTE: ask ethan for a function that checks if a place on the grid is a wall
                 //Also ask him to check in the function that the coordinates are within the bounds of the board as well,
                 //so that we do not have to worry about it here
-                if(is_wall(board, (get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j))) continue;
+                if(is_grid_state((get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j), cell_wall)) continue;
 
                 //the g_cost of the current smallest is the g_cost of the current smallest's parent + 1 
                 //as we are moving one step from the parent to the current smallest

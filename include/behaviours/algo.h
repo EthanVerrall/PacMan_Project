@@ -16,9 +16,11 @@
  *  NOTE: Important Information
  * REMEMBER TO FREE THE ARRAY RETURNED BY THE A STAR ALGORITHM
 */
-Point* trace_path_a_star(const Point* current,const Point* target,const Grid* board);
+Point* trace_path_a_star(const Point* current,const Point* target);
 
-Point* trace_path_dfs(const Point* current,const Point* target,const Grid* board);
+//since a* works, we decided to not need this function.... 
+//The definition remains in the case where we would want to use later
+//Point* trace_path_dfs(const Point* current,const Point* target);
 
 /** 
  * Calculates the grid using Manhattan distance
@@ -26,5 +28,5 @@ Point* trace_path_dfs(const Point* current,const Point* target,const Grid* board
 uint8_t calculate_heuristics_h(const Point* current, const Point* target);
 
 
-Point* find_smallest_heuristic_node(Point* list[], const Point* target);
+Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][MAX_COL]);
 #endif //!ALGO_H
