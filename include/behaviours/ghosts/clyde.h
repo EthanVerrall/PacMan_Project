@@ -16,7 +16,7 @@ typedef Ghosts Clyde;
 
 const Clyde* _clyde();
 
-const Point* get_clyde_target_position();
+const Point* get_clyde_scatter_position();
 
 const Point* get_clyde_position();
 

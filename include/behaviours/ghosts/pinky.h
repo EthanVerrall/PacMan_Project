@@ -15,6 +15,8 @@ typedef Ghosts Pinky;
 
 const Pinky* _pinky();
 
+const Point* get_pinky_scatter_position();
+
 const Point* get_pinky_target_position();
 
 const Point* get_pinky_position();

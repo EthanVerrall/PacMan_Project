@@ -16,7 +16,7 @@ typedef Ghosts Blinky;
 
 const Blinky* _blinky();
 
-const Point* get_blinky_target_position();
+const Point* get_blinky_scatter_position();
 
 const Point* get_blinky_position();
 

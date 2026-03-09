@@ -34,7 +34,7 @@ Ghosts* create_ghost(
     const char ghost_type,
     Point* current_position,
     GhostMode current_mode,
-    Point* scatter_pos
+    const Point* scatter_pos
 );
 
 void delete_ghost(Ghosts* ghost_to_delete);
