@@ -14,6 +14,6 @@ enum pickups_textures {
 //Foward declaring to save space, in the case this
 //needs to be including in mutiple files
 
-const extern uint16_t pickups_array[3][64];
+extern const uint16_t pickups_array[3][64];
 
 #endif //PICKUPS_H

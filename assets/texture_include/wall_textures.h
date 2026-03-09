@@ -17,19 +17,18 @@ enum wall_textures {
     wall_horizontal = 4,
     wall_vertical = 5,
     wall_gate = 6,
-    wall_blank = 7,
 
     //Three sided wall, like a T junction
 
-    wall_tri_right = 8,
-    wall_tri_top = 9,
-    wall_tri_left = 10,
-    wall_tri_bottom = 11
+    wall_tri_right = 7,
+    wall_tri_top = 8,
+    wall_tri_left = 9,
+    wall_tri_bottom = 10
 };
 
 //Foward declaring to save space, in the case this
 //needs to be including in mutiple files
 
-const extern uint16_t wall_array[12][64];
+extern const uint16_t wall_array[11][64];
 
 #endif //WALL_TEXTURES_H

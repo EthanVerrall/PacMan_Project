@@ -9,12 +9,15 @@
 #include "../assets/texture_include/pickups_textures.h"
 #include "../assets/texture_include/pinky_textures.h"
 #include "../assets/texture_include/wall_textures.h"
+#include "../assets/texture_include/blank_textures.h"
 #include "../include/grid.h"
 #include "display.h"
+#include <stdbool.h>
 
+//Leaving open space at the top to account for the score during game time
 #define HEIGHT_OFFSET 8
 
-
-void draw_starting_grid ();
+//Function to draw the starting state of the game, only use this once per game.
+bool draw_starting_grid ();
 
 #endif //DRAW_MANAGER

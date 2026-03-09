@@ -18,7 +18,11 @@ int main()
 	initSysTick();
 	setupIO();
 	
+	//Creating a new grid, default drawing, and then destroying the grid
+	create_reset_grid();
 	draw_starting_grid();
+	destroy_grid();
+
 	while(1)
 	{	
 		
