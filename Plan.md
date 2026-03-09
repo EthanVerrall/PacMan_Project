@@ -56,7 +56,7 @@ There are four sections,
 4) Make the PacMan and movement
 5) Draw the board
 
-- Illa
+- Illia
 1) Create basic home screen that matches the image.
 2) We dont need a fancy background yet, just get the text to display and highlight current selected text.
 3) If you can, consider making the text flash between white and another colour while its highlighted to make it appear alive. - No need to priotise this at the start.
