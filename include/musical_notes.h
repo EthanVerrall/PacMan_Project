@@ -1,6 +1,9 @@
 // Rounded musical note frequencies
 // 'S' is used in place of # (sharp) as that has a special meaning in C
 // DS2_Eb2 is D#2 / Eb2 
+#ifndef MUSICAL_NOTES_H
+#define MUSICAL_NOTES_H
+
 #define C0	16
 #define CS0_Db0	17
 #define D0	18
@@ -109,3 +112,5 @@
 #define A8	7040
 #define AS8_Bb8	7459
 #define B8	7902
+
+#endif //MUSICAL_NOTES_H

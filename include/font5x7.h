@@ -119,5 +119,4 @@ static const uint8_t  Font5x7[] = {
 	0x08, 0x1C, 0x2A, 0x08, 0x08 // <-
 };
 
-#endif
-
+#endif //FONT5X7_H

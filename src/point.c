@@ -22,7 +22,7 @@ Point* create_point(const uint8_t x, const uint8_t y) {
     }
     else {
         //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - failed to create Point function returned NULL.\n") ;
+        printf("Error - failed to create Point. Calloc failed, function returned NULL.\n") ;
         return NULL;
     }
 }
@@ -120,7 +120,11 @@ bool compare_points(const Point* const struct_point_1, const Point* const struct
 
 Point* destroy_point(Point* struct_point) {
     
-    free(struct_point);
+    if (!struct_point) {
 
+        printf("Your point was already NULL, nothing to free.\n");
+    }
+
+    free(struct_point);
     return NULL;
 }
