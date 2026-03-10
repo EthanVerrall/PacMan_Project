@@ -12,8 +12,8 @@ const Point* get_pinky_target_position(){
     if (pacman_direction == 1) //left
     {
         //check that the position left is not outside the board
-        #ifdef GRID_TILE_ROW
-            if (pacman_x_pos + 4 > GRID_TILE_ROW)
+        #ifdef GRID_ROW_COUNT
+            if (pacman_x_pos + 4 > GRID_ROW_COUNT)
         #else
             if (pacman_x_pos + 4 > 38)
         #endif
@@ -30,8 +30,8 @@ const Point* get_pinky_target_position(){
             {pinky_x_pos -= 4;}    
     }
     if (pacman_direction == 2){
-        #ifdef GRID_TILE_COL
-            if (pacman_y_pos + 4 > GRID_TILE_COL)
+        #ifdef GRID_COL_COUNT
+            if (pacman_y_pos + 4 > GRID_COL_COUNT)
         #else
             if (pacman_x_pos + 4 > 28) //????? is this actually 28.... I will just take it as is... 
             // define changes this afterwards
@@ -73,10 +73,16 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        feed_cache = trace_path_a_star(
+        //run a for loop for a deep copy
+        Point* new_feed[] = trace_path_a_star(
             get_pinky_position(),
             get_pinky_target_position()
         );
+        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            feed_cache[i] = new_feed[i];
+        }
+        
         feed_pointer = 0; //set back to zero to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
@@ -90,6 +96,18 @@ const Point* get_pinky_scatter_position(){
 
 const Point* get_pinky_position(){
     return get_ghost_position(_pinky());
+}
+
+const bool set_pinky_position(const uint8_t x, const uint8_t y){
+    return set_ghost_position(_pinky(), x, y);
+}
+
+const GhostMode get_pinky_mode(){
+    return get_ghost_mode(_pinky());
+}
+
+const void set_pinky_mode(GhostMode mode){
+    return set_ghost_mode(_pinky(), mode);
 }
 
 const Pinky* _pinky(){

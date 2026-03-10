@@ -27,7 +27,14 @@ const Point* get_pinky_position();
  * 
  * 
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
+ * end is a boolean that is sent to the function to free the cache... i.e in the case that the game is ended
 */
-const Point* _pinky_feed_next(const bool reset);
+const Point* _pinky_feed_next(const bool reset, const bool end);
+
+const bool set_pinky_position(const uint8_t x, const uint8_t y);
+
+const GhostMode get_pinky_mode();
+
+const void set_pinky_mode(GhostMode mode);
 
 #endif

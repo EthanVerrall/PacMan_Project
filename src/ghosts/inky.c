@@ -69,10 +69,14 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        feed_cache = trace_path_a_star(
+        Point* new_feed[] = trace_path_a_star(
             get_inky_position(),
             get_inky_target_position()
         );
+        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            feed_cache[i] = new_feed[i];
+        }
         feed_pointer = 0; //set back to zero to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
@@ -86,6 +90,18 @@ const Point* get_inky_scatter_position(){
 
 const Point* get_inky_position(){
     return get_ghost_position(_inky());
+}
+
+const bool set_inky_position(const uint8_t x, const uint8_t y){
+    return set_ghost_position(_inky(), x, y);
+}
+
+const GhostMode get_inky_mode(){
+    return get_ghost_mode(_inky());
+}
+
+const void set_inky_mode(GhostMode mode){
+    return set_ghost_mode(_inky(), mode);
 }
 
 const Inky* _inky(){

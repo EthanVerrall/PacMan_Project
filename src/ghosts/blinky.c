@@ -27,10 +27,15 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        feed_cache = trace_path_a_star(
+        Point* new_feed[] = trace_path_a_star(
             get_blinky_position(),
             get_blinky_target_position()
         );
+        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            feed_cache[i] = new_feed[i];
+        }
+    
         feed_pointer = 0; //set back to zero to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
@@ -44,6 +49,18 @@ const Point* get_blinky_scatter_position(){
 
 const Point* get_blinky_position(){
     return get_ghost_position(_blinky());
+}
+
+const bool set_blinky_position(const uint8_t x, const uint8_t y){
+    return set_ghost_position(_blinky(), x, y);
+}
+
+const GhostMode get_blinky_mode(){
+    return get_ghost_mode(_blinky());
+}
+
+const void set_blinky_mode(GhostMode mode){
+    return set_ghost_mode(_blinky(), mode);
 }
 
 const Blinky* _blinky(){

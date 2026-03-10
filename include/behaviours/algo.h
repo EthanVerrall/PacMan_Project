@@ -7,7 +7,7 @@
 #include "../grid.h"
 #include <stdint.h> 
 #include <math.h>
-#include "util/arr.c"
+#include "../../src/util/arr.c"
 
 /** 
  * This path tracing uses the A* algorithm to check the 
@@ -28,5 +28,5 @@ Point* trace_path_a_star(const Point* current,const Point* target);
 uint8_t calculate_heuristics_h(const Point* current, const Point* target);
 
 
-Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][MAX_COL]);
+Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]);
 #endif //!ALGO_H

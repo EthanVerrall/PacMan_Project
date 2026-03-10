@@ -19,7 +19,7 @@ Point* trace_path_a_star(const Point* current, const Point* target){
     }
 
     //the g_cost of the starting point is 0 since we are already there
-    g_cost[current->x][current->y] = 0;
+    g_cost[get_x_point_coord(current)][get_y_point_coord(current)] = 0;
 
 
     //check for nullness

@@ -24,8 +24,15 @@ const Point* get_inky_target_position();
  * 
  * 
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
+ * end is a boolean that is sent to the function to free the cache... i.e in the case that the game is ended
 */
-const Point* _inky_feed_next(const bool reset);
+const Point* _inky_feed_next(const bool reset, const bool end);
+
+const bool set_inky_position(const uint8_t x, const uint8_t y);
+
+const GhostMode get_inky_mode();
+
+const void set_inky_mode(GhostMode mode);
 
 
 #endif

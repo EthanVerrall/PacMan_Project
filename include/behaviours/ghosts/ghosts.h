@@ -17,22 +17,17 @@
 #include "../../point.h"
 #include "../../../src/util/arr.c"
 #include "../algo.h"
+#include "../../grid.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
+typedef struct Ghosts Ghosts;
 
 typedef enum {
     chase,
     scatter,
     fright
 } GhostMode;
-
-typedef struct
-{
-    char ghost_type;
-    Point* position;
-    GhostMode currentMode;
-    Point* scatter_position;
-} Ghosts;
 
 Ghosts* create_ghost(
     const char ghost_type,
@@ -43,9 +38,16 @@ Ghosts* create_ghost(
 
 void delete_ghost(Ghosts* ghost_to_delete);
 
+//this cannot be reset... and is only initialized in the create ghost "constructor" function
 const Point* get_ghost_scatter_position(Ghosts* ghost);
 
 const Point* get_ghost_position(Ghosts* ghost);
+
+const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y);
+
+const GhostMode get_ghost_mode(Ghosts* ghost);
+
+const void set_ghost_mode(Ghosts* ghost,GhostMode mode);
 
 
 #endif
