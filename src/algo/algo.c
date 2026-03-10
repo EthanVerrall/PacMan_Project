@@ -1,26 +1,18 @@
 #include "../../include/behaviours/algo.h"
+#include "../../include/grid.h"
 
 Point* trace_path_a_star(const Point* current, const Point* target){
 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
 
-    //I keep forgetting the size of the board
-    #ifndef MAX_COL
-    #define MAX_COL 38
-    #endif
-
-    #ifndef MAX_ROW
-    #define MAX_ROW 22
-    #endif
-
-    uint8_t g_cost[MAX_ROW][MAX_COL];
+    uint8_t g_cost[GRID_ROW_COUNT][GRID_COL_COUNT];
 
     //initialise the g_cost grid with a default value of 255 (which is the maximum value for an unsigned 8 bit integer, 
     //it is also a value that is not possible to be reached by the g_cost since the maximum path length is 29)
-    for (size_t i = 0; i < MAX_ROW; i++)
+    for (size_t i = 0; i < GRID_ROW_COUNT; i++)
     {
-        for (size_t j = 0; j < MAX_COL; j++)
+        for (size_t j = 0; j < GRID_COL_COUNT; j++)
         {
             g_cost[i][j] = 255;
         }
@@ -95,9 +87,11 @@ Point* trace_path_a_star(const Point* current, const Point* target){
                 //ignore diagonals too
                 if (i != 0 && j != 0) continue;
 
-                //NOTE: ask ethan for a function that checks if a place on the grid is a wall
-                //Also ask him to check in the function that the coordinates are within the bounds of the board as well,
-                //so that we do not have to worry about it here
+                //check if the grid position is out of bounds
+                //get grid state returns zero if and only if the grid is out of bounds
+                if(!get_grid_state((get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j))) continue;
+                
+                //check if the grid position is a wall
                 if(is_grid_state((get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j), cell_wall)) continue;
 
                 //the g_cost of the current smallest is the g_cost of the current smallest's parent + 1 
@@ -178,7 +172,7 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
 }
 
 //This algorithm calculates the smallest heuristic node in the a list (most likely the open list)
-Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][MAX_COL]){
+Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]){
     uint8_t smallest_heuristic_f = g_cost[get_x_point_coord(list[0])][get_y_point_coord(list[0])] + calculate_heuristics_h(list[0], target);
     Point* smallest_heuristic_point = list[0];
     for (size_t i = 1; i < get_list_size(list); i++)
