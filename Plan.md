@@ -45,16 +45,14 @@ There are four sections,
 
 ## Responsibilities
 - Joshua
-1) Make the ghost struct? (You can make one that is the same for all 4 OR they can each have their own unique struct)
-2) Algorithms for the ghost, You will get pacmans postion through my point/pacman struct and then you will do as needed. (Week one)
-3) Work on the music and sound
+1) Work on the music and sound
+2) Work on Scatter mode for Ghosts
+3) 
 
 - Ethan
-1) Finish Point
-2) Finish board/grid
-3) -Make the board static and singleton since it's always the same.
-4) Make the PacMan and movement
-5) Draw the board
+1) Fix grid
+2) Make the PacMan and movement
+3) Finish draw manager
 
 - Illia
 1) Create basic home screen that matches the image.
