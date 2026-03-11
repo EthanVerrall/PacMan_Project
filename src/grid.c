@@ -221,10 +221,6 @@ void set_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_ma
     } 
     else {
 
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point /= 8;
-        y_point /= 8;
-
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -245,10 +241,6 @@ void add_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_ma
         printf("Unable to update grid position, grid does not exist!\n");
     } 
     else {
-
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point /= 8;
-        y_point /= 8;
 
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
@@ -273,10 +265,6 @@ uint8_t get_grid_state(uint8_t x_point, uint8_t y_point) {
     } 
     else {
 
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point /= 8;
-        y_point /= 8;
-
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -300,10 +288,6 @@ bool is_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mas
         return false;
     } 
     else {
-
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point /= 8;
-        y_point /= 8;
 
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
@@ -333,10 +317,6 @@ bool has_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_ma
     } 
     else {
 
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point /= 8;
-        y_point /= 8;
-
         //Checking if our points our in valid arrray bounds
         if (y_point < GRID_ROW_COUNT && x_point < GRID_COL_COUNT) 
         {
@@ -365,12 +345,6 @@ bool compare_grid_states(uint8_t x_point_1, uint8_t y_point_1,
         return false;
     } 
     else {
-
-        //Converting pixels to grid indexing values, scaled in 8*8
-        x_point_1 /= 8;
-        y_point_1 /= 8;
-        x_point_2 /= 8;
-        y_point_2 /= 8;
 
         //Checking if our points our in valid arrray bounds
         if (y_point_1 < GRID_ROW_COUNT && y_point_2 < GRID_ROW_COUNT && x_point_1 < GRID_COL_COUNT && x_point_2 < GRID_COL_COUNT) {
