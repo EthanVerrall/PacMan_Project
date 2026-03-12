@@ -174,7 +174,7 @@ bool draw_starting_grid () {
             */
 
             const uint16_t* next_draw = NULL;
-            uint8_t cell_bitmask = get_grid_state(y_pixel, x_pixel);
+            uint8_t cell_bitmask = get_grid_state(y_pixel / 8, x_pixel / 8);
 
             switch (cell_bitmask) {
 
@@ -251,4 +251,49 @@ bool draw_starting_grid () {
 
     //Grid drawn properly
     return true;
+}
+
+void move_entity(Point* const current_point, Point* const target_point, const enum ghost_type ghost) {
+
+    if (!current_point || !target_point) {
+
+        eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
+        return;
+    } 
+    
+    uint8_t x_current_pixel = get_y_point_coord(current_point) * 8;
+    uint8_t y_current_pixel = get_x_point_coord(current_point) * 8;
+    uint8_t x_target_pixel = get_y_point_coord(target_point) * 8;
+    uint8_t y_target_pixel = get_x_point_coord(target_point) * 8;
+
+    //Calculate direction for animation purposes
+    int8_t dx = (int8_t) x_target_pixel - (int8_t) x_current_pixel;
+    int8_t dy = (int8_t) y_target_pixel - (int8_t) y_current_pixel;
+
+    //Moves right
+    if (dx == 1 && dy == 0) {
+
+        
+    }
+    //Moves down
+    else if (dx == 0 && dy == 1)
+    {
+
+
+    }
+    //Moves left
+    else if (dx == -1 && dy == 0) 
+    {
+
+
+    }
+    //Moves up
+    else if (dx == 0 && dy == -1) 
+    {
+
+
+    }
+    else {
+        //It's cooked if I get here tbh
+    }
 }
