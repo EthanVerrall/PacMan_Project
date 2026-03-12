@@ -19,13 +19,13 @@
 //Leaving open space at the top to account for the score during game time
 #define HEIGHT_OFFSET 8
 
-enum ghost_type {
+enum entity_type {
 
-    ghost_blinky,
-    ghost_inky,
-    ghost_clyde,
-    ghost_pinky,
-    ghost_none
+    entity_type_blinky = 1,
+    entity_type_inky = 2,
+    entity_type_clyde = 3,
+    entity_type_pinky = 4,
+    entity_type_pacman = 5
 };
 
 //Function to draw the starting state of the game, only use this once per game.

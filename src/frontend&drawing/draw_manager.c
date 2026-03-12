@@ -3,13 +3,23 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+#define right 0
+#define down 1
+#define left 2
+#define up 3
+
+static bool is_mouth_open = false;
 
 bool draw_starting_grid () {
-
     /*
         The below two arrays are used in parallel to define the wall types 
         and how many times they must print.
     */
+
+    //Ensuring pacmans mouth is closed at game start
+    is_mouth_open = false;
 
     const uint16_t* wall_type_pair[] = 
     {
@@ -253,7 +263,125 @@ bool draw_starting_grid () {
     return true;
 }
 
-void move_entity(Point* const current_point, Point* const target_point, const enum ghost_type ghost) {
+//--------------------------------------------------------------
+//Helper functionS -- must be declared before void move_entity() -- start
+//--------------------------------------------------------------
+
+//Function updates our uint_16 pointer to point at the texture we are drawing
+const uint16_t* point_at_entity_texture(uint8_t direction,enum entity_type entity) {
+
+    //direction just defines whic way we are moving
+    //a simple arbitrary value should be fine for this
+    //0 = right, 1 = down, 2 = left, 3 = up
+
+    switch (entity) {
+
+        case entity_type_blinky: 
+            if (right) return blinky_array[blinky_right_eye];
+            if (down) return blinky_array[blinky_bottom_eye];
+            if (left) return blinky_array[blinky_left_eye];
+            if (up) return blinky_array[blinky_top_eye];
+
+            eputs("Matching texture for blinky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_clyde: 
+            if (right) return clyde_array[clyde_right_eye];
+            if (down) return clyde_array[clyde_bottom_eye];
+            if (left) return clyde_array[clyde_left_eye];
+            if (up) return clyde_array[clyde_top_eye];
+
+            eputs("Matching texture for clyde not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_inky:
+            if (right) return inky_array[inky_right_eye];
+            if (down) return inky_array[inky_bottom_eye];
+            if (left) return inky_array[inky_left_eye];
+            if (up) return inky_array[inky_top_eye];
+
+            eputs("Matching texture for inky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_pinky:
+            if (right) return pinky_array[pinky_right_eye];
+            if (down) return pinky_array[pinky_bottom_eye];
+            if (left) return pinky_array[pinky_left_eye];
+            if (up) return pinky_array[pinky_top_eye];
+
+            eputs("Matching texture for pinky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_pacman: 
+
+            //Why do we have only two frames for this guy lol XD -- surely we add more????
+
+            //Pacmans mouth is open
+            if (right && is_mouth_open) return pacman_array[pacman_right_open];
+            if (down && is_mouth_open) return pacman_array[pacman_bottom_open];
+            if (left && is_mouth_open) return pacman_array[pacman_left_open];
+            if (up && is_mouth_open) return pacman_array[pacman_top_open];
+            
+            //Pacmans mouth is closed
+            if (right && is_mouth_open) return pacman_array[pacman_right_closed];
+            if (down && is_mouth_open) return pacman_array[pacman_bottom_closed];
+            if (left && is_mouth_open) return pacman_array[pacman_left_closed];
+            if (up && is_mouth_open) return pacman_array[pacman_top_closed];
+
+            eputs("Matching texture for pacman not found. NULL returned.\r\n");
+            return NULL;
+
+        default: eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+        return NULL;
+    }
+}
+
+const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const enum entity_type entity) {
+
+    //Changing pixels to correctly reflect grid indexing
+    //Function assumes we are working with perfect eights, should be called before any moving to a new tile has happened
+    x_pixel /= 8;
+    y_pixel /= 8;
+
+    //Getting bitmask from grid cell and extracting the dynamic entity from it
+    //I only need the static_tile types for this function. Must remove pacman and ghosts from my bitmask
+    uint8_t cell_bitmask = 0;
+    
+    if (has_grid_state(y_pixel,x_pixel,cell_pacman)) {
+
+        cell_bitmask = ~cell_pacman & get_grid_state(y_pixel,x_pixel);
+    } 
+    else if (has_grid_state(y_pixel,x_pixel,cell_ghost)) {
+
+        cell_bitmask = ~cell_ghost & get_grid_state(y_pixel,x_pixel);
+    }
+    else {
+        
+        uint8_t cell_bitmask = 0;
+    }
+    
+    switch  (cell_bitmask) {
+
+        case cell_blank: return blank_array;
+
+        case cell_pellet: return pickups_array[pickups_pellet];
+
+        case cell_power_up: return pickups_array[pickups_powerup];
+
+        case cell_cherry: return pickups_array[pickups_cherry];
+        
+        default:
+        eputs("point_at_static_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+        return NULL;
+    }
+}
+
+//--------------------------------------------------------------
+//Helper functionS -- must be declared before void move_entity() -- end
+//--------------------------------------------------------------
+
+
+void move_entity(Point* const current_point, Point* const target_point, const enum entity_type entity) {
 
     if (!current_point || !target_point) {
 
@@ -265,6 +393,8 @@ void move_entity(Point* const current_point, Point* const target_point, const en
     uint8_t y_current_pixel = get_x_point_coord(current_point) * 8;
     uint8_t x_target_pixel = get_y_point_coord(target_point) * 8;
     uint8_t y_target_pixel = get_x_point_coord(target_point) * 8;
+    //const uint8_t origin_x_pixel = x_current_pixel;
+    //const uint8_t origin_y_pixel = y_current_pixel;
 
     //Calculate direction for animation purposes
     int8_t dx = (int8_t) x_target_pixel - (int8_t) x_current_pixel;
@@ -272,25 +402,44 @@ void move_entity(Point* const current_point, Point* const target_point, const en
 
     //Moves right
     if (dx == 1 && dy == 0) {
+        const uint16_t* moving_entity = point_at_entity_texture(right,entity);
+        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
+        for (uint8_t i = 1; i <= 8; ++i) {
 
-        
+            
+        }
     }
     //Moves down
     else if (dx == 0 && dy == 1)
     {
+        const uint16_t* moving_entity = point_at_entity_texture(down,entity);
+        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
+        for (uint8_t i = 1; i <= 8; ++i) {
 
+            
+        }
 
     }
     //Moves left
     else if (dx == -1 && dy == 0) 
     {
+        const uint16_t* moving_entity = point_at_entity_texture(left,entity);
+        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
+        for (uint8_t i = 1; i <= 8; ++i) {
 
+            
+        }
 
     }
     //Moves up
     else if (dx == 0 && dy == -1) 
     {
+        const uint16_t* moving_entity = point_at_entity_texture(up,entity);
+        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
+        for (uint8_t i = 1; i <= 8; ++i) {
 
+            
+        }
 
     }
     else {
