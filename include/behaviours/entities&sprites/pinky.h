@@ -9,11 +9,11 @@
 #define _GHOST_PINKY
 
 #include "ghosts.h"
-#include "../../point.h"
+#include "../include/utils/point.h"
 
 typedef Ghosts Pinky;
 
-const Pinky* _pinky();
+Pinky* _pinky();
 
 const Point* get_pinky_scatter_position();
 

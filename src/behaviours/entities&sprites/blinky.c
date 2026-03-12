@@ -1,4 +1,4 @@
-#include "../../include/behaviours/ghosts/blinky.h"
+#include "../include/behaviours/entities&sprites/blinky.h"
 
 const Point* get_blinky_target_position(){
     return get_pacman_position(); //work on this after
@@ -27,14 +27,11 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        Point* new_feed[] = trace_path_a_star(
+        trace_path_a_star(
             get_blinky_position(),
-            get_blinky_target_position()
+            get_blinky_target_position(),
+            feed_cache
         );
-        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
-        {
-            feed_cache[i] = new_feed[i];
-        }
     
         feed_pointer = 0; //set back to zero to restart
     }
@@ -63,7 +60,7 @@ const void set_blinky_mode(GhostMode mode){
     return set_ghost_mode(_blinky(), mode);
 }
 
-const Blinky* _blinky(){
+Blinky* _blinky(){
     static Blinky* current_blinky = NULL;
     
     if (!current_blinky)

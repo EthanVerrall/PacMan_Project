@@ -1,5 +1,8 @@
 #include <stm32f031x6.h>
-#include "draw_manager.h"
+#include "../include/frontend&drawing/draw_manager.h"
+#include "../include/grid.h"
+#include "../include/music&sound/sound.h"
+#include "../include/music&sound/musical_notes.h"
 
 void initClock(void);
 void initSysTick(void);
@@ -17,15 +20,20 @@ int main()
 	initClock();
 	initSysTick();
 	setupIO();
+	initSound();
 	
 	//Creating a new grid, default drawing, and then destroying the grid
-	create_reset_grid();
-	draw_starting_grid();
-	destroy_grid();
-
+	//create_reset_grid();
+	//draw_starting_grid();
+	//destroy_grid();
 	while(1)
 	{	
-		
+		playNote(E8);
+		delay(500);
+		playNote(C8);
+		delay(500);
+		playNote(0);
+		delay(3000);
 	}
 	return 0;
 }

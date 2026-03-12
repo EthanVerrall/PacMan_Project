@@ -1,4 +1,4 @@
-#include "../../include/behaviours/ghosts/inky.h"
+#include "../include/behaviours/entities&sprites/inky.h"
 
 #ifndef LEFT
 #define LEFT 0 
@@ -18,7 +18,7 @@
 
 const Point* get_inky_target_position(){
 
-    Point* blinky_position =  get_blinky_position();
+    const Point* blinky_position =  get_blinky_position();
     Point* pacman_position = get_pacman_position();
     //NOTE: when pacman has been created get the direct function and return type for get direction
     uint8_t pacman_direction = get_pacman_direction();
@@ -69,14 +69,11 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        Point* new_feed[] = trace_path_a_star(
+        trace_path_a_star(
             get_inky_position(),
-            get_inky_target_position()
+            get_inky_target_position(),
+            feed_cache
         );
-        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
-        {
-            feed_cache[i] = new_feed[i];
-        }
         feed_pointer = 0; //set back to zero to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
@@ -104,7 +101,7 @@ const void set_inky_mode(GhostMode mode){
     return set_ghost_mode(_inky(), mode);
 }
 
-const Inky* _inky(){
+Inky* _inky(){
     static Inky* current_inky = NULL;
     
     if (!current_inky)

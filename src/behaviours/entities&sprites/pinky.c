@@ -1,4 +1,4 @@
-#include "../../include/behaviours/ghosts/pinky.h"
+#include "../include/behaviours/entities&sprites/pinky.h"
 
 const Point* get_pinky_target_position(){
     //get pacman direction
@@ -74,14 +74,11 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
         //run a for loop for a deep copy
-        Point* new_feed[] = trace_path_a_star(
+        trace_path_a_star(
             get_pinky_position(),
-            get_pinky_target_position()
+            get_pinky_target_position(),
+            feed_cache
         );
-        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
-        {
-            feed_cache[i] = new_feed[i];
-        }
         
         feed_pointer = 0; //set back to zero to restart
     }
@@ -110,7 +107,7 @@ const void set_pinky_mode(GhostMode mode){
     return set_ghost_mode(_pinky(), mode);
 }
 
-const Pinky* _pinky(){
+Pinky* _pinky(){
     static Pinky* current_pinky = NULL;
     
     if (!current_pinky)

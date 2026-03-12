@@ -14,10 +14,10 @@
 
 #define MAX_FEED_CAPACITY 30
 
-#include "../../point.h"
-#include "../../../src/util/arr.c"
-#include "../algo.h"
-#include "../../grid.h"
+#include "../include/utils/point.h"
+#include "../include/utils/arr.h"
+#include "../include/behaviours/algo.h"
+#include "../include/grid.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -30,24 +30,24 @@ typedef enum {
 } GhostMode;
 
 Ghosts* create_ghost(
-    const char ghost_type,
+    char ghost_type,
     Point* current_position,
     GhostMode current_mode,
-    const Point* scatter_pos
+    Point* scatter_pos
 );
 
 void delete_ghost(Ghosts* ghost_to_delete);
 
 //this cannot be reset... and is only initialized in the create ghost "constructor" function
-const Point* get_ghost_scatter_position(Ghosts* ghost);
+const Point* get_ghost_scatter_position(const Ghosts* ghost);
 
-const Point* get_ghost_position(Ghosts* ghost);
+const Point* get_ghost_position(const Ghosts* ghost);
 
 const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y);
 
-const GhostMode get_ghost_mode(Ghosts* ghost);
+const GhostMode get_ghost_mode(const Ghosts* ghost);
 
-const void set_ghost_mode(Ghosts* ghost,GhostMode mode);
+const void set_ghost_mode(Ghosts* ghost,const GhostMode mode);
 
 
 #endif

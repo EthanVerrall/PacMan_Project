@@ -1,7 +1,6 @@
-#include <stdint.h>
-#include "../include/menu.h"
-#include "../include/display.h"
-
+/* #include <stdint.h>
+#include "../include/frontend&drawing/menu.h"
+#include "../include/frontend&drawing/display.h"
 
 #define TITLE_X 30 // "PAC-MAN" title x
 #define TITLE_Y 15 // "PAC-MAN" title y
@@ -96,4 +95,4 @@ void prev_menu_item(enum menu_selection current_selection){
 }
 
 // ugghh, despite my best efforts, i am failing to understand what i am doing.
-// mainly a thing of not understanding how to interface w/ display funcs, and how to enum
+// mainly a thing of not understanding how to interface w/ display funcs, and how to enum */

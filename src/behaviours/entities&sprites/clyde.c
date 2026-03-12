@@ -1,18 +1,17 @@
-#include "../../include/behaviours/ghosts/clyde.h"
-
+#include "../include/behaviours/entities&sprites/clyde.h"
 
 //todo... I need to write states that check for their current state
 const Point* get_clyde_target_position(){
     
     Point* pacman_position = get_pacman_position();
 
-    Point* clyde_pos = get_clyde_position();
+    const Point* clyde_pos = get_clyde_position();
 
     uint8_t pacman_clyde_distance_x = get_x_point_coord(pacman_position) - get_x_point_coord(clyde_pos);
     uint8_t pacman_clyde_distance_y = get_y_point_coord(pacman_position) - get_y_point_coord(clyde_pos);
 
-    if (pacman_clyde_distance_x < 0) pacman_clyde_distance_x * -1;
-    if (pacman_clyde_distance_y < 0) pacman_clyde_distance_y * -1;
+    if (pacman_clyde_distance_x < 0) pacman_clyde_distance_x *= -1;
+    if (pacman_clyde_distance_y < 0) pacman_clyde_distance_y *= -1;
 
     if (pacman_clyde_distance_x < 8 || pacman_clyde_distance_y < 8)
     {
@@ -42,14 +41,11 @@ const Point* _clyde_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        Point* new_feed[] = trace_path_a_star(
+        trace_path_a_star(
             get_clyde_position(),
             get_clyde_target_position()
+            ,feed_cache
         );
-        for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
-        {
-            feed_cache[i] = new_feed[i];
-        }
         feed_pointer = 0; //set back to zero to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
@@ -79,7 +75,7 @@ const void set_clyde_mode(GhostMode mode){
 }
 
 
-const Clyde* _clyde(){
+Clyde* _clyde(){
     static Clyde* current_clyde = NULL;
     
     if (!current_clyde)

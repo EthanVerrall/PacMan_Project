@@ -1,7 +1,7 @@
-#include "../../include/behaviours/algo.h"
-#include "../../include/grid.h"
+#include "../include/behaviours/algo.h"
+#include "../include/grid.h"
 
-Point* trace_path_a_star(const Point* current, const Point* target){
+void trace_path_a_star(const Point* current, const Point* target, Point* result[]){
 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
@@ -30,16 +30,14 @@ Point* trace_path_a_star(const Point* current, const Point* target){
     //so that we do not scratch our heads over errors later
     #ifdef MAX_PATH_STORE
         const Point* open_points[MAX_PATH_STORE];
-        const Point* found_points[MAX_PATH_STORE];
     #else
         const Point* open_points[30];
-        const Point* found_points[30];
     #endif
 
     if(compare_points(current, target)){
         //this means that we are already at our target
-        push(current, found_points);
-        return found_points;
+        push(current, result);
+        return;
     }
 
     //add the current to open_points
@@ -62,9 +60,9 @@ Point* trace_path_a_star(const Point* current, const Point* target){
 
         //If the current_smallest is the target node, we have reached our target... Yay
         if(compare_points(current_smallest, target)) {
-            push(current_smallest, found_points);
+            push(current_smallest, result);
             current_smallest = NULL; //return makes this not needed, but I am just being very protective here.... y'know
-            return found_points;
+            return;
         }
 
         /** 
@@ -124,7 +122,7 @@ Point* trace_path_a_star(const Point* current, const Point* target){
 
                 //if the item successor is in the closed list, and it has a lower f(n) than the successor, we ignore
                 //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(temp_neighbour,found_points)){ 
+                if(search_item(temp_neighbour,result)){ 
                     free(temp_neighbour);
                     continue;
                 }
@@ -139,13 +137,13 @@ Point* trace_path_a_star(const Point* current, const Point* target){
         }
 
         //push the current_smallest into the closed list
-        push(current_smallest, found_points);
+        push(current_smallest, result);
     }
     //free the open points, closed points might be freed by the user of this function
     free_arr(open_points);
 
     //returned the closed points
-    return found_points;
+    return;
 }
 
 //Kindly note that this function does not check the values of the points

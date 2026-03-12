@@ -10,11 +10,11 @@
 #define _GHOST_CLYDE
 
 #include "ghosts.h"
-#include "../../point.h"
+#include "../include/utils/point.h"
 
 typedef Ghosts Clyde;
 
-const Clyde* _clyde();
+Clyde* _clyde();
 
 const Point* get_clyde_scatter_position();
 

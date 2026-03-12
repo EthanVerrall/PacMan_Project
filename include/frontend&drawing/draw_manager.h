@@ -11,7 +11,7 @@
 #include "../assets/texture_include/wall_textures.h"
 #include "../assets/texture_include/blank_textures.h"
 #include "../include/grid.h"
-#include "display.h"
+#include "../include/frontend&drawing/display.h"
 #include <stdbool.h>
 
 //Leaving open space at the top to account for the score during game time

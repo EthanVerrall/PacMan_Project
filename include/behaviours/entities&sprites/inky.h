@@ -6,11 +6,12 @@
 #define _GHOST_INKY
 
 #include "ghosts.h"
-#include "../../point.h"
+#include "../include/utils/point.h"
+#include "../include/behaviours/entities&sprites/blinky.h"
 
 typedef Ghosts Inky;
 
-const Inky* _inky();
+Inky* _inky();
 
 const Point* get_inky_scatter_position();
 

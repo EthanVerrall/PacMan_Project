@@ -1,6 +1,6 @@
 #include <stm32f031x6.h>
-#include "../include/font5x7.h"
-#include "../include/display.h"
+#include "../include/frontend&drawing/display.h"
+#include "../include/frontend&drawing/font5x7.h"
 
 void clear(void);
 static uint32_t mystrlen(const char *s);
@@ -19,8 +19,6 @@ static void command(uint8_t cmd);
 static void data(uint8_t data);
 static void ResetLow(void);
 static void ResetHigh(void);
-
-
 
 
 void display_begin()

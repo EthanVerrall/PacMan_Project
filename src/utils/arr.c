@@ -2,12 +2,11 @@
  * This is just a helper function, especially for dfs and a* algorithms,
  * to work with arrays as if they were lists
 */
+#include "../include/utils/arr.h"
 
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include "../include/point.h"
-
 #define ARRHELPERS
 #define MAXARRSIZE 30
 
@@ -37,7 +36,7 @@ uint8_t get_list_size(Point* list[]){
     return i;
 }
 
-bool push(Point* item, Point* list[]){
+bool push(const Point* item, Point* list[]){
     if (get_list_size(list) >= MAXARRSIZE){
        // printf("Array is full");
         return false;
@@ -56,7 +55,7 @@ bool push(Point* item, Point* list[]){
     return true;
 }
 
-bool search_item(Point* item, Point* list[]){
+bool search_item(const Point* item, Point* list[]){
     uint8_t i = 0;
     while (list[i])
     {
@@ -67,7 +66,7 @@ bool search_item(Point* item, Point* list[]){
     return false;
 }
 
-bool remove_item(Point* item, Point* list[]){
+bool remove_item(const Point* item, Point* list[]){
     uint8_t i = 0;
     bool found_and_removed = false;
     while (i < MAXARRSIZE && list[i]){
