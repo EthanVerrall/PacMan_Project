@@ -1,4 +1,5 @@
 #include "../include/frontend&drawing/draw_manager.h"
+#include "../include/serial.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -173,15 +174,15 @@ bool draw_starting_grid () {
             */
 
             const uint16_t* next_draw = NULL;
-            uint8_t cell_bitmask = get_grid_state(x_pixel, y_pixel);
+            uint8_t cell_bitmask = get_grid_state(y_pixel, x_pixel);
 
             switch (cell_bitmask) {
 
-                case cell_pacman:
+                case cell_blank|cell_pacman:
                     next_draw = pacman_array[pacman_right_closed];
                     break;
 
-                case cell_ghost:
+                case cell_blank|cell_ghost:
 
                     if (ghost_counter == 1) next_draw = inky_array[inky_right_eye];
                     if (ghost_counter == 2) next_draw = blinky_array[blinky_right_eye];
@@ -190,8 +191,8 @@ bool draw_starting_grid () {
 
                     if (ghost_counter < 1 || ghost_counter > 4) {
                         
-                        printf("Trying to draw another ghost when all ghosts have been drawn.\n");
-                        printf("Grid deleted from memory, draw has been aborted.\n");
+                        eputs("Trying to draw another ghost when all ghosts have been drawn.\r\n");
+                        eputs("Grid deleted from memory, draw has been aborted.\r\n");
                         destroy_grid();
 
                         //Grid failed to draw
@@ -235,8 +236,8 @@ bool draw_starting_grid () {
                     break;
 
                 default:
-                    printf("Trying to draw unknown cell type.\n");
-                    printf("Grid deleted from memory, draw has been aborted.\n");
+                    eputs("Trying to draw unknown cell type.\r\n");
+                    eputs("Grid deleted from memory, draw has been aborted.\r\n");
                     destroy_grid();
 
                     //Grid failed to draw

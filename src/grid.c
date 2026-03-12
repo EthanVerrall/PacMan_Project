@@ -212,7 +212,7 @@ bool create_reset_grid() {
     return true;
 }
 
-void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+void set_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -222,9 +222,9 @@ void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            singleton_grid->grid_index[x_point][y_point] = state_bit_mask;
+            singleton_grid->grid_index[row][col] = state_bit_mask;
         } 
         else 
         {
@@ -233,7 +233,7 @@ void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+void add_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -243,9 +243,9 @@ void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            singleton_grid->grid_index[x_point][y_point] |= state_bit_mask;
+            singleton_grid->grid_index[row][col] |= state_bit_mask;
         } 
         else 
         {
@@ -254,7 +254,7 @@ void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
+uint8_t get_grid_state(const uint8_t row, const uint8_t col) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -266,9 +266,9 @@ uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            return singleton_grid->grid_index[x_point][y_point];
+            return singleton_grid->grid_index[row][col];
         } 
         else 
         {
@@ -278,7 +278,7 @@ uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point) {
     }
 }
 
-bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+bool is_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -289,9 +289,9 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            if (singleton_grid->grid_index[x_point][y_point] == state_bit_mask) {
+            if (singleton_grid->grid_index[row][col] == state_bit_mask) {
 
                 return true;
             }
@@ -305,7 +305,7 @@ bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t s
     }
 }
 
-bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask) {
+bool has_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -317,9 +317,9 @@ bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point < GRID_ROW_COUNT && y_point < GRID_COL_COUNT) 
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            if (singleton_grid->grid_index[x_point][y_point] & state_bit_mask) {
+            if (singleton_grid->grid_index[row][col] & state_bit_mask) {
 
                 return true;
             }
@@ -333,8 +333,8 @@ bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t 
     }
 }
 
-bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1, 
-                         const uint8_t x_point_2, const uint8_t y_point_2 ) {
+bool compare_grid_states(const uint8_t row_1, const uint8_t col_1, 
+                         const uint8_t row_2, const uint8_t col_2 ) {
     
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -346,9 +346,9 @@ bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1,
     else {
 
         //Checking if our points our in valid arrray bounds
-        if (x_point_1 < GRID_ROW_COUNT && x_point_2 < GRID_ROW_COUNT && y_point_1 < GRID_COL_COUNT && y_point_2 < GRID_COL_COUNT) {
+        if (row_1 < GRID_ROW_COUNT && row_2 < GRID_ROW_COUNT && col_1 < GRID_COL_COUNT && col_2 < GRID_COL_COUNT) {
 
-            if (singleton_grid->grid_index[x_point_1][y_point_1] == singleton_grid->grid_index[x_point_2][y_point_2]) {
+            if (singleton_grid->grid_index[row_1][col_1] == singleton_grid->grid_index[row_2][col_2]) {
 
                 return true;
             } 
