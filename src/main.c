@@ -4,6 +4,8 @@
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
 #include "../include/music&sound/tones.h"
+#include "serial.h"
+
 
 void initClock(void);
 void initSysTick(void);
@@ -29,25 +31,30 @@ int main()
 	//destroy_grid();
 
 	const uint16_t notes[] = {
-        C3, 500, C4,200, G4,200, E4,200, C4,200, G4,200, E4,200,
-        D3,500, D4,200, A4,200, FS4_Gb4,200, D4,200, A4,200, FS4_Gb4,200,
-        C3,500, C4,200, G4,200, E4,200, C4,200, G4,200, E4,200, 0, 400,
+		//4 8th notes
+        C4,200 , C5,200, G4,200, E4,200, C5,200, G4,200, E4,200, 0, 200,
+        CS4_Db4,200, CS5_Db5,200, GS4_Ab4,200, F4,200, CS5_Db5,200, GS4_Ab4,200, F4,200, 0, 200,
+        C4,200, C5,200, G4,200, E4,200, C5,200, G4,200, E4,200, 0, 200,
         
-        FS4_Gb4,50,G4,50,GS4_Ab4,50,A4,200,
-        G4,50,GS4_Ab4,50,A4,50,AS4_Bb4,200,
-        GS4_Ab4,50,A4,50,AS4_Bb4,50,B4,200,
-        C5,200
+        F4,100, FS4_Gb4,100, G4,100, 0,100,
+        FS4_Gb4,100, G4,100, GS4_Ab4,100, 0,100,
+        GS4_Ab4,100,A4,100,AS4_Bb4,100, 0,100,
+        C5,200, 0,200
     };
 
+
+	// this array is too long, make it shorter
 	while(1)
 	{	
-		for (uint16_t i = 0; i < 70; i+=2)
+
+		for (uint16_t i = 0; i < 90; i+=2)
 		{
 			playNote(notes[i]);
 			delay(notes[i + 1]);
 		}
-			
+
 	}
+
 	return 0;
 }
 
