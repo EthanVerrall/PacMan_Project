@@ -3,9 +3,16 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define INVALID_POINT 255
+
 /*  
     Struct for point, will be used for all elements in the program.
     Ghosts and pacman will have a point, board will have many points.
+
+    A point correlates directly to grid indexing.
+    For example: grid[x_point][y_point] 
+
+    Therefore a valid point is (0,0) to (20,16). Consider outside this range as invalid and undefined behaviour!
 
     uint8_t x;
     uint8_t y;

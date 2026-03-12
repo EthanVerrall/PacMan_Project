@@ -71,27 +71,27 @@ typedef struct Grid Grid;
 bool create_reset_grid();
 
 //Overwrites the entire bitmask state on the grid at the specified point
-void set_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+void set_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask);
 
 //Appends a bitmask state on the grid at the specified point using ( |= ) bitwise or equals
-void add_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+void add_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask);
 
 //Returns the bitmask state on the grid at the specified point
-uint8_t get_grid_state(uint8_t x_point, uint8_t y_point);
+uint8_t get_grid_state(const uint8_t x_point, const uint8_t y_point);
 
 //Checks the bitmask state on the grid at the specified point, 
 //Only true if the exact cell state completely matches the bitmask perfectly
-bool is_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+bool is_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask);
 
 //Checks the bitmask state on the grid at the specified point,
 //Returns true if the grid cell contains at least this state, 
 //Function does not care about the other states the cell might contain.
-bool has_grid_state(uint8_t x_point, uint8_t y_point, const uint8_t state_bit_mask);
+bool has_grid_state(const uint8_t x_point, const uint8_t y_point, const uint8_t state_bit_mask);
 
 //Compare two points on the grid by their bitmask states,
 //pass two points, returns true if the masks match each other
-bool compare_grid_states(uint8_t x_point_1, uint8_t y_point_1, 
-                         uint8_t x_point_2, uint8_t y_point_2);
+bool compare_grid_states(const uint8_t x_point_1, const uint8_t y_point_1, 
+                         const uint8_t x_point_2, const uint8_t y_point_2);
 
 //Returns true if our grid is currently heap allocated on memory 
 bool is_grid_alive();
