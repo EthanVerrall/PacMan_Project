@@ -3,6 +3,7 @@
 #include "../include/grid.h"
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
+#include "../include/music&sound/tones.h"
 
 void initClock(void);
 void initSysTick(void);
@@ -26,14 +27,26 @@ int main()
 	//create_reset_grid();
 	//draw_starting_grid();
 	//destroy_grid();
+
+	const uint16_t notes[] = {
+        C3, 500, C4,200, G4,200, E4,200, C4,200, G4,200, E4,200,
+        D3,500, D4,200, A4,200, FS4_Gb4,200, D4,200, A4,200, FS4_Gb4,200,
+        C3,500, C4,200, G4,200, E4,200, C4,200, G4,200, E4,200, 0, 400,
+        
+        FS4_Gb4,50,G4,50,GS4_Ab4,50,A4,200,
+        G4,50,GS4_Ab4,50,A4,50,AS4_Bb4,200,
+        GS4_Ab4,50,A4,50,AS4_Bb4,50,B4,200,
+        C5,200
+    };
+
 	while(1)
 	{	
-		playNote(E8);
-		delay(500);
-		playNote(C8);
-		delay(500);
-		playNote(0);
-		delay(3000);
+		for (uint16_t i = 0; i < 70; i+=2)
+		{
+			playNote(notes[i]);
+			delay(notes[i + 1]);
+		}
+			
 	}
 	return 0;
 }
