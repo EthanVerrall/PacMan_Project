@@ -11,6 +11,7 @@
 
 #include "ghosts.h"
 #include "../include/utils/point.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 
 typedef Ghosts Clyde;
 

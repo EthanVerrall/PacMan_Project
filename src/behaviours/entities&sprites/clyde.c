@@ -1,7 +1,16 @@
 #include "../include/behaviours/entities&sprites/clyde.h"
 
-//todo... I need to write states that check for their current state
 const Point* get_clyde_target_position(){
+
+    if (get_clyde_mode() == scatter)
+    {
+        return get_clyde_scatter_position();
+    }
+
+    if (get_clyde_mode() == fright)
+    {
+        return get_random_position();
+    }
     
     Point* pacman_position = get_pacman_position();
 
@@ -19,7 +28,7 @@ const Point* get_clyde_target_position(){
         return get_clyde_scatter_position(); // work on this function
     }
 
-    //get 
+    //chases pacman when he is far away, if he is close, he runs to his scatter positions
     return pacman_position;
 }
 

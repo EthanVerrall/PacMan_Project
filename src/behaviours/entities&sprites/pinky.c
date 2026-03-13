@@ -1,6 +1,10 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 
 const Point* get_pinky_target_position(){
+
+    if (get_pinky_mode() == scatter) return get_pinky_scatter_position();
+    
+    if (get_pinky_mode() == fright) return get_random_position();
     //get pacman direction
     uint8_t pacman_direction = get_pacman_direction();
     Point* pacman_position = get_pacman_position();

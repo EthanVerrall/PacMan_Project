@@ -90,6 +90,8 @@ bool remove_item(const Point* item, Point* list[]){
         list[i - 1] = NULL;
     }
 
+    //free(item);
+
     return found_and_removed;
     
 }
@@ -101,5 +103,16 @@ bool free_arr(Point* list[]){
         free(list[i]);
         list[i] = NULL;
         i++;
+    }
+}
+
+void reverse_points(Point* list[]) {
+    size_t n = get_list_size(list);
+
+    for(size_t i = 0; i < n/2; i++) {
+        //perform a swap
+        Point* temp = list[i];
+        list[i] = list[n-i-1];
+        list[n-i-1] = temp;
     }
 }

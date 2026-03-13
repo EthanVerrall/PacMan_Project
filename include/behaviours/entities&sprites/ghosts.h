@@ -49,5 +49,12 @@ const GhostMode get_ghost_mode(const Ghosts* ghost);
 
 const void set_ghost_mode(Ghosts* ghost,const GhostMode mode);
 
+/**
+ * Get the type of the ghost. This is used to determine the behaviour of the ghost in the chase mode
+ *
+ * B for blinky, P for pinky, I for inky and C for clyde 
+*/
+const char get_ghost_type(const Ghosts* ghost);
+
 
 #endif

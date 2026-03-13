@@ -1,7 +1,10 @@
 #include "../include/behaviours/entities&sprites/blinky.h"
 
 const Point* get_blinky_target_position(){
-    return get_pacman_position(); //work on this after
+    if (get_blinky_mode() == scatter) return get_blinky_scatter_position();
+    if (get_blinky_mode() == fright)
+        return get_random_position(); //we need to implement this function to return a random position on the grid that is not a wall
+    return get_pacman_position(); //chases pacman directly
 }
 
 /** 
