@@ -76,6 +76,12 @@ void set_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bi
 //Appends a bitmask state on the grid at the specified point using ( |= ) bitwise or equals
 void add_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask);
 
+//WARNING:
+//----------
+//Check that the grid does not include the state before attempting to remove it, 
+//else it would just add the state instead of removing it
+void remove_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask);
+
 //Returns the bitmask state on the grid at the specified point
 uint8_t get_grid_state(const uint8_t row, const uint8_t col);
 

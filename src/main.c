@@ -3,6 +3,7 @@
 #include "../include/grid.h"
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
+#include "../include/serial.h"
 
 void initClock(void);
 void initSysTick(void);
@@ -22,14 +23,59 @@ int main()
 	setupIO();
 	initSound();
 	
-	//Creating a new grid, default drawing, and then destroying the grid
 	create_reset_grid();
 	draw_starting_grid();
-	destroy_grid();
-	while(1)
+
+	Point* point_array[10] = 
 	{	
-	
+		//Inky
+		create_point(10,6),
+		create_point(0,0),
+
+		//Blinky
+		create_point(10,7),
+		create_point(0,0),
+		
+		//Pinky
+		create_point(10,8),
+		create_point(0,0),
+
+		//Clyde
+		create_point(10,9),
+		create_point(0,0),
+
+		//Pacman
+		create_point(15,7),
+		create_point(0,0)
+	};
+
+	enum entity_type entity_array[5] = 
+	{
+		entity_type_inky,
+		entity_type_blinky,
+		entity_type_pinky,
+		entity_type_clyde,
+		entity_type_pacman
+	};
+
+	while (1) 
+	{
+		uint8_t inky_x = get_x_point_coord(point_array[0]);
+		uint8_t inky_y = get_y_point_coord(point_array[0]); 
+		uint8_t blinky_x = get_x_point_coord(point_array[2]); 
+		uint8_t blinky_y = get_y_point_coord(point_array[2]);  
+		uint8_t pinky_x = get_x_point_coord(point_array[4]); 
+		uint8_t pinky_y = get_y_point_coord(point_array[4]);  
+		uint8_t clyde_x = get_x_point_coord(point_array[6]); 
+		uint8_t clyde_y = get_y_point_coord(point_array[6]);  
+		uint8_t pacman_x = get_x_point_coord(point_array[8]); 
+		uint8_t pacman_y = get_y_point_coord(point_array[8]);
+
+	for (int i = 0; i < 10; ++i) {
+		destroy_point(point_array[i]);
 	}
+
+	destroy_grid();
 	return 0;
 }
 

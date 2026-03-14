@@ -253,6 +253,27 @@ void add_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bi
     }
 }
 
+void remove_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to update grid position, grid does not exist!\r\n");
+    } 
+    else {
+
+        //Checking if our points our in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            singleton_grid->grid_index[row][col] ^= state_bit_mask;
+        } 
+        else 
+        {
+            eputs("Out of range for x and y point when accessing the grid, remove_grid_state() failed.\r\n");
+        }   
+    }
+}
+
 uint8_t get_grid_state(const uint8_t row, const uint8_t col) {
 
     //Checking if our grid is created

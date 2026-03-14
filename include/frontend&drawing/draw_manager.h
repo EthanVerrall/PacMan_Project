@@ -31,6 +31,6 @@ enum entity_type {
 //Function to draw the starting state of the game, only use this once per game.
 bool draw_starting_grid ();
 
-void move_entity(Point* const current_point, Point* const target_point);
+void move_entity(const Point* const point_array[10], const enum entity_type entity_array[5] );
 
 #endif //DRAW_MANAGER

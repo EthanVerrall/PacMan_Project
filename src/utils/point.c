@@ -89,7 +89,7 @@ uint8_t get_y_point_coord(const Point* const struct_point) {
     return struct_point->y;
 }
 
-bool move_point(const uint8_t x, const uint8_t y, Point* const struct_point) {
+bool move_point(const int8_t x, const int8_t y, Point* const struct_point) {
 
     if (!struct_point) {
 

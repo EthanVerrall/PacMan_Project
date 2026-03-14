@@ -5,10 +5,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define right 0
-#define down 1
-#define left 2
-#define up 3
+#define RIGHT 0
+#define DOWN 1
+#define LEFT 2
+#define UP 3
 
 static bool is_mouth_open = false;
 
@@ -270,44 +270,44 @@ bool draw_starting_grid () {
 //Function updates our uint_16 pointer to point at the texture we are drawing
 const uint16_t* point_at_entity_texture(uint8_t direction,enum entity_type entity) {
 
-    //direction just defines whic way we are moving
+    //direction just defines which way we are moving
     //a simple arbitrary value should be fine for this
-    //0 = right, 1 = down, 2 = left, 3 = up
+    //0 = RIGHT, 1 = DOWN, 2 = LEFT, 3 = UP
 
     switch (entity) {
 
         case entity_type_blinky: 
-            if (right) return blinky_array[blinky_right_eye];
-            if (down) return blinky_array[blinky_bottom_eye];
-            if (left) return blinky_array[blinky_left_eye];
-            if (up) return blinky_array[blinky_top_eye];
+            if (direction == RIGHT) return blinky_array[blinky_right_eye];
+            if (direction == DOWN) return blinky_array[blinky_bottom_eye];
+            if (direction == LEFT) return blinky_array[blinky_left_eye];
+            if (direction == UP) return blinky_array[blinky_top_eye];
 
             eputs("Matching texture for blinky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_clyde: 
-            if (right) return clyde_array[clyde_right_eye];
-            if (down) return clyde_array[clyde_bottom_eye];
-            if (left) return clyde_array[clyde_left_eye];
-            if (up) return clyde_array[clyde_top_eye];
+            if (direction == RIGHT) return clyde_array[clyde_right_eye];
+            if (direction == DOWN) return clyde_array[clyde_bottom_eye];
+            if (direction == LEFT) return clyde_array[clyde_left_eye];
+            if (direction == UP) return clyde_array[clyde_top_eye];
 
             eputs("Matching texture for clyde not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_inky:
-            if (right) return inky_array[inky_right_eye];
-            if (down) return inky_array[inky_bottom_eye];
-            if (left) return inky_array[inky_left_eye];
-            if (up) return inky_array[inky_top_eye];
+            if (direction == RIGHT) return inky_array[inky_right_eye];
+            if (direction == DOWN) return inky_array[inky_bottom_eye];
+            if (direction == LEFT) return inky_array[inky_left_eye];
+            if (direction == UP) return inky_array[inky_top_eye];
 
             eputs("Matching texture for inky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_pinky:
-            if (right) return pinky_array[pinky_right_eye];
-            if (down) return pinky_array[pinky_bottom_eye];
-            if (left) return pinky_array[pinky_left_eye];
-            if (up) return pinky_array[pinky_top_eye];
+            if (direction == RIGHT) return pinky_array[pinky_right_eye];
+            if (direction == DOWN) return pinky_array[pinky_bottom_eye];
+            if (direction == LEFT) return pinky_array[pinky_left_eye];
+            if (direction == UP) return pinky_array[pinky_top_eye];
 
             eputs("Matching texture for pinky not found. NULL returned.\r\n");
             return NULL;
@@ -317,16 +317,54 @@ const uint16_t* point_at_entity_texture(uint8_t direction,enum entity_type entit
             //Why do we have only two frames for this guy lol XD -- surely we add more????
 
             //Pacmans mouth is open
-            if (right && is_mouth_open) return pacman_array[pacman_right_open];
-            if (down && is_mouth_open) return pacman_array[pacman_bottom_open];
-            if (left && is_mouth_open) return pacman_array[pacman_left_open];
-            if (up && is_mouth_open) return pacman_array[pacman_top_open];
-            
+            if (direction == RIGHT && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_right_open];
+            }
+
+            if (direction == DOWN && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_bottom_open];
+            }
+
+            if (direction == LEFT && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_left_open];
+            }
+
+            if (direction == UP && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_top_open];
+            }
+
             //Pacmans mouth is closed
-            if (right && is_mouth_open) return pacman_array[pacman_right_closed];
-            if (down && is_mouth_open) return pacman_array[pacman_bottom_closed];
-            if (left && is_mouth_open) return pacman_array[pacman_left_closed];
-            if (up && is_mouth_open) return pacman_array[pacman_top_closed];
+            if (direction == RIGHT && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_right_closed];
+            }
+
+            if (direction == DOWN && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_bottom_closed];
+            }
+
+            if (direction == LEFT && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_left_closed];
+            }
+
+            if (direction == UP && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_top_closed];
+            }
 
             eputs("Matching texture for pacman not found. NULL returned.\r\n");
             return NULL;
@@ -357,7 +395,7 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const 
     }
     else {
         
-        uint8_t cell_bitmask = 0;
+        cell_bitmask = 0;
     }
     
     switch  (cell_bitmask) {
@@ -370,6 +408,8 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const 
 
         case cell_cherry: return pickups_array[pickups_cherry];
         
+        case cell_gate: return wall_array[wall_gate];
+
         default:
         eputs("point_at_static_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
         return NULL;
@@ -380,69 +420,145 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const 
 //Helper functionS -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
 
+void move_entity(const Point* const point_array[10], const enum entity_type entity_array[5] ) {
 
-void move_entity(Point* const current_point, Point* const target_point, const enum entity_type entity) {
+    //Enusring we don't derference a NULL POINTER
+    for (uint8_t i = 0; i < 10; ++i) {
 
-    if (!current_point || !target_point) {
+        if (!point_array[i]) {
 
-        eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
-        return;
-    } 
+            eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
+            return;
+        }
+    }
+
+    //Enusring we don't have an invalid entity
+    for (uint8_t i = 0; i < 5; ++i) {
+
+        if (!entity_array[i]) {
+
+            eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
+            return;
+        } 
+    }
+
+    //Each entities starting x pixel
+    uint8_t x_original_pixel_array[5];
+
+    //Each entities starting y pixel
+    uint8_t y_original_pixel_array[5];
+
+    //Each targets starting x pixel
+    uint8_t x_target_pixel_array[5];
+
+    //Each targets starting y pixel
+    uint8_t y_target_pixel_array[5];
+
+    //Textures for our entities that we are moving
+    uint16_t* entity_textures_array[5];
+
+    //Textures for our static tiles we will restore
+    uint16_t* static_tiles_array[5];
+
+    //Velocity for x_pixels
+    int8_t dx[5];
+
+    //Velocity for x_pixels
+    int8_t dy[5];
     
-    uint8_t x_current_pixel = get_y_point_coord(current_point) * 8;
-    uint8_t y_current_pixel = get_x_point_coord(current_point) * 8;
-    uint8_t x_target_pixel = get_y_point_coord(target_point) * 8;
-    uint8_t y_target_pixel = get_x_point_coord(target_point) * 8;
-    //const uint8_t origin_x_pixel = x_current_pixel;
-    //const uint8_t origin_y_pixel = y_current_pixel;
+    
+    //Pixel conversion is done here
+    //Direction calculated here
+    //Textures are assigned here 
+    for (uint8_t i = 0; i < 5; ++i) {
 
-    //Calculate direction for animation purposes
-    int8_t dx = (int8_t) x_target_pixel - (int8_t) x_current_pixel;
-    int8_t dy = (int8_t) y_target_pixel - (int8_t) y_current_pixel;
+        x_original_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
+        y_original_pixel_array[i] = get_x_point_coord(point_array[i * 2]) * 8;
 
-    //Moves right
-    if (dx == 1 && dy == 0) {
-        const uint16_t* moving_entity = point_at_entity_texture(right,entity);
-        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
-        for (uint8_t i = 1; i <= 8; ++i) {
+        x_target_pixel_array[i]   = get_y_point_coord(point_array[(i * 2) + 1]) * 8;
+        y_target_pixel_array[i]   = get_x_point_coord(point_array[(i * 2) + 1]) * 8;
 
-            
+        //Target - Original
+        dx[i] = x_target_pixel_array[i] - x_original_pixel_array[i];
+        dy[i] = y_target_pixel_array[i] - y_original_pixel_array[i];
+
+        //Moves RIGHT
+        if (dx[i] == 8 && dy[i] == 0) {
+
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
         }
+        //Moves DOWN
+        else if (dx[i] == 0 && dy[i] == 8) {
+
+            entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i]);
+        }
+        //Moves LEFT
+        else if (dx[i] == -8 && dy[i] == 0) {
+
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
+        }
+        //Moves UP
+        else if (dx[i] == 0 && dy[i] == -8) {
+
+            entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
+        }
+        else 
+        {
+            eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
+            return;
+        }
+        static_tiles_array[i] = point_at_static_texture(x_original_pixel_array[i], y_original_pixel_array[i], entity_array[i]);
     }
-    //Moves down
-    else if (dx == 0 && dy == 1)
+
+
+    for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
+         current_frame <= 8; 
+         ++current_frame, ++forward_offset, --backward_offset)  
     {
-        const uint16_t* moving_entity = point_at_entity_texture(down,entity);
-        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
-        for (uint8_t i = 1; i <= 8; ++i) {
 
-            
+        for (uint8_t i = 0; i < 5; ++i) {
+
+            //Moves RIGHT
+            if (dx[i] == 8 && dy[i] == 0) {
+
+                //Redrawing the tile we are leaving
+                putColumn(x_original_pixel_array[i] + forward_offset, y_original_pixel_array[i], static_tiles_array[i], forward_offset);
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_original_pixel_array[i] + current_frame, y_original_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+            }
+
+            //Moves DOWN
+            else if (dx[i] == 0 && dy[i] == 8) {
+
+                //Redrawing the tile we are leaving
+                putRow(x_original_pixel_array[i], y_original_pixel_array[i] + forward_offset, static_tiles_array[i], forward_offset);
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_original_pixel_array[i], y_original_pixel_array[i] + current_frame, 8,8, entity_textures_array[i], 0,0);
+            }
+
+            //Moves LEFT
+            else if (dx[i] == -8 && dy[i] == 0) {
+
+                //Redrawing the tile we are leaving
+                putColumn(x_original_pixel_array[i] + backward_offset, y_original_pixel_array[i], static_tiles_array[i], backward_offset);
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_original_pixel_array[i] - current_frame, y_original_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+            }
+
+            //Moves UP
+            else if (dx[i] == 0 && dy[i] == -8) {
+
+                //putImage(x_original_pixel, y_original_pixel + j, 8,i, static_tile, 0,1);
+                putRow(x_original_pixel_array[i], y_original_pixel_array[i] + backward_offset, static_tiles_array[i], backward_offset);
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_original_pixel_array[i], y_original_pixel_array[i] - current_frame, 8,8, entity_textures_array[i], 0,0);
+            }   
+            //Error case
+            else {
+                eputs("Error with movement, function move_entity() did not work.\r\n");
+            }   
         }
-
-    }
-    //Moves left
-    else if (dx == -1 && dy == 0) 
-    {
-        const uint16_t* moving_entity = point_at_entity_texture(left,entity);
-        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
-        for (uint8_t i = 1; i <= 8; ++i) {
-
-            
-        }
-
-    }
-    //Moves up
-    else if (dx == 0 && dy == -1) 
-    {
-        const uint16_t* moving_entity = point_at_entity_texture(up,entity);
-        const uint16_t* static_tile = point_at_static_texture(x_current_pixel, y_current_pixel, entity);
-        for (uint8_t i = 1; i <= 8; ++i) {
-
-            
-        }
-
-    }
-    else {
-        //It's cooked if I get here tbh
+        //End of frame, needs to delay now
+        delay(100);
     }
 }
