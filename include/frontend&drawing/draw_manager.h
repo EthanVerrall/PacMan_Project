@@ -12,12 +12,25 @@
 #include "../assets/texture_include/blank_textures.h"
 #include "../include/grid.h"
 #include "../include/frontend&drawing/display.h"
+#include "../include/utils/point.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 //Leaving open space at the top to account for the score during game time
 #define HEIGHT_OFFSET 8
 
+enum entity_type {
+
+    entity_type_blinky = 1,
+    entity_type_inky = 2,
+    entity_type_clyde = 3,
+    entity_type_pinky = 4,
+    entity_type_pacman = 5
+};
+
 //Function to draw the starting state of the game, only use this once per game.
 bool draw_starting_grid ();
+
+void move_entity(Point* const current_point, Point* const target_point);
 
 #endif //DRAW_MANAGER

@@ -23,17 +23,12 @@ int main()
 	initSound();
 	
 	//Creating a new grid, default drawing, and then destroying the grid
-	//create_reset_grid();
-	//draw_starting_grid();
-	//destroy_grid();
+	create_reset_grid();
+	draw_starting_grid();
+	destroy_grid();
 	while(1)
 	{	
-		playNote(E8);
-		delay(500);
-		playNote(C8);
-		delay(500);
-		playNote(0);
-		delay(3000);
+	
 	}
 	return 0;
 }

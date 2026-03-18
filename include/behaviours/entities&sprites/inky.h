@@ -8,6 +8,7 @@
 #include "ghosts.h"
 #include "../include/utils/point.h"
 #include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 
 typedef Ghosts Inky;
 

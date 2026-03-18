@@ -6,6 +6,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
 
+    //because of the x,y and row, col issue, I would need to ask ethan if the gcost would be correct
     uint8_t g_cost[GRID_ROW_COUNT][GRID_COL_COUNT];
 
     //initialise the g_cost grid with a default value of 255 (which is the maximum value for an unsigned 8 bit integer, 
@@ -18,12 +19,11 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         }
     }
 
+    //check for nullness
+    if(!current || !target) return;
+
     //the g_cost of the starting point is 0 since we are already there
     g_cost[get_x_point_coord(current)][get_y_point_coord(current)] = 0;
-
-
-    //check for nullness
-    if(!current || !target) return NULL;
 
     //track our open and closed points
     //this is just in the case that max path is changed maybe or removed
@@ -33,6 +33,9 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
     #else
         const Point* open_points[30];
     #endif
+
+    //fill to null
+    for (size_t i = 0; i < 30; i++) open_points[i] = NULL;
 
     if(compare_points(current, target)){
         //this means that we are already at our target
@@ -59,9 +62,50 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         remove_item(current_smallest, open_points);
 
         //If the current_smallest is the target node, we have reached our target... Yay
+        //so we reconstruct path from g_cost array
         if(compare_points(current_smallest, target)) {
-            push(current_smallest, result);
-            current_smallest = NULL; //return makes this not needed, but I am just being very protective here.... y'know
+
+            uint8_t x = get_x_point_coord(current_smallest);
+            uint8_t y = get_y_point_coord(current_smallest);
+
+            while(g_cost[x][y] != 0)
+            {
+                Point* p = create_point(x,y);
+                push(p, result);
+
+                bool found = false;
+
+                for(int8_t i = -1; i <= 1 && !found; i++)
+                for(int8_t j = -1; j <= 1; j++)
+                {
+
+                    if(!get_grid_state(x+i, y+j)) continue;
+
+                    //ignore [0][0], that is our current spot
+                    if (i == 0 && j == 0) continue;
+
+                    //ignore diagonals too
+                    if (i != 0 && j != 0) continue;
+
+                    uint8_t neighbour_x = x+i;
+                    uint8_t neighbour_y = y+j;
+
+                    //if it is a lower cost, we are on the right path backwards
+                    if(g_cost[neighbour_x][neighbour_y] == g_cost[x][y]-1)
+                    {
+                        //so the new x and y would be the path of our previous 'neighbour' we came from
+                        x = neighbour_x;
+                        y = neighbour_y;
+                        found = true;
+                        break; //go back out to while
+                    }
+                }
+                if(!found) break;
+            }
+            //because we work backwards, we would need to reverse the list so feed can properly get the path forwards
+            push(current, result);
+            reverse_points(result);
+            free_arr(open_points);
             return;
         }
 
@@ -120,13 +164,6 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                     continue;
                 }
 
-                //if the item successor is in the closed list, and it has a lower f(n) than the successor, we ignore
-                //TODO: check that the element has a lower f(n) than the successor as well (and it with this)
-                if(search_item(temp_neighbour,result)){ 
-                    free(temp_neighbour);
-                    continue;
-                }
-
                 //as all the checks have passed, we will now update the g_cost of the neighbour to be the tentative g_cost
                 g_cost[neighbour_x][neighbour_y] = tentative_g;
 
@@ -135,14 +172,10 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 temp_neighbour = NULL; // open points owns temp_neighbour now
             }
         }
-
-        //push the current_smallest into the closed list
-        push(current_smallest, result);
     }
     //free the open points, closed points might be freed by the user of this function
     free_arr(open_points);
 
-    //returned the closed points
     return;
 }
 

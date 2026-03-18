@@ -64,3 +64,7 @@ const GhostMode get_ghost_mode(const Ghosts* ghost){
 const void set_ghost_mode(Ghosts* ghost,const GhostMode mode){
     ghost->currentMode = mode;
 }
+
+const char get_ghost_type(const Ghosts* ghost){
+    return ghost->ghost_type;
+}

@@ -18,6 +18,10 @@
 
 const Point* get_inky_target_position(){
 
+    if (get_inky_mode() == scatter) return get_inky_scatter_position();
+
+    if (get_inky_mode() == fright) return get_random_position();
+
     const Point* blinky_position =  get_blinky_position();
     Point* pacman_position = get_pacman_position();
     //NOTE: when pacman has been created get the direct function and return type for get direction
