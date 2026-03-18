@@ -11,7 +11,7 @@ static Grid* singleton_grid = NULL;
 
 struct Grid {
 
-    uint8_t grid_index [GRID_ROW_COUNT][GRID_COL_COUNT]; 
+    uint16_t grid_index [GRID_ROW_COUNT][GRID_COL_COUNT]; 
 };
 
 //Internal Helper function - used to create a new grid on the heap (SINGLETON)
@@ -50,7 +50,7 @@ bool create_reset_grid() {
     }
 
     //Original states that the board/grid will always start with 
-    const uint8_t grid_pattern[] = 
+    const uint16_t grid_pattern[] = 
     {   
         //1st row -- one above the board -- The score goes here
         cell_blank, 16,
@@ -96,7 +96,7 @@ bool create_reset_grid() {
 
         //11th row -- middle of the board/grid pacman can wrap to the other side in this row
         cell_blank, 4, cell_pellet, 1, cell_wall, 1, 
-        cell_blank|cell_ghost, 4, //--Ghosts will draw on top of the board
+        cell_blank|cell_inky, 1, cell_blank|cell_blinky, 1, cell_blank|cell_pinky, 1, cell_blank|cell_clyde, 1, //--Ghosts will draw on top of the board
         cell_wall, 1, cell_pellet, 1, cell_blank, 4,
 
         //12th row
@@ -148,7 +148,7 @@ bool create_reset_grid() {
     {
         int safety_check = 0;
         int i = 1; 
-        while (i < sizeof(grid_pattern)) {
+        while (i < sizeof(grid_pattern) / sizeof(uint16_t)) {
 
             safety_check += grid_pattern[i];
             i += 2;
@@ -211,7 +211,7 @@ bool create_reset_grid() {
     return true;
 }
 
-void set_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+void set_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -232,7 +232,7 @@ void set_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bi
     }
 }
 
-void add_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -253,7 +253,7 @@ void add_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bi
     }
 }
 
-void remove_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -262,10 +262,10 @@ void remove_grid_state(const uint8_t row, const uint8_t col, const uint8_t state
     } 
     else {
 
-        //Checking if our points our in valid arrray bounds
+        //Checking if our points are in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
-            singleton_grid->grid_index[row][col] ^= state_bit_mask;
+            singleton_grid->grid_index[row][col] &= ~state_bit_mask;
         } 
         else 
         {
@@ -274,7 +274,7 @@ void remove_grid_state(const uint8_t row, const uint8_t col, const uint8_t state
     }
 }
 
-uint8_t get_grid_state(const uint8_t row, const uint8_t col) {
+uint16_t get_grid_state(const uint8_t row, const uint8_t col) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -285,7 +285,7 @@ uint8_t get_grid_state(const uint8_t row, const uint8_t col) {
     } 
     else {
 
-        //Checking if our points our in valid arrray bounds
+        //Checking if our points  in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
             return singleton_grid->grid_index[row][col];
@@ -298,7 +298,7 @@ uint8_t get_grid_state(const uint8_t row, const uint8_t col) {
     }
 }
 
-bool is_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
@@ -325,7 +325,7 @@ bool is_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit
     }
 }
 
-bool has_grid_state(const uint8_t row, const uint8_t col, const uint8_t state_bit_mask) {
+bool has_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
     if (!singleton_grid) {

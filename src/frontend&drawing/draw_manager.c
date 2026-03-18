@@ -162,8 +162,6 @@ bool draw_starting_grid () {
     };   
 
     //These variables are used to ensure all pairs of walls are printed and all 4 different ghosts are printed
-
-    uint8_t ghost_counter = 1;
     uint8_t current_wall_pair = 0;
     uint8_t walls_left_to_print = wall_count_pair[current_wall_pair];
 
@@ -184,7 +182,7 @@ bool draw_starting_grid () {
             */
 
             const uint16_t* next_draw = NULL;
-            uint8_t cell_bitmask = get_grid_state(y_pixel / 8, x_pixel / 8);
+            uint16_t cell_bitmask = get_grid_state(y_pixel / 8, x_pixel / 8);
 
             switch (cell_bitmask) {
 
@@ -192,28 +190,28 @@ bool draw_starting_grid () {
                     next_draw = pacman_array[pacman_right_closed];
                     break;
 
-                case cell_blank|cell_ghost:
+                case cell_blank|cell_blinky:
 
-                    if (ghost_counter == 1) next_draw = inky_array[inky_right_eye];
-                    if (ghost_counter == 2) next_draw = blinky_array[blinky_right_eye];
-                    if (ghost_counter == 3) next_draw = pinky_array[pinky_right_eye];
-                    if (ghost_counter == 4) next_draw = clyde_array[clyde_right_eye];
+                    next_draw = blinky_array[blinky_right_eye];
+                    break;
 
-                    if (ghost_counter < 1 || ghost_counter > 4) {
-                        
-                        eputs("Trying to draw another ghost when all ghosts have been drawn.\r\n");
-                        eputs("Grid deleted from memory, draw has been aborted.\r\n");
-                        destroy_grid();
+                case cell_blank|cell_inky:
 
-                        //Grid failed to draw
-                        return false;
-                    }
+                    next_draw = inky_array[inky_right_eye];
+                    break;
 
-                    ++ghost_counter;
+                case cell_blank|cell_pinky:
+
+                    next_draw = pinky_array[pinky_right_eye];
+                    break;
+
+                case cell_blank|cell_clyde:
+
+                    next_draw = clyde_array[clyde_right_eye];
                     break;
                 
                 case cell_blank:
-
+                    
                     next_draw = blank_array;
                     break;
 
@@ -256,7 +254,6 @@ bool draw_starting_grid () {
             //Drawing to the screen
             putImage(x_pixel, y_pixel, 8,8, next_draw, 0,0);
         }
-
     }
 
     //Grid drawn properly
@@ -264,11 +261,11 @@ bool draw_starting_grid () {
 }
 
 //--------------------------------------------------------------
-//Helper functionS -- must be declared before void move_entity() -- start
+//Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
 
 //Function updates our uint_16 pointer to point at the texture we are drawing
-const uint16_t* point_at_entity_texture(uint8_t direction,enum entity_type entity) {
+const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
 
     //direction just defines which way we are moving
     //a simple arbitrary value should be fine for this
@@ -374,44 +371,26 @@ const uint16_t* point_at_entity_texture(uint8_t direction,enum entity_type entit
     }
 }
 
-const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const enum entity_type entity) {
+const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 
     //Changing pixels to correctly reflect grid indexing
     //Function assumes we are working with perfect eights, should be called before any moving to a new tile has happened
     x_pixel /= 8;
     y_pixel /= 8;
 
-    //Getting bitmask from grid cell and extracting the dynamic entity from it
-    //I only need the static_tile types for this function. Must remove pacman and ghosts from my bitmask
-    uint8_t cell_bitmask = 0;
-    
-    if (has_grid_state(y_pixel,x_pixel,cell_pacman)) {
+    if (has_grid_state(y_pixel,x_pixel,cell_blank))  { return blank_array; } 
 
-        cell_bitmask = ~cell_pacman & get_grid_state(y_pixel,x_pixel);
-    } 
-    else if (has_grid_state(y_pixel,x_pixel,cell_ghost)) {
+    else if (has_grid_state(y_pixel,x_pixel,cell_pellet)) { return pickups_array[pickups_pellet]; }
 
-        cell_bitmask = ~cell_ghost & get_grid_state(y_pixel,x_pixel);
-    }
-    else {
-        
-        cell_bitmask = 0;
-    }
-    
-    switch  (cell_bitmask) {
+    else if (has_grid_state(y_pixel,x_pixel,cell_power_up)) { return pickups_array[pickups_powerup]; }
 
-        case cell_blank: return blank_array;
+    else if (has_grid_state(y_pixel,x_pixel,cell_cherry)) { return pickups_array[pickups_cherry]; }
 
-        case cell_pellet: return pickups_array[pickups_pellet];
+    else if (has_grid_state(y_pixel,x_pixel,cell_gate)) { return wall_array[wall_gate]; }
 
-        case cell_power_up: return pickups_array[pickups_powerup];
-
-        case cell_cherry: return pickups_array[pickups_cherry];
-        
-        case cell_gate: return wall_array[wall_gate];
-
-        default:
-        eputs("point_at_static_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+    else 
+    { 
+        eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
         return NULL;
     }
 }
@@ -420,39 +399,39 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel, const 
 //Helper functionS -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
 
-void move_entity(const Point* const point_array[10], const enum entity_type entity_array[5] ) {
+void move_entities(const Point* const point_array[10], const enum entity_type entity_array[5]) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < 10; ++i) {
 
         if (!point_array[i]) {
 
-            eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
+            eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
             return;
         }
     }
 
-    //Enusring we don't have an invalid entity
+    //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < 5; ++i) {
 
         if (!entity_array[i]) {
 
-            eputs("Points passed to move_entity function are invalid or NULL. Function aborted!\r\n");
+            eputs("Entity array passed to move_entities function are invalid or NULL. Function aborted!\r\n");
             return;
-        } 
+        }
     }
 
     //Each entities starting x pixel
-    uint8_t x_original_pixel_array[5];
+    uint8_t x_old_pixel_array[5];
 
     //Each entities starting y pixel
-    uint8_t y_original_pixel_array[5];
+    uint8_t y_old_pixel_array[5];
 
     //Each targets starting x pixel
-    uint8_t x_target_pixel_array[5];
+    uint8_t x_new_pixel_array[5];
 
     //Each targets starting y pixel
-    uint8_t y_target_pixel_array[5];
+    uint8_t y_new_pixel_array[5];
 
     //Textures for our entities that we are moving
     uint16_t* entity_textures_array[5];
@@ -466,21 +445,20 @@ void move_entity(const Point* const point_array[10], const enum entity_type enti
     //Velocity for x_pixels
     int8_t dy[5];
     
-    
     //Pixel conversion is done here
     //Direction calculated here
     //Textures are assigned here 
     for (uint8_t i = 0; i < 5; ++i) {
 
-        x_original_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
-        y_original_pixel_array[i] = get_x_point_coord(point_array[i * 2]) * 8;
+        x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
+        y_old_pixel_array[i] = get_x_point_coord(point_array[i * 2]) * 8;
 
-        x_target_pixel_array[i]   = get_y_point_coord(point_array[(i * 2) + 1]) * 8;
-        y_target_pixel_array[i]   = get_x_point_coord(point_array[(i * 2) + 1]) * 8;
+        x_new_pixel_array[i] = get_y_point_coord(point_array[(i * 2) + 1]) * 8;
+        y_new_pixel_array[i] = get_x_point_coord(point_array[(i * 2) + 1]) * 8;
 
         //Target - Original
-        dx[i] = x_target_pixel_array[i] - x_original_pixel_array[i];
-        dy[i] = y_target_pixel_array[i] - y_original_pixel_array[i];
+        dx[i] = x_new_pixel_array[i] - x_old_pixel_array[i];
+        dy[i] = y_new_pixel_array[i] - y_old_pixel_array[i];
 
         //Moves RIGHT
         if (dx[i] == 8 && dy[i] == 0) {
@@ -507,7 +485,7 @@ void move_entity(const Point* const point_array[10], const enum entity_type enti
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
             return;
         }
-        static_tiles_array[i] = point_at_static_texture(x_original_pixel_array[i], y_original_pixel_array[i], entity_array[i]);
+        static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
     }
 
 
@@ -516,48 +494,77 @@ void move_entity(const Point* const point_array[10], const enum entity_type enti
          ++current_frame, ++forward_offset, --backward_offset)  
     {
 
+        //Restoring tiles
         for (uint8_t i = 0; i < 5; ++i) {
 
             //Moves RIGHT
             if (dx[i] == 8 && dy[i] == 0) {
 
                 //Redrawing the tile we are leaving
-                putColumn(x_original_pixel_array[i] + forward_offset, y_original_pixel_array[i], static_tiles_array[i], forward_offset);
-                //Drawing over the tiles in the direction we are moving
-                putImage(x_original_pixel_array[i] + current_frame, y_original_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+                putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
-
+            
             //Moves DOWN
             else if (dx[i] == 0 && dy[i] == 8) {
 
                 //Redrawing the tile we are leaving
-                putRow(x_original_pixel_array[i], y_original_pixel_array[i] + forward_offset, static_tiles_array[i], forward_offset);
-                //Drawing over the tiles in the direction we are moving
-                putImage(x_original_pixel_array[i], y_original_pixel_array[i] + current_frame, 8,8, entity_textures_array[i], 0,0);
+                putRow(x_old_pixel_array[i], y_old_pixel_array[i] + forward_offset, static_tiles_array[i], forward_offset);
             }
 
             //Moves LEFT
             else if (dx[i] == -8 && dy[i] == 0) {
 
                 //Redrawing the tile we are leaving
-                putColumn(x_original_pixel_array[i] + backward_offset, y_original_pixel_array[i], static_tiles_array[i], backward_offset);
-                //Drawing over the tiles in the direction we are moving
-                putImage(x_original_pixel_array[i] - current_frame, y_original_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+                putColumn(x_old_pixel_array[i] + backward_offset, y_old_pixel_array[i], static_tiles_array[i], backward_offset);
             }
 
             //Moves UP
             else if (dx[i] == 0 && dy[i] == -8) {
 
-                //putImage(x_original_pixel, y_original_pixel + j, 8,i, static_tile, 0,1);
-                putRow(x_original_pixel_array[i], y_original_pixel_array[i] + backward_offset, static_tiles_array[i], backward_offset);
-                //Drawing over the tiles in the direction we are moving
-                putImage(x_original_pixel_array[i], y_original_pixel_array[i] - current_frame, 8,8, entity_textures_array[i], 0,0);
+                //Redrawing the tile we are leaving
+                putRow(x_old_pixel_array[i], y_old_pixel_array[i] + backward_offset, static_tiles_array[i], backward_offset);
             }   
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
             }   
         }
+
+        //Drawing ghosts and pacman
+        for (uint8_t i = 0; i < 5; ++i) {
+            
+            //Moves RIGHT
+            if (dx[i] == 8 && dy[i] == 0) {
+
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_old_pixel_array[i] + current_frame, y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+            }
+            
+            //Moves DOWN
+            else if (dx[i] == 0 && dy[i] == 8) {
+
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_old_pixel_array[i], y_old_pixel_array[i] + current_frame, 8,8, entity_textures_array[i], 0,0);
+            }
+
+            //Moves LEFT
+            else if (dx[i] == -8 && dy[i] == 0) {
+
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_old_pixel_array[i] - current_frame, y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+            }
+
+            //Moves UP
+            else if (dx[i] == 0 && dy[i] == -8) {
+
+                //Drawing over the tiles in the direction we are moving
+                putImage(x_old_pixel_array[i], y_old_pixel_array[i] - current_frame, 8,8, entity_textures_array[i], 0,0);
+            }   
+            //Error case
+            else {
+                eputs("Error with movement, function move_entity() did not work.\r\n");
+            }  
+        } 
         //End of frame, needs to delay now
         delay(100);
     }

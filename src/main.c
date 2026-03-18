@@ -4,6 +4,8 @@
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
 #include "../include/serial.h"
+#include <stdlib.h>
+#include <time.h>
 
 void initClock(void);
 void initSysTick(void);
@@ -16,175 +18,28 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 
 volatile uint32_t milliseconds;
 
+uint16_t get_current_ghost(enum entity_type entity) {
+
+	switch (entity) {
+
+		case entity_type_blinky: return cell_blinky; break;
+		case entity_type_inky: return cell_inky; break;
+		case entity_type_pinky: return cell_pinky; break;
+		case entity_type_clyde: return cell_clyde; break;
+		case entity_type_pacman: return cell_pacman; break;
+
+		default: return 0; break;
+	}
+}
+
 int main()
 {
 	initClock();
 	initSysTick();
 	setupIO();
 	initSound();
-
-	create_reset_grid();
-	draw_starting_grid();
-
-	Point* point_array[10] =
-	{
-		//Inky
-		create_point(10,6),
-		create_point(0,0),
-
-		//Blinky
-		create_point(10,7),
-		create_point(0,0),
-
-		//Pinky
-		create_point(10,8),
-		create_point(0,0),
-
-		//Clyde
-		create_point(10,9),
-		create_point(0,0),
-
-		//Pacman
-		create_point(15,7),
-		create_point(0,0)
-	};
-
-	enum entity_type entity_array[5] =
-	{
-		entity_type_inky,
-		entity_type_blinky,
-		entity_type_pinky,
-		entity_type_clyde,
-		entity_type_pacman
-	};
-
-	bool run_game = true;
-	while (run_game) {
-
-		for (uint8_t i = 0u; i < 10; i += 2) {
-
-			// Get the current pos
-			uint8_t const current_x = get_x_point_coord(point_array[i]);
-			uint8_t const current_y = get_y_point_coord(point_array[i]);
-
-			// Get the target pos
-			uint8_t const target_x = get_x_point_coord(point_array[i + 1u]);
-			uint8_t const target_y = get_y_point_coord(point_array[i + 1u]);
-
-			// Create mask for all directions and valid moves
-			uint8_t 	  allowed_move_mask = 0u; 	    // 0 0 0 0
-			uint8_t const left  			= 1u << 0u; // 0 0 0 1
-			uint8_t const right 			= 1u << 1u; // 0 0 1 0
-			uint8_t const up    			= 1u << 2u; // 0 1 0 0
-			uint8_t const down  			= 1u << 3u; // 1 0 0 0
-
-			// Check neighboring cells for valid moves:
-			if (i == 8u) {
-
-				// Pacman
-				if (!has_grid_state(current_x	  , current_y - 1u, cell_wall | cell_gate)) { allowed_move_mask |= left;  } // Check left
-				if (!has_grid_state(current_x	  , current_y + 1u, cell_wall | cell_gate)) { allowed_move_mask |= right; } // Check right
-				if (!has_grid_state(current_x - 1u, current_y     , cell_wall | cell_gate)) { allowed_move_mask |= up;  } // Check up
-				if (!has_grid_state(current_x + 1u, current_y     , cell_wall | cell_gate)) { allowed_move_mask |= down;  } // Check down
-			} else {
-
-				// Ghost
-				if (!has_grid_state(current_x	  , current_y - 1u, cell_wall)) { allowed_move_mask |= left;  } // Check left
-				if (!has_grid_state(current_x	  , current_y + 1u, cell_wall)) { allowed_move_mask |= right; } // Check right
-				if (!has_grid_state(current_x - 1u, current_y     , cell_wall)) { allowed_move_mask |= up;  } // Check up
-				if (!has_grid_state(current_x + 1u, current_y     , cell_wall)) { allowed_move_mask |= down;  } // Check down
-			}
-
-			// Generate random number between 0-3 (left, right, up, down)
-			uint8_t random_direction_mask = 0u; // Initialize to 0 so loop can run at least once
-			while(!(random_direction_mask & allowed_move_mask)) {
-
-				uint8_t const random_num 		    = rand() % 4;
-				random_direction_mask = 1u << random_num;
-			}
-
-			// Check which direction to move
-			if (random_direction_mask & left) { // Check left
-
-				// Update new target in array
-				set_point_coord(current_x, current_y - 1u, point_array[i + 1u]);
-			} else if (random_direction_mask & right) { // Check right
-
-				// Update new target in array
-				set_point_coord(current_x, current_y + 1u, point_array[i + 1u]);
-			} else if (random_direction_mask & up) { // Check up
-
-				// Update new target in array
-				set_point_coord(current_x - 1u, current_y, point_array[i + 1u]);
-			} else if (random_direction_mask & down) { // Check down
-
-				// Update new target in array
-				set_point_coord(current_x + 1u, current_y, point_array[i + 1u]);
-			}
-		}
-
-		// Draw point array
-		move_entity(point_array, entity_array);
-
-		for (uint8_t i = 0u; i < 10; i += 2) {
-
-			// Get the current pos
-			uint8_t const current_x = get_x_point_coord(point_array[i]);
-			uint8_t const current_y = get_y_point_coord(point_array[i]);
-
-			// Get the target pos
-			uint8_t const target_x = get_x_point_coord(point_array[i + 1u]);
-			uint8_t const target_y = get_y_point_coord(point_array[i + 1u]);
-
-			// Update grid in old position
-			if (i == 8u) {
-				
-				// Pacman
-				set_grid_state(current_x, current_y, cell_blank);
-			} else {
-
-				// Ghost
-				remove_grid_state(current_x, current_y, cell_ghost);
-			}
-
-			// Update grid in new position
-			uint8_t const new_target_x = get_x_point_coord(point_array[i + 1u]);
-			uint8_t const new_target_y = get_y_point_coord(point_array[i + 1u]);
-			if (i == 8u) {
-
-				// Pacman
-				add_grid_state(new_target_x, new_target_y, cell_pacman);
-			} else {
-
-				// Ghost
-				if (!has_grid_state(new_target_x,new_target_y, cell_ghost)) {
-					add_grid_state(new_target_x, new_target_y, cell_ghost);
-				}
-				
-			}
-
-			// Update current position
-			set_x_point_coord(new_target_x, point_array[i]);
-			set_y_point_coord(new_target_y, point_array[i]);
-
-			// If its Pacman, check if ghost eats him
-			if (i == 8u) {
-
-				// Pacman
-				if (has_grid_state(new_target_x, new_target_y, cell_ghost)) {
-
-					run_game = false;
-					break;
-				}
-			}
-		}
-	}
-
-	for (int i = 0; i < 10; ++i) {
-		destroy_point(point_array[i]);
-	}
-
-	destroy_grid();
+	initSerial();
+	
 	return 0;
 }
 
