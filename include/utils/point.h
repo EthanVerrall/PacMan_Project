@@ -41,7 +41,7 @@ uint8_t get_y_point_coord(const Point* const struct_point);
 
 //Updates point by specified amount
 //Use this function to update movement for pacMan and Ghosts and...
-bool move_point(const uint8_t x, const uint8_t y, Point* const struct_point);
+bool move_point(const int8_t x, const int8_t y, Point* const struct_point);
 
 //Compares both x and y values between two points. 
 //Returns false if not Identical 
