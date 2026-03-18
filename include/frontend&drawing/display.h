@@ -18,6 +18,31 @@ void printNumber(uint16_t Number, uint16_t x, uint16_t y, uint16_t ForeColour, u
 void printNumberX2(uint16_t Number, uint16_t x, uint16_t y, uint16_t ForeColour, uint16_t BackColour);
 uint16_t RGBToWord(uint16_t R, uint16_t G, uint16_t B);
 
+
+/*
+    Draw a column of 8 pixels to a screen.
+    X and Y are the starting pixels in the screen where you are drawing.
+    Image is our texture colour array.
+    Column index is the correspondeing column in our flattend array that we are drawing.
+*/
+void putColumn(uint16_t x,
+               uint16_t y, 
+               const uint16_t* const Image, 
+               const uint8_t column_index
+               );
+
+/*
+    Draw a row of 8 pixels to a screen.
+    X and Y are the starting pixels in the screen where you are drawing.
+    Image is our texture colour array.
+    Row index is the correspondeing row in our flattend array that we are drawing.
+*/
+void putRow(uint16_t x, 
+            uint16_t y, 
+            const uint16_t* const Image, 
+            const uint8_t row_index
+            );
+
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 160
 

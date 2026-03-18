@@ -3,6 +3,9 @@
 #include "../include/grid.h"
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
+#include "../include/serial.h"
+#include <stdlib.h>
+#include <time.h>
 
 void initClock(void);
 void initSysTick(void);
@@ -15,21 +18,28 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 
 volatile uint32_t milliseconds;
 
+uint16_t get_current_ghost(enum entity_type entity) {
+
+	switch (entity) {
+
+		case entity_type_blinky: return cell_blinky; break;
+		case entity_type_inky: return cell_inky; break;
+		case entity_type_pinky: return cell_pinky; break;
+		case entity_type_clyde: return cell_clyde; break;
+		case entity_type_pacman: return cell_pacman; break;
+
+		default: return 0; break;
+	}
+}
+
 int main()
 {
 	initClock();
 	initSysTick();
 	setupIO();
 	initSound();
+	initSerial();
 	
-	//Creating a new grid, default drawing, and then destroying the grid
-	create_reset_grid();
-	draw_starting_grid();
-	destroy_grid();
-	while(1)
-	{	
-	
-	}
 	return 0;
 }
 
@@ -54,24 +64,24 @@ void initClock(void)
         // First ensure PLL is disabled
         RCC->CR &= ~(1u<<24);
         while( (RCC->CR & (1 <<25))); // wait for PLL ready to be cleared
-        
+
 // Warning here: if system clock is greater than 24MHz then wait-state(s) need to be
 // inserted into Flash memory interface
-				
+
         FLASH->ACR |= (1 << 0);
         FLASH->ACR &=~((1u << 2) | (1u<<1));
         // Turn on FLASH prefetch buffer
         FLASH->ACR |= (1 << 4);
         // set PLL multiplier to 12 (yielding 48MHz)
         RCC->CFGR &= ~((1u<<21) | (1u<<20) | (1u<<19) | (1u<<18));
-        RCC->CFGR |= ((1<<21) | (1<<19) ); 
+        RCC->CFGR |= ((1<<21) | (1<<19) );
 
         // Need to limit ADC clock to below 14MHz so will change ADC prescaler to 4
         RCC->CFGR |= (1<<14);
 
         // and turn the PLL back on again
-        RCC->CR |= (1<<24);        
-        // set PLL as system clock source 
+        RCC->CR |= (1<<24);
+        // set PLL as system clock source
         RCC->CFGR |= (1<<1);
 }
 

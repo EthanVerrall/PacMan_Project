@@ -2,6 +2,11 @@
 #include "../include/frontend&drawing/display.h"
 #include "../include/frontend&drawing/font5x7.h"
 
+#define RIGHT 0
+#define DOWN 1
+#define LEFT 2
+#define UP 3
+
 void clear(void);
 static uint32_t mystrlen(const char *s);
 static void drawLineLowSlope(uint16_t x0, uint16_t y0, uint16_t x1,uint16_t y1, uint16_t Colour);
@@ -206,7 +211,6 @@ void data(uint8_t data)
 	transferSPI8(data);
 }
 
-
 void openAperture(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
     // open up an area for drawing on the display    
@@ -242,10 +246,49 @@ void putPixel(uint16_t x, uint16_t y, uint16_t colour)
 	DCHigh();
 	transferSPI16(colour);
 }
+
+void putColumn(uint16_t x,
+               uint16_t y, 
+               const uint16_t* const Image, 
+               const uint8_t column_index
+               ) {
+
+    uint16_t colour = 0;
+    
+    openAperture(x, y, x, y + 7);
+    DCHigh();
+    
+    //This is the row
+    for (uint8_t offset = 0; offset < 8; ++offset) 
+    {
+        colour = Image[column_index + (8 * offset)];
+        transferSPI16(colour);
+    }
+}
+
+void putRow(uint16_t x, 
+            uint16_t y, 
+            const uint16_t* const Image, 
+            const uint8_t row_index
+            ) {
+            
+    uint16_t colour = 0;
+    
+    openAperture(x, y, x + 7, y);
+    DCHigh();
+    
+    //This is the row
+    for (uint8_t offset = 0; offset < 8; ++offset) 
+    {
+        colour = Image[(8 * row_index) + offset];
+        transferSPI16(colour);
+    }
+}
+
 void putImage(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint16_t *Image, int hOrientation, int vOrientation)
 {
     uint16_t Colour;
-	  uint32_t offset = 0;
+	uint32_t offset = 0;
     openAperture(x, y, x + width - 1, y + height - 1);
     DCHigh();
 	  if (hOrientation == 0)
