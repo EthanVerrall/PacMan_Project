@@ -92,9 +92,9 @@ Clyde* _clyde(){
         //create inky
         current_clyde = create_ghost(
             'C',
-            create_point(0,0),//need to get clyde starting position
+            create_point(10,9),//need to get clyde starting position
             chase, //start in chase mode?
-            create_point(0,31)
+            create_point(2,18)
         );
 
         return current_clyde;

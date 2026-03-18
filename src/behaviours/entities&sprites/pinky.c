@@ -119,9 +119,9 @@ Pinky* _pinky(){
         //create pinky
         current_pinky = create_ghost(
             'P',
-            create_point(0,0),//need to get pinky starting position
+            create_point(10,8),//need to get pinky starting position
             chase, //start in chase mode?
-            create_point(0,0)
+            create_point(2,1)
         );
 
         return current_pinky;

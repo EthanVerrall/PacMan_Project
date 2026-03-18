@@ -4,6 +4,16 @@
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
 #include "../include/serial.h"
+
+
+//for dynamic entities
+#include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/clyde.h"
+#include "../include/behaviours/entities&sprites/inky.h"
+#include "../include/behaviours/entities&sprites/pinky.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
+
+
 #include <stdlib.h>
 #include <time.h>
 
@@ -18,19 +28,36 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 
 volatile uint32_t milliseconds;
 
-uint16_t get_current_ghost(enum entity_type entity) {
-
-	switch (entity) {
-
-		case entity_type_blinky: return cell_blinky; break;
-		case entity_type_inky: return cell_inky; break;
-		case entity_type_pinky: return cell_pinky; break;
-		case entity_type_clyde: return cell_clyde; break;
-		case entity_type_pacman: return cell_pacman; break;
-
-		default: return 0; break;
-	}
-}
+/**
+		 * 	Game process
+		 * 
+		 * -------------------------------------------------
+		 * - Set pellet_count, set life_count, set score
+		 * 
+		 * LOOP_BEGIN: 
+		 * 
+		 * - Read input from button
+		 * - Set pacman direction and velocity based on button pressed
+		 * - move pacman if the target based on velocity is not a wall or a gate
+		 * - pacman's position changes as well
+		 * - Check what pacman is eating (if it is a powerup, change states of ghosts and pacman to god and fright respectively)
+		 * - Also check if pacman is at the edge of the screen, 
+		 * - - - so we switch him back to the other side of the screen and flip his velocity and direction
+		 * - feed each ghost's position
+		 * - Each ghost changes position based on their fed values
+		 * - NOTE: note to store the ghosts and pacman's previous positions for drawing
+		 * - Update grid state
+		 * 
+		 * 
+		 * - place each old and new position in an array based on the following format
+		 * -- [Oldpoint, Newpoint] - Each pair would follow the order of `move_order[]`
+		 * - redraw based on new order and position array
+		 *
+		 * - Check if pacman loses a life --- pacman exists with a ghost on the same tile
+		 * - check end_game conditions ---  pacman eaten all pellets or he has no more lives
+		 * END_LOOP
+		 *
+		 */
 
 int main()
 {
@@ -39,6 +66,32 @@ int main()
 	setupIO();
 	initSound();
 	initSerial();
+
+	create_reset_grid();
+	draw_starting_grid();
+
+	//create ghosts... 
+	Blinky* blinky = _blinky();
+	Clyde* clyde = _clyde();
+	Inky* inky = _inky();
+	Pinky* pinky = _pinky();
+
+	//create pacman
+	Pacman* pacman = _pacman();
+
+	//move order
+	const enum entity_type move_order[] = {
+		entity_type_pacman,
+		entity_type_blinky,
+		entity_type_clyde,
+		entity_type_inky,
+		entity_type_pinky,
+	};
+
+	while (1){}
+
+	destroy_grid();
+	
 	
 	return 0;
 }
