@@ -113,9 +113,9 @@ Inky* _inky(){
         //create inky
         current_inky = create_ghost(
             'I',
-            create_point(0,0),//need to get inky starting position
+            create_point(10,6),//need to get inky starting position
             chase, //start in chase mode?
-            create_point(31,31)
+            create_point(18,14)
         );
 
         return current_inky;

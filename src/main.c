@@ -4,6 +4,16 @@
 #include "../include/music&sound/sound.h"
 #include "../include/music&sound/musical_notes.h"
 #include "../include/serial.h"
+
+
+//for dynamic entities
+#include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/clyde.h"
+#include "../include/behaviours/entities&sprites/inky.h"
+#include "../include/behaviours/entities&sprites/pinky.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
+
+
 #include <stdlib.h>
 #include <time.h>
 
@@ -18,6 +28,36 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 
 volatile uint32_t milliseconds;
 
+/**
+		 * 	Game process
+		 * 
+		 * -------------------------------------------------
+		 * - Set pellet_count, set life_count, set score
+		 * 
+		 * LOOP_BEGIN: 
+		 * 
+		 * - Read input from button
+		 * - Set pacman direction and velocity based on button pressed
+		 * - move pacman if the target based on velocity is not a wall or a gate
+		 * - pacman's position changes as well
+		 * - Check what pacman is eating (if it is a powerup, change states of ghosts and pacman to god and fright respectively)
+		 * - Also check if pacman is at the edge of the screen, 
+		 * - - - so we switch him back to the other side of the screen and flip his velocity and direction
+		 * - feed each ghost's position
+		 * - Each ghost changes position based on their fed values
+		 * - NOTE: note to store the ghosts and pacman's previous positions for drawing
+		 * - Update grid state
+		 * 
+		 * 
+		 * - place each old and new position in an array based on the following format
+		 * -- [Oldpoint, Newpoint] - Each pair would follow the order of `move_order[]`
+		 * - redraw based on new order and position array
+		 *
+		 * - Check if pacman loses a life --- pacman exists with a ghost on the same tile
+		 * - check end_game conditions ---  pacman eaten all pellets or he has no more lives
+		 * END_LOOP
+		 *
+		 */
 int main()
 {
 	initClock();
@@ -29,80 +69,36 @@ int main()
 	create_reset_grid();
 	draw_starting_grid();
 
-	const enum entity_type move_order[] = {entity_type_pacman};
+		//Check if target is in bounds
+    //This should always be done to check that any entity is not out of bounds
+		//if (get_y_point_coord(point_array[1]) == 255) {
+			//set_y_point_coord(15, point_array[1]);
+		//}
 
-	Point* point_array[] = {
+		//if (get_y_point_coord(point_array[1]) == 16) {
+			//set_y_point_coord(0,point_array[1]);
+		//}
 
-	create_point(10,4), //0 pacman current
-	create_point(0,0), //1 pacman target
+	//create ghosts... 
+	Blinky* blinky = _blinky();
+	Clyde* clyde = _clyde();
+	Inky* inky = _inky();
+	Pinky* pinky = _pinky();
+
+	//create pacman
+	Pacman* pacman = _pacman();
+
+	//move order
+	const enum entity_type move_order[] = {
+		entity_type_pacman,
+		entity_type_blinky,
+		entity_type_clyde,
+		entity_type_inky,
+		entity_type_pinky,
 	};
 
+	while (1){}
 
-	//Testing off screen wrapping
-	for (int i = 0; i < 5; ++i) {
-		
-		//Setting targets based on current position
-		set_point_coord(get_x_point_coord(point_array[0]), get_y_point_coord(point_array[0]) - 1, point_array[1]);
-		
-		//Check if target is in bounds
-		if (get_y_point_coord(point_array[1]) == 255) {
-			set_y_point_coord(15, point_array[1]);
-		}
-
-		if (get_y_point_coord(point_array[1]) == 16) {
-			set_y_point_coord(0,point_array[1]);
-		}
-
-		eputs("Iteration: ");
-		printDecimal(i + 1);
-		eputs("\r\n");
-		printDecimal(get_x_point_coord(point_array[0]));
-		printDecimal(get_y_point_coord(point_array[0]));
-		eputs("\r\n");
-		printDecimal(get_x_point_coord(point_array[1]));
-		printDecimal(get_y_point_coord(point_array[1]));
-		eputs("\r\n\r\n");
-
-		//Physical move
-		move_entities(point_array, move_order, 1);
-
-		//Updating current point to what target was
-		set_y_point_coord(get_y_point_coord(point_array[1]), point_array[0]);
-	}
-	//Testing off screen wrapping
-
-	//More Testing
-	set_point_coord(10,14, point_array[1]);
-	move_entities(point_array, move_order, 1);
-	set_y_point_coord(get_y_point_coord(point_array[1]), point_array[0]);
-	move_point(0,-1,point_array[1]);
-	move_entities(point_array, move_order, 1);
-	set_y_point_coord(get_y_point_coord(point_array[1]), point_array[0]);
-
-	//Wrapping right to left of the screen
-	for (int i =0; i < 6; ++i) {
-
-		//Setting targets based on current position
-		set_point_coord(get_x_point_coord(point_array[0]), get_y_point_coord(point_array[0]) + 1, point_array[1]);
-
-		//Check if target is in bounds
-		if (get_y_point_coord(point_array[1]) == 255) {
-			set_y_point_coord(15, point_array[1]);
-		}
-
-		if (get_y_point_coord(point_array[1]) == 16) {
-			set_y_point_coord(0,point_array[1]);
-		}
-
-		//Physical move
-		move_entities(point_array, move_order, 1);
-
-		//Updating current point to what target was
-		set_y_point_coord(get_y_point_coord(point_array[1]), point_array[0]);
-
-	}
-
-	//Freein grid
 	destroy_grid();
 	
 	//Cleaning up points

@@ -71,9 +71,9 @@ Blinky* _blinky(){
         //create inky
         current_blinky = create_ghost(
             'B',
-            create_point(0,0),//need to get blinky starting position
+            create_point(10,7),//need to get blinky starting position
             chase, //start in chase mode?
-            create_point(31,0)
+            create_point(18,1)
         );
 
         return current_blinky;
