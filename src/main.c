@@ -18,20 +18,6 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 
 volatile uint32_t milliseconds;
 
-uint16_t get_current_ghost(enum entity_type entity) {
-
-	switch (entity) {
-
-		case entity_type_blinky: return cell_blinky; break;
-		case entity_type_inky: return cell_inky; break;
-		case entity_type_pinky: return cell_pinky; break;
-		case entity_type_clyde: return cell_clyde; break;
-		case entity_type_pacman: return cell_pacman; break;
-
-		default: return 0; break;
-	}
-}
-
 int main()
 {
 	initClock();
@@ -39,7 +25,73 @@ int main()
 	setupIO();
 	initSound();
 	initSerial();
+
+	create_reset_grid();
+	draw_starting_grid();
+
+	const enum entity_type move_order[] = {entity_type_pacman, entity_type_pinky};
+
+	Point* point_array[] = {
+
+	create_point(10,4), //0 pacman current
+	create_point(0,0), //1 pacman target
+	create_point(10,11), //2 pinky current
+	create_point(0,0) //3 pinky target
+	};
+
+	//Testing off screen wrapping
+	for (int i = 0; i < 5; ++i) {
+		
+		//Setting targets based on current position
+		set_point_coord(get_x_point_coord(point_array[0]), get_y_point_coord(point_array[0]) - 1, point_array[1]);
+		set_point_coord(get_x_point_coord(point_array[2]), get_y_point_coord(point_array[2]) + 1, point_array[3]);
+		
+		//Check if target is in bounds
+		if (get_y_point_coord(point_array[1]) == 255) {
+			set_y_point_coord(15, point_array[1]);
+		}
+
+		if (get_y_point_coord(point_array[3]) == 16) {
+			set_y_point_coord(0,point_array[3]);
+		}
+
+		//Logging purposes
+			eputs("Iteration: ");
+			printDecimal(i + 1);
+			eputs("\r\nPacman\r\n");
+			printDecimal(get_x_point_coord(point_array[0]));
+			printDecimal(get_y_point_coord(point_array[0]));
+			eputs("\r\n");
+			printDecimal(get_x_point_coord(point_array[1]));
+			printDecimal(get_y_point_coord(point_array[1]));
+
+			eputs("\r\nPinky\r\n");
+			printDecimal(get_x_point_coord(point_array[2]));
+			printDecimal(get_y_point_coord(point_array[2]));
+			eputs("\r\n");
+			printDecimal(get_x_point_coord(point_array[3]));
+			printDecimal(get_y_point_coord(point_array[3]));
+			eputs("\r\n\r\n");
+
+		//Physical move
+		move_entities(point_array, move_order, 2);
+
+		//Updating current point to what target was
+		set_y_point_coord(get_y_point_coord(point_array[1]), point_array[0]);
+		set_y_point_coord(get_y_point_coord(point_array[3]), point_array[2]);
+		
+	}
+	//Testing off screen wrapping
+
+	//Freein grid
+	destroy_grid();
 	
+	//Cleaning up points
+	for (int i = 0; i < 2; ++i) {
+
+		point_array[i] = destroy_point(point_array[i]);
+	}
+
 	return 0;
 }
 

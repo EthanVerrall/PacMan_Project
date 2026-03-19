@@ -399,10 +399,10 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 //Helper functionS -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[10], const enum entity_type entity_array[5]) {
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[], const uint8_t num_entites_to_animate) {
 
     //Enusring we don't derference a NULL POINTER
-    for (uint8_t i = 0; i < 10; ++i) {
+    for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
 
         if (!point_array[i]) {
 
@@ -411,44 +411,54 @@ void move_entities(const Point* const point_array[10], const enum entity_type en
         }
     }
 
-    //Enusring we don't derference a NULL POINTER
-    for (uint8_t i = 0; i < 5; ++i) {
+    //Ensuring all enums are valid entity types
+    for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
-        if (!entity_array[i]) {
+        switch (entity_array[i]) {
+            
+            case entity_type_blinky:
+            case entity_type_clyde:
+            case entity_type_inky:
+            case entity_type_pinky:
+            case entity_type_pacman:
+                //Intentional fallthrough
+                //Do nothing all is as expected
+                break;
 
-            eputs("Entity array passed to move_entities function are invalid or NULL. Function aborted!\r\n");
-            return;
+            default:
+                eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
+                return;
         }
     }
 
     //Each entities starting x pixel
-    uint8_t x_old_pixel_array[5];
+    uint8_t x_old_pixel_array[num_entites_to_animate];
 
     //Each entities starting y pixel
-    uint8_t y_old_pixel_array[5];
+    uint8_t y_old_pixel_array[num_entites_to_animate];
 
     //Each targets starting x pixel
-    uint8_t x_new_pixel_array[5];
+    uint8_t x_new_pixel_array[num_entites_to_animate];
 
     //Each targets starting y pixel
-    uint8_t y_new_pixel_array[5];
+    uint8_t y_new_pixel_array[num_entites_to_animate];
 
     //Textures for our entities that we are moving
-    uint16_t* entity_textures_array[5];
+    uint16_t* entity_textures_array[num_entites_to_animate];
 
     //Textures for our static tiles we will restore
-    uint16_t* static_tiles_array[5];
+    uint16_t* static_tiles_array[num_entites_to_animate];
 
     //Velocity for x_pixels
-    int8_t dx[5];
+    int8_t dx[num_entites_to_animate];
 
     //Velocity for x_pixels
-    int8_t dy[5];
+    int8_t dy[num_entites_to_animate];
     
     //Pixel conversion is done here
     //Direction calculated here
     //Textures are assigned here 
-    for (uint8_t i = 0; i < 5; ++i) {
+    for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
         x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
         y_old_pixel_array[i] = get_x_point_coord(point_array[i * 2]) * 8;
@@ -480,6 +490,16 @@ void move_entities(const Point* const point_array[10], const enum entity_type en
 
             entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
         }
+        /*
+        //Wrapping from left to right side of the screen
+        else if () {
+
+        }
+        //Wrapping from right to left side of the screen    
+        else if () {
+
+        }
+        */
         else 
         {
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
@@ -495,7 +515,7 @@ void move_entities(const Point* const point_array[10], const enum entity_type en
     {
 
         //Restoring tiles
-        for (uint8_t i = 0; i < 5; ++i) {
+        for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
             //Moves RIGHT
             if (dx[i] == 8 && dy[i] == 0) {
@@ -531,7 +551,7 @@ void move_entities(const Point* const point_array[10], const enum entity_type en
         }
 
         //Drawing ghosts and pacman
-        for (uint8_t i = 0; i < 5; ++i) {
+        for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
             
             //Moves RIGHT
             if (dx[i] == 8 && dy[i] == 0) {
