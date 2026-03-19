@@ -490,16 +490,16 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
         }
-        /*
         //Wrapping from left to right side of the screen
-        else if () {
+        else if (dx[i] == 120 && dy[i] == 0) {
 
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
         }
         //Wrapping from right to left side of the screen    
-        else if () {
+        else if (dx[i] == -120 && dy[i] == 0) {
 
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
         }
-        */
         else 
         {
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
@@ -543,7 +543,32 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
                 //Redrawing the tile we are leaving
                 putRow(x_old_pixel_array[i], y_old_pixel_array[i] + backward_offset, static_tiles_array[i], backward_offset);
-            }   
+            }
+
+            //Wrapping from left to right side of the screen
+            else if (dx[i] == 120 && dy[i] == 0) {
+
+                //Making entities appear like they are sliding off the screen
+                for (uint8_t j = 0; j < (8 - current_frame); ++j) {   
+                    putColumn(x_old_pixel_array[i] + j, y_old_pixel_array[i], entity_textures_array[i], (current_frame - 1) + j);
+                }
+                
+                //Redrawing the tile we are leaving
+                putColumn(x_old_pixel_array[i] + backward_offset, y_old_pixel_array[i], static_tiles_array[i], backward_offset);
+            }
+
+            //Wrapping from right to left side of the screen    
+            else if (dx[i] == -120 && dy[i] == 0) {
+
+                //Making entities appear like they are sliding off the screen
+                for (uint8_t j = 7; j > (current_frame - 1); --j) {   
+                    putColumn(x_old_pixel_array[i] + j, y_old_pixel_array[i], entity_textures_array[i], j - (current_frame - 1 ));
+                }
+                
+                //Redrawing the tile we are leaving
+                putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
+            }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
@@ -579,7 +604,29 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
                 //Drawing over the tiles in the direction we are moving
                 putImage(x_old_pixel_array[i], y_old_pixel_array[i] - current_frame, 8,8, entity_textures_array[i], 0,0);
-            }   
+            }
+            //Wrapping from left to right side of the screen
+            else if (dx[i] == 120 && dy[i] == 0) {
+                
+                //Drawing over the tiles in the direction we are moving
+                //Makes our entity appear piece like he is coming onto the screen
+                for (uint8_t j = 0; j < current_frame; ++j) {
+
+                    putColumn(x_new_pixel_array[i] + backward_offset + j, y_new_pixel_array[i], entity_textures_array[i], j);
+                }
+            }
+
+            //Wrapping from right to left side of the screen    
+            else if (dx[i] == -120 && dy[i] == 0) {
+
+                //Drawing over the tiles in the direction we are moving
+                //Makes our entity appear piece like he is coming onto the screen
+                for (uint8_t j = 0; j < current_frame; ++j) {
+
+                    putColumn(x_new_pixel_array[i] + forward_offset - j, y_new_pixel_array[i], entity_textures_array[i], 7 - j);
+                }
+            }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
