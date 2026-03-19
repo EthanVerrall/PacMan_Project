@@ -5,29 +5,25 @@ void _feed(){}
 //note | frequency
 
 
-uint16_t pacman_intro(){
-
-    static uint8_t pointer = 0;
-
-    if (pointer == 70)
-    {
-        pointer = 0;
-    }
-    
+void pacman_intro(){
     const uint16_t notes[] = {
-        C3, 500, C6,500, G6,500, E6,500, C6,500, G6,500, E6,500,
-        D3,500, D6,500, A6,500, FS6_Gb6,500, D6,500, A6,500, FS6_Gb6,500,
-        C3,500, C6,500, G6,500, E6,500, C6,500, G6,500, E6,500,
-        
-        FS6_Gb6,50,G6,50,GS6_Ab6,50,A6,200,
-        G6,50,GS6_Ab6,50,A6,50,AS6_Bb6,200,
-        GS6_Ab6,50,A6,50,AS6_Bb6,50,B6,200,
-        C7,200,C7, 200
+        // 4 8th notes per line
+        C4,150 , C5,150, G4,150, E4,150, C5,75, G4,150, 0,75, E4,150, 0, 150,
+        CS4_Db4,150, CS5_Db5,150, GS4_Ab4,150, F4,150, CS5_Db5,75, GS4_Ab4,150, 0,75, F4,150, 0, 150,
+        C4,150, C5,150, G4,150, E4,150, C5,75, G4,150, 0,75, E4,150, 0, 150,
+		
+		// 4 16th notes per line (except last)
+        F4,75, FS4_Gb4,75, G4,75, 0,75,
+        FS4_Gb4,75, G4,75, GS4_Ab4,75, 0,75,
+        GS4_Ab4,75, A4,75, AS4_Bb4,75, 0,75,
+        C5,150, 0,150 
     };
 
-    pointer++;
-
-    return notes[pointer];
+    for (uint16_t i = 0; i < 82; i+=2)
+    {
+        playNote(notes[i]);
+        delay(notes[i + 1]);
+    }
 }
 
 void pacman_eating_pellet(){}

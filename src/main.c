@@ -31,29 +31,31 @@ int main()
 	//destroy_grid();
 
 	const uint16_t notes[] = {
-		//4 8th notes
-        C4,200 , C5,200, G4,200, E4,200, C5,200, G4,200, E4,200, 0, 200,
-        CS4_Db4,200, CS5_Db5,200, GS4_Ab4,200, F4,200, CS5_Db5,200, GS4_Ab4,200, F4,200, 0, 200,
-        C4,200, C5,200, G4,200, E4,200, C5,200, G4,200, E4,200, 0, 200,
-        
-        F4,100, FS4_Gb4,100, G4,100, 0,100,
-        FS4_Gb4,100, G4,100, GS4_Ab4,100, 0,100,
-        GS4_Ab4,100,A4,100,AS4_Bb4,100, 0,100,
-        C5,200, 0,200
+		// 4 8th notes per line
+        C4,150 , C5,150, G4,150, E4,150, C5,75, G4,150, 0,75, E4,150, 0, 150,
+        CS4_Db4,150, CS5_Db5,150, GS4_Ab4,150, F4,150, CS5_Db5,75, GS4_Ab4,150, 0,75, F4,150, 0, 150,
+        C4,150, C5,150, G4,150, E4,150, C5,75, G4,150, 0,75, E4,150, 0, 150,
+		
+		// 4 16th notes per line (except last)
+        F4,75, FS4_Gb4,75, G4,75, 0,75,
+        FS4_Gb4,75, G4,75, GS4_Ab4,75, 0,75,
+        GS4_Ab4,75, A4,75, AS4_Bb4,75, 0,75,
+        C5,150, 0,150 
     };
 
 
-	// this array is too long, make it shorter
-	while(1)
+	while(0)
 	{	
 
-		for (uint16_t i = 0; i < 90; i+=2)
+		for (uint16_t i = 0; i < 82; i+=2)
 		{
 			playNote(notes[i]);
 			delay(notes[i + 1]);
 		}
 
 	}
+
+	pacman_intro();
 
 	return 0;
 }

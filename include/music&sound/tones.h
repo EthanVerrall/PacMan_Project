@@ -14,7 +14,7 @@
 //
 void _feed();
 
-uint16_t pacman_intro();
+void pacman_intro();
 
 void pacman_eating_pellet();
 
