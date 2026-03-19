@@ -19,7 +19,6 @@
 //Leaving open space at the top to account for the score during game time
 #define HEIGHT_OFFSET 8
 
-
 enum entity_type {
 
     entity_type_blinky = 1,
@@ -32,6 +31,6 @@ enum entity_type {
 //Function to draw the starting state of the game, only use this once per game.
 bool draw_starting_grid ();
 
-void move_entities(const Point* const point_array[10], const enum entity_type entity_array[5]);
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[], const uint8_t num_entites_to_animate);
 
 #endif //DRAW_MANAGER

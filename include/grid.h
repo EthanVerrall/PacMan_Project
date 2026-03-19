@@ -11,8 +11,8 @@
 the score at the top will be 8 pixels in height
 grid must fit 128 by 152
 8*8 pixels = one tile
-Grid array is now [20][16] = 320 bytes
-Each array element is a uint8_t bitmask tracking the games pixels/state
+Grid array is now [20][16] = 640 bytes
+Each array element is a uint16_t bitmask tracking the games pixels/state
 */
 
 /*
