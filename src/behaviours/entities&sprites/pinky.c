@@ -4,7 +4,6 @@ const Point* get_pinky_target_position(){
 
     if (get_pinky_mode() == scatter) return get_pinky_scatter_position();
     
-    if (get_pinky_mode() == fright) return get_random_position();
     //get pacman direction
     uint8_t pacman_direction = get_pacman_direction();
     Point* pacman_position = get_pacman_position();
@@ -63,7 +62,7 @@ const Point* get_pinky_target_position(){
 */
 const Point* _pinky_feed_next(const bool reset, const bool end){
     static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
-    static uint8_t feed_pointer = 0;
+    static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
@@ -84,7 +83,7 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
             feed_cache
         );
         
-        feed_pointer = 0; //set back to zero to restart
+        feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     feed_pointer++;
@@ -119,9 +118,9 @@ Pinky* _pinky(){
         //create pinky
         current_pinky = create_ghost(
             'P',
-            create_point(0,0),//need to get pinky starting position
-            chase, //start in chase mode?
-            create_point(0,0)
+            create_point(10,8),//need to get pinky starting position
+            scatter, //start in chase mode?
+            create_point(2,1)
         );
 
         return current_pinky;

@@ -20,8 +20,6 @@ const Point* get_inky_target_position(){
 
     if (get_inky_mode() == scatter) return get_inky_scatter_position();
 
-    if (get_inky_mode() == fright) return get_random_position();
-
     const Point* blinky_position =  get_blinky_position();
     Point* pacman_position = get_pacman_position();
     //NOTE: when pacman has been created get the direct function and return type for get direction
@@ -58,7 +56,7 @@ const Point* get_inky_target_position(){
 */
 const Point* _inky_feed_next(const bool reset, const bool end){
     static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
-    static uint8_t feed_pointer = 0;
+    static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
@@ -78,7 +76,7 @@ const Point* _inky_feed_next(const bool reset, const bool end){
             get_inky_target_position(),
             feed_cache
         );
-        feed_pointer = 0; //set back to zero to restart
+        feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     feed_pointer++;
@@ -113,9 +111,9 @@ Inky* _inky(){
         //create inky
         current_inky = create_ghost(
             'I',
-            create_point(0,0),//need to get inky starting position
-            chase, //start in chase mode?
-            create_point(31,31)
+            create_point(10,6),//need to get inky starting position
+            scatter, //start in chase mode?
+            create_point(18,14)
         );
 
         return current_inky;

@@ -3,6 +3,9 @@
 
 void trace_path_a_star(const Point* current, const Point* target, Point* result[]){
 
+    //free array
+    free_arr(result);
+
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
 

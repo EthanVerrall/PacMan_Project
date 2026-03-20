@@ -503,6 +503,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
         }
+        else if (dx[i] == 0 && dy[i] == 0)
+        {
+            //do nothing
+        }
         else 
         {
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
@@ -571,7 +575,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 //Redrawing the tile we are leaving
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
-
+            else if (dx[i] == 0 && dy[i] == 0)
+            {
+                //do nothing
+            }
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
@@ -629,7 +636,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     putColumn(x_new_pixel_array[i] + forward_offset - j, y_new_pixel_array[i], entity_textures_array[i], 7 - j);
                 }
             }
-
+            else if (dx[i] == 0 && dy[i] == 0)
+            {
+                //do nothing
+            }
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");

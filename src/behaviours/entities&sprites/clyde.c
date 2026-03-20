@@ -6,11 +6,6 @@ const Point* get_clyde_target_position(){
     {
         return get_clyde_scatter_position();
     }
-
-    if (get_clyde_mode() == fright)
-    {
-        return get_random_position();
-    }
     
     Point* pacman_position = get_pacman_position();
 
@@ -34,7 +29,7 @@ const Point* get_clyde_target_position(){
 
 const Point* _clyde_feed_next(const bool reset, const bool end){
     static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
-    static uint8_t feed_pointer = 0;
+    static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
@@ -55,7 +50,7 @@ const Point* _clyde_feed_next(const bool reset, const bool end){
             get_clyde_target_position()
             ,feed_cache
         );
-        feed_pointer = 0; //set back to zero to restart
+        feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     feed_pointer++;
@@ -92,9 +87,9 @@ Clyde* _clyde(){
         //create inky
         current_clyde = create_ghost(
             'C',
-            create_point(0,0),//need to get clyde starting position
-            chase, //start in chase mode?
-            create_point(0,31)
+            create_point(10,9),//need to get clyde starting position
+            scatter, //start in chase mode?
+            create_point(18,1)
         );
 
         return current_clyde;
