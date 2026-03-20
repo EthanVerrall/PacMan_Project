@@ -1,7 +1,7 @@
 #ifndef DRAW_MANAGER
 #define DRAW_MANAGER
 
-//Requires all asset includes and display.h and grid.h -- This library handle and draw everything
+//Requires all asset includes and display.h and grid.h -- This library handles and draws everything
 #include "../assets/texture_include/blinky_textures.h"
 #include "../assets/texture_include/clyde_textures.h"
 #include "../assets/texture_include/inky_textures.h"
@@ -28,9 +28,16 @@ enum entity_type {
     entity_type_pacman = 5
 };
 
-//Function to draw the starting state of the game, only use this once per game.
-bool draw_starting_grid ();
+//Function to draw the starting state of the game, only use this once per game. --PERHAPS AN OUTDATED USAGE
+//This might move into draw_current_page
+//Comments might change tbh
+
+//Function needs to account for more stuff tbh
+//Maybe there is a better way than that long switch statment to get our next draw
+void redraw_entire_grid ();
 
 void move_entities(const Point* const point_array[], const enum entity_type entity_array[], const uint8_t num_entites_to_animate);
+
+void draw_current_page(); //Not implemented yet
 
 #endif //DRAW_MANAGER

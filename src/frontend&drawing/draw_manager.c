@@ -12,7 +12,7 @@
 
 static bool is_mouth_open = false;
 
-bool draw_starting_grid () {
+void redraw_entire_grid () {
     /*
         The below two arrays are used in parallel to define the wall types 
         and how many times they must print.
@@ -184,6 +184,10 @@ bool draw_starting_grid () {
             const uint16_t* next_draw = NULL;
             uint16_t cell_bitmask = get_grid_state(y_pixel / 8, x_pixel / 8);
 
+            //Maybe an if statment to really just look where ghosts and pacman are first, otherwise I just draw the static entites
+            //this certainly is better than what i am currently doing :)
+            //I can make use of my helper functions, point at static textures or point at entity textures
+
             switch (cell_bitmask) {
 
                 case cell_blank|cell_pacman:
@@ -210,6 +214,8 @@ bool draw_starting_grid () {
                     next_draw = clyde_array[clyde_right_eye];
                     break;
                 
+                //Add more cases here -- NO bad idea, dont do that :(
+
                 case cell_blank:
                     
                     next_draw = blank_array;
@@ -249,15 +255,13 @@ bool draw_starting_grid () {
                     destroy_grid();
 
                     //Grid failed to draw
-                    return false;
+                    break;
             }
             //Drawing to the screen
             putImage(x_pixel, y_pixel, 8,8, next_draw, 0,0);
         }
     }
-
     //Grid drawn properly
-    return true;
 }
 
 //--------------------------------------------------------------
@@ -636,3 +640,5 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         delay(100);
     }
 }
+
+void draw_current_page();
