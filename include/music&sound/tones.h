@@ -14,12 +14,14 @@
 //
 void _feed();
 
-void pacman_intro();
+void pacman_intro_tune();
 
-void pacman_eating_pellet();
+void pacman_eating_pellet_sound();
 
-void _in_fright_mode();
+void fright_mode_siren();
 
-void pacman_eating_ghost();
+void pacman_eating_ghost_sound();
+
+void death_sound();
 
 #endif //!PACMAN_MUSIC_H
