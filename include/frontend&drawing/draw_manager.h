@@ -13,6 +13,7 @@
 #include "../include/grid.h"
 #include "../include/frontend&drawing/display.h"
 #include "../include/utils/point.h"
+#include "../include/frontend&drawing/menu.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -28,16 +29,8 @@ enum entity_type {
     entity_type_pacman = 5
 };
 
-//Function to draw the starting state of the game, only use this once per game. --PERHAPS AN OUTDATED USAGE
-//This might move into draw_current_page
-//Comments might change tbh
-
-//Function needs to account for more stuff tbh
-//Maybe there is a better way than that long switch statment to get our next draw
-void redraw_entire_grid ();
-
 void move_entities(const Point* const point_array[], const enum entity_type entity_array[], const uint8_t num_entites_to_animate);
 
-void draw_current_page(); //Not implemented yet
+void draw_current_page();
 
 #endif //DRAW_MANAGER

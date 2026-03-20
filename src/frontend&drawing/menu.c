@@ -26,4 +26,3 @@ enum menu_page get_active_menu_page() {
 
     return active_menu;
 }
-

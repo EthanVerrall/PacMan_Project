@@ -143,7 +143,6 @@ void setupIO()
 //---------------
 //Pacman Related functions - Start
 //---------------
-
 bool is_button_up_pressed() {
 
 	if ((GPIOA->IDR & (1<<8)) == 0 ) return true;
@@ -171,6 +170,7 @@ bool is_button_left_pressed() {
 	
 	return false;
 }
+
 
 //---------------
 //Pacman Related functions - End
