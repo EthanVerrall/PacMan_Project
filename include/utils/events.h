@@ -2,6 +2,7 @@
 #define EVENTS_H
 
 #include "stm32f031x6.h"
+#include <stdbool.h>
 
 //Function is so important it deserves to be capitalised
 //Turns everything on...
@@ -32,6 +33,13 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 //---------------
 //Pacman Related functions - Start
 //---------------
+
+//If a button is currently held down return true, otherwise return false
+
+bool is_button_up_pressed();
+bool is_button_right_pressed();
+bool is_button_down_pressed();
+bool is_button_left_pressed();
 
 
 

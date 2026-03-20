@@ -2,6 +2,7 @@
 #include "../include/serial.h"
 #include "../include/music&sound/sound.h"
 #include "../include/frontend&drawing/display.h"
+#include <stdbool.h>
 
 volatile uint32_t milliseconds;  //DO NOT TOUCH THIS VARIABLE, CLOCK USES THIS FOR INTERRUPTS AND TIMERS AND TICKS
 
@@ -15,8 +16,7 @@ void SET_UP_STM() {
     //Peripherals startup
     setupIO();
     initSound();
-    //Our 5 buttons go here by Peripherals
-    //Remember to turn on pull_up resistors for each button you use :)
+    
 
 }
 
@@ -113,22 +113,27 @@ int isInside(uint16_t x1, uint16_t y1, uint16_t w, uint16_t h, uint16_t px, uint
 	return rvalue;
 }
 
-//Turns our LED on, 
-//DONT USE THIS OUTSIDE OF FUNCTION SET_UP_STM
+//Turns on Port A and Port B - GPIOA
+//Also turns on our 4 buttons to control pacman and menu navigation
+//Sets GPIOB 4, GPIOB 5, GPIOA 8, GPIOA 11 as inputs.
+//Turns those 4 ports pull-up resistors on
 void setupIO()
 {
 	RCC->AHBENR |= (1 << 18) + (1 << 17); // enable Ports A and B
 	display_begin();
-	pinMode(GPIOB,4,0);
-	pinMode(GPIOB,5,0);
-	pinMode(GPIOA,8,0);
-	pinMode(GPIOA,11,0);
-	enablePullUp(GPIOB,4);
-	enablePullUp(GPIOB,5);
-	enablePullUp(GPIOA,11);
-	enablePullUp(GPIOA,8);
+	
+	//Setting ports as input mode
+	pinMode(GPIOB,4,0);  // Down
+	pinMode(GPIOB,5,0);  // Right
+	pinMode(GPIOA,8,0);  // Up
+	pinMode(GPIOA,11,0); // Left
+	
+	//Turning on pull-up resistors
+	enablePullUp(GPIOB,4);  // Down
+	enablePullUp(GPIOB,5);  // Right
+	enablePullUp(GPIOA,8);  // Up 
+	enablePullUp(GPIOA,11); // Left 
 }
-
 //---------------
 //Setup functions - End
 //---------------
@@ -139,6 +144,33 @@ void setupIO()
 //Pacman Related functions - Start
 //---------------
 
+bool is_button_up_pressed() {
+
+	if ((GPIOA->IDR & (1<<8)) == 0 ) return true;
+	
+	return false;
+}
+
+bool is_button_right_pressed() {
+
+	if ((GPIOB->IDR & (1<<4)) == 0 ) return true;
+	
+	return false;
+}
+
+bool is_button_down_pressed() {
+
+	if ((GPIOA->IDR & (1<<11)) == 0 ) return true;
+	
+	return false;
+}
+
+bool is_button_left_pressed() {
+
+	if ((GPIOB->IDR & (1<<5)) == 0) return true;
+	
+	return false;
+}
 
 //---------------
 //Pacman Related functions - End
