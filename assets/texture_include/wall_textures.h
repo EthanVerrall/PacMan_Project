@@ -26,8 +26,8 @@ enum wall_textures {
     wall_tri_bottom = 10
 };
 
-//Foward declaring to save space, in the case this
-//needs to be including in mutiple files
+//Forward declaring to save space, in the case this
+//needs to be included in mutiple files
 
 extern const uint16_t wall_array[11][64];
 

@@ -303,9 +303,18 @@ void redraw_entire_grid () {
     uint8_t current_wall_pair = 0;
     uint8_t walls_left_to_print = wall_count_pair[current_wall_pair];
 
+    //Clearing the first row of 8 pixels heigh, needs to be redrawn as black to clear the pacman logo after image
+    //from the home page
+    for (uint8_t y_pixel = 0; y_pixel < 8; ++y_pixel) {
+
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+            putPixel(x_pixel,y_pixel,0);
+        }
+
+    }
+
     //Loops through the entire grid and prints all tiles and upscaled 8*8 pixels across the screen
     //accounting for the intial offset in height from pixel 0,0
-
     for (uint8_t y_pixel = 0 + HEIGHT_OFFSET; y_pixel < SCREEN_HEIGHT; y_pixel += 8) {
 
         for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; x_pixel += 8) {
@@ -394,7 +403,108 @@ void redraw_entire_grid () {
     //Grid drawn properly
 }
 
+void redraw_white_text(int8_t cursor_position, enum menu_page active_menu) {
 
+    if (active_menu == menu_page_home) {
+
+        switch (cursor_position) {
+
+            case 0:
+            printTextX2("Play Game",6,70,0xFFFF,0);
+            break;
+
+            case 1:
+            printTextX2("Scoreboard",6,100,0xFFFF,0);
+            break;
+
+            case 2:
+            printTextX2("Options",6,130,0xFFFF,0);
+            break;
+        }
+    }
+}
+
+void draw_home_page() {
+
+    putImage(7,5,114,32,main_menu_array,0,0);
+
+    printTextX2("Play Game",6,70,0xFFFF,0);
+
+    printTextX2("Scoreboard",6,100,0xFFFF,0);
+
+    printTextX2("Options",6,130,0xFFFF,0);
+}
+
+void flicker_text() {
+
+    const uint16_t YELLOW = 57095 ;
+	const uint16_t BLUE = 35315;
+
+    static uint8_t flicker_switch = 0;
+
+    if (get_active_menu_page() == menu_page_home) {
+
+        switch (get_cursor_position()) {
+        
+        case 0:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Play Game",6,70,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Play Game",6,70,BLUE,0);
+            }
+        break;
+        
+        case 1:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Scoreboard",6,100,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Scoreboard",6,100,BLUE,0);
+            }
+        break;
+
+        case 2:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Options",6,130,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Options",6,130,BLUE,0);
+            }
+        break;
+        
+        default:
+            eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
+            printDecimal(get_cursor_position());
+            eputs("\r\n");
+            break;
+        }  
+    }
+    else  {  
+
+        eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
+        return;
+    }
+    delay(100);
+} 
 
 //---------------------------------MENUS------------------------------------------
 
@@ -647,7 +757,7 @@ void draw_current_page() {
     switch (menu_to_draw) {
 
         case menu_page_home:
-        //Implementing next
+        draw_home_page();
         break;
 
         case menu_page_game:
