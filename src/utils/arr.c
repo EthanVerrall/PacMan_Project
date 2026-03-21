@@ -96,13 +96,12 @@ bool remove_item(const Point* item, Point* list[]){
     
 }
 
-bool free_arr(Point* list[]){
-    uint8_t i = 0;
-    while (list[i])
+void free_arr(Point* list[]){
+    
+    for (uint8_t i = 0; i < MAXARRSIZE; ++i)
     {
         free(list[i]);
         list[i] = NULL;
-        i++;
     }
 }
 

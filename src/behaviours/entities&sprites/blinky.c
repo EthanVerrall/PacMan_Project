@@ -23,18 +23,20 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         return NULL;
     }
 
-    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty or reset is passed
+    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty 
+                                                                                 //or reset is passed
     {
-        eputs("feed reset");
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
+        Point* temp_point = create_point(get_x_point_coord(get_blinky_position()),
+                                         get_y_point_coord(get_blinky_position()));
         trace_path_a_star(
-            get_blinky_position(),
+            temp_point,
             get_blinky_target_position(),
             feed_cache
         );
-    
+        temp_point = destroy_point(temp_point);
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

@@ -22,7 +22,7 @@ bool search_item(const Point* item, Point* list[]);
 
 bool remove_item(const Point* item, Point* list[]);
 
-bool free_arr(Point* list[]);
+void free_arr(Point* list[]);
 
 void reverse_points(Point* list[]);
 

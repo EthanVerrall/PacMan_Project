@@ -25,13 +25,14 @@ int main()
 
 	Point* entity_move_direction_store[] = {
 		//pacman movement
-		get_pacman_position(),create_point(0,0),
+		//get_pacman_position(),create_point(0,0),
 		//blinky movement
-		get_blinky_position(), create_point(0,0)
+		get_blinky_position(), 
+		create_point(0,0)
 	}; 
 
 	const enum entity_type entity_move_order[] = {
-		entity_type_pacman, entity_type_blinky
+		entity_type_blinky, entity_type_pacman
 	};
 
 	bool button_pressed = false;
@@ -42,6 +43,7 @@ int main()
 
 	while (1)
 	{
+	/*
 		//check for button presses first
 		//for now we would just check directly, but for the case that we would want to save time,
 		//there would be a function that would check a list of numbers representing the button pressed
@@ -82,7 +84,7 @@ int main()
 			pacman_new_x = get_x_point_coord(get_pacman_position());
 			pacman_new_y = get_y_point_coord(get_pacman_position());
 		}
-
+	*/
 
 		//run algo on ghosts based on pacman's current position
 
@@ -92,27 +94,20 @@ int main()
 		set_point_coord(
 			get_x_point_coord(temp_point),
 			get_y_point_coord(temp_point),
-			entity_move_direction_store[3]
+			entity_move_direction_store[1]
 		);
+
 		free(temp_point);
 
 		remove_grid_state(get_x_point_coord(get_blinky_position()), get_y_point_coord(get_blinky_position()),cell_blinky);
-		add_grid_state(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]), cell_blinky);
-		
-		//visual move
-		///eputs("Printing blinky current point\r\n");
-		///printDecimal(get_x_point_coord(entity_move_direction_store[2]));
-		///printDecimal(get_y_point_coord(entity_move_direction_store[2]));
-		///eputs("Printing blinky next point\r\n");
-		///printDecimal(get_x_point_coord(entity_move_direction_store[3]));
-		///printDecimal(get_y_point_coord(entity_move_direction_store[3]));
-		///eputs("\r\n");
+ 		add_grid_state(get_x_point_coord(entity_move_direction_store[1]), get_y_point_coord(entity_move_direction_store[1]), cell_blinky);
 
-		move_entities(entity_move_direction_store,entity_move_order,2);
+
+		move_entities(entity_move_direction_store,entity_move_order,1);
 
 		//set the internal positions of each entity to their new positions
-		set_pacman_position(pacman_new_x, pacman_new_y);
-		set_blinky_position(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]));
+//		set_pacman_position(pacman_new_x, pacman_new_y);
+		set_point_coord(get_x_point_coord(entity_move_direction_store[1]), get_y_point_coord(entity_move_direction_store[1]), entity_move_direction_store[0]);
 
 		if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
 		{	
@@ -125,9 +120,6 @@ int main()
 			eputs("game completed");
 			break;
 		}
-
-
-
 
 	}
 	

@@ -12,8 +12,6 @@
 
 static bool is_mouth_open = false;
 
-
-
 //--------------------------------------------------------------
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
@@ -515,7 +513,6 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
     }
 
-
     for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
          current_frame <= 8; 
          ++current_frame, ++forward_offset, --backward_offset)  
@@ -575,8 +572,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 //Redrawing the tile we are leaving
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
+
             else if (dx[i] == 0 && dy[i] == 0)
-            {
+            {   
+
                 //do nothing
             }
             //Error case
@@ -636,10 +635,12 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     putColumn(x_new_pixel_array[i] + forward_offset - j, y_new_pixel_array[i], entity_textures_array[i], 7 - j);
                 }
             }
+
             else if (dx[i] == 0 && dy[i] == 0)
             {
                 //do nothing
             }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
