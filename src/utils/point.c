@@ -13,7 +13,7 @@ struct Point {
 
 Point* create_point(const uint8_t x, const uint8_t y) {
 
-    Point* new_point = calloc(1, sizeof(Point));
+    Point* const new_point = calloc(1, sizeof(Point));
 
     if (new_point) {
         new_point->x = x;
@@ -26,6 +26,77 @@ Point* create_point(const uint8_t x, const uint8_t y) {
         eputs("Error - failed to create Point. Calloc failed, function returned NULL.\r\n") ;
         return NULL;
     }
+}
+
+Point* create_deep_copy(const Point* const struct_point) {
+
+    if(!struct_point) {
+
+        eputs("Error - point you are trying to copy from is NULL, function aborted.\r\n");
+        return NULL;
+    }
+
+    Point* const new_point = calloc(1, sizeof(Point));
+
+    if (new_point) {
+        new_point->x = struct_point->x;
+        new_point->y = struct_point->y;
+
+        return new_point;
+    }
+    else {
+
+        eputs("Error - failed to create Point. Calloc failed, function returned NULL.\r\n") ;
+        return NULL;
+    }
+}
+
+bool copy_point_values(Point* const dest_point, const Point* const source_point) {
+
+    if(dest_point && source_point) {
+
+        dest_point->x = source_point->x;
+        dest_point->y = source_point->y;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_values function were NULL, function aborted.\r\n");
+        return false;
+    }
+}
+
+
+bool copy_point_x(Point* const dest_point, const Point* const source_point) {
+
+    if (dest_point && source_point) {
+
+        dest_point->x = source_point->x;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_x function were NULL, function aborted.\r\n");
+        return false;
+    }
+}
+
+bool copy_point_y(Point* const dest_point, const Point* const source_point) {
+
+    if(dest_point && source_point) {
+
+        dest_point->y = source_point->y;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_y function were NULL, function aborted.\r\n");
+        return false;
+    }
+
 }
 
 bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point) {

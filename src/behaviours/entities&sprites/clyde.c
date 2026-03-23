@@ -24,7 +24,8 @@ const Point* get_clyde_target_position(){
     }
 
     //chases pacman when he is far away, if he is close, he runs to his scatter positions
-    return pacman_position;
+    return create_point(get_x_point_coord(pacman_position),
+                            get_y_point_coord(pacman_position));
 }
 
 const Point* _clyde_feed_next(const bool reset, const bool end){

@@ -20,7 +20,7 @@ bool is_not_empty(Point* list[]){
 Point* pop(Point* list[]){
     //remove the last item in the list
     uint8_t i = 0;
-    while (list[i])
+    while (i < MAXARRSIZE && list[i])
         i++;
     Point* temp_point = list[i - 1];
     list[i - 1] = NULL; //We cannot free at this point, since we are still returning the pointer to the memory address.
@@ -30,7 +30,7 @@ Point* pop(Point* list[]){
 
 uint8_t get_list_size(Point* list[]){
     uint8_t i = 0;
-    while (list[i])
+    while (i < MAXARRSIZE && list[i])
         i++;
     return i;
 }
@@ -47,7 +47,7 @@ bool push(const Point* item, Point* list[]){
     }
 
     uint8_t i = 0;
-    while (list[i])
+    while (i < MAXARRSIZE && list[i])
         i++;
     
     list[i] = item;
@@ -56,7 +56,7 @@ bool push(const Point* item, Point* list[]){
 
 bool search_item(const Point* item, Point* list[]){
     uint8_t i = 0;
-    while (list[i])
+    while (i < MAXARRSIZE && list[i])
     {
         if (compare_points(item, list[i])) return true;
         i++; 
@@ -99,8 +99,11 @@ void free_arr(Point* list[]){
     
     for (uint8_t i = 0; i < MAXARRSIZE; ++i)
     {
-        free(list[i]);
-        list[i] = NULL;
+        if (list[i])
+        {
+            free(list[i]);
+            list[i] = NULL;
+        }
     }
 }
 

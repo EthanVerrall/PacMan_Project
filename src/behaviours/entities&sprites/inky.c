@@ -1,21 +1,5 @@
 #include "../include/behaviours/entities&sprites/inky.h"
 
-#ifndef LEFT
-#define LEFT 0 
-#endif
-
-#ifndef RIGHT
-#define RIGHT 1
-#endif
-
-#ifndef TOP
-#define TOP 2
-#endif
-
-#ifndef BOTTOM
-#define BOTTOM 3
-#endif
-
 const Point* get_inky_target_position(){
 
     if (get_inky_mode() == scatter) return get_inky_scatter_position();
@@ -25,26 +9,59 @@ const Point* get_inky_target_position(){
     //NOTE: when pacman has been created get the direct function and return type for get direction
     uint8_t pacman_direction = get_pacman_direction();
 
-    int8_t blinky_x = get_x_point_coord(blinky_position);
-    int8_t blinky_y = get_y_point_coord(blinky_position);
+    int8_t pacman_x = get_x_point_coord(pacman_position);
+    int8_t pacman_y = get_y_point_coord(pacman_position);
     
+    if (pacman_direction == PAC_LEFT) pacman_x -= 2;
+    if (pacman_direction == PAC_RIGHT) pacman_x += 2;
+    if (pacman_direction == PAC_TOP) pacman_y -= 2;
+    if (pacman_direction == PAC_BOTTOM) pacman_y += 2;
 
-    if (pacman_direction == LEFT) blinky_x -= 2;
-    if (pacman_direction == RIGHT) blinky_x += 2;
-    if (pacman_direction == TOP) blinky_y -= 2;
-    if (pacman_direction == BOTTOM) blinky_y += 2;
+    uint8_t blinky_x = get_x_point_coord(blinky_position);
+    uint8_t blinky_y = get_y_point_coord(blinky_position);
 
-    blinky_x *= 2;
-    blinky_y *= 2;
+    int8_t distance_x = blinky_x - pacman_x;
+    int8_t distance_y = blinky_y - pacman_y;
 
-    int8_t distance_x = blinky_x - get_x_point_coord(pacman_position);
-    int8_t distance_y = blinky_y - get_y_point_coord(pacman_position);
+    int16_t inky_target_y = pacman_y + distance_y;
+    int16_t inky_target_x = pacman_x + distance_x;
 
-    //absolute the points in the case that they end up being less than zero
-    if(distance_x < 0) distance_x *= -1;
-    if(distance_y < 0) distance_y *= -1;
+    //check if the target is in bounds
+    if (inky_target_x >= GRID_ROW_COUNT) inky_target_x = GRID_ROW_COUNT - 2;
+    if (inky_target_x <= 0) inky_target_x = 1;
+    if (inky_target_y >= GRID_COL_COUNT) inky_target_y = GRID_COL_COUNT - 2;
+    if (inky_target_y <= 0) inky_target_y= 2;
 
-    return create_point(distance_x, distance_y);
+    //check if inky's target is a wall
+    if (is_grid_state(inky_target_x, inky_target_y, cell_wall))
+    {
+        bool is_target_set = false;
+        for (int8_t i = -1; i <= 1; ++i)
+        {
+            for (int8_t j = -1; j <= 1; ++j)
+            {
+                //ignore current spot 
+                if (j == 0 && i == 0) continue;
+                
+                //ignore diagonals
+                if (i != 0 && j != 0) continue;
+
+                if (inky_target_x + i < 0 || inky_target_x + i >= GRID_ROW_COUNT || inky_target_y + j < 0 || inky_target_y + j >= GRID_COL_COUNT) continue;
+
+                if(is_grid_state(inky_target_x + i, inky_target_y + j, cell_wall)) continue;
+
+                inky_target_x += i;
+                inky_target_y += j;
+                is_target_set = true;
+            }
+            if (is_target_set) break;   
+        }
+
+        if (!is_target_set) return create_point(get_x_point_coord(pacman_position),
+                            get_y_point_coord(pacman_position));;   
+    }
+
+    return create_point(inky_target_x, inky_target_y);
 }
 
 /** 
@@ -64,6 +81,8 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         free_arr(feed_cache);
         return NULL;
     }
+
+    //-11 4
     
 
     if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty or reset is passed
@@ -73,11 +92,30 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //the algorithm would trace a path based on both positions
         Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
                                          get_y_point_coord(get_inky_position()));
+        eputs("inky target position\r\n");
+        printDecimal(get_x_point_coord(get_inky_target_position()));
+        printDecimal(get_y_point_coord(get_inky_target_position()));
+        eputs("\r\n");
+        
         trace_path_a_star(
             temp_point,
             get_inky_target_position(),
             feed_cache
         );
+
+        for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            if (feed_cache[i])
+            {
+                eputs("inky cache point\r\n");
+                eputs("index ");
+                printDecimal(i);
+                eputs("\r\n");
+                printDecimal(get_x_point_coord(feed_cache[i]));
+                printDecimal(get_y_point_coord(feed_cache[i]));
+                eputs("\r\n\r\n");
+            }
+        } 
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
