@@ -80,7 +80,7 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
         Point* temp_point = create_point(get_x_point_coord(get_pinky_position()),
                                          get_y_point_coord(get_pinky_position()));
         trace_path_a_star(
-            get_pinky_position(),
+            temp_point,
             get_pinky_target_position(),
             feed_cache
         );

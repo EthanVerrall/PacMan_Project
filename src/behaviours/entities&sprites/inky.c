@@ -74,7 +74,7 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
                                          get_y_point_coord(get_inky_position()));
         trace_path_a_star(
-            get_inky_position(),
+            temp_point,
             get_inky_target_position(),
             feed_cache
         );
