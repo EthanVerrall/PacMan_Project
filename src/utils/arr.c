@@ -7,7 +7,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
-#define ARRHELPERS
 #define MAXARRSIZE 30
 
 //This function assumes the list is arranged and there are no NULL spaces between items
@@ -68,16 +67,16 @@ bool search_item(const Point* item, Point* list[]){
 
 bool remove_item(const Point* item, Point* list[]){
     uint8_t i = 0;
-    bool found_and_removed = false;
+    bool found = false;
     while (i < MAXARRSIZE && list[i]){
         if (compare_points(list[i], item))
         {
-            found_and_removed = true;
+            found = true;
             break;
         }
         i++;
     }
-    if (found_and_removed)
+    if (found)
     {
         //remove the item from the point .... we will use the index later
         list[i] = NULL;
@@ -92,7 +91,7 @@ bool remove_item(const Point* item, Point* list[]){
 
     //free(item);
 
-    return found_and_removed;
+    return found; //found_and_removed
     
 }
 
@@ -106,9 +105,9 @@ void free_arr(Point* list[]){
 }
 
 void reverse_points(Point* list[]) {
-    size_t n = get_list_size(list);
+    uint8_t n = get_list_size(list);
 
-    for(size_t i = 0; i < n/2; i++) {
+    for(uint8_t i = 0; i < n/2; i++) {
         //perform a swap
         Point* temp = list[i];
         list[i] = list[n-i-1];

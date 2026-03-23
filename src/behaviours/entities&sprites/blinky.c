@@ -36,7 +36,9 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
             get_blinky_target_position(),
             feed_cache
         );
-        temp_point = destroy_point(temp_point);
+        //no need to free temp point, it would cause problems for array pointing, since the first element in the array has already been freed
+        //but no worries, on the next iteration of the a* trace, the point would actually be freed, so its all good... I hope :)
+        //temp_point = destroy_point(temp_point);
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

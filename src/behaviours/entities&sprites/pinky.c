@@ -12,40 +12,40 @@ const Point* get_pinky_target_position(){
 
     uint8_t pinky_x_pos = pacman_x_pos;
     uint8_t pinky_y_pos = pacman_y_pos;
-    if (pacman_direction == 1) //left
+    if (pacman_direction == PAC_RIGHT) //right
     {
-        //check that the position left is not outside the board
+        //check that the position right is not outside the board
         #ifdef GRID_ROW_COUNT
-            if (pacman_x_pos + 4 > GRID_ROW_COUNT)
+            if ((pacman_x_pos + 4) < GRID_ROW_COUNT)
         #else
-            if (pacman_x_pos + 4 > 38)
+            if ((pacman_x_pos + 4 ) < 38)
         #endif
             {pinky_x_pos += 4;}        
     }
-    if (pacman_direction == 0) //right
+    if (pacman_direction == PAC_LEFT) //left
     {
-        //check that the position right is not outside the board
+        //check that the position left is not outside the board
         #ifdef MIN_BOARD_X_SIZE
-            if (pacman_x_pos - 4 < 0)
+            if (pacman_x_pos - 4 >= 0)
         #else
-            if (pacman_x_pos - 4 < 0)
+            if (pacman_x_pos - 4 >= 0)
         #endif
             {pinky_x_pos -= 4;}    
     }
-    if (pacman_direction == 2){
+    if (pacman_direction == PAC_BOTTOM){
         #ifdef GRID_COL_COUNT
-            if (pacman_y_pos + 4 > GRID_COL_COUNT)
+            if (pacman_y_pos + 4 < GRID_COL_COUNT)
         #else
-            if (pacman_x_pos + 4 > 28) //????? is this actually 28.... I will just take it as is... 
+            if (pacman_x_pos + 4 < 28) //????? is this actually 28.... I will just take it as is... 
             // define changes this afterwards
         #endif
             {pinky_y_pos += 4;}    
     }
-    if (pacman_direction == 3){
+    if (pacman_direction == PAC_TOP){
         #ifdef MIN_BOARD_Y_SIZE
-            if (pacman_y_pos + 4 < MIN_BOARD_Y_SIZE)
+            if (pacman_y_pos - 4 >= MIN_BOARD_Y_SIZE)
         #else
-            if (pacman_y_pos + 4 < 0)
+            if (pacman_y_pos - 4 >= 0)
         #endif
             {pinky_y_pos -= 4;}    
     }
@@ -77,6 +77,8 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
         //run a for loop for a deep copy
+        Point* temp_point = create_point(get_x_point_coord(get_pinky_position()),
+                                         get_y_point_coord(get_pinky_position()));
         trace_path_a_star(
             get_pinky_position(),
             get_pinky_target_position(),

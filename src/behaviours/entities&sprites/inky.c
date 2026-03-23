@@ -71,6 +71,8 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
+        Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
+                                         get_y_point_coord(get_inky_position()));
         trace_path_a_star(
             get_inky_position(),
             get_inky_target_position(),
