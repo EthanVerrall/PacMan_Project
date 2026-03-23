@@ -7,6 +7,8 @@ static enum menu_page active_menu = menu_page_home;
 //Position for the cursor
 static int8_t cursor_position = 0;
 
+void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu);
+
 void set_menu_page(const enum menu_page new_menu) {
 
     switch (new_menu) {
