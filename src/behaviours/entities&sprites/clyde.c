@@ -11,8 +11,8 @@ const Point* get_clyde_target_position(){
 
     const Point* clyde_pos = get_clyde_position();
 
-    uint8_t pacman_clyde_distance_x = get_x_point_coord(pacman_position) - get_x_point_coord(clyde_pos);
-    uint8_t pacman_clyde_distance_y = get_y_point_coord(pacman_position) - get_y_point_coord(clyde_pos);
+    int8_t pacman_clyde_distance_x = get_x_point_coord(pacman_position) - get_x_point_coord(clyde_pos);
+    int8_t pacman_clyde_distance_y = get_y_point_coord(pacman_position) - get_y_point_coord(clyde_pos);
 
     if (pacman_clyde_distance_x < 0) pacman_clyde_distance_x *= -1;
     if (pacman_clyde_distance_y < 0) pacman_clyde_distance_y *= -1;

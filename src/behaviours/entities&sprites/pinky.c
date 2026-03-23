@@ -16,9 +16,9 @@ const Point* get_pinky_target_position(){
     {
         //check that the position right is not outside the board
         #ifdef GRID_ROW_COUNT
-            if ((pacman_x_pos + 4) < GRID_ROW_COUNT)
+            if ((pacman_x_pos + 4) < GRID_ROW_COUNT && !has_grid_state((pacman_x_pos + 4), pacman_y_pos, cell_wall))
         #else
-            if ((pacman_x_pos + 4 ) < 38)
+            if ((pacman_x_pos + 4) < 38  && !has_grid_state((pacman_x_pos + 4), pacman_y_pos, cell_wall))
         #endif
             {pinky_x_pos += 4;}        
     }
@@ -26,26 +26,26 @@ const Point* get_pinky_target_position(){
     {
         //check that the position left is not outside the board
         #ifdef MIN_BOARD_X_SIZE
-            if (pacman_x_pos - 4 >= 0)
+            if (pacman_x_pos - 4 >= 0  && !has_grid_state((pacman_x_pos - 4), pacman_y_pos, cell_wall))
         #else
-            if (pacman_x_pos - 4 >= 0)
+            if (pacman_x_pos - 4 >= 0  && !has_grid_state((pacman_x_pos - 4), pacman_y_pos, cell_wall))
         #endif
             {pinky_x_pos -= 4;}    
     }
     if (pacman_direction == PAC_BOTTOM){
         #ifdef GRID_COL_COUNT
-            if (pacman_y_pos + 4 < GRID_COL_COUNT)
+            if (pacman_y_pos + 4 < GRID_COL_COUNT  && !has_grid_state((pacman_y_pos + 4), pacman_x_pos, cell_wall))
         #else
-            if (pacman_x_pos + 4 < 28) //????? is this actually 28.... I will just take it as is... 
+            if (pacman_y_pos + 4 < 28 && !has_grid_state((pacman_y_pos + 4), pacman_x_pos, cell_wall)) //????? is this actually 28.... I will just take it as is... 
             // define changes this afterwards
         #endif
             {pinky_y_pos += 4;}    
     }
     if (pacman_direction == PAC_TOP){
         #ifdef MIN_BOARD_Y_SIZE
-            if (pacman_y_pos - 4 >= MIN_BOARD_Y_SIZE)
+            if (pacman_y_pos - 4 > MIN_BOARD_Y_SIZE  && !has_grid_state((pacman_y_pos - 4), pacman_x_pos, cell_wall))
         #else
-            if (pacman_y_pos - 4 >= 0)
+            if (pacman_y_pos - 4 > 0  && !has_grid_state((pacman_y_pos - 4), pacman_x_pos, cell_wall))
         #endif
             {pinky_y_pos -= 4;}    
     }
