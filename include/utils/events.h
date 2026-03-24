@@ -40,9 +40,35 @@ bool is_button_up_pressed();
 bool is_button_right_pressed();
 bool is_button_down_pressed();
 bool is_button_left_pressed();
+bool is_button_pause_pressed();
 
+//Displays the correct LEDS based on pacmans current remaining lives
 
+void display_life_LED(const uint8_t pacman_lives);
 
+//Functions to turn LEDS on and off -- Turns all LEDS on and off
+
+void turn_off_LEDS();
+void turn_on_LEDS();
+
+//Functions to turn LEDS on and off --Toggling
+
+void toggle_high_green_LED();
+void toggle_low_green_LED();
+void toggle_yellow_LED();
+void toggle_red_LED();
+
+//Turn LEDS on or off manually
+
+void turn_on_high_green_LED();
+void turn_on_low_green_LED();
+void turn_on_yellow_LED();
+void turn_on_red_LED();
+
+void turn_off_high_green_LED();
+void turn_off_low_green_LED();
+void turn_off_yellow_LED();
+void turn_off_red_LED();
 //---------------
 //Pacman Related functions - End
 //---------------

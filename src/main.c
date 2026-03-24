@@ -12,7 +12,8 @@ int main()
 {	
 	//set up grid and IO
 	SET_UP_STM();
-  draw_current_page();
+  	draw_current_page();
+	turn_on_LEDS();
 
 	while (get_active_menu_page() == menu_page_home) {
 

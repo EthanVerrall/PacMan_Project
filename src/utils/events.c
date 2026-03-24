@@ -12,12 +12,11 @@ void SET_UP_STM() {
     initClock();
 	initSysTick();
     initSerial();
-	
+	initSound();
+
     //Peripherals startup
     setupIO();
-    initSound();
-    
-
+	turn_off_LEDS();
 }
 
 //---------------
@@ -127,17 +126,24 @@ void setupIO()
 	pinMode(GPIOB,5,0);  // Right
 	pinMode(GPIOA,8,0);  // Up
 	pinMode(GPIOA,11,0); // Left
+	pinMode(GPIOA,1,0); //Pause button
 	
 	//Turning on pull-up resistors
 	enablePullUp(GPIOB,4);  // Down
 	enablePullUp(GPIOB,5);  // Right
 	enablePullUp(GPIOA,8);  // Up 
-	enablePullUp(GPIOA,11); // Left 
+	enablePullUp(GPIOA,11); // Left
+	enablePullUp(GPIOA,1); //Pause button
+
+	//Turning on LEDS;
+	pinMode(GPIOB,6,1); //HIGH GREEN LED
+	pinMode(GPIOB,7,1); //LOW GREEN LED
+	pinMode(GPIOB,0,1); //YELLOW LED
+	pinMode(GPIOA,12,1); //RED LED
 }
 //---------------
 //Setup functions - End
 //---------------
-
 
 
 //---------------
@@ -171,11 +177,132 @@ bool is_button_left_pressed() {
 	return false;
 }
 
-uint8_t get_mouse_cursor() {
+bool is_button_pause_pressed() {
 
+	if ((GPIOB->IDR & (1<<1)) == 0) return true;
 	
+	return false;
 }
 
+/**
+ *  NOTE: for the red LED, we are going to manually set its port, 
+ * Luckily for us, the red LED is the last LED to go off, 
+ * Therefore in the case that there is just one life left we can just turn 
+ * 
+*/
+void display_life_LED(const uint8_t pacman_lives) {
+	
+	switch (pacman_lives) {
+		case 4: 
+			turn_on_LEDS();
+			break;
+
+		case 3:
+			turn_off_high_green_LED();
+			turn_on_low_green_LED();
+			turn_on_yellow_LED();
+			turn_on_red_LED();
+			break;
+
+		case 2:
+			turn_off_high_green_LED();
+			turn_off_low_green_LED();
+			turn_on_yellow_LED();
+			turn_on_red_LED();
+			break;
+
+		case 1:
+			turn_off_high_green_LED();
+			turn_off_low_green_LED();
+			turn_off_yellow_LED();
+			turn_on_red_LED();
+			break;
+
+		case 0: 
+			turn_off_LEDS();
+			break;
+
+		default:
+			eputs("Error when trying to set LEDS using display_life_LED function.\r\n");
+			break;
+	}
+}
+
+void turn_off_LEDS() {
+
+	GPIOB->ODR &= ~(1<<6);
+	GPIOB->ODR &= ~(1<<7);
+	GPIOB->ODR &= ~(1<<0); 
+	GPIOA->ODR &= ~(1<<12);  
+}
+
+void turn_on_LEDS() {
+
+	GPIOB->ODR |= (1<<6);
+	GPIOB->ODR |= (1<<7);
+	GPIOB->ODR |= (1<<0); 
+	GPIOA->ODR |= (1<<12);  
+}
+
+void toggle_high_green_LED() {
+
+	GPIOB->ODR ^= (1<<6); 
+}
+
+void toggle_low_green_LED() {
+
+	GPIOB->ODR ^= (1<<7); 
+}
+
+void toggle_yellow_LED() {
+
+	GPIOB->ODR ^= (1<<0); 
+}
+
+void toggle_red_LED() {
+
+	GPIOA->ODR ^= (1<<12); 
+}
+
+void turn_on_high_green_LED() {
+
+	GPIOB->ODR |= (1<<6); 
+}
+
+void turn_on_low_green_LED() {
+
+	GPIOB->ODR |= (1<<7); 
+}
+
+void turn_on_yellow_LED() {
+
+	GPIOB->ODR |= (1<<0); 
+}
+
+void turn_on_red_LED() {
+
+	GPIOA->ODR |= (1<<12); 
+}
+
+void turn_off_high_green_LED() {
+
+	GPIOB->ODR &= ~(1<<6); 
+}
+
+void turn_off_low_green_LED() {
+
+	GPIOB->ODR &= ~(1<<7); 
+}
+
+void turn_off_yellow_LED() {
+
+	GPIOB->ODR &= ~(1<<0); 
+}
+
+void turn_off_red_LED() {
+
+	GPIOA->ODR &= ~(1<<12); 
+}
 //---------------
 //Pacman Related functions - End
 //---------------
