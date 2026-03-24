@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t const pacman_array[8][64] = 
+const uint16_t pacman_array[8][64] = 
 {
 //right_closed
 34346,34346,0,0,0,0,34346,34346,34346,0,65287,65287,65287,65287,0,34346,0,65287,65287,0,65287,65287,65287,0,0,65287,65287,65287,65287,65287,65287,0,0,65287,65287,65287,0,0,0,0,0,65287,65287,65287,65287,65287,65287,0,34346,0,65287,65287,65287,65287,0,34346,34346,34346,0,0,0,0,34346,34346,

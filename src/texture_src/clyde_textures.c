@@ -8,7 +8,7 @@ Two dimensional array[][]
 First dimension is the texture type, -- Access with enum
 Second dimension holds the hex colour code for each pixel
 */
-const uint16_t const clyde_array[4][64] = 
+const uint16_t clyde_array[4][64] = 
 {
 //Looking right
 34346,34346,0,0,0,0,34346,34346,34346,0,16142,16142,16142,16142,0,34346,0,65535,65535,16142,16142,65535,65535,0,0,65535,252,16142,16142,65535,252,0,0,65535,65535,16142,16142,65535,65535,0,0,16142,16142,16142,16142,16142,16142,0,0,16142,0,16142,16142,0,16142,0,0,0,34346,0,0,34346,0,0,
