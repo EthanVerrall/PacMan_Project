@@ -6,13 +6,17 @@
 #include "../assets/texture_include/clyde_textures.h"
 #include "../assets/texture_include/inky_textures.h"
 #include "../assets/texture_include/pacman_textures.h"
-#include "../assets/texture_include/scatter_ghost_textures.h"
+#include "../assets/texture_include/fright_ghost_textures.h"
 #include "../assets/texture_include/pickups_textures.h"
 #include "../assets/texture_include/pinky_textures.h"
 #include "../assets/texture_include/wall_textures.h"
 #include "../assets/texture_include/blank_textures.h"
 #include "../assets/texture_include/main_menu_title.h"
 #include "../include/behaviours/entities&sprites/pacman.h"
+#include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/inky.h"
+#include "../include/behaviours/entities&sprites/pinky.h"
+#include "../include/behaviours/entities&sprites/clyde.h"
 #include "../include/grid.h"
 #include "../include/frontend&drawing/display.h"
 #include "../include/utils/point.h"
@@ -33,7 +37,9 @@ enum entity_type {
 };
 
 void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
-                    const uint8_t num_entites_to_animate, const bool is_scatter_mode);
+                    const uint8_t num_entites_to_animate);
+
+void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts);
 
 void draw_current_page();
 

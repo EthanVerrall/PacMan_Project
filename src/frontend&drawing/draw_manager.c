@@ -16,7 +16,7 @@ static bool is_mouth_open = false;
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
 
-const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity, bool is_scatter_mode) {
+const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
 
     //direction just defines which way we are moving
     //a simple arbitrary value should be fine for this
@@ -25,7 +25,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
     switch (entity) {
 
         case entity_type_blinky: 
-            if (is_scatter_mode) return scatter_ghost_array;
+            if (get_blinky_mode() == fright) return fright_ghost_array;
             if (direction == RIGHT) return blinky_array[blinky_right_eye];
             if (direction == DOWN) return blinky_array[blinky_bottom_eye];
             if (direction == LEFT) return blinky_array[blinky_left_eye];
@@ -35,7 +35,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_clyde: 
-            if (is_scatter_mode) return scatter_ghost_array;
+            if (get_clyde_mode() == fright) return fright_ghost_array;
             if (direction == RIGHT) return clyde_array[clyde_right_eye];
             if (direction == DOWN) return clyde_array[clyde_bottom_eye];
             if (direction == LEFT) return clyde_array[clyde_left_eye];
@@ -45,7 +45,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_inky:
-            if (is_scatter_mode) return scatter_ghost_array;
+            if (get_inky_mode() == fright) return fright_ghost_array;
             if (direction == RIGHT) return inky_array[inky_right_eye];
             if (direction == DOWN) return inky_array[inky_bottom_eye];
             if (direction == LEFT) return inky_array[inky_left_eye];
@@ -55,7 +55,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_pinky:
-            if (is_scatter_mode) return scatter_ghost_array;
+            if (get_pinky_mode() == fright) return fright_ghost_array;
             if (direction == RIGHT) return pinky_array[pinky_right_eye];
             if (direction == DOWN) return pinky_array[pinky_bottom_eye];
             if (direction == LEFT) return pinky_array[pinky_left_eye];
@@ -514,8 +514,8 @@ void flicker_text() {
 //Helper functions -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
-     const uint8_t num_entites_to_animate, const bool is_scatter_mode) {
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
+                   const uint8_t num_entites_to_animate) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
@@ -589,32 +589,32 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         //Moves RIGHT
         if (dx[i] == 8 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
         }
         //Moves DOWN
         else if (dx[i] == 0 && dy[i] == 8) {
 
-            entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i]);
         }
         //Moves LEFT
         else if (dx[i] == -8 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
         }
         //Moves UP
         else if (dx[i] == 0 && dy[i] == -8) {
 
-            entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
         }
         //Wrapping from left to right side of the screen
         else if (dx[i] == 120 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
         }
         //Wrapping from right to left side of the screen    
         else if (dx[i] == -120 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
         }
 
         //Not moving, need to redraw ourselves in the same spot, in the case that something moves away next turn but
@@ -623,7 +623,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             if (entity_array[i] != entity_type_pacman) {
 
-                entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+                entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
             }
             else {
 
@@ -632,19 +632,19 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 switch (pac_direction) {
 
                     case PAC_BOTTOM:
-                    entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i], is_scatter_mode);
+                    entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i]);
                     break;
 
                     case PAC_TOP:
-                    entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i], is_scatter_mode);
+                    entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
                     break;
 
                     case PAC_LEFT:
-                    entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
+                    entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
                     break;
 
                     case PAC_RIGHT:
-                    entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+                    entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
                     break;
 
                     default:
@@ -807,7 +807,6 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         delay(100);
     }
 }
-
 
 void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts) {
 
