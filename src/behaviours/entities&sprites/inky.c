@@ -1,67 +1,112 @@
 #include "../include/behaviours/entities&sprites/inky.h"
 
-const Point* get_inky_target_position(){
-
-    if (get_inky_mode() == scatter) return get_inky_scatter_position();
-
-    const Point* blinky_position =  get_blinky_position();
-    Point* pacman_position = get_pacman_position();
-    //NOTE: when pacman has been created get the direct function and return type for get direction
-    uint8_t pacman_direction = get_pacman_direction();
-
-    int8_t pacman_x = get_x_point_coord(pacman_position);
-    int8_t pacman_y = get_y_point_coord(pacman_position);
-    
-    if (pacman_direction == PAC_LEFT) pacman_x -= 2;
-    if (pacman_direction == PAC_RIGHT) pacman_x += 2;
-    if (pacman_direction == PAC_TOP) pacman_y -= 2;
-    if (pacman_direction == PAC_BOTTOM) pacman_y += 2;
-
-    uint8_t blinky_x = get_x_point_coord(blinky_position);
-    uint8_t blinky_y = get_y_point_coord(blinky_position);
-
-    int8_t distance_x = blinky_x - pacman_x;
-    int8_t distance_y = blinky_y - pacman_y;
-
-    int16_t inky_target_y = pacman_y + distance_y;
-    int16_t inky_target_x = pacman_x + distance_x;
-
-    //check if the target is in bounds
-    if (inky_target_x >= GRID_ROW_COUNT) inky_target_x = GRID_ROW_COUNT - 2;
-    if (inky_target_x <= 0) inky_target_x = 1;
-    if (inky_target_y >= GRID_COL_COUNT) inky_target_y = GRID_COL_COUNT - 2;
-    if (inky_target_y <= 0) inky_target_y= 2;
-
-    //check if inky's target is a wall
-    if (is_grid_state(inky_target_x, inky_target_y, cell_wall))
+const Point* get_inky_target_position()
+{
+    if (get_inky_mode() == scatter)
     {
-        bool is_target_set = false;
-        for (int8_t i = -1; i <= 1; ++i)
-        {
-            for (int8_t j = -1; j <= 1; ++j)
-            {
-                //ignore current spot 
-                if (j == 0 && i == 0) continue;
-                
-                //ignore diagonals
-                if (i != 0 && j != 0) continue;
-
-                if (inky_target_x + i < 0 || inky_target_x + i >= GRID_ROW_COUNT || inky_target_y + j < 0 || inky_target_y + j >= GRID_COL_COUNT) continue;
-
-                if(is_grid_state(inky_target_x + i, inky_target_y + j, cell_wall)) continue;
-
-                inky_target_x += i;
-                inky_target_y += j;
-                is_target_set = true;
-            }
-            if (is_target_set) break;   
-        }
-
-        if (!is_target_set) return create_point(get_x_point_coord(pacman_position),
-                            get_y_point_coord(pacman_position));;   
+        return create_point(get_x_point_coord(get_inky_scatter_position()),
+                            get_y_point_coord(get_inky_scatter_position()));
     }
 
-    return create_point(inky_target_x, inky_target_y);
+    const Point* blinky_position = get_blinky_position();
+    const Point* pacman_position = get_pacman_position();
+    PacDirection pacman_direction = get_pacman_direction();
+
+    int16_t blinky_x = get_x_point_coord(blinky_position);
+    int16_t blinky_y = get_y_point_coord(blinky_position);
+
+    int16_t ref_x = get_x_point_coord(pacman_position);
+    int16_t ref_y = get_y_point_coord(pacman_position);
+
+    // 2 tiles ahead of Pac-Man
+    if (pacman_direction == PAC_LEFT)
+    {
+        ref_x -= 2;
+    }
+    else if (pacman_direction == PAC_RIGHT)
+    {
+        ref_x += 2;
+    }
+    else if (pacman_direction == PAC_TOP)
+    {
+        ref_y -= 2;
+    }
+    else if (pacman_direction == PAC_BOTTOM)
+    {
+        ref_y += 2;
+    }
+
+    // Inky target = 2 * reference - Blinky
+    int16_t target_x = (2 * ref_x) - blinky_x;
+    int16_t target_y = (2 * ref_y) - blinky_y;
+
+    // Clamp to inner walkable bounds (assuming border walls)
+    #ifdef GRID_COL_COUNT
+        if (target_x < 1) target_x = 1;
+        if (target_x >= GRID_COL_COUNT - 1) target_x = GRID_COL_COUNT - 2;
+    #else
+        if (target_x < 1) target_x = 1;
+        if (target_x >= 38 - 1) target_x = 38 - 2;
+    #endif
+
+    #ifdef GRID_ROW_COUNT
+        if (target_y < 1) target_y = 1;
+        if (target_y >= GRID_ROW_COUNT - 1) target_y = GRID_ROW_COUNT - 2;
+    #else
+        if (target_y < 1) target_y = 1;
+        if (target_y >= 28 - 1) target_y = 28 - 2;
+    #endif
+
+    //if target is a wall, try adjacent non-wall tiles
+    if (is_grid_state(target_x, target_y, cell_wall))
+    {
+        bool is_target_set = false;
+
+        const int offsets[4][2] = {
+            { 0, -1 }, // up
+            { 1,  0 }, // right
+            { 0,  1 }, // down
+            {-1,  0 }  // left
+        };
+
+        for (int i = 0; i < 4; ++i)
+        {
+            int16_t next_x = target_x + offsets[i][0];
+            int16_t next_y = target_y + offsets[i][1];
+
+            #ifdef GRID_COL_COUNT
+                if (next_x < 1 || next_x >= GRID_COL_COUNT - 1) continue;
+            #else
+                if (next_x < 1 || next_x >= 38 - 1) continue;
+            #endif
+
+            #ifdef GRID_ROW_COUNT
+                if (next_y < 1 || next_y >= GRID_ROW_COUNT - 1) continue;
+            #else
+                if (next_y < 1 || next_y >= 28 - 1) continue;
+            #endif
+
+            if (is_grid_state(next_x, next_y, cell_wall))
+            {
+                continue;
+            }
+
+            target_x = next_x;
+            target_y = next_y;
+            is_target_set = true;
+            break;
+        }
+
+        if (!is_target_set)
+        {
+            return create_point(
+                get_x_point_coord(pacman_position),
+                get_y_point_coord(pacman_position)
+            );
+        }
+    }
+
+    return create_point(target_x, target_y);
 }
 
 /** 
@@ -92,18 +137,17 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //the algorithm would trace a path based on both positions
         Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
                                          get_y_point_coord(get_inky_position()));
-        eputs("inky target position\r\n");
-        printDecimal(get_x_point_coord(get_inky_target_position()));
-        printDecimal(get_y_point_coord(get_inky_target_position()));
-        eputs("\r\n");
         
         trace_path_a_star(
             temp_point,
             get_inky_target_position(),
             feed_cache
         );
+        eputs("inky current feed cache size\r\n");
+        printDecimal(get_list_size(feed_cache));
+        eputs("\r\n");
 
-        for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        /* for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
         {
             if (feed_cache[i])
             {
@@ -115,7 +159,7 @@ const Point* _inky_feed_next(const bool reset, const bool end){
                 printDecimal(get_y_point_coord(feed_cache[i]));
                 eputs("\r\n\r\n");
             }
-        } 
+        }  */
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

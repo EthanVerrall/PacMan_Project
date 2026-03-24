@@ -34,10 +34,9 @@ int main()
 		get_blinky_position(), 
 		create_point(0,0),
 
-		/* //inky movement
+		//inky movement
 		get_inky_position(),
-		create_point(0,0) */
-		
+		create_point(0,0),
 		
 		//pinky movement
 		get_pinky_position(),
@@ -52,7 +51,7 @@ int main()
 	}; 
 
 	const enum entity_type entity_move_order[] = {
-		entity_type_pacman, entity_type_blinky, entity_type_pinky, entity_type_clyde
+		entity_type_pacman,entity_type_inky, entity_type_blinky, entity_type_pinky, entity_type_clyde
 	};
 
 	bool button_pressed = false;
@@ -112,79 +111,53 @@ int main()
 	
 		//Blinky
 		target_point = _blinky_feed_next(false,false);
-		set_point_coord(
-			get_x_point_coord(target_point),
-			get_y_point_coord(target_point),
-			entity_move_direction_store[3]
-		);
+		copy_point_values(entity_move_direction_store[3],target_point);
 		//free(target_point);
 		
 		//inky
-		/* target_point = _inky_feed_next(false, false);
-		set_point_coord(
-			get_x_point_coord(target_point),
-			get_y_point_coord(target_point),
-			entity_move_direction_store[5]
-		); */
-		//eputs("\r\nInky Current Point");
-		//printDecimal(get_x_point_coord(entity_move_direction_store[4]));
-		//printDecimal(get_y_point_coord(entity_move_direction_store[4]));
-		//eputs("\r\nInky Target Point");
-		//printDecimal(get_x_point_coord(entity_move_direction_store[5]));
-		//printDecimal(get_y_point_coord(entity_move_direction_store[5]));
-		//eputs("\r\n\n");
-
-
+		target_point = _inky_feed_next(false, false);
+		copy_point_values(entity_move_direction_store[5],target_point);
+		//free(target_point);
 
 		//pinky
 		target_point = _pinky_feed_next(false, false);
-		set_point_coord(
-			get_x_point_coord(target_point),
-			get_y_point_coord(target_point),
-			entity_move_direction_store[5]
-		);
-		free(target_point);
+		copy_point_values(entity_move_direction_store[7],target_point);
+		//free(target_point);
 		//clyde
 		target_point = _clyde_feed_next(false, false);
-		set_point_coord(
-			get_x_point_coord(target_point),
-			get_y_point_coord(target_point),
-			entity_move_direction_store[7]
-		);
-		free(target_point);
+		copy_point_values(entity_move_direction_store[9],target_point);
+		//free(target_point);
 
 
 		remove_grid_state(get_x_point_coord(get_blinky_position()), get_y_point_coord(get_blinky_position()),cell_blinky);
  		add_grid_state(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]), cell_blinky);
 
-//		remove_grid_state(get_x_point_coord(get_inky_position()), get_y_point_coord(get_inky_position()),cell_inky);
-// 		add_grid_state(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]), cell_inky);
+		remove_grid_state(get_x_point_coord(get_inky_position()), get_y_point_coord(get_inky_position()),cell_inky);
+ 		add_grid_state(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]), cell_inky);
 
 		remove_grid_state(get_x_point_coord(get_pinky_position()), get_y_point_coord(get_pinky_position()),cell_pinky);
- 		add_grid_state(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]), cell_pinky);
+ 		add_grid_state(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]), cell_pinky);
 
 		remove_grid_state(get_x_point_coord(get_clyde_position()), get_y_point_coord(get_clyde_position()),cell_clyde);
-		add_grid_state(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]), cell_clyde);
+		add_grid_state(get_x_point_coord(entity_move_direction_store[9]), get_y_point_coord(entity_move_direction_store[9]), cell_clyde);
 
-		move_entities(entity_move_direction_store,entity_move_order,4);
+		move_entities(entity_move_direction_store,entity_move_order,5);
 
 		//set the internal positions of each entity to their new positions
 		set_pacman_position(pacman_new_x, pacman_new_y);
 		set_blinky_position(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]));
-//		set_inky_position(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]));
-		set_pinky_position(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]));
-		set_clyde_position(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]));
+		set_inky_position(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]));
+		set_pinky_position(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]));
+		set_clyde_position(get_x_point_coord(entity_move_direction_store[9]), get_y_point_coord(entity_move_direction_store[9]));
 
 		if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
 		{	
 			set_blinky_mode(chase);
 		}
-		/* if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
+		if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
 		{	
 			set_inky_mode(chase);
-		} */
-
-		//Pinky algo is broken - please fix
+		}
 		if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
 		{	
 			set_pinky_mode(chase);

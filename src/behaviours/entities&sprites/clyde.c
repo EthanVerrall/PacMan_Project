@@ -4,23 +4,31 @@ const Point* get_clyde_target_position(){
 
     if (get_clyde_mode() == scatter)
     {
-        return get_clyde_scatter_position();
+        return create_point(get_x_point_coord(get_clyde_scatter_position()),
+                            get_y_point_coord(get_clyde_scatter_position()));
     }
     
-    Point* pacman_position = get_pacman_position();
+    const Point* pacman_position = get_pacman_position();
 
     const Point* clyde_pos = get_clyde_position();
 
-    int8_t pacman_clyde_distance_x = get_x_point_coord(pacman_position) - get_x_point_coord(clyde_pos);
-    int8_t pacman_clyde_distance_y = get_y_point_coord(pacman_position) - get_y_point_coord(clyde_pos);
+    int16_t pacman_clyde_distance_x = get_x_point_coord(pacman_position) - get_x_point_coord(clyde_pos);
+    int16_t pacman_clyde_distance_y = get_y_point_coord(pacman_position) - get_y_point_coord(clyde_pos);
 
-    if (pacman_clyde_distance_x < 0) pacman_clyde_distance_x *= -1;
-    if (pacman_clyde_distance_y < 0) pacman_clyde_distance_y *= -1;
-
-    if (pacman_clyde_distance_x < 8 || pacman_clyde_distance_y < 8)
+    //check if the distance in x and y is less than 8.. I am using 4 here because 
+    if ((pacman_clyde_distance_x * pacman_clyde_distance_x) +  (pacman_clyde_distance_y * pacman_clyde_distance_y) < 16)
     {
         //runs to scatter position
-        return get_clyde_scatter_position(); // work on this function
+        //check if clyde is already at his scatter position
+        if (compare_points(clyde_pos, get_clyde_scatter_position()))
+        {
+            //just chase pacman then, for now, we can take it as a feature since there are no other places to move to
+            return create_point(get_x_point_coord(pacman_position),
+                            get_y_point_coord(pacman_position));
+        }
+        
+        return create_point(get_x_point_coord(get_clyde_scatter_position()),
+                            get_y_point_coord(get_clyde_scatter_position())); // work on this function
     }
 
     //chases pacman when he is far away, if he is close, he runs to his scatter positions
@@ -53,6 +61,22 @@ const Point* _clyde_feed_next(const bool reset, const bool end){
             get_clyde_target_position()
             ,feed_cache
         );
+        eputs("clyde current feed cache size\r\n");
+        printDecimal(get_list_size(feed_cache));
+        eputs("\r\n");
+        /* for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            if (feed_cache[i])
+            {
+                eputs("inky cache point\r\n");
+                eputs("index ");
+                printDecimal(i);
+                eputs("\r\n");
+                printDecimal(get_x_point_coord(feed_cache[i]));
+                printDecimal(get_y_point_coord(feed_cache[i]));
+                eputs("\r\n\r\n");
+            }
+        }  */
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

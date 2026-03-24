@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "point.h"
 #define ARRHELPERS
-#define MAXARRSIZE 30
+#define MAXARRSIZE 50
 
 //This function assumes the list is arranged and there are no NULL spaces between items
 bool is_not_empty(Point* list[]);

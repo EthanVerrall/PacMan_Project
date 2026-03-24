@@ -1,56 +1,72 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 
-const Point* get_pinky_target_position(){
-
-    if (get_pinky_mode() == scatter) return get_pinky_scatter_position();
-    
-    //get pacman direction
-    uint8_t pacman_direction = get_pacman_direction();
-    Point* pacman_position = get_pacman_position();
-    uint8_t pacman_x_pos = get_x_point_coord(pacman_position);
-    uint8_t pacman_y_pos = get_y_point_coord(pacman_position);
-
-    uint8_t pinky_x_pos = pacman_x_pos;
-    uint8_t pinky_y_pos = pacman_y_pos;
-    if (pacman_direction == PAC_RIGHT) //right
+const Point* get_pinky_target_position()
+{
+    if (get_pinky_mode() == scatter)
     {
-        //check that the position right is not outside the board
-        #ifdef GRID_ROW_COUNT
-            if ((pacman_x_pos + 4) < GRID_ROW_COUNT && !has_grid_state((pacman_x_pos + 4), pacman_y_pos, cell_wall))
-        #else
-            if ((pacman_x_pos + 4) < 38  && !has_grid_state((pacman_x_pos + 4), pacman_y_pos, cell_wall))
-        #endif
-            {pinky_x_pos += 4;}        
+        return create_point(get_x_point_coord(get_pinky_scatter_position()),
+                            get_y_point_coord(get_pinky_scatter_position()));
     }
-    if (pacman_direction == PAC_LEFT) //left
+
+    PacDirection pacman_direction = get_pacman_direction();
+    const Point* pacman_position = get_pacman_position();
+
+    int16_t pacman_x_pos = get_x_point_coord(pacman_position);
+    int16_t pacman_y_pos = get_y_point_coord(pacman_position);
+
+    int16_t target_x = pacman_x_pos;
+    int16_t target_y = pacman_y_pos;
+
+    int16_t dx = 0;
+    int16_t dy = 0;
+
+    if (pacman_direction == PAC_RIGHT)
     {
-        //check that the position left is not outside the board
-        #ifdef MIN_BOARD_X_SIZE
-            if (pacman_x_pos - 4 >= 0  && !has_grid_state((pacman_x_pos - 4), pacman_y_pos, cell_wall))
-        #else
-            if (pacman_x_pos - 4 >= 0  && !has_grid_state((pacman_x_pos - 4), pacman_y_pos, cell_wall))
-        #endif
-            {pinky_x_pos -= 4;}    
+        dx = 1;
     }
-    if (pacman_direction == PAC_BOTTOM){
+    else if (pacman_direction == PAC_LEFT)
+    {
+        dx = -1;
+    }
+    else if (pacman_direction == PAC_BOTTOM)
+    {
+        dy = 1;
+    }
+    else if (pacman_direction == PAC_TOP)
+    {
+        dy = -1;
+    }
+
+    for (int i = 1; i <= 4; i++)
+    {
+        int16_t next_x = pacman_x_pos + (dx * i);
+        int16_t next_y = pacman_y_pos + (dy * i);
+
+        // Bounds check
         #ifdef GRID_COL_COUNT
-            if (pacman_y_pos + 4 < GRID_COL_COUNT  && !has_grid_state((pacman_y_pos + 4), pacman_x_pos, cell_wall))
+            if (next_x < 0 || next_x >= GRID_COL_COUNT) break;
         #else
-            if (pacman_y_pos + 4 < 28 && !has_grid_state((pacman_y_pos + 4), pacman_x_pos, cell_wall)) //????? is this actually 28.... I will just take it as is... 
-            // define changes this afterwards
+            if (next_x < 0 || next_x >= 38) break;
         #endif
-            {pinky_y_pos += 4;}    
-    }
-    if (pacman_direction == PAC_TOP){
-        #ifdef MIN_BOARD_Y_SIZE
-            if (pacman_y_pos - 4 > MIN_BOARD_Y_SIZE  && !has_grid_state((pacman_y_pos - 4), pacman_x_pos, cell_wall))
+
+        #ifdef GRID_ROW_COUNT
+            if (next_y < 0 || next_y >= GRID_ROW_COUNT) break;
         #else
-            if (pacman_y_pos - 4 > 0  && !has_grid_state((pacman_y_pos - 4), pacman_x_pos, cell_wall))
+            if (next_y < 0 || next_y >= 28) break;
         #endif
-            {pinky_y_pos -= 4;}    
+
+        // Stop if blocked
+        if (has_grid_state(next_x, next_y, cell_wall))
+        {
+            break;
+        }
+
+        // Furthest valid tile so far
+        target_x = next_x;
+        target_y = next_y;
     }
-    
-    return create_point(pinky_x_pos, pinky_y_pos);
+
+    return create_point(target_x, target_y);
 }
 
 /** 
@@ -84,7 +100,24 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
             get_pinky_target_position(),
             feed_cache
         );
+
+        eputs("pinky current feed cache size\r\n");
+        printDecimal(get_list_size(feed_cache));
+        eputs("\r\n");
         
+        /* for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+        {
+            if (feed_cache[i])
+            {
+                eputs("pinky cache point\r\n");
+                eputs("index ");
+                printDecimal(i);
+                eputs("\r\n");
+                printDecimal(get_x_point_coord(feed_cache[i]));
+                printDecimal(get_y_point_coord(feed_cache[i]));
+                eputs("\r\n\r\n");
+            }
+        }  */
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

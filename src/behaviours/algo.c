@@ -34,12 +34,12 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
     //so that we do not scratch our heads over errors later
     #ifdef MAX_PATH_STORE
         Point* open_points[MAX_PATH_STORE];
+         for (size_t i = 0; i < MAX_PATH_STORE; i++) open_points[i] = NULL;
     #else
         Point* open_points[30];
+        for (size_t i = 0; i < 30; i++) open_points[i] = NULL;
     #endif
-
-    //fill to null
-    for (size_t i = 0; i < 30; i++) open_points[i] = NULL;
+    
 
     if(compare_points(current, target)){
         //this means that we are already at our target
@@ -61,15 +61,12 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         uint8_t currents_x = get_x_point_coord(current_smallest);
         uint8_t currents_y = get_y_point_coord(current_smallest);
 
-
         //remove from the open points
         remove_item(current_smallest, open_points);
 
         //If the current_smallest is the target node, we have reached our target... Yay
         //so we reconstruct path from g_cost array
         if(compare_points(current_smallest, target)) {
-
-            eputs("reconstructing algorithm");
 
             uint8_t x = get_x_point_coord(current_smallest);
             uint8_t y = get_y_point_coord(current_smallest);
@@ -93,8 +90,8 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                     //ignore diagonals too
                     if (i != 0 && j != 0) continue;
 
-                    uint8_t neighbour_x = x+i;
-                    uint8_t neighbour_y = y+j;
+                    int16_t neighbour_x = x+i;
+                    int16_t neighbour_y = y+j;
 
                     //if it is a lower cost, we are on the right path backwards
                     if(g_cost[neighbour_x][neighbour_y] == g_cost[x][y]-1)
@@ -109,6 +106,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 if(!found) break;
             }
             //because we work backwards, we would need to reverse the list so feed can properly get the path forwards
+            free(current_smallest);
             push(current, result);
             reverse_points(result);
             free_arr(open_points);
@@ -121,11 +119,9 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
          * so N,E,W,S, N-E, S-E, S-W, N-W
         */
 
-        //TODO: We do not need to check the diagonals
         /** 
          * Since we are using the manhattan algorithm
         */
-       eputs("tracing algorithm");
         for (int8_t i = -1; i <= 1 ; i++)
         {
             for (int8_t j = -1; j <= 1; j++)
@@ -147,7 +143,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                     continue;
                 
                 //check if the grid position is a wall
-                if(is_grid_state((get_x_point_coord(current_smallest) + i), (get_y_point_coord(current_smallest) + j), cell_wall)) continue;
+                if(is_grid_state(nx, ny, cell_wall)) continue;
 
                 //the g_cost of the current smallest is the g_cost of the current smallest's parent + 1 
                 //as we are moving one step from the parent to the current smallest
@@ -156,29 +152,43 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
 
                 uint8_t neighbour_x = nx;
                 uint8_t neighbour_y = ny;
+
+
+                //obvivously if the neighbour has a g_cost that is greater than or equal to the g_cost of the current smallest, 
+                //then we ignore it as it is not a better path
+                if (tentative_g >= g_cost[neighbour_x][neighbour_y]) continue;
+
+                //as all the checks have passed, we will now update the g_cost of the neighbour to be the tentative g_cost
+                g_cost[neighbour_x][neighbour_y] = tentative_g;
+
                 Point* temp_neighbour = create_point(
                     neighbour_x,
                     neighbour_y
                 );
 
-
-                //obvivously if the neighbour has a g_cost that is greater than or equal to the g_cost of the current smallest, 
-                //then we ignore it as it is not a better path
-                if (tentative_g >= g_cost[neighbour_x][neighbour_y])
+                //just add the neighbour to the open list to be checked in the next iteration
+                //but check first if open points is full, 
+                //if it is, don't worry, we return, trace path and then come back to trace the rest of the path
+                //it does not have to be the full path at all times and we have to save space on the microcontroller 
+                if (get_list_size(open_points) >= MAXARRSIZE) {
+                    free(temp_neighbour);
+                    free_arr(open_points);
+                    return;
+                };
+                if (!search_item(temp_neighbour,open_points))
+                {
+                    push(temp_neighbour, open_points);
+                }
+                else
                 {
                     free(temp_neighbour);
-                    continue;
                 }
-
-                //as all the checks have passed, we will now update the g_cost of the neighbour to be the tentative g_cost
-                g_cost[neighbour_x][neighbour_y] = tentative_g;
-
-                //just add the neighbour to the open list to be checked in the next iteration
-                push(temp_neighbour, open_points);
-                eputs("line 178\r\n");
+                
                 temp_neighbour = NULL; // open points owns temp_neighbour now
             }
         }
+
+        free(current_smallest);
     }
     //free the open points, closed points might be freed by the user of this function
     free_arr(open_points);

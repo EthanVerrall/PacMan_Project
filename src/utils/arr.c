@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
-#define MAXARRSIZE 30
+#define MAXARRSIZE 40
 
 //This function assumes the list is arranged and there are no NULL spaces between items
 bool is_not_empty(Point* list[]){
