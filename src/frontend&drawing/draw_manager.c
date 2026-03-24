@@ -12,8 +12,6 @@
 
 static bool is_mouth_open = false;
 
-
-
 //--------------------------------------------------------------
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
@@ -618,6 +616,45 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
         }
+
+        //Not moving, need to redraw ourselves in the same spot, in the case that something moves away next turn but
+        //we are still standing still
+        else if (dx[i] == 0 && dy[i] == 0) {
+
+            if (entity_array[i] != entity_type_pacman) {
+
+                entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+            }
+            else {
+
+                const PacDirection pac_direction = get_pacman_direction();
+
+                switch (pac_direction) {
+
+                    case PAC_BOTTOM:
+                    entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_TOP:
+                    entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_LEFT:
+                    entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_RIGHT:
+                    entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+                    break;
+
+                    default:
+                    eputs("Texture could not be found for entity that is standing still\r\n."
+                            "Function move entites aborted.\r\n");
+                    return;
+                }
+            }
+
+        }
         else 
         {
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
@@ -687,6 +724,11 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
 
+            //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
+            else if (dx[i] == 0 && dy[i] == 0) {   
+                //do nothing
+            }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
@@ -745,6 +787,13 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 }
             }
 
+            //We did not move, this is for the case that something moves over us next turn and we still haven't moved
+            //So we redraw ourselves so it doesn't look like we disappeared
+            else if (dx[i] == 0 && dy[i] == 0)
+            {   
+                putImage(x_old_pixel_array[i], y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
+            }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
@@ -752,6 +801,73 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         } 
         //End of frame, needs to delay now
         delay(100);
+    }
+}
+
+
+void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts) {
+
+    const uint16_t* enitity_texture = NULL;
+    const PacDirection pac_direction = get_pacman_direction();
+
+    switch (pac_direction) {
+        case PAC_BOTTOM:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_bottom_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_bottom_closed];
+        break;
+
+        case PAC_TOP:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_top_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_top_closed];
+        break;
+
+        case PAC_LEFT:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_left_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_left_closed];
+        break;
+
+        case PAC_RIGHT:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_right_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_right_closed];
+        break;
+
+        default:
+        eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
+        return;
+    }
+
+    const uint8_t pac_x_pixel = get_y_point_coord(get_pacman_position()) * 8;
+    const uint8_t pac_y_pixel = get_x_point_coord(get_pacman_position()) * 8;
+    putImage(pac_x_pixel, pac_y_pixel, 8,8, enitity_texture, 0,0);
+
+    for (uint8_t i = 0; i < number_of_eaten_ghosts; ++i) {
+
+        switch (ghosts[i]) {
+
+            case entity_type_inky:  
+                enitity_texture = inky_array[inky_right_eye];
+                putImage(10,6, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_blinky: 
+                enitity_texture = blinky_array[blinky_right_eye];
+                putImage(10,7, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_pinky: 
+                enitity_texture = pinky_array[pinky_right_eye];
+                putImage(10,8, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_clyde: 
+                enitity_texture = clyde_array[clyde_right_eye];
+                putImage(10,9, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            default:
+                eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
+                return;
+        }
     }
 }
 

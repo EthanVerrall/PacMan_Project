@@ -12,6 +12,7 @@
 #include "../assets/texture_include/wall_textures.h"
 #include "../assets/texture_include/blank_textures.h"
 #include "../assets/texture_include/main_menu_title.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 #include "../include/grid.h"
 #include "../include/frontend&drawing/display.h"
 #include "../include/utils/point.h"
