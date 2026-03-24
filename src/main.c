@@ -112,20 +112,37 @@ int main()
 		//Blinky
 		target_point = _blinky_feed_next(false,false);
 		copy_point_values(entity_move_direction_store[3],target_point);
+		eputs("Blinky target\r\n");
+		printDecimal(get_x_point_coord(entity_move_direction_store[3]));
+		printDecimal(get_y_point_coord(entity_move_direction_store[3]));
+		eputs("\r\n");
+
 		//free(target_point);
 		
 		//inky
 		target_point = _inky_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[5],target_point);
+		eputs("Inky target\r\n");
+		printDecimal(get_x_point_coord(entity_move_direction_store[5]));
+		printDecimal(get_y_point_coord(entity_move_direction_store[5]));
+		eputs("\r\n");
 		//free(target_point);
 
 		//pinky
 		target_point = _pinky_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[7],target_point);
+		eputs("Pinky target\r\n");
+		printDecimal(get_x_point_coord(entity_move_direction_store[7]));
+		printDecimal(get_y_point_coord(entity_move_direction_store[7]));
+		eputs("\r\n");
 		//free(target_point);
 		//clyde
 		target_point = _clyde_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[9],target_point);
+		eputs("Clyde target\r\n");
+		printDecimal(get_x_point_coord(entity_move_direction_store[9]));
+		printDecimal(get_y_point_coord(entity_move_direction_store[9]));
+		eputs("\r\n");
 		//free(target_point);
 
 

@@ -100,24 +100,7 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
             get_pinky_target_position(),
             feed_cache
         );
-
-        eputs("pinky current feed cache size\r\n");
-        printDecimal(get_list_size(feed_cache));
-        eputs("\r\n");
-        
-        /* for (int8_t i = 0; i < MAX_FEED_CAPACITY; i++)
-        {
-            if (feed_cache[i])
-            {
-                eputs("pinky cache point\r\n");
-                eputs("index ");
-                printDecimal(i);
-                eputs("\r\n");
-                printDecimal(get_x_point_coord(feed_cache[i]));
-                printDecimal(get_y_point_coord(feed_cache[i]));
-                eputs("\r\n\r\n");
-            }
-        }  */
+        free(temp_point);
         feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];

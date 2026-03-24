@@ -4,8 +4,16 @@
 
 void trace_path_a_star(const Point* current, const Point* target, Point* result[]){
 
+    //check for nullness
+    if(!current || !target) return;
+
     //free array
     free_arr(result); // -- @JOSHUA CHECK THIS ONE PLEASE
+
+    Point* current_copy = create_point(
+                get_x_point_coord(current),
+                get_y_point_coord(current)
+            );
 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
@@ -23,11 +31,8 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         }
     }
 
-    //check for nullness
-    if(!current || !target) return;
-
     //the g_cost of the starting point is 0 since we are already there
-    g_cost[get_x_point_coord(current)][get_y_point_coord(current)] = 0;
+    g_cost[get_x_point_coord(current_copy)][get_y_point_coord(current_copy)] = 0;
 
     //track our open and closed points
     //this is just in the case that max path is changed maybe or removed
@@ -41,14 +46,14 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
     #endif
     
 
-    if(compare_points(current, target)){
+    if(compare_points(current_copy, target)){
         //this means that we are already at our target
-        push(current, result);
+        push(current_copy, result);
         return;
     }
 
     //add the current to open_points
-    push(current, open_points);
+    push(current_copy, open_points);
     
     while (is_not_empty(open_points))
     {
@@ -68,12 +73,13 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         //so we reconstruct path from g_cost array
         if(compare_points(current_smallest, target)) {
 
-            uint8_t x = get_x_point_coord(current_smallest);
-            uint8_t y = get_y_point_coord(current_smallest);
+            // Change these from uint8_t to int16_t
+            int16_t x = get_x_point_coord(current_smallest);
+            int16_t y = get_y_point_coord(current_smallest);
 
             while(g_cost[x][y] != 0)
             {
-                Point* p = create_point(x,y);
+                Point* p = create_point(x, y);
                 push(p, result);
 
                 bool found = false;
@@ -81,33 +87,31 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 for(int8_t i = -1; i <= 1 && !found; i++)
                 for(int8_t j = -1; j <= 1; j++)
                 {
-
-                    if(!get_grid_state(x+i, y+j)) continue;
-
-                    //ignore [0][0], that is our current spot
                     if (i == 0 && j == 0) continue;
-
-                    //ignore diagonals too
                     if (i != 0 && j != 0) continue;
 
-                    int16_t neighbour_x = x+i;
-                    int16_t neighbour_y = y+j;
+                    int16_t neighbour_x = x + i;
+                    int16_t neighbour_y = y + j;
 
-                    //if it is a lower cost, we are on the right path backwards
-                    if(g_cost[neighbour_x][neighbour_y] == g_cost[x][y]-1)
+                    // Explicit bounds check BEFORE any array access
+                    if (neighbour_x < 0 || neighbour_y < 0 ||
+                        neighbour_x >= GRID_ROW_COUNT || neighbour_y >= GRID_COL_COUNT)
+                        continue;
+
+                    if (g_cost[neighbour_x][neighbour_y] == g_cost[x][y] - 1)
                     {
-                        //so the new x and y would be the path of our previous 'neighbour' we came from
-                        x = neighbour_x;
+                        x = neighbour_x;  // safe now, both are int16_t
                         y = neighbour_y;
                         found = true;
-                        break; //go back out to while
+                        break;
                     }
                 }
-                if(!found) break;
+                if (!found) break;
             }
+            Point* start_node = create_point(x, y);  // x,y are now at the start (g_cost == 0)
+            push(start_node, result);
             //because we work backwards, we would need to reverse the list so feed can properly get the path forwards
             free(current_smallest);
-            push(current, result);
             reverse_points(result);
             free_arr(open_points);
             return;
