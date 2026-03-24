@@ -24,8 +24,20 @@ typedef struct Point Point;
 //Function returns null if Point creation fails, otherwise address returned
 Point* create_point(const uint8_t x, const uint8_t y);
 
+//Creates a deep copy of one point and returns the new deep copy
+Point* create_deep_copy(const Point* const struct_point);
+
 //Updates both x and y coordinate for the point
 bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point);
+
+//Deep copys another points values into yours
+bool copy_point_values(Point* const dest_point, const Point* const source_point);
+
+//Deep copys another points x value into yours
+bool copy_point_x(Point* const dest_point, const Point* const source_point);
+
+//Deep copys another points y value into yours
+bool copy_point_y(Point* const dest_point, const Point* const source_point);
 
 //Updates x coordinate for the point
 bool set_x_point_coord(const uint8_t x, Point* const struct_point);

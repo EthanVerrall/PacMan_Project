@@ -5,13 +5,14 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "../include/utils/point.h"
+#include "../include/serial.h"
 
 typedef enum {
-    LEFT,
-    TOP,
-    RIGHT,
-    BOTTOM,
-    NONE
+    PAC_LEFT,
+    PAC_TOP,
+    PAC_RIGHT,
+    PAC_BOTTOM,
+    PAC_NONE
 } PacDirection;
 
 typedef enum{
@@ -34,6 +35,10 @@ void set_pacman_position(const uint8_t x, const uint8_t y);
 PacDirection get_pacman_direction();
 
 void set_pacman_direction(const PacDirection newdirection);
+
+int8_t get_pac_dx();
+
+int8_t get_pac_dy();
 
 
 

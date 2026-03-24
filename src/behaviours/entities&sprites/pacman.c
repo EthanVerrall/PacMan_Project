@@ -3,15 +3,15 @@
 struct Pacman
 {
     //something to do....
-    uint8_t dx; //change in x direction
-    uint8_t dy; //change in y direction
+    int8_t dx; //change in x direction
+    int8_t dy; //change in y direction
     uint8_t lives;
     Point* position;
     PacState state;
 };
 
 Pacman* _pacman(){
-    Pacman* pacman = NULL;
+    static Pacman* pacman = NULL;
 
     if (pacman) return pacman;
 
@@ -19,6 +19,11 @@ Pacman* _pacman(){
 
     pacman->dx = 0;
     pacman->dy = 0;
+
+    pacman->position = create_point(15,7);
+    pacman->state = Mortal;
+    pacman->lives = 4;
+
     
     return pacman;
 }
@@ -40,37 +45,50 @@ Point* get_pacman_position(){
 
 void set_pacman_position(const uint8_t x, const uint8_t y){
     Pacman* pacman = _pacman();
-    set_x_point_coord(x,pacman->position);
-    set_y_point_coord(y,pacman->position);
+    set_point_coord(x, y, pacman->position);
 }
 
 PacDirection get_pacman_direction(){
     Pacman* pacman = _pacman();
-    if (pacman->dx > 0 && pacman->dy == 0) return RIGHT;
-    if (pacman->dx < 0 && pacman->dy == 0) return LEFT;
-    if (pacman->dy < 0 && pacman->dx == 0) return TOP;
-    if (pacman->dy > 0 && pacman->dy == 0) return BOTTOM;
+    if (pacman->dx > 0 && pacman->dy == 0) return PAC_RIGHT;
+    if (pacman->dx < 0 && pacman->dy == 0) return  PAC_LEFT;
+    if (pacman->dy < 0 && pacman->dx == 0) return  PAC_TOP;
+    if (pacman->dy > 0 && pacman->dy == 0) return PAC_BOTTOM;
 
-    return NONE;
+    return  PAC_NONE;
+}
+
+int8_t get_pac_dx(){
+    Pacman* pacman = _pacman();
+    return pacman->dx;
+}
+
+int8_t get_pac_dy(){
+    Pacman* pacman = _pacman();
+    return pacman->dy;
 }
 
 void set_pacman_direction(const PacDirection newdirection){
     Pacman* pacman = _pacman();
-    if (newdirection == LEFT){
-        pacman->dx = -1;
-        pacman->dy = 0;
-    }
-    if (newdirection == BOTTOM){
+    if (newdirection ==  PAC_LEFT){
         pacman->dx = 0;
-        pacman->dy = 1;
+        pacman->dy = -1;
     }
-    if (newdirection == RIGHT){
+    if (newdirection ==  PAC_BOTTOM){
         pacman->dx = 1;
         pacman->dy = 0;
     }
-    if (newdirection == TOP){
+    if (newdirection ==  PAC_RIGHT){
         pacman->dx = 0;
-        pacman->dy = -1;
+        pacman->dy = 1;
+    }
+    if (newdirection ==  PAC_NONE){
+        pacman->dx = 0;
+        pacman->dy = 0;
+    }
+    if (newdirection ==  PAC_TOP){
+        pacman->dx = -1;
+        pacman->dy = 0;
     }
     
 }

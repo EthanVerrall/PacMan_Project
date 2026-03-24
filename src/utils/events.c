@@ -171,6 +171,10 @@ bool is_button_left_pressed() {
 	return false;
 }
 
+uint8_t get_mouse_cursor() {
+
+	
+}
 
 //---------------
 //Pacman Related functions - End
