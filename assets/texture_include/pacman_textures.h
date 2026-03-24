@@ -21,5 +21,5 @@ enum pacman_textures {
 //Forward declaring to save space, in the case this
 //needs to be included in mutiple files
 
-extern const uint16_t pacman_array[8][64];
+extern const uint16_t const pacman_array[8][64];
 #endif //PACMAN_TEXTURES_H

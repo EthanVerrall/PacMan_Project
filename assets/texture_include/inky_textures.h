@@ -16,6 +16,6 @@ enum inky_textures {
 //Forward declaring to save space, in the case this
 //needs to be included in mutiple files
 
-extern const uint16_t inky_array[4][64];
+extern const uint16_t const inky_array[4][64];
 
 #endif //INKY_TEXTURES_H
