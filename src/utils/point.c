@@ -53,7 +53,7 @@ Point* create_deep_copy(const Point* const struct_point) {
 
 bool copy_point_values(Point* const dest_point, const Point* const source_point) {
 
-    if(dest_point && source_point) {
+    if (dest_point && source_point) {
 
         dest_point->x = source_point->x;
         dest_point->y = source_point->y;

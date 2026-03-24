@@ -1,5 +1,6 @@
 #include "../include/grid.h"
 #include "../include/serial.h"
+#include "../include/utils/point.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -232,6 +233,30 @@ void set_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
     }
 }
 
+void set_grid_state_point(const Point* const point, const uint16_t state_bit_mask) { 
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to update grid position, grid does not exist!\r\n");
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
+
+        //Checking if our points our in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            singleton_grid->grid_index[row][col] = state_bit_mask;
+        } 
+        else 
+        {
+            eputs("Out of range for x and y point when accessing the grid, set_grid_state() failed\r\n.");
+        }
+    }
+}
+
 void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
@@ -253,6 +278,30 @@ void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
     }
 }
 
+void add_grid_state_point(const Point* const point, const uint16_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to update grid position, grid does not exist!\r\n");
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
+
+        //Checking if our points our in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            singleton_grid->grid_index[row][col] |= state_bit_mask;
+        } 
+        else 
+        {
+            eputs("Out of range for x and y point when accessing the grid, add_grid_state() failed.\r\n");
+        }   
+    }
+}
+
 void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
@@ -261,6 +310,30 @@ void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t stat
         eputs("Unable to update grid position, grid does not exist!\r\n");
     } 
     else {
+
+        //Checking if our points are in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            singleton_grid->grid_index[row][col] &= ~state_bit_mask;
+        } 
+        else 
+        {
+            eputs("Out of range for x and y point when accessing the grid, remove_grid_state() failed.\r\n");
+        }   
+    }
+}
+
+void remove_grid_state_point(const Point* const point, const uint16_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to update grid position, grid does not exist!\r\n");
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
 
         //Checking if our points are in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -298,6 +371,33 @@ uint16_t get_grid_state(const uint8_t row, const uint8_t col) {
     }
 }
 
+uint16_t get_grid_state_point(const Point* const point) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to retrieve grid positions state, grid does not exist!\r\n");
+        
+        return 0;
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
+
+        //Checking if our points  in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            return singleton_grid->grid_index[row][col];
+        } 
+        else 
+        {
+            eputs("Out of range for x and y point when accessing the grid, get_grid_state() failed\n.Returned value 0.\r\n");
+            return 0;
+        } 
+    }
+}
+
 bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask) {
 
     //Checking if our grid is created
@@ -307,6 +407,36 @@ bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bi
         return false;
     } 
     else {
+
+        //Checking if our points our in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            if (singleton_grid->grid_index[row][col] == state_bit_mask) {
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        } 
+
+        eputs("Out of range for x and y point when accessing the grid, is_grid_state() failed\n.Returned false.\r\n");
+        return false;
+    }
+}
+
+bool is_grid_state_point(const Point* const point, const uint16_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to check grid positions state, grid does not exist!\r\n");
+        return false;
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
 
         //Checking if our points our in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -353,6 +483,37 @@ bool has_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
     }
 }
 
+bool has_grid_state_point(const Point* const point, const uint16_t state_bit_mask) {
+
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to check grid positions state, grid does not exist!\r\n");
+        
+        return false;
+    } 
+    else {
+
+        const uint8_t row = get_x_point_coord(point);
+        const uint8_t col = get_y_point_coord(point);
+
+        //Checking if our points our in valid arrray bounds
+        if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
+        {
+            if (singleton_grid->grid_index[row][col] & state_bit_mask) {
+
+                return true;
+            }
+            else {
+                return false;
+            }
+        } 
+
+        eputs("Out of range for x and y point when accessing the grid, has_grid_state() failed.\r\nReturned false.\r\n");
+        return false;
+    }
+}
+
 bool compare_grid_states(const uint8_t row_1, const uint8_t col_1, 
                          const uint8_t row_2, const uint8_t col_2 ) {
     
@@ -364,6 +525,41 @@ bool compare_grid_states(const uint8_t row_1, const uint8_t col_1,
         return false;
     } 
     else {
+
+        //Checking if our points our in valid arrray bounds
+        if (row_1 < GRID_ROW_COUNT && row_2 < GRID_ROW_COUNT && col_1 < GRID_COL_COUNT && col_2 < GRID_COL_COUNT) {
+
+            if (singleton_grid->grid_index[row_1][col_1] == singleton_grid->grid_index[row_2][col_2]) {
+
+                return true;
+            } 
+            else {
+                return false;
+            }  
+        }
+        
+        eputs("Out of range for x and y point when accessing the grid, compare_grid_states() failed.\r\nReturned false.\r\n");
+        return false;
+    }
+}
+
+bool compare_grid_states_point(const Point* const point_1, 
+                               const Point* const point_2) {
+    
+    //Checking if our grid is created
+    if (!singleton_grid) {
+
+        eputs("Unable to compare both grid position states, grid does not exist!\r\n");
+        
+        return false;
+    } 
+    else {
+
+        const uint8_t row_1 = get_x_point_coord(point_1);
+        const uint8_t col_1 = get_y_point_coord(point_1);
+
+        const uint8_t row_2 = get_x_point_coord(point_2);
+        const uint8_t col_2 = get_y_point_coord(point_2);
 
         //Checking if our points our in valid arrray bounds
         if (row_1 < GRID_ROW_COUNT && row_2 < GRID_ROW_COUNT && col_1 < GRID_COL_COUNT && col_2 < GRID_COL_COUNT) {

@@ -1,5 +1,6 @@
 #ifndef GRID_H
 #define GRID_H
+#include "../include/utils/point.h"
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -76,28 +77,43 @@ bool create_reset_grid();
 //Overwrites the entire bitmask state on the grid at the specified point
 void set_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask);
 
+void set_grid_state_point(const Point* const point, const uint16_t state_bit_mask);
+
 //Appends a bitmask state on the grid at the specified point using (grid[x][y] |= state_bit_mask)
 void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask);
+
+void add_grid_state_point(const Point* const point, const uint16_t state_bit_mask);
 
 //Removes a bitmask state on the grid at the specified point using (grid[x][y] &= ~state_bit_mask)  
 void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask);
 
+void remove_grid_state_point(const Point* const point, const uint16_t state_bit_mask);
+
 //Returns the bitmask state on the grid at the specified point
 uint16_t get_grid_state(const uint8_t row, const uint8_t col);
+
+uint16_t get_grid_state_point(const Point* const point);
 
 //Checks the bitmask state on the grid at the specified point, 
 //Only true if the exact cell state completely matches the bitmask perfectly
 bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask);
+
+bool is_grid_state_point(const Point* const point, const uint16_t state_bit_mask);
 
 //Checks the bitmask state on the grid at the specified point,
 //Returns true if the grid cell contains at least this state, 
 //Function does not care about the other states the cell might contain.
 bool has_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bit_mask);
 
+bool has_grid_state_point(const Point* const point, const uint16_t state_bit_mask);
+
 //Compare two points on the grid by their bitmask states,
 //pass two points, returns true if the masks match each other
 bool compare_grid_states(const uint8_t row_1, const uint8_t col_1, 
                          const uint8_t row_2, const uint8_t col_2);
+
+bool compare_grid_states_point(const Point* const point_1, 
+                               const Point* const point_2);                         
 
 //Returns true if our grid is currently heap allocated on memory 
 bool is_grid_alive();

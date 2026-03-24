@@ -8,33 +8,73 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 #include "../include/behaviours/entities&sprites/inky.h"
 
+//This function should work well 
+void check_if_eat_ghost() {
+
+	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
+	{	
+		set_blinky_mode(chase);
+		set_blinky_position(10,7);
+		eat_ghost(entity_type_blinky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_pinky) && (get_pinky_mode() == fright))
+	{
+		set_pinky_mode(chase);
+		set_pinky_position(10,8);
+		eat_ghost(entity_type_pinky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_inky) && (get_inky_mode() == fright))
+	{
+		set_inky_mode(chase);
+		set_inky_position(10,6);
+		eat_ghost(entity_type_inky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_clyde) && (get_clyde_mode() == fright))
+	{
+		set_clyde_mode(chase);
+		set_clyde_position(10,9);
+		eat_ghost(entity_type_clyde);
+	}
+}
+
+void set_ghosts_mode(GhostMode mode){
+	set_blinky_mode(mode);
+	set_inky_mode(mode);
+	set_pinky_mode(mode);
+	set_clyde_mode(mode);
+}
+
 int main()
 {	
 	//set up grid and IO
 	SET_UP_STM();
   	draw_current_page();
-	turn_on_LEDS();
+	turn_off_LEDS();
 
 	while (get_active_menu_page() == menu_page_home) {
 
 		if (is_button_up_pressed()) {
 			move_cursor(MOVE_CURSOR_UP);
+			delay(25);
 		}
 		if (is_button_right_pressed()) {
 			move_cursor(MOVE_CURSOR_RIGHT);
+			delay(25);
 		}
 		if (is_button_down_pressed()) {
 			move_cursor(MOVE_CURSOR_DOWN);
+			delay(25);
 		}
 		if (is_button_left_pressed()) {
 			move_cursor(MOVE_CURSOR_left);
+			delay(25);
 		}
 		flicker_text();
 	}
 
 	create_reset_grid();
 	draw_current_page();
-	delay(1000);
+	delay(2000);
 
 	//set up ghosts and pacman
 	Pacman* pacman_ref = _pacman();
@@ -77,13 +117,13 @@ int main()
 
 	bool button_pressed = false;
 	uint8_t pellet_count = 111;
-	Point* target_point = NULL;
-	
+	const Point* target_point = NULL;
+	uint8_t god_mode_timer = 0;
 	draw_current_page();
-
+	
 	while (1)
 	{
-	
+		
 		//check for button presses first
 		//for now we would just check directly, but for the case that we would want to save time,
 		//there would be a function that would check a list of numbers representing the button pressed
@@ -110,84 +150,111 @@ int main()
 		if (!has_grid_state(pacman_new_x, pacman_new_y, cell_wall | cell_gate))
 		{
 			set_point_coord(pacman_new_x, pacman_new_y,entity_move_direction_store[1]);
-			remove_grid_state(get_x_point_coord(get_pacman_position()), get_y_point_coord(get_pacman_position()), cell_pacman);
-			if(has_grid_state(pacman_new_x, pacman_new_y,cell_pellet)) {
+			remove_grid_state_point(entity_move_direction_store[0], cell_pacman);
+
+			if(has_grid_state_point(entity_move_direction_store[1],cell_pellet)) {
 				pellet_count--;
 				remove_grid_state(pacman_new_x, pacman_new_y, cell_pellet);
 				add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 			}
+
+			if(has_grid_state_point(entity_move_direction_store[1],cell_cherry)) {
+				remove_grid_state(pacman_new_x, pacman_new_y, cell_cherry);
+				add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
+			}
+
+			if(has_grid_state_point(entity_move_direction_store[1],cell_power_up)) {
+				remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
+				add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
+				
+				god_mode_timer = 12;
+			}
+
 			add_grid_state(pacman_new_x, pacman_new_y, cell_pacman);
 		}
 		else
 		{
-			set_pacman_direction(PAC_NONE);
 			pacman_new_x = get_x_point_coord(get_pacman_position());
 			pacman_new_y = get_y_point_coord(get_pacman_position());
 		}
 	
 
 		//run algo on ghosts based on pacman's current position
-
-		//blinky is in array 2,3
 	
 		//Blinky
 		target_point = _blinky_feed_next(false,false);
 		copy_point_values(entity_move_direction_store[3],target_point);
-		eputs("Blinky target\r\n");
-		printDecimal(get_x_point_coord(entity_move_direction_store[3]));
-		printDecimal(get_y_point_coord(entity_move_direction_store[3]));
-		eputs("\r\n");
-
-		//free(target_point);
+		//eputs("Blinky target\r\n");
+		//printDecimal(get_x_point_coord(entity_move_direction_store[3]));
+		//printDecimal(get_y_point_coord(entity_move_direction_store[3]));
+		//eputs("\r\n");
 		
 		//inky
 		target_point = _inky_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[5],target_point);
-		eputs("Inky target\r\n");
-		printDecimal(get_x_point_coord(entity_move_direction_store[5]));
-		printDecimal(get_y_point_coord(entity_move_direction_store[5]));
-		eputs("\r\n");
-		//free(target_point);
+		//eputs("Inky target\r\n");
+		//printDecimal(get_x_point_coord(entity_move_direction_store[5]));
+		//printDecimal(get_y_point_coord(entity_move_direction_store[5]));
+		//eputs("\r\n");
 
 		//pinky
 		target_point = _pinky_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[7],target_point);
-		eputs("Pinky target\r\n");
-		printDecimal(get_x_point_coord(entity_move_direction_store[7]));
-		printDecimal(get_y_point_coord(entity_move_direction_store[7]));
-		eputs("\r\n");
-		//free(target_point);
+		//eputs("Pinky target\r\n");
+		//printDecimal(get_x_point_coord(entity_move_direction_store[7]));
+		//printDecimal(get_y_point_coord(entity_move_direction_store[7]));
+		//eputs("\r\n");
+
 		//clyde
 		target_point = _clyde_feed_next(false, false);
 		copy_point_values(entity_move_direction_store[9],target_point);
-		eputs("Clyde target\r\n");
-		printDecimal(get_x_point_coord(entity_move_direction_store[9]));
-		printDecimal(get_y_point_coord(entity_move_direction_store[9]));
-		eputs("\r\n");
-		//free(target_point);
+		//eputs("Clyde target\r\n");
+		//printDecimal(get_x_point_coord(entity_move_direction_store[9]));
+		//printDecimal(get_y_point_coord(entity_move_direction_store[9]));
+		//eputs("\r\n");
 
+		remove_grid_state_point(get_blinky_position(), cell_blinky);
+ 		add_grid_state_point(entity_move_direction_store[3], cell_blinky);
 
-		remove_grid_state(get_x_point_coord(get_blinky_position()), get_y_point_coord(get_blinky_position()),cell_blinky);
- 		add_grid_state(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]), cell_blinky);
+		remove_grid_state_point(get_inky_position(), cell_inky);
+ 		add_grid_state_point(entity_move_direction_store[5], cell_inky);
 
-		remove_grid_state(get_x_point_coord(get_inky_position()), get_y_point_coord(get_inky_position()),cell_inky);
- 		add_grid_state(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]), cell_inky);
+		remove_grid_state_point(get_pinky_position(), cell_pinky);
+ 		add_grid_state_point(entity_move_direction_store[7], cell_pinky);
 
-		remove_grid_state(get_x_point_coord(get_pinky_position()), get_y_point_coord(get_pinky_position()),cell_pinky);
- 		add_grid_state(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]), cell_pinky);
-
-		remove_grid_state(get_x_point_coord(get_clyde_position()), get_y_point_coord(get_clyde_position()),cell_clyde);
-		add_grid_state(get_x_point_coord(entity_move_direction_store[9]), get_y_point_coord(entity_move_direction_store[9]), cell_clyde);
+		remove_grid_state_point(get_clyde_position() ,cell_clyde);
+		add_grid_state_point(entity_move_direction_store[9], cell_clyde);
 
 		move_entities(entity_move_direction_store,entity_move_order,5);
 
 		//set the internal positions of each entity to their new positions
 		set_pacman_position(pacman_new_x, pacman_new_y);
-		set_blinky_position(get_x_point_coord(entity_move_direction_store[3]), get_y_point_coord(entity_move_direction_store[3]));
-		set_inky_position(get_x_point_coord(entity_move_direction_store[5]), get_y_point_coord(entity_move_direction_store[5]));
-		set_pinky_position(get_x_point_coord(entity_move_direction_store[7]), get_y_point_coord(entity_move_direction_store[7]));
-		set_clyde_position(get_x_point_coord(entity_move_direction_store[9]), get_y_point_coord(entity_move_direction_store[9]));
+		copy_point_values(get_blinky_position(), entity_move_direction_store[3]);
+		copy_point_values(get_inky_position(), entity_move_direction_store[5]);
+		copy_point_values(get_pinky_position(), entity_move_direction_store[7]);
+		copy_point_values(get_clyde_position(), entity_move_direction_store[9]);
+	
+		if (god_mode_timer == 12)
+		{
+			set_ghosts_mode(fright);
+		}
+			
+		//--------------------------------------------------------------------------------------------
+		//I added an eat check function in this file -- look at the bottom
+		//--------------------------------------------------------------------------------------------
+		//Eat check must go here -- I can explain tomorrow -- this should work, if not just comment it out
+		if (god_mode_timer != 0) check_if_eat_ghost();
 
+		if (god_mode_timer > 0)
+		{
+			god_mode_timer--;
+		}
+		else
+		{
+			set_ghosts_mode(chase);
+		}
+		
+		
 		if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
 		{	
 			set_blinky_mode(chase);
@@ -205,17 +272,14 @@ int main()
 		{	
 			set_clyde_mode(chase);
 		}
-		
 
 		if(pellet_count == 0) {
 			//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
 			eputs("game completed");
 			break;
 		}
-
-	}
-
+	}	
+	
 	destroy_grid();
-
 	return 0;
 }

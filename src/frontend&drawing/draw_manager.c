@@ -647,6 +647,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
                     break;
 
+                    case PAC_NONE:
+                    entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
+                    break;
+
                     default:
                     eputs("Texture could not be found for entity that is standing still\r\n."
                             "Function move entites aborted.\r\n");
@@ -808,7 +812,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
     }
 }
 
-void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts) {
+void eat_ghost(const enum entity_type ghost) {
 
     const uint16_t* enitity_texture = NULL;
     const PacDirection pac_direction = get_pacman_direction();
@@ -834,6 +838,10 @@ void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_g
             if(!is_mouth_open) enitity_texture = pacman_array[pacman_right_closed];
         break;
 
+        case PAC_NONE:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_right_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_right_closed];
+
         default:
         eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
         return;
@@ -843,34 +851,31 @@ void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_g
     const uint8_t pac_y_pixel = get_x_point_coord(get_pacman_position()) * 8;
     putImage(pac_x_pixel, pac_y_pixel, 8,8, enitity_texture, 0,0);
 
-    for (uint8_t i = 0; i < number_of_eaten_ghosts; ++i) {
+    switch (ghost) {
+        case entity_type_inky:  
+            enitity_texture = inky_array[inky_right_eye];
+            putImage(10,6, 8,8 ,enitity_texture, 0,0);
+            break;
 
-        switch (ghosts[i]) {
+        case entity_type_blinky: 
+            enitity_texture = blinky_array[blinky_right_eye];
+            putImage(10,7, 8,8 ,enitity_texture, 0,0);
+            break;
 
-            case entity_type_inky:  
-                enitity_texture = inky_array[inky_right_eye];
-                putImage(10,6, 8,8 ,enitity_texture, 0,0);
-                break;
+        case entity_type_pinky: 
+            enitity_texture = pinky_array[pinky_right_eye];
+            putImage(10,8, 8,8 ,enitity_texture, 0,0);
+            break;
 
-            case entity_type_blinky: 
-                enitity_texture = blinky_array[blinky_right_eye];
-                putImage(10,7, 8,8 ,enitity_texture, 0,0);
-                break;
+        case entity_type_clyde: 
+            enitity_texture = clyde_array[clyde_right_eye];
+            putImage(10,9, 8,8 ,enitity_texture, 0,0);
+            break;
 
-            case entity_type_pinky: 
-                enitity_texture = pinky_array[pinky_right_eye];
-                putImage(10,8, 8,8 ,enitity_texture, 0,0);
-                break;
-
-            case entity_type_clyde: 
-                enitity_texture = clyde_array[clyde_right_eye];
-                putImage(10,9, 8,8 ,enitity_texture, 0,0);
-                break;
-
-            default:
-                eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
-                return;
-        }
+        default:
+            eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
+            return;
+        
     }
 }
 

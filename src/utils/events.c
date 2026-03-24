@@ -16,7 +16,7 @@ void SET_UP_STM() {
 
     //Peripherals startup
     setupIO();
-	turn_off_LEDS();
+	//turn_off_LEDS();
 }
 
 //---------------
@@ -135,9 +135,11 @@ void setupIO()
 	enablePullUp(GPIOA,11); // Left
 	enablePullUp(GPIOA,1); //Pause button
 
+	//note g
+
 	//Turning on LEDS;
-	pinMode(GPIOB,6,1); //HIGH GREEN LED
-	pinMode(GPIOB,7,1); //LOW GREEN LED
+	pinMode(GPIOA,9,1); //HIGH GREEN LED
+	pinMode(GPIOA,10,1); //LOW GREEN LED
 	pinMode(GPIOB,0,1); //YELLOW LED
 	pinMode(GPIOA,12,1); //RED LED
 }
@@ -230,28 +232,28 @@ void display_life_LED(const uint8_t pacman_lives) {
 
 void turn_off_LEDS() {
 
-	GPIOB->ODR &= ~(1<<6);
-	GPIOB->ODR &= ~(1<<7);
+	GPIOA->ODR &= ~(1<<9);
+	GPIOA->ODR &= ~(1<<10);
 	GPIOB->ODR &= ~(1<<0); 
 	GPIOA->ODR &= ~(1<<12);  
 }
 
 void turn_on_LEDS() {
 
-	GPIOB->ODR |= (1<<6);
-	GPIOB->ODR |= (1<<7);
+	GPIOA->ODR |= (1<<9);
+	GPIOA->ODR |= (1<<10);
 	GPIOB->ODR |= (1<<0); 
 	GPIOA->ODR |= (1<<12);  
 }
 
 void toggle_high_green_LED() {
 
-	GPIOB->ODR ^= (1<<6); 
+	GPIOA->ODR ^= (1<<9); 
 }
 
 void toggle_low_green_LED() {
 
-	GPIOB->ODR ^= (1<<7); 
+	GPIOA->ODR ^= (1<<10); 
 }
 
 void toggle_yellow_LED() {
@@ -266,12 +268,12 @@ void toggle_red_LED() {
 
 void turn_on_high_green_LED() {
 
-	GPIOB->ODR |= (1<<6); 
+	GPIOA->ODR |= (1<<9); 
 }
 
 void turn_on_low_green_LED() {
 
-	GPIOB->ODR |= (1<<7); 
+	GPIOA->ODR |= (1<<10); 
 }
 
 void turn_on_yellow_LED() {
@@ -286,12 +288,12 @@ void turn_on_red_LED() {
 
 void turn_off_high_green_LED() {
 
-	GPIOB->ODR &= ~(1<<6); 
+	GPIOA->ODR &= ~(1<<9); 
 }
 
 void turn_off_low_green_LED() {
 
-	GPIOB->ODR &= ~(1<<7); 
+	GPIOA->ODR &= ~(1<<10); 
 }
 
 void turn_off_yellow_LED() {
