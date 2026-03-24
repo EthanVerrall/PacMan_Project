@@ -1,57 +1,72 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 
-const Point* get_pinky_target_position(){
-
-    if (get_pinky_mode() == scatter) return get_pinky_scatter_position();
-    
-    if (get_pinky_mode() == fright) return get_random_position();
-    //get pacman direction
-    uint8_t pacman_direction = get_pacman_direction();
-    Point* pacman_position = get_pacman_position();
-    uint8_t pacman_x_pos = get_x_point_coord(pacman_position);
-    uint8_t pacman_y_pos = get_y_point_coord(pacman_position);
-
-    uint8_t pinky_x_pos = pacman_x_pos;
-    uint8_t pinky_y_pos = pacman_y_pos;
-    if (pacman_direction == 1) //left
+const Point* get_pinky_target_position()
+{
+    if (get_pinky_mode() == scatter)
     {
-        //check that the position left is not outside the board
-        #ifdef GRID_ROW_COUNT
-            if (pacman_x_pos + 4 > GRID_ROW_COUNT)
-        #else
-            if (pacman_x_pos + 4 > 38)
-        #endif
-            {pinky_x_pos += 4;}        
+        return create_point(get_x_point_coord(get_pinky_scatter_position()),
+                            get_y_point_coord(get_pinky_scatter_position()));
     }
-    if (pacman_direction == 0) //right
+
+    PacDirection pacman_direction = get_pacman_direction();
+    const Point* pacman_position = get_pacman_position();
+
+    int16_t pacman_x_pos = get_x_point_coord(pacman_position);
+    int16_t pacman_y_pos = get_y_point_coord(pacman_position);
+
+    int16_t target_x = pacman_x_pos;
+    int16_t target_y = pacman_y_pos;
+
+    int16_t dx = 0;
+    int16_t dy = 0;
+
+    if (pacman_direction == PAC_RIGHT)
     {
-        //check that the position right is not outside the board
-        #ifdef MIN_BOARD_X_SIZE
-            if (pacman_x_pos - 4 < 0)
-        #else
-            if (pacman_x_pos - 4 < 0)
-        #endif
-            {pinky_x_pos -= 4;}    
+        dx = 1;
     }
-    if (pacman_direction == 2){
+    else if (pacman_direction == PAC_LEFT)
+    {
+        dx = -1;
+    }
+    else if (pacman_direction == PAC_BOTTOM)
+    {
+        dy = 1;
+    }
+    else if (pacman_direction == PAC_TOP)
+    {
+        dy = -1;
+    }
+
+    for (int i = 1; i <= 4; i++)
+    {
+        int16_t next_x = pacman_x_pos + (dx * i);
+        int16_t next_y = pacman_y_pos + (dy * i);
+
+        // Bounds check
         #ifdef GRID_COL_COUNT
-            if (pacman_y_pos + 4 > GRID_COL_COUNT)
+            if (next_x < 0 || next_x >= GRID_COL_COUNT) break;
         #else
-            if (pacman_x_pos + 4 > 28) //????? is this actually 28.... I will just take it as is... 
-            // define changes this afterwards
+            if (next_x < 0 || next_x >= 38) break;
         #endif
-            {pinky_y_pos += 4;}    
-    }
-    if (pacman_direction == 3){
-        #ifdef MIN_BOARD_Y_SIZE
-            if (pacman_y_pos + 4 < MIN_BOARD_Y_SIZE)
+
+        #ifdef GRID_ROW_COUNT
+            if (next_y < 0 || next_y >= GRID_ROW_COUNT) break;
         #else
-            if (pacman_y_pos + 4 < 0)
+            if (next_y < 0 || next_y >= 28) break;
         #endif
-            {pinky_y_pos -= 4;}    
+
+        // Stop if blocked
+        if (has_grid_state(next_x, next_y, cell_wall))
+        {
+            break;
+        }
+
+        // Furthest valid tile so far
+        target_x = next_x;
+        target_y = next_y;
     }
-    
-    return create_point(pinky_x_pos, pinky_y_pos);
+
+    return create_point(target_x, target_y);
 }
 
 /** 
@@ -63,7 +78,7 @@ const Point* get_pinky_target_position(){
 */
 const Point* _pinky_feed_next(const bool reset, const bool end){
     static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
-    static uint8_t feed_pointer = 0;
+    static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
@@ -78,13 +93,15 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
         //run a for loop for a deep copy
+        Point* temp_point = create_point(get_x_point_coord(get_pinky_position()),
+                                         get_y_point_coord(get_pinky_position()));
         trace_path_a_star(
-            get_pinky_position(),
+            temp_point,
             get_pinky_target_position(),
             feed_cache
         );
-        
-        feed_pointer = 0; //set back to zero to restart
+        free(temp_point);
+        feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     feed_pointer++;
@@ -119,9 +136,9 @@ Pinky* _pinky(){
         //create pinky
         current_pinky = create_ghost(
             'P',
-            create_point(0,0),//need to get pinky starting position
-            chase, //start in chase mode?
-            create_point(0,0)
+            create_point(10,8),//need to get pinky starting position
+            scatter, //start in chase mode?
+            create_point(2,1)
         );
 
         return current_pinky;

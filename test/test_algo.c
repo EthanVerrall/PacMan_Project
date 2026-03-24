@@ -9,23 +9,6 @@
 #include "../include/utils/point.h"
 #include "../include/utils/arr.h"       
 
-/*
-    ===========================
-    ASSUMPTIONS ABOUT THE API
-    ===========================
-
-    This test assumes you have:
-
-    - Point* create_point(uint8_t x, uint8_t y);
-    - uint8_t get_x_point_coord(const Point* p);
-    - uint8_t get_y_point_coord(const Point* p);
-    - bool compare_points(const Point* a, const Point* b);
-
-    - void trace_path_a_star(const Point* current, const Point* target, Point* result[]);
-    - bool search_item(const Point* item, Point* list[]);
-    - size_t get_list_size(Point* list[]);   // optional for path printing
-    - void free_arr(Point* list[]);          // frees all Point* inside a NULL-terminated list/array
-*/
 #ifdef MAX_PATH_STORE
     #define TEST_PATH_CAPACITY MAX_PATH_STORE
 #else
@@ -46,7 +29,7 @@
 /* 
     Decide whether a cell is traversable for pathfinding.
     IMPORTANT:
-    Your algo currently skips only walls explicitly.
+    The algo currently skips only walls explicitly.
     It also uses get_grid_state(...) == 0 as "invalid/out of bounds",
     which is slightly dangerous because cell_blank might be 0 in some designs.
     
@@ -58,7 +41,6 @@ static bool is_walkable_cell(uint8_t row, uint8_t col)
 {
     if (row >= GRID_ROW_COUNT || col >= GRID_COL_COUNT) return false;
 
-    /* If your blank cell is literally 0, this still works because we do not reject 0 here. */
     if (is_grid_state(row, col, cell_wall)) return false;
 
     return true;
@@ -85,10 +67,8 @@ static char cell_to_char(uint8_t row, uint8_t col)
     uint8_t state = get_grid_state(row, col);
 
     /*
-        IMPORTANT:
-        If your grid uses bitmasks for actors layered on top of base tiles,
+        If the grid uses bitmasks for actors layered on top of base tiles,
         has_grid_state(...) is safer than is_grid_state(...) for those.
-        But for static base tiles, your grid pattern seems to store direct values.
     */
 
     if (is_grid_state(row, col, cell_wall))      return SYMBOL_WALL;
@@ -161,7 +141,6 @@ int main(void)
     Point* start = get_random_walkable_point();
     Point* target = NULL;
 
-    /* Ensure target != start */
     do
     {
         if (target) free(target);
@@ -191,8 +170,7 @@ int main(void)
     free(target);
 
     /*
-        If free_arr(path) frees all Point* entries inside the array,
-        use it. If not, manually free.
+        We could use free_arr here, but might just be a bit safer
     */
     for (size_t i = 0; i < TEST_PATH_CAPACITY; ++i)
     {

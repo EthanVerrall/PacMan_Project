@@ -12,7 +12,7 @@
    typedef Pacman Pacman;
 #endif
 
-#define MAX_FEED_CAPACITY 30
+#define MAX_FEED_CAPACITY 50
 
 #include "../include/utils/point.h"
 #include "../include/utils/arr.h"

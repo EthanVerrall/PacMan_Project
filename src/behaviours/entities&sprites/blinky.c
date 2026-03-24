@@ -1,10 +1,10 @@
 #include "../include/behaviours/entities&sprites/blinky.h"
 
 const Point* get_blinky_target_position(){
-    if (get_blinky_mode() == scatter) return get_blinky_scatter_position();
-    if (get_blinky_mode() == fright)
-        return get_random_position(); //we need to implement this function to return a random position on the grid that is not a wall
-    return get_pacman_position(); //chases pacman directly
+    if (get_blinky_mode() == scatter) return create_point(get_x_point_coord(get_blinky_scatter_position()),
+                            get_y_point_coord(get_blinky_scatter_position()));
+    return create_point(get_x_point_coord(get_pacman_position()),
+                        get_y_point_coord(get_pacman_position())); //chases pacman directly
 }
 
 /** 
@@ -16,7 +16,7 @@ const Point* get_blinky_target_position(){
 */
 const Point* _blinky_feed_next(const bool reset, const bool end){
     static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
-    static uint8_t feed_pointer = 0;
+    static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
@@ -25,20 +25,24 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         return NULL;
     }
 
-    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty or reset is passed
+    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty 
+                                                                                 //or reset is passed
     {
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
+        Point* temp_point = create_point(get_x_point_coord(get_blinky_position()),
+                                         get_y_point_coord(get_blinky_position()));
         trace_path_a_star(
-            get_blinky_position(),
+            temp_point,
             get_blinky_target_position(),
             feed_cache
         );
-    
-        feed_pointer = 0; //set back to zero to restart
+        free(temp_point);
+        feed_pointer = 1; //set back to one to restart
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
+    
     feed_pointer++;
     return curr_point_to_return;
 }
@@ -71,9 +75,9 @@ Blinky* _blinky(){
         //create inky
         current_blinky = create_ghost(
             'B',
-            create_point(0,0),//need to get blinky starting position
-            chase, //start in chase mode?
-            create_point(31,0)
+            create_point(10,7),//need to get blinky starting position
+            scatter, //start in chase mode?
+            create_point(2,14)
         );
 
         return current_blinky;

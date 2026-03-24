@@ -655,6 +655,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             }
 
         }
+        else if (dx[i] == 0 && dy[i] == 0)
+        {
+            //do nothing
+        }
         else 
         {
             eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
@@ -662,7 +666,6 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         }
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
     }
-
 
     for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
          current_frame <= 8; 
@@ -724,7 +727,8 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
 
-            //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
+
+          //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
             else if (dx[i] == 0 && dy[i] == 0) {   
                 //do nothing
             }

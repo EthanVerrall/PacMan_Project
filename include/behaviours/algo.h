@@ -1,7 +1,7 @@
 #ifndef ALGO_H
 #define ALGO_H
 
-#define MAX_PATH_STORE 30
+#define MAX_PATH_STORE 50
 
 #include "../include/utils/point.h"
 #include "../include/grid.h"
