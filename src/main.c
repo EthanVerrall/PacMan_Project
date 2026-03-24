@@ -37,6 +37,27 @@ void check_if_eat_ghost() {
 	}
 }
 
+void set_scatter_mode_to_chase_mode() {
+
+	if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
+	{	
+		set_blinky_mode(chase);
+	}
+	if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
+	{	
+		set_inky_mode(chase);
+	}
+	if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
+	{	
+		set_pinky_mode(chase);
+	}
+
+	if (get_clyde_mode() == scatter && compare_points(get_clyde_position(),get_clyde_scatter_position()))
+	{	
+		set_clyde_mode(chase);
+	}
+}
+
 void set_ghosts_mode(GhostMode mode){
 	set_blinky_mode(mode);
 	set_inky_mode(mode);
@@ -168,6 +189,7 @@ int main()
 				add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 				
 				god_mode_timer = 12;
+				set_pacman_state(God);
 			}
 
 			add_grid_state(pacman_new_x, pacman_new_y, cell_pacman);
@@ -243,7 +265,7 @@ int main()
 		//I added an eat check function in this file -- look at the bottom
 		//--------------------------------------------------------------------------------------------
 		//Eat check must go here -- I can explain tomorrow -- this should work, if not just comment it out
-		if (god_mode_timer != 0) check_if_eat_ghost();
+		if (get_pacman_state() == God) {check_if_eat_ghost();}
 
 		if (god_mode_timer > 0)
 		{
@@ -252,26 +274,12 @@ int main()
 		else
 		{
 			set_ghosts_mode(chase);
+			set_pacman_state(Mortal);
 		}
 		
+		//This function should only really run once
+		set_scatter_mode_to_chase_mode();
 		
-		if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
-		{	
-			set_blinky_mode(chase);
-		}
-		if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
-		{	
-			set_inky_mode(chase);
-		}
-		if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
-		{	
-			set_pinky_mode(chase);
-		}
-
-		if (get_clyde_mode() == scatter && compare_points(get_clyde_position(),get_clyde_scatter_position()))
-		{	
-			set_clyde_mode(chase);
-		}
 
 		if(pellet_count == 0) {
 			//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
