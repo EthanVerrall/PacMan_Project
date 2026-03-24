@@ -1,25 +1,13 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "../include/frontend&drawing/draw_manager.h"
 #include <stdint.h>
 
 #define MOVE_CURSOR_RIGHT 0
 #define MOVE_CURSOR_DOWN 1
 #define MOVE_CURSOR_left 2
 #define MOVE_CURSOR_UP 3
-
-/*
-    Workflow order for Friday:
-
-    idea, a static variable locked behind menu.c only must use functions to edit it
-
-    Adjust redraw_entire_grid function()
-    Wrap it and encapsulate behind draw_current_page in draw_manager.h/c
-    Get a bitmap for a nice pacman logo
-    Make the main menu
-    draw the main menu
-    then draw the grid afterwards
-*/
 
 enum menu_page {
 
@@ -31,8 +19,10 @@ enum menu_page {
 
 void set_menu_page(const enum menu_page new_menu);
 
-void move_menu_cursor(const int8_t cursor_direction); //This will come later
+void move_cursor(const int8_t cursor_direction);
 
 enum menu_page get_active_menu_page();
+
+int8_t get_cursor_position();
 
 #endif //MENU_H

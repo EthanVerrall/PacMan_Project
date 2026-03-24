@@ -16,7 +16,7 @@ static bool is_mouth_open = false;
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
 
-const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
+const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity, bool is_scatter_mode) {
 
     //direction just defines which way we are moving
     //a simple arbitrary value should be fine for this
@@ -25,6 +25,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
     switch (entity) {
 
         case entity_type_blinky: 
+            if (is_scatter_mode) return scatter_ghost_array;
             if (direction == RIGHT) return blinky_array[blinky_right_eye];
             if (direction == DOWN) return blinky_array[blinky_bottom_eye];
             if (direction == LEFT) return blinky_array[blinky_left_eye];
@@ -34,6 +35,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_clyde: 
+            if (is_scatter_mode) return scatter_ghost_array;
             if (direction == RIGHT) return clyde_array[clyde_right_eye];
             if (direction == DOWN) return clyde_array[clyde_bottom_eye];
             if (direction == LEFT) return clyde_array[clyde_left_eye];
@@ -43,6 +45,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_inky:
+            if (is_scatter_mode) return scatter_ghost_array;
             if (direction == RIGHT) return inky_array[inky_right_eye];
             if (direction == DOWN) return inky_array[inky_bottom_eye];
             if (direction == LEFT) return inky_array[inky_left_eye];
@@ -52,6 +55,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             return NULL;
 
         case entity_type_pinky:
+            if (is_scatter_mode) return scatter_ghost_array;
             if (direction == RIGHT) return pinky_array[pinky_right_eye];
             if (direction == DOWN) return pinky_array[pinky_bottom_eye];
             if (direction == LEFT) return pinky_array[pinky_left_eye];
@@ -301,9 +305,18 @@ void redraw_entire_grid () {
     uint8_t current_wall_pair = 0;
     uint8_t walls_left_to_print = wall_count_pair[current_wall_pair];
 
+    //Clearing the first row of 8 pixels heigh, needs to be redrawn as black to clear the pacman logo after image
+    //from the home page
+    for (uint8_t y_pixel = 0; y_pixel < 8; ++y_pixel) {
+
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+            putPixel(x_pixel,y_pixel,0);
+        }
+
+    }
+
     //Loops through the entire grid and prints all tiles and upscaled 8*8 pixels across the screen
     //accounting for the intial offset in height from pixel 0,0
-
     for (uint8_t y_pixel = 0 + HEIGHT_OFFSET; y_pixel < SCREEN_HEIGHT; y_pixel += 8) {
 
         for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; x_pixel += 8) {
@@ -392,7 +405,108 @@ void redraw_entire_grid () {
     //Grid drawn properly
 }
 
+void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu) {
 
+    if (active_menu == menu_page_home) {
+
+        switch (cursor_position) {
+
+            case 0:
+            printTextX2("Play Game",6,70,0xFFFF,0);
+            break;
+
+            case 1:
+            printTextX2("Scoreboard",6,100,0xFFFF,0);
+            break;
+
+            case 2:
+            printTextX2("Options",6,130,0xFFFF,0);
+            break;
+        }
+    }
+}
+
+void draw_home_page() {
+
+    putImage(7,5,114,32,main_menu_array,0,0);
+
+    printTextX2("Play Game",6,70,0xFFFF,0);
+
+    printTextX2("Scoreboard",6,100,0xFFFF,0);
+
+    printTextX2("Options",6,130,0xFFFF,0);
+}
+
+void flicker_text() {
+
+    const uint16_t YELLOW = 57095 ;
+	const uint16_t BLUE = 35315;
+
+    static uint8_t flicker_switch = 0;
+
+    if (get_active_menu_page() == menu_page_home) {
+
+        switch (get_cursor_position()) {
+        
+        case 0:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Play Game",6,70,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Play Game",6,70,BLUE,0);
+            }
+        break;
+        
+        case 1:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Scoreboard",6,100,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Scoreboard",6,100,BLUE,0);
+            }
+        break;
+
+        case 2:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Options",6,130,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printTextX2("Options",6,130,BLUE,0);
+            }
+        break;
+        
+        default:
+            eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
+            printDecimal(get_cursor_position());
+            eputs("\r\n");
+            break;
+        }  
+    }
+    else  {  
+
+        eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
+        return;
+    }
+    delay(100);
+} 
 
 //---------------------------------MENUS------------------------------------------
 
@@ -400,7 +514,8 @@ void redraw_entire_grid () {
 //Helper functions -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[], const uint8_t num_entites_to_animate) {
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+     const uint8_t num_entites_to_animate, const bool is_scatter_mode) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
@@ -445,10 +560,10 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
     uint8_t y_new_pixel_array[num_entites_to_animate];
 
     //Textures for our entities that we are moving
-    uint16_t* entity_textures_array[num_entites_to_animate];
+    const uint16_t* entity_textures_array[num_entites_to_animate];
 
     //Textures for our static tiles we will restore
-    uint16_t* static_tiles_array[num_entites_to_animate];
+    const uint16_t* static_tiles_array[num_entites_to_animate];
 
     //Velocity for x_pixels
     int8_t dx[num_entites_to_animate];
@@ -474,32 +589,71 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         //Moves RIGHT
         if (dx[i] == 8 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
         }
         //Moves DOWN
         else if (dx[i] == 0 && dy[i] == 8) {
 
-            entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i], is_scatter_mode);
         }
         //Moves LEFT
         else if (dx[i] == -8 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
         }
         //Moves UP
         else if (dx[i] == 0 && dy[i] == -8) {
 
-            entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i], is_scatter_mode);
         }
         //Wrapping from left to right side of the screen
         else if (dx[i] == 120 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
         }
         //Wrapping from right to left side of the screen    
         else if (dx[i] == -120 && dy[i] == 0) {
 
-            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i]);
+            entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+        }
+
+        //Not moving, need to redraw ourselves in the same spot, in the case that something moves away next turn but
+        //we are still standing still
+        else if (dx[i] == 0 && dy[i] == 0) {
+
+            if (entity_array[i] != entity_type_pacman) {
+
+                entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+            }
+            else {
+
+                const PacDirection pac_direction = get_pacman_direction();
+
+                switch (pac_direction) {
+
+                    case PAC_BOTTOM:
+                    entity_textures_array[i] = point_at_entity_texture(DOWN, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_TOP:
+                    entity_textures_array[i] = point_at_entity_texture(UP, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_LEFT:
+                    entity_textures_array[i] = point_at_entity_texture(LEFT, entity_array[i], is_scatter_mode);
+                    break;
+
+                    case PAC_RIGHT:
+                    entity_textures_array[i] = point_at_entity_texture(RIGHT, entity_array[i], is_scatter_mode);
+                    break;
+
+                    default:
+                    eputs("Texture could not be found for entity that is standing still\r\n."
+                            "Function move entites aborted.\r\n");
+                    return;
+                }
+            }
+
         }
         else if (dx[i] == 0 && dy[i] == 0)
         {
@@ -573,11 +727,12 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
             }
 
-            else if (dx[i] == 0 && dy[i] == 0)
-            {   
 
+          //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
+            else if (dx[i] == 0 && dy[i] == 0) {   
                 //do nothing
             }
+
             //Error case
             else {
                 eputs("Error with movement, function move_entity() did not work.\r\n");
@@ -636,9 +791,11 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 }
             }
 
+            //We did not move, this is for the case that something moves over us next turn and we still haven't moved
+            //So we redraw ourselves so it doesn't look like we disappeared
             else if (dx[i] == 0 && dy[i] == 0)
-            {
-                //do nothing
+            {   
+                putImage(x_old_pixel_array[i], y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
             }
 
             //Error case
@@ -651,6 +808,73 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
     }
 }
 
+
+void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts) {
+
+    const uint16_t* enitity_texture = NULL;
+    const PacDirection pac_direction = get_pacman_direction();
+
+    switch (pac_direction) {
+        case PAC_BOTTOM:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_bottom_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_bottom_closed];
+        break;
+
+        case PAC_TOP:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_top_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_top_closed];
+        break;
+
+        case PAC_LEFT:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_left_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_left_closed];
+        break;
+
+        case PAC_RIGHT:
+            if(is_mouth_open) enitity_texture = pacman_array[pacman_right_open];
+            if(!is_mouth_open) enitity_texture = pacman_array[pacman_right_closed];
+        break;
+
+        default:
+        eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
+        return;
+    }
+
+    const uint8_t pac_x_pixel = get_y_point_coord(get_pacman_position()) * 8;
+    const uint8_t pac_y_pixel = get_x_point_coord(get_pacman_position()) * 8;
+    putImage(pac_x_pixel, pac_y_pixel, 8,8, enitity_texture, 0,0);
+
+    for (uint8_t i = 0; i < number_of_eaten_ghosts; ++i) {
+
+        switch (ghosts[i]) {
+
+            case entity_type_inky:  
+                enitity_texture = inky_array[inky_right_eye];
+                putImage(10,6, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_blinky: 
+                enitity_texture = blinky_array[blinky_right_eye];
+                putImage(10,7, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_pinky: 
+                enitity_texture = pinky_array[pinky_right_eye];
+                putImage(10,8, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            case entity_type_clyde: 
+                enitity_texture = clyde_array[clyde_right_eye];
+                putImage(10,9, 8,8 ,enitity_texture, 0,0);
+                break;
+
+            default:
+                eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
+                return;
+        }
+    }
+}
+
 void draw_current_page() {
 
     const enum menu_page menu_to_draw = get_active_menu_page();
@@ -658,7 +882,7 @@ void draw_current_page() {
     switch (menu_to_draw) {
 
         case menu_page_home:
-        //Implementing next
+        draw_home_page();
         break;
 
         case menu_page_game:

@@ -12,8 +12,28 @@ int main()
 {	
 	//set up grid and IO
 	SET_UP_STM();
+  draw_current_page();
+
+	while (get_active_menu_page() == menu_page_home) {
+
+		if (is_button_up_pressed()) {
+			move_cursor(MOVE_CURSOR_UP);
+		}
+		if (is_button_right_pressed()) {
+			move_cursor(MOVE_CURSOR_RIGHT);
+		}
+		if (is_button_down_pressed()) {
+			move_cursor(MOVE_CURSOR_DOWN);
+		}
+		if (is_button_left_pressed()) {
+			move_cursor(MOVE_CURSOR_left);
+		}
+		flicker_text();
+	}
+
 	create_reset_grid();
-	set_menu_page(menu_page_game);
+	draw_current_page();
+	delay(1000);
 
 	//set up ghosts and pacman
 	Pacman* pacman_ref = _pacman();
@@ -193,8 +213,8 @@ int main()
 		}
 
 	}
-	
 
 	destroy_grid();
+
 	return 0;
 }
