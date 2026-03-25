@@ -50,11 +50,11 @@ void set_pacman_position(const uint8_t x, const uint8_t y){
 
 PacDirection get_pacman_direction(){
     Pacman* pacman = _pacman();
-    if (pacman->dx > 0 && pacman->dy == 0) return PAC_RIGHT;
-    if (pacman->dx < 0 && pacman->dy == 0) return  PAC_LEFT;
-    if (pacman->dy < 0 && pacman->dx == 0) return  PAC_TOP;
-    if (pacman->dy > 0 && pacman->dy == 0) return PAC_BOTTOM;
-
+    if (pacman->dx ==  0 && pacman->dy ==  1) return PAC_RIGHT;
+    if (pacman->dx ==  0 && pacman->dy == -1) return  PAC_LEFT;
+    if (pacman->dx == -1 && pacman->dy ==  0) return  PAC_TOP;
+    if (pacman->dx ==  1 && pacman->dy ==  0) return PAC_BOTTOM;
+ 
     return  PAC_NONE;
 }
 

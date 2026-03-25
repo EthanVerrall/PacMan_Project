@@ -36,5 +36,9 @@ const GhostMode get_inky_mode();
 
 const void set_inky_mode(GhostMode mode);
 
+const bool get_inky_behaviour_change();
+
+void set_inky_behaviour_change(const bool change);
+
 
 #endif

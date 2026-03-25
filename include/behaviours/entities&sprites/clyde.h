@@ -39,5 +39,9 @@ const GhostMode get_clyde_mode();
 
 const void set_clyde_mode(GhostMode mode);
 
+const bool get_clyde_behaviour_change();
+
+void set_clyde_behaviour_change(const bool change);
+
 
 #endif

@@ -38,4 +38,8 @@ const GhostMode get_blinky_mode();
 
 const void set_blinky_mode(GhostMode mode);
 
+const bool get_blinky_behaviour_change();
+
+void set_blinky_behaviour_change(const bool change);
+
 #endif

@@ -41,6 +41,8 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         );
         free(temp_point);
         free(target);
+        //reset the behaviour change incase a behaviour change cause the reset
+        set_blinky_behaviour_change(false);
         feed_pointer = 1; //set back to one to restart
         //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
         //or in a case where the algorithm was not able to properly get the ghost path, return the current position of the ghost
@@ -77,6 +79,16 @@ const void set_blinky_mode(GhostMode mode){
     return set_ghost_mode(_blinky(), mode);
 }
 
+const bool get_blinky_behaviour_change(){
+    return get_ghost_behaviour_change(_blinky());
+}
+
+void set_blinky_behaviour_change(const bool change){
+    return set_ghost_behaviour(_blinky(), change);
+}
+
+
+
 Blinky* _blinky(){
     static Blinky* current_blinky = NULL;
     
@@ -87,7 +99,8 @@ Blinky* _blinky(){
             'B',
             create_point(10,7),//need to get blinky starting position
             scatter, //start in chase mode?
-            create_point(2,14)
+            create_point(2,14),
+            false
         );
 
         return current_blinky;

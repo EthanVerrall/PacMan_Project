@@ -34,7 +34,8 @@ Ghosts* create_ghost(
     char ghost_type,
     Point* current_position,
     GhostMode current_mode,
-    Point* scatter_pos
+    Point* scatter_pos,
+    bool is_behaviour_changed
 );
 
 void delete_ghost(Ghosts* ghost_to_delete);
@@ -56,6 +57,10 @@ const void set_ghost_mode(Ghosts* ghost,const GhostMode mode);
  * B for blinky, P for pinky, I for inky and C for clyde 
 */
 const char get_ghost_type(const Ghosts* ghost);
+
+const bool get_ghost_behaviour_change(const Ghosts* ghost);
+
+void set_ghost_behaviour(Ghosts* ghost,const bool is_behaviour_changed);
 
 
 #endif

@@ -39,7 +39,7 @@ enum entity_type {
 void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
                     const uint8_t num_entites_to_animate);
 
-void eat_ghosts(const enum entity_type ghosts[], const uint8_t number_of_eaten_ghosts);
+void eat_ghost(const enum entity_type ghost);
 
 void draw_current_page();
 

@@ -149,6 +149,8 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         );
         free(temp_point);
         free(target);
+        //reset the behaviour change incase a behaviour change cause the reset
+        set_inky_behaviour_change(false);
         feed_pointer = 1; //set back to one to restart
 
         //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
@@ -185,6 +187,14 @@ const void set_inky_mode(GhostMode mode){
     return set_ghost_mode(_inky(), mode);
 }
 
+const bool get_inky_behaviour_change(){
+    return get_ghost_behaviour_change(_inky());
+}
+
+void set_inky_behaviour_change(const bool change){
+    return set_ghost_behaviour(_inky(), change);
+}
+
 Inky* _inky(){
     static Inky* current_inky = NULL;
     
@@ -195,7 +205,8 @@ Inky* _inky(){
             'I',
             create_point(10,6),//need to get inky starting position
             scatter, //start in chase mode?
-            create_point(18,14)
+            create_point(18,14),
+            false
         );
 
         return current_inky;

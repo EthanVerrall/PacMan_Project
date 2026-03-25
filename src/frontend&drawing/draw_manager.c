@@ -12,144 +12,6 @@
 
 static bool is_mouth_open = false;
 
-//--------------------------------------------------------------
-//Helper functions -- must be declared before void move_entity() -- start
-//--------------------------------------------------------------
-
-const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
-
-    //direction just defines which way we are moving
-    //a simple arbitrary value should be fine for this
-    //0 = RIGHT, 1 = DOWN, 2 = LEFT, 3 = UP
-
-    switch (entity) {
-
-        case entity_type_blinky: 
-            if (get_blinky_mode() == fright) return fright_ghost_array;
-            if (direction == RIGHT) return blinky_array[blinky_right_eye];
-            if (direction == DOWN) return blinky_array[blinky_bottom_eye];
-            if (direction == LEFT) return blinky_array[blinky_left_eye];
-            if (direction == UP) return blinky_array[blinky_top_eye];
-
-            eputs("Matching texture for blinky not found. NULL returned.\r\n");
-            return NULL;
-
-        case entity_type_clyde: 
-            if (get_clyde_mode() == fright) return fright_ghost_array;
-            if (direction == RIGHT) return clyde_array[clyde_right_eye];
-            if (direction == DOWN) return clyde_array[clyde_bottom_eye];
-            if (direction == LEFT) return clyde_array[clyde_left_eye];
-            if (direction == UP) return clyde_array[clyde_top_eye];
-
-            eputs("Matching texture for clyde not found. NULL returned.\r\n");
-            return NULL;
-
-        case entity_type_inky:
-            if (get_inky_mode() == fright) return fright_ghost_array;
-            if (direction == RIGHT) return inky_array[inky_right_eye];
-            if (direction == DOWN) return inky_array[inky_bottom_eye];
-            if (direction == LEFT) return inky_array[inky_left_eye];
-            if (direction == UP) return inky_array[inky_top_eye];
-
-            eputs("Matching texture for inky not found. NULL returned.\r\n");
-            return NULL;
-
-        case entity_type_pinky:
-            if (get_pinky_mode() == fright) return fright_ghost_array;
-            if (direction == RIGHT) return pinky_array[pinky_right_eye];
-            if (direction == DOWN) return pinky_array[pinky_bottom_eye];
-            if (direction == LEFT) return pinky_array[pinky_left_eye];
-            if (direction == UP) return pinky_array[pinky_top_eye];
-
-            eputs("Matching texture for pinky not found. NULL returned.\r\n");
-            return NULL;
-
-        case entity_type_pacman: 
-
-            //Why do we have only two frames for this guy lol XD -- surely we add more????
-
-            //Pacmans mouth is open
-            if (direction == RIGHT && is_mouth_open) {
-
-                is_mouth_open = false;
-                return pacman_array[pacman_right_open];
-            }
-
-            if (direction == DOWN && is_mouth_open) {
-
-                is_mouth_open = false;
-                return pacman_array[pacman_bottom_open];
-            }
-
-            if (direction == LEFT && is_mouth_open) {
-
-                is_mouth_open = false;
-                return pacman_array[pacman_left_open];
-            }
-
-            if (direction == UP && is_mouth_open) {
-
-                is_mouth_open = false;
-                return pacman_array[pacman_top_open];
-            }
-
-            //Pacmans mouth is closed
-            if (direction == RIGHT && (!is_mouth_open)) {
-
-                is_mouth_open = true;
-                return pacman_array[pacman_right_closed];
-            }
-
-            if (direction == DOWN && (!is_mouth_open)) {
-
-                is_mouth_open = true;
-                return pacman_array[pacman_bottom_closed];
-            }
-
-            if (direction == LEFT && (!is_mouth_open)) {
-
-                is_mouth_open = true;
-                return pacman_array[pacman_left_closed];
-            }
-
-            if (direction == UP && (!is_mouth_open)) {
-
-                is_mouth_open = true;
-                return pacman_array[pacman_top_closed];
-            }
-
-            eputs("Matching texture for pacman not found. NULL returned.\r\n");
-            return NULL;
-
-        default: eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
-        return NULL;
-    }
-}
-
-const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
-
-    //Changing pixels to correctly reflect grid indexing
-    //Function assumes we are working with perfect eights, should be called before any moving to a new tile has happened
-    x_pixel /= 8;
-    y_pixel /= 8;
-
-    if (has_grid_state(y_pixel,x_pixel,cell_blank))  { return blank_array; } 
-
-    else if (has_grid_state(y_pixel,x_pixel,cell_pellet)) { return pickups_array[pickups_pellet]; }
-
-    else if (has_grid_state(y_pixel,x_pixel,cell_power_up)) { return pickups_array[pickups_powerup]; }
-
-    else if (has_grid_state(y_pixel,x_pixel,cell_cherry)) { return pickups_array[pickups_cherry]; }
-
-    else if (has_grid_state(y_pixel,x_pixel,cell_gate)) { return wall_array[wall_gate]; }
-
-    else 
-    { 
-        eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
-        return NULL;
-    }
-}
-
 //---------------------------------MENUS------------------------------------------
 
 void redraw_entire_grid () {
@@ -508,10 +370,172 @@ void flicker_text() {
     delay(100);
 } 
 
+void draw_current_page() {
+
+    const enum menu_page menu_to_draw = get_active_menu_page();
+
+    switch (menu_to_draw) {
+
+        case menu_page_home:
+        draw_home_page();
+        break;
+
+        case menu_page_game:
+        redraw_entire_grid();
+        break;
+
+        default:
+        eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
+        break;
+    }
+}
+
 //---------------------------------MENUS------------------------------------------
 
 //--------------------------------------------------------------
+//Helper functions -- must be declared before void move_entity() -- start
+//--------------------------------------------------------------
+
+const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
+
+    //direction just defines which way we are moving
+    //a simple arbitrary value should be fine for this
+    //0 = RIGHT, 1 = DOWN, 2 = LEFT, 3 = UP
+
+    switch (entity) {
+
+        case entity_type_blinky: 
+            if (get_blinky_mode() == fright) return fright_ghost_array;
+            if (direction == RIGHT) return blinky_array[blinky_right_eye];
+            if (direction == DOWN) return blinky_array[blinky_bottom_eye];
+            if (direction == LEFT) return blinky_array[blinky_left_eye];
+            if (direction == UP) return blinky_array[blinky_top_eye];
+
+            eputs("Matching texture for blinky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_clyde: 
+            if (get_clyde_mode() == fright) return fright_ghost_array;
+            if (direction == RIGHT) return clyde_array[clyde_right_eye];
+            if (direction == DOWN) return clyde_array[clyde_bottom_eye];
+            if (direction == LEFT) return clyde_array[clyde_left_eye];
+            if (direction == UP) return clyde_array[clyde_top_eye];
+
+            eputs("Matching texture for clyde not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_inky:
+            if (get_inky_mode() == fright) return fright_ghost_array;
+            if (direction == RIGHT) return inky_array[inky_right_eye];
+            if (direction == DOWN) return inky_array[inky_bottom_eye];
+            if (direction == LEFT) return inky_array[inky_left_eye];
+            if (direction == UP) return inky_array[inky_top_eye];
+
+            eputs("Matching texture for inky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_pinky:
+            if (get_pinky_mode() == fright) return fright_ghost_array;
+            if (direction == RIGHT) return pinky_array[pinky_right_eye];
+            if (direction == DOWN) return pinky_array[pinky_bottom_eye];
+            if (direction == LEFT) return pinky_array[pinky_left_eye];
+            if (direction == UP) return pinky_array[pinky_top_eye];
+
+            eputs("Matching texture for pinky not found. NULL returned.\r\n");
+            return NULL;
+
+        case entity_type_pacman: 
+
+            //Why do we have only two frames for this guy lol XD -- surely we add more????
+
+            //Pacmans mouth is open
+            if (direction == RIGHT && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_right_open];
+            }
+
+            if (direction == DOWN && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_bottom_open];
+            }
+
+            if (direction == LEFT && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_left_open];
+            }
+
+            if (direction == UP && is_mouth_open) {
+
+                is_mouth_open = false;
+                return pacman_array[pacman_top_open];
+            }
+
+            //Pacmans mouth is closed
+            if (direction == RIGHT && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_right_closed];
+            }
+
+            if (direction == DOWN && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_bottom_closed];
+            }
+
+            if (direction == LEFT && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_left_closed];
+            }
+
+            if (direction == UP && (!is_mouth_open)) {
+
+                is_mouth_open = true;
+                return pacman_array[pacman_top_closed];
+            }
+
+            eputs("Matching texture for pacman not found. NULL returned.\r\n");
+            return NULL;
+
+        default: eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+        return NULL;
+    }
+}
+
+const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
+
+    //Changing pixels to correctly reflect grid indexing
+    //Function assumes we are working with perfect eights, should be called before any moving to a new tile has happened
+    x_pixel /= 8;
+    y_pixel /= 8;
+
+    if (has_grid_state(y_pixel,x_pixel,cell_blank))  { return blank_array; } 
+
+    else if (has_grid_state(y_pixel,x_pixel,cell_pellet)) { return pickups_array[pickups_pellet]; }
+
+    else if (has_grid_state(y_pixel,x_pixel,cell_power_up)) { return pickups_array[pickups_powerup]; }
+
+    else if (has_grid_state(y_pixel,x_pixel,cell_cherry)) { return pickups_array[pickups_cherry]; }
+
+    else if (has_grid_state(y_pixel,x_pixel,cell_gate)) { return wall_array[wall_gate]; }
+
+    else 
+    { 
+        eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
+        return NULL;
+    }
+}
+
+//--------------------------------------------------------------
 //Helper functions -- must be declared before void move_entity() -- end
+//--------------------------------------------------------------
+
+//-------------------------------------------------------------- 
+//Dynamic movement / gameplay functions                          -- Start
 //--------------------------------------------------------------
 
 void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
@@ -619,7 +643,8 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
         //Not moving, need to redraw ourselves in the same spot, in the case that something moves away next turn but
         //we are still standing still
-        else if (dx[i] == 0 && dy[i] == 0) {
+        else if (dx[i] == 0 && dy[i] == 0) 
+        {
 
             if (entity_array[i] != entity_type_pacman) {
 
@@ -657,11 +682,6 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     return;
                 }
             }
-
-        }
-        else if (dx[i] == 0 && dy[i] == 0)
-        {
-            //do nothing
         }
         else 
         {
@@ -841,6 +861,7 @@ void eat_ghost(const enum entity_type ghost) {
         case PAC_NONE:
             if(is_mouth_open) enitity_texture = pacman_array[pacman_right_open];
             if(!is_mouth_open) enitity_texture = pacman_array[pacman_right_closed];
+        break;    
 
         default:
         eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
@@ -849,27 +870,28 @@ void eat_ghost(const enum entity_type ghost) {
 
     const uint8_t pac_x_pixel = get_y_point_coord(get_pacman_position()) * 8;
     const uint8_t pac_y_pixel = get_x_point_coord(get_pacman_position()) * 8;
+
     putImage(pac_x_pixel, pac_y_pixel, 8,8, enitity_texture, 0,0);
 
     switch (ghost) {
         case entity_type_inky:  
             enitity_texture = inky_array[inky_right_eye];
-            putImage(10,6, 8,8 ,enitity_texture, 0,0);
+            putImage(48,80, 8,8 ,enitity_texture, 0,0);
             break;
 
         case entity_type_blinky: 
             enitity_texture = blinky_array[blinky_right_eye];
-            putImage(10,7, 8,8 ,enitity_texture, 0,0);
+            putImage(56,80, 8,8 ,enitity_texture, 0,0);
             break;
 
         case entity_type_pinky: 
             enitity_texture = pinky_array[pinky_right_eye];
-            putImage(10,8, 8,8 ,enitity_texture, 0,0);
+            putImage(64,80, 8,8 ,enitity_texture, 0,0);
             break;
 
         case entity_type_clyde: 
             enitity_texture = clyde_array[clyde_right_eye];
-            putImage(10,9, 8,8 ,enitity_texture, 0,0);
+            putImage(72,80, 8,8 ,enitity_texture, 0,0);
             break;
 
         default:
@@ -879,22 +901,6 @@ void eat_ghost(const enum entity_type ghost) {
     }
 }
 
-void draw_current_page() {
-
-    const enum menu_page menu_to_draw = get_active_menu_page();
-
-    switch (menu_to_draw) {
-
-        case menu_page_home:
-        draw_home_page();
-        break;
-
-        case menu_page_game:
-        redraw_entire_grid();
-        break;
-
-        default:
-        eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
-        break;
-    }
-}
+//-------------------------------------------------------------- 
+//Dynamic movement / gameplay functions                          -- end
+//--------------------------------------------------------------
