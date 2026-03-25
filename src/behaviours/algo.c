@@ -62,6 +62,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         //now we need to also consider the g_cost here as well
         //NOTE: f(n) = g(n) + h(n) .... yup
         Point* current_smallest = find_smallest_heuristic_node(open_points, target, g_cost);
+        if (!current_smallest) break;
 
         uint8_t currents_x = get_x_point_coord(current_smallest);
         uint8_t currents_y = get_y_point_coord(current_smallest);
@@ -147,7 +148,9 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                     continue;
                 
                 //check if the grid position is a wall
-                if(is_grid_state(nx, ny, cell_wall)) continue;
+                if(has_grid_state(nx, ny, cell_wall)) continue;
+
+                
 
                 //the g_cost of the current smallest is the g_cost of the current smallest's parent + 1 
                 //as we are moving one step from the parent to the current smallest
@@ -176,8 +179,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 //it does not have to be the full path at all times and we have to save space on the microcontroller 
                 if (get_list_size(open_points) >= MAXARRSIZE) {
                     free(temp_neighbour);
-                    free_arr(open_points);
-                    return;
+                    continue;
                 };
                 if (!search_item(temp_neighbour,open_points))
                 {
@@ -225,6 +227,7 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
 
 //This algorithm calculates the smallest heuristic node in the a list (most likely the open list)
 Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]){
+    if (!list || !list[0]) return NULL;
     uint16_t smallest_heuristic_f = g_cost[get_x_point_coord(list[0])][get_y_point_coord(list[0])] + calculate_heuristics_h(list[0], target);
     Point* smallest_heuristic_point = list[0];
     for (uint8_t i = 1; i < get_list_size(list); i++)

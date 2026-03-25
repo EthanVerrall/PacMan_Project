@@ -95,7 +95,7 @@ int main()
 
 	create_reset_grid();
 	draw_current_page();
-	delay(2000);
+	delay(1000);
 
 	//set up ghosts and pacman
 	Pacman* pacman_ref = _pacman();
@@ -265,7 +265,9 @@ int main()
 		//I added an eat check function in this file -- look at the bottom
 		//--------------------------------------------------------------------------------------------
 		//Eat check must go here -- I can explain tomorrow -- this should work, if not just comment it out
-		if (get_pacman_state() == God) {check_if_eat_ghost();}
+
+		//This does not work.... Unfortunately
+		//if (get_pacman_state() == God) {check_if_eat_ghost();}
 
 		if (god_mode_timer > 0)
 		{

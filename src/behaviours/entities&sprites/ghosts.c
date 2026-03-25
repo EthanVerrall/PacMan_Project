@@ -54,6 +54,7 @@ const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y){
         set_y_point_coord(y,ghost->position);
         return true;
     }
+    eputs("grid state was not set for the ghost. The ghosts position was out of bounds\r\n");
     return false;
 }
 

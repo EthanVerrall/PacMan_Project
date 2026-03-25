@@ -15,7 +15,7 @@ const Point* get_blinky_target_position(){
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
 */
 const Point* _blinky_feed_next(const bool reset, const bool end){
-    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
+    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
     static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
@@ -33,13 +33,23 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         //the algorithm would trace a path based on both positions
         Point* temp_point = create_point(get_x_point_coord(get_blinky_position()),
                                          get_y_point_coord(get_blinky_position()));
+        Point* target = get_blinky_target_position();
         trace_path_a_star(
             temp_point,
-            get_blinky_target_position(),
+            target,
             feed_cache
         );
         free(temp_point);
+        free(target);
         feed_pointer = 1; //set back to one to restart
+        //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
+        //or in a case where the algorithm was not able to properly get the ghost path, return the current position of the ghost
+        if (!feed_cache[feed_pointer])
+        {
+            Point* position_deep_cpy = create_deep_copy(get_blinky_position()); //meaning blinky just doesn't move
+            feed_cache[feed_pointer] = position_deep_cpy; //add to feed cache so that it would be freed on the next call to a*
+            return feed_cache[feed_pointer];
+        }
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     

@@ -1,5 +1,7 @@
 #include "../include/behaviours/entities&sprites/inky.h"
 
+//getting inky's target position might introduce a bug
+//also check for blinky's target introducing a bug
 const Point* get_inky_target_position()
 {
     if (get_inky_mode() == scatter)
@@ -41,17 +43,17 @@ const Point* get_inky_target_position()
     int16_t target_y = (2 * ref_y) - blinky_y;
 
     // Clamp to inner walkable bounds (assuming border walls)
-    #ifdef GRID_COL_COUNT
+    #ifdef GRID_ROW_COUNT
         if (target_x < 1) target_x = 1;
-        if (target_x >= GRID_COL_COUNT - 1) target_x = GRID_COL_COUNT - 2;
+        if (target_x >= GRID_ROW_COUNT - 1) target_x = GRID_ROW_COUNT - 2;
     #else
         if (target_x < 1) target_x = 1;
         if (target_x >= 38 - 1) target_x = 38 - 2;
     #endif
 
-    #ifdef GRID_ROW_COUNT
+    #ifdef GRID_COL_COUNT
         if (target_y < 1) target_y = 1;
-        if (target_y >= GRID_ROW_COUNT - 1) target_y = GRID_ROW_COUNT - 2;
+        if (target_y >= GRID_COL_COUNT - 1) target_y = GRID_COL_COUNT - 2;
     #else
         if (target_y < 1) target_y = 1;
         if (target_y >= 28 - 1) target_y = 28 - 2;
@@ -74,14 +76,14 @@ const Point* get_inky_target_position()
             int16_t next_x = target_x + offsets[i][0];
             int16_t next_y = target_y + offsets[i][1];
 
-            #ifdef GRID_COL_COUNT
-                if (next_x < 1 || next_x >= GRID_COL_COUNT - 1) continue;
+            #ifdef GRID_ROW_COUNT
+                if (next_x < 1 || next_x >= GRID_ROW_COUNT - 1) continue;
             #else
                 if (next_x < 1 || next_x >= 38 - 1) continue;
             #endif
 
-            #ifdef GRID_ROW_COUNT
-                if (next_y < 1 || next_y >= GRID_ROW_COUNT - 1) continue;
+            #ifdef GRID_COL_COUNT
+                if (next_y < 1 || next_y >= GRID_COL_COUNT - 1) continue;
             #else
                 if (next_y < 1 || next_y >= 28 - 1) continue;
             #endif
@@ -90,6 +92,7 @@ const Point* get_inky_target_position()
             {
                 continue;
             }
+            
 
             target_x = next_x;
             target_y = next_y;
@@ -117,7 +120,7 @@ const Point* get_inky_target_position()
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
 */
 const Point* _inky_feed_next(const bool reset, const bool end){
-    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 30 as the max capacity of the feed... 60 bytes
+    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
     static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
@@ -135,17 +138,27 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        eputs("\r\n working on inky movement \r\n");
         Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
                                          get_y_point_coord(get_inky_position()));
+        Point* target = get_inky_target_position();
         
         trace_path_a_star(
             temp_point,
-            get_inky_target_position(),
+            target,
             feed_cache
         );
         free(temp_point);
+        free(target);
         feed_pointer = 1; //set back to one to restart
+
+        //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
+        //or in a case where the algorithm was not able to properly get the ghost path, return the current position of the ghost
+        if (!feed_cache[feed_pointer])
+        {
+            Point* position_deep_cpy = create_deep_copy(get_inky_position()); //meaning inky just doesn't move
+            feed_cache[feed_pointer] = position_deep_cpy; //add to feed cache so that it would be freed on the next call to a*
+            return feed_cache[feed_pointer];
+        }
     }
     Point* curr_point_to_return = feed_cache[feed_pointer];
     feed_pointer++;
