@@ -595,9 +595,12 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
     //Velocity for x_pixels
     int8_t dy[num_entites_to_animate];
     
-    //Pixel conversion is done here
-    //Direction calculated here
-    //Textures are assigned here 
+//////////////////////////////////////////////////////////////////////////////////////////////////////    
+////Pixel conversion is done here
+////Direction calculated here
+////Textures are assigned here
+////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
         x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
@@ -690,6 +693,14 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         }
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
     }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////    
+////Drawing each moving entity frame by frame
+////Looping 8 times since we have 8 frames of animation from one cell to another
+////Accounts for all movements, grid wrapping and dynamic live eating
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    
 
     for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
          current_frame <= 8; 

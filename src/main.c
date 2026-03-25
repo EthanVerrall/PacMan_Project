@@ -137,7 +137,7 @@ int main()
 	}; 
 
 	const enum entity_type entity_move_order[] = {
-		entity_type_pacman,entity_type_inky, entity_type_blinky, entity_type_pinky, entity_type_clyde
+		entity_type_pacman, entity_type_blinky, entity_type_inky, entity_type_pinky, entity_type_clyde
 	};
 
 	bool button_pressed = false;
@@ -270,12 +270,11 @@ int main()
 			set_ghosts_mode(fright);
 		}
 			
-		//--------------------------------------------------------------------------------------------
-		//I added an eat check function in this file -- look at the bottom
-		//--------------------------------------------------------------------------------------------
-		//Eat check must go here -- I can explain tomorrow -- this should work, if not just comment it out
-
-		//This does not work.... Unfortunately
+		/*
+			Static_movement eat function checker, this checks if pacman is sharing a cell with a ghost
+		    This eat function occurs after all movement and pacman simply eats all eligible ghosts, 
+			they must be in fright mode in order to be eaten.
+		*/	
 		if (get_pacman_state() == God) {check_if_eat_ghost();}
 
 		if (god_mode_timer > 0)
