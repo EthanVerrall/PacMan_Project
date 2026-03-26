@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include "./point.h"
+#include "../grid.h"
 
 uint64_t linear_congruence_rand(uint32_t seed);
 
@@ -22,6 +23,6 @@ uint8_t get_random_number(uint32_t seed);
 */
 uint8_t get_random_number_in_range(uint32_t seed, uint8_t start, uint8_t end);
 
-Point* get_random_point_on_grid();
+Point* get_random_point_on_grid(uint32_t seed);
 
 #endif //!RANDOM_H

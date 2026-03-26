@@ -16,6 +16,7 @@
 
 #include "../include/utils/point.h"
 #include "../include/utils/arr.h"
+#include "../include/utils/random.h"
 #include "../include/behaviours/algo.h"
 #include "../include/grid.h"
 #include "../include/serial.h"

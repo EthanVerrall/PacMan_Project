@@ -7,6 +7,9 @@ const Point* get_clyde_target_position(){
         return create_point(get_x_point_coord(get_clyde_scatter_position()),
                             get_y_point_coord(get_clyde_scatter_position()));
     }
+
+    if (get_clyde_mode() == fright) 
+        return get_random_point_on_grid(67); //67 67 67
     
     const Point* pacman_position = get_pacman_position();
 

@@ -10,6 +10,9 @@ const Point* get_inky_target_position()
                             get_y_point_coord(get_inky_scatter_position()));
     }
 
+    if (get_inky_mode() == fright) 
+        return get_random_point_on_grid(67); //67 67 67
+
     const Point* blinky_position = get_blinky_position();
     const Point* pacman_position = get_pacman_position();
     PacDirection pacman_direction = get_pacman_direction();
