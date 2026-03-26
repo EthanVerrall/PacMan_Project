@@ -47,8 +47,8 @@ uint8_t get_random_number_in_range(uint32_t seed, uint8_t start, uint8_t end){
 Point* get_random_point_on_grid(uint32_t seed){
     //select a random point on the board range
     //ensuring we do not check outside the board range on search for empty spot
-    uint8_t rand_x = get_random_number_in_range(seed, 1, GRID_COL_COUNT - 2);
-    uint8_t rand_y = get_random_number_in_range(seed, 2, GRID_ROW_COUNT - 2);
+    uint8_t rand_x = get_random_number_in_range(seed, 2, GRID_ROW_COUNT - 2);
+    uint8_t rand_y = get_random_number_in_range(seed, 1, GRID_COL_COUNT - 2);
 
     //check that the range is not a wall
     if(!has_grid_state(rand_x,rand_y, cell_wall)) return create_point(rand_x, rand_y);
