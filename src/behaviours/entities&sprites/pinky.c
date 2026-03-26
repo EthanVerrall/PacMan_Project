@@ -8,6 +8,9 @@ const Point* get_pinky_target_position()
                             get_y_point_coord(get_pinky_scatter_position()));
     }
 
+    if (get_pinky_mode() == fright) 
+        return get_random_point_on_grid(67); //67 67 67
+
     PacDirection pacman_direction = get_pacman_direction();
     const Point* pacman_position = get_pacman_position();
 
