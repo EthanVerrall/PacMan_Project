@@ -8,6 +8,7 @@
 #include "ghosts.h"
 #include "../include/utils/point.h"
 #include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 
 typedef Ghosts Inky;
 
@@ -34,6 +35,10 @@ const bool set_inky_position(const uint8_t x, const uint8_t y);
 const GhostMode get_inky_mode();
 
 const void set_inky_mode(GhostMode mode);
+
+const bool get_inky_behaviour_change();
+
+void set_inky_behaviour_change(const bool change);
 
 
 #endif

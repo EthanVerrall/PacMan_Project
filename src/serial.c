@@ -1,3 +1,4 @@
+#include "../include/utils/events.h"
 #include <stm32f031x6.h>
 
 void initSerial()

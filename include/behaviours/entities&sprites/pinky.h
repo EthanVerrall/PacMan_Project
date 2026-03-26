@@ -10,6 +10,7 @@
 
 #include "ghosts.h"
 #include "../include/utils/point.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 
 typedef Ghosts Pinky;
 
@@ -36,5 +37,9 @@ const bool set_pinky_position(const uint8_t x, const uint8_t y);
 const GhostMode get_pinky_mode();
 
 const void set_pinky_mode(GhostMode mode);
+
+const bool get_pinky_behaviour_change();
+
+void set_pinky_behaviour_change(const bool change);
 
 #endif

@@ -12,12 +12,13 @@
    typedef Pacman Pacman;
 #endif
 
-#define MAX_FEED_CAPACITY 30
+#define MAX_FEED_CAPACITY 50
 
 #include "../include/utils/point.h"
 #include "../include/utils/arr.h"
 #include "../include/behaviours/algo.h"
 #include "../include/grid.h"
+#include "../include/serial.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -33,7 +34,8 @@ Ghosts* create_ghost(
     char ghost_type,
     Point* current_position,
     GhostMode current_mode,
-    Point* scatter_pos
+    Point* scatter_pos,
+    bool is_behaviour_changed
 );
 
 void delete_ghost(Ghosts* ghost_to_delete);
@@ -48,6 +50,17 @@ const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y);
 const GhostMode get_ghost_mode(const Ghosts* ghost);
 
 const void set_ghost_mode(Ghosts* ghost,const GhostMode mode);
+
+/**
+ * Get the type of the ghost. This is used to determine the behaviour of the ghost in the chase mode
+ *
+ * B for blinky, P for pinky, I for inky and C for clyde 
+*/
+const char get_ghost_type(const Ghosts* ghost);
+
+const bool get_ghost_behaviour_change(const Ghosts* ghost);
+
+void set_ghost_behaviour(Ghosts* ghost,const bool is_behaviour_changed);
 
 
 #endif

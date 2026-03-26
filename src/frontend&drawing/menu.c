@@ -1,98 +1,81 @@
-/* #include <stdint.h>
 #include "../include/frontend&drawing/menu.h"
-#include "../include/frontend&drawing/display.h"
+#include "../include/serial.h"
 
-#define TITLE_X 30 // "PAC-MAN" title x
-#define TITLE_Y 15 // "PAC-MAN" title y
+//Default starting menu for pacman, the home page
+static enum menu_page active_menu = menu_page_home;
 
-#define COLOUR -1 // this should hopefully display as white .~.
-#define SELECTED_COLOUR RGBToWord(-1, -1, 0); // should hopefully be yellow
-#define TEXT_X 40 // the menu's starting x
-#define TEXT_Y 100 // the menu's y
-#define ITEM_SPACING 3 //the spacing between text (excluding character height)
-#define TEXT_HEIGHT 7 // change to 14 if you want to use printTextX2
+//Position for the cursor
+static int8_t cursor_position = 0;
 
-#define CURSOR_X TEXT_X-10 // changes how far the cursor is from the selectd text
+void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu);
 
+void set_menu_page(const enum menu_page new_menu) {
 
-enum menu_selection {
-    start = 0,
-    profiles = 1,
-    leaderboard = 2,
-    settings = 3
-};
+    switch (new_menu) {
 
-enum menu_selection current_selection = START;
+        case menu_page_home:
+        case menu_page_game:
+        case menu_page_pause:
+        //Expected menu passed to function
+            active_menu = new_menu;
+            break;
 
-
-// displays a menu thing with hard-coded text, and the "PAC-MAN"(tm)(r) title
-void display_menu()
-{  
-    const char title[] = "Pac-Man";
-    const char* text[] = {"Start Game", "Manage Profiles", "Leaderboard", "Options"};
-
-    printTextX2(title, TITLE_X, TITLE_Y, COLOUR, 0);
-
-    uint8_t i;
-    for (i = 0; i < sizeof(text); i++) {
-        // draw the text, with an origin and spacing defined w/ macros
-        printText(text[i], TEXT_X, TEXT_Y + (ITEM_SPACING + 7)*i, COLOUR, 0);
+        //Unexpected menu passed to function
+        default:
+            eputs("set_menu_page function failed. Invalid enum used, refer to enum menu_page in menu.h file.\r\n");
+            break;
     }
 }
 
+enum menu_page get_active_menu_page() {
 
-void flash_title()
-{
-    const char title[] = "Pac-Man";
-
-    
+    return active_menu;
 }
 
-void flash_selected_text(enum menu_selection current_selection)
-{
-    const char* text[] = {"Start Game", "Manage Profiles", "Leaderboard", "Options"};
+int8_t get_cursor_position() {
 
-    
+    return cursor_position;
 }
 
+void move_cursor(const int8_t cursor_direction) {
+    //static uint8_t pause_menu_text[];
 
-// draws new cusor
-void draw_menu_cursor(enum menu_selection current_selection){
-    // draws rectangle beside selected item. ugly code.
-    drawRectangle(CURSOR_X, TEXT_Y + (ITEM_SPACING+ 7) * current_selection, 3, 3, COLOUR);
-    destroy_prev_cursor(current_selection);
+    if (get_active_menu_page() == menu_page_home) {
 
-}
+        switch (cursor_direction)
+        {
+            case MOVE_CURSOR_RIGHT:
+            //Change to game
+            if (cursor_position == 0) {
+                set_menu_page(menu_page_game);
+            }
+            
+            //Other features not implemented yet
+            cursor_position = 0;
+        break;
+        
+        case MOVE_CURSOR_DOWN:
+            if (cursor_position < 2) {
+                redraw_white_text(cursor_position, menu_page_home);
+                ++cursor_position;
+            } 
+            break;
 
-// destroys cursor before the current selection
-void destroy_prev_cursor(enum menu_selection current_selection){
-    // draws rectangle beside selected item. ugly code.
-    current_selection = prev_menu_item(current_selection);
-    drawRectangle(CURSOR_X, TEXT_Y + (ITEM_SPACING+ 7) * current_selection, 3, 3, 0);// note the 0 at the colour position (end).
-}
+        case MOVE_CURSOR_UP:
+            if (cursor_position > 0) {
+                redraw_white_text(cursor_position, menu_page_home);
+                --cursor_position;
+            }
+            break;    
+        
+        case MOVE_CURSOR_left:
+        //Do nothing
+        break;
 
-
-// plus 1 from the enum
-void next_menu_item(enum menu_selection current_selection){
-    if (current_selection == SETTINGS)
-    {
-        current_selection = start;
+        default:
+            eputs("Unexpected cursor movement on the home page.\r\nCursor value: ");
+            printDecimal(cursor_position);
+        break;
+        }
     }
-    else {
-        current_selection++;
-    }
 }
-
-// minus 1 from the enum
-void prev_menu_item(enum menu_selection current_selection){
-    if (current_selection == START)
-    {
-        current_selection = SETTINGS;
-    }
-    else {
-        current_selection--;
-    }
-}
-
-// ugghh, despite my best efforts, i am failing to understand what i am doing.
-// mainly a thing of not understanding how to interface w/ display funcs, and how to enum */

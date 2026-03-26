@@ -1,4 +1,5 @@
 #include "../include/utils/point.h"
+#include "../include/serial.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -12,7 +13,7 @@ struct Point {
 
 Point* create_point(const uint8_t x, const uint8_t y) {
 
-    Point* new_point = calloc(1, sizeof(Point));
+    Point* const new_point = calloc(1, sizeof(Point));
 
     if (new_point) {
         new_point->x = x;
@@ -21,17 +22,88 @@ Point* create_point(const uint8_t x, const uint8_t y) {
         return new_point;
     }
     else {
-        //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - failed to create Point. Calloc failed, function returned NULL.\n") ;
+
+        eputs("Error - failed to create Point. Calloc failed, function returned NULL.\r\n") ;
         return NULL;
     }
+}
+
+Point* create_deep_copy(const Point* const struct_point) {
+
+    if(!struct_point) {
+
+        eputs("Error - point you are trying to copy from is NULL, function aborted.\r\n");
+        return NULL;
+    }
+
+    Point* const new_point = calloc(1, sizeof(Point));
+
+    if (new_point) {
+        new_point->x = struct_point->x;
+        new_point->y = struct_point->y;
+
+        return new_point;
+    }
+    else {
+
+        eputs("Error - failed to create Point. Calloc failed, function returned NULL.\r\n") ;
+        return NULL;
+    }
+}
+
+bool copy_point_values(Point* const dest_point, const Point* const source_point) {
+
+    if (dest_point && source_point) {
+
+        dest_point->x = source_point->x;
+        dest_point->y = source_point->y;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_values function were NULL, function aborted.\r\n");
+        return false;
+    }
+}
+
+
+bool copy_point_x(Point* const dest_point, const Point* const source_point) {
+
+    if (dest_point && source_point) {
+
+        dest_point->x = source_point->x;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_x function were NULL, function aborted.\r\n");
+        return false;
+    }
+}
+
+bool copy_point_y(Point* const dest_point, const Point* const source_point) {
+
+    if(dest_point && source_point) {
+
+        dest_point->y = source_point->y;
+
+        return true;
+    } 
+    else {
+
+        eputs("Points used in copy_point_y function were NULL, function aborted.\r\n");
+        return false;
+    }
+
 }
 
 bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point) {
 
     if (!struct_point) {
-        //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - assigning values to a Point that is NULL, function aborted.\n");
+
+        eputs("Error - assigning values to a Point that is NULL, function aborted.\r\n");
         return false;
     } 
     else {
@@ -44,8 +116,8 @@ bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point
 bool set_x_point_coord(const uint8_t x, Point* const struct_point) {
 
     if (!struct_point) {
-        //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - assigning x value to a Point that is NULL, function aborted.\n");
+
+        eputs("Error - assigning x value to a Point that is NULL, function aborted.\r\n");
         return false;
     } 
     else {
@@ -57,8 +129,8 @@ bool set_x_point_coord(const uint8_t x, Point* const struct_point) {
 bool set_y_point_coord(const uint8_t y, Point* const struct_point) {
 
     if (!struct_point) {
-        //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - assigning y value to a Point that is NULL, function aborted.\n");
+
+        eputs("Error - assigning y value to a Point that is NULL, function aborted.\r\n");
         return false;
     } 
     else {
@@ -69,21 +141,30 @@ bool set_y_point_coord(const uint8_t y, Point* const struct_point) {
 
 uint8_t get_x_point_coord(const Point* const struct_point) {
 
-    assert(struct_point && "Assert failed, cannot return x value for NULL point");
+    if (!struct_point) {
+
+        eputs("Error - Trying to return x value for a NULL POINT. 255 was returned.\r\n");
+        return INVALID_POINT;
+    }
+
     return struct_point->x;
 }
 
 uint8_t get_y_point_coord(const Point* const struct_point) {
 
-    assert(struct_point && "Assert failed, cannot return y value for NULL point");
+    if (!struct_point) {
+
+        eputs("Error - Trying to return y value for a NULL POINT. 255 was returned.\r\n");
+        return INVALID_POINT;
+    }
     return struct_point->y;
 }
 
-bool move_point(const uint8_t x, const uint8_t y, Point* const struct_point) {
+bool move_point(const int8_t x, const int8_t y, Point* const struct_point) {
 
     if (!struct_point) {
-        //Replace with micro-controllers serial communication terminal -- Not doing it now will come back to this 
-        printf("Error - trying to moving a Point that is NULL, function aborted.\n");
+
+        eputs("Error - trying to moving a Point that is NULL, function aborted.\r\n");
         return false; 
     } 
     else {
@@ -108,11 +189,11 @@ bool compare_points(const Point* const struct_point_1, const Point* const struct
     else {
 
         if (!struct_point_1 && !struct_point_2) 
-        printf("Both of your points were invalid, aka NULL or undefined behaviour. Compare returned false.\n");
+        eputs("Both of your points were invalid, aka NULL or undefined behaviour. Compare returned false.\r\n");
         else if (!struct_point_1)
-        printf("Point A was invalid, aka NULL or undefined behaviour. Compare returned false.\n");
+        eputs("Point A was invalid, aka NULL or undefined behaviour. Compare returned false.\r\n");
         else
-        printf("Point B was invalid, aka NULL or undefined behaviour. Compare returned false.\n");
+        eputs("Point B was invalid, aka NULL or undefined behaviour. Compare returned false.\r\n");
         
         return false;
     }
@@ -122,7 +203,7 @@ Point* destroy_point(Point* struct_point) {
     
     if (!struct_point) {
 
-        printf("Your point was already NULL, nothing to free.\n");
+        eputs("Your point was already NULL, nothing to free.\r\n");
     }
 
     free(struct_point);

@@ -11,6 +11,7 @@
 
 #include "ghosts.h"
 #include "../include/utils/point.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
 
 typedef Ghosts Clyde;
 
@@ -37,6 +38,10 @@ const bool set_clyde_position(const uint8_t x, const uint8_t y);
 const GhostMode get_clyde_mode();
 
 const void set_clyde_mode(GhostMode mode);
+
+const bool get_clyde_behaviour_change();
+
+void set_clyde_behaviour_change(const bool change);
 
 
 #endif

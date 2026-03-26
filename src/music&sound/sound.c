@@ -1,5 +1,7 @@
 #include <stm32f031x6.h>
 #include "../include/music&sound/musical_notes.h"
+#include "../include/utils/events.h"
+
 void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 void playNote(uint32_t Freq)
 {	
