@@ -3,6 +3,8 @@
 const Point* get_blinky_target_position(){
     if (get_blinky_mode() == scatter) return create_point(get_x_point_coord(get_blinky_scatter_position()),
                             get_y_point_coord(get_blinky_scatter_position()));
+    //if ()
+    
     return create_point(get_x_point_coord(get_pacman_position()),
                         get_y_point_coord(get_pacman_position())); //chases pacman directly
 }
