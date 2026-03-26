@@ -1,5 +1,10 @@
 #include "../include/frontend&drawing/draw_manager.h"
 #include "../include/grid.h"
+//from pacman_music
+//#include "../include/music&sound/sound.h"
+//#include "../include/music&sound/musical_notes.h"
+//#include "../include/music&sound/tones.h"
+//#include "serial.h"
 #include "../include/serial.h"
 #include "../include/utils/events.h"
 #include "../include/behaviours/entities&sprites/pacman.h"
@@ -11,6 +16,27 @@
 //This function should work well 
 void check_if_eat_ghost() {
 
+//volatile uint32_t milliseconds;
+
+//int main()
+//{
+	//initClock();
+	//initSysTick();
+	//setupIO();
+	//initSound();
+	
+	//Creating a new grid, default drawing, and then destroying the grid
+	//create_reset_grid();
+	//draw_starting_grid();
+	//destroy_grid();
+
+	//pacman_intro();
+	//while(1){
+		//death_sound();
+		//delay(300);
+	//}
+
+	//return 0;
 	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
 	{	
 		set_blinky_mode(chase);
