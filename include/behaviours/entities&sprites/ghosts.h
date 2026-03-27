@@ -19,7 +19,6 @@
 #include "../include/utils/random.h"
 #include "../include/behaviours/algo.h"
 #include "../include/grid.h"
-#include "../include/serial.h"
 #include <stdlib.h>
 #include <stdbool.h>
 

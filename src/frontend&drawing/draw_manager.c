@@ -1,9 +1,4 @@
 #include "../include/frontend&drawing/draw_manager.h"
-#include "../include/serial.h"
-#include <stdint.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 
 #define RIGHT 0
 #define DOWN 1
@@ -19,7 +14,7 @@ void redraw_entire_grid () {
         The below two arrays are used in parallel to define the wall types 
         and how many times they must print.
     */
-
+    
     //Ensuring pacmans mouth is closed at game start
     is_mouth_open = false;
 
@@ -176,7 +171,9 @@ void redraw_entire_grid () {
         }
 
     }
-
+    //Score goes here with player name
+    printText("Ethan Score:",3,0,0xffff,0);
+    printNumber(356,90,0,0xffff,0);
     //Loops through the entire grid and prints all tiles and upscaled 8*8 pixels across the screen
     //accounting for the intial offset in height from pixel 0,0
     for (uint8_t y_pixel = 0 + HEIGHT_OFFSET; y_pixel < SCREEN_HEIGHT; y_pixel += 8) {
@@ -254,8 +251,8 @@ void redraw_entire_grid () {
                     
                     default:
                         //Grid failed to draw
-                        eputs("Trying to draw unknown cell type.\r\n");
-                        eputs("Grid deleted from memory, draw has been aborted.\r\n");
+                        //eputs("Trying to draw unknown cell type.\r\n");
+                        //eputs("Grid deleted from memory, draw has been aborted.\r\n");
                         destroy_grid();
                     return;
                 }
@@ -286,9 +283,35 @@ void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu)
             break;
         }
     }
+   
+    if (active_menu == menu_page_pause) {
+
+        switch (cursor_position) {
+
+            case 0:
+                printText("Resume Game",20,60,0xFFFF,0);
+            break;
+
+            case 1:
+                printText("Restart Game",20,90,0xFFFF,0);
+            break;
+
+            case 2:
+                printText("Exit Game",20,120,0xFFFF,0);
+            break;
+        }
+    }
 }
 
 void draw_home_page() {
+
+    for (uint8_t y_pixel = 0; y_pixel < SCREEN_HEIGHT; ++ y_pixel) {
+        
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+
+            putPixel(x_pixel,y_pixel,0);
+        }
+    }
 
     putImage(7,5,114,32,main_menu_array,0,0);
 
@@ -297,6 +320,26 @@ void draw_home_page() {
     printTextX2("Scoreboard",6,100,0xFFFF,0);
 
     printTextX2("Options",6,130,0xFFFF,0);
+}
+
+void draw_pause_menu() {
+
+    for (uint8_t y_pixel = 0; y_pixel < SCREEN_HEIGHT; ++ y_pixel) {
+        
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+
+            putPixel(x_pixel,y_pixel,0);
+        }
+    }
+
+    printTextX2("Paused", 30,20,0xFFFF,0);
+
+    printText("Resume Game",20,60,0xFFFF,0);
+
+    printText("Restart Game",20,90,0xFFFF,0);
+
+    printText("Exit Game",20,120,0xFFFF,0);
+
 }
 
 void flicker_text() {
@@ -356,15 +399,72 @@ void flicker_text() {
         break;
         
         default:
-            eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
-            printDecimal(get_cursor_position());
-            eputs("\r\n");
+            //eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
+            //printDecimal(get_cursor_position());
+            //eputs("\r\n");
+            break;
+        }  
+    }
+
+    else if (get_active_menu_page() == menu_page_pause) {
+
+        switch (get_cursor_position()) {
+        
+        case 0:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Resume Game",20,60,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Resume Game",20,60,BLUE,0);
+            }
+            break;
+        
+        case 1:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Restart Game",20,90,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Restart Game",20,90,BLUE,0);
+            }
+            break;
+
+        case 2:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Exit Game",20,120,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Exit Game",20,120,BLUE,0);
+            }
+            break;
+        
+        default:
+            //eputs("Unexpected cursor postion when attempting to flicker text on the pause page.\r\n");
+            //printDecimal(get_cursor_position());
+            //eputs("\r\n");
             break;
         }  
     }
     else  {  
 
-        eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
+        //eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
         return;
     }
     delay(100);
@@ -384,8 +484,12 @@ void draw_current_page() {
         redraw_entire_grid();
         break;
 
+        case menu_page_pause:
+        draw_pause_menu();
+        break;
+
         default:
-        eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
+        //eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
         break;
     }
 }
@@ -411,7 +515,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return blinky_array[blinky_left_eye];
             if (direction == UP) return blinky_array[blinky_top_eye];
 
-            eputs("Matching texture for blinky not found. NULL returned.\r\n");
+            //eputs("Matching texture for blinky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_clyde: 
@@ -421,7 +525,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return clyde_array[clyde_left_eye];
             if (direction == UP) return clyde_array[clyde_top_eye];
 
-            eputs("Matching texture for clyde not found. NULL returned.\r\n");
+            //eputs("Matching texture for clyde not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_inky:
@@ -431,7 +535,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return inky_array[inky_left_eye];
             if (direction == UP) return inky_array[inky_top_eye];
 
-            eputs("Matching texture for inky not found. NULL returned.\r\n");
+            //eputs("Matching texture for inky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_pinky:
@@ -441,7 +545,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return pinky_array[pinky_left_eye];
             if (direction == UP) return pinky_array[pinky_top_eye];
 
-            eputs("Matching texture for pinky not found. NULL returned.\r\n");
+            //eputs("Matching texture for pinky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_pacman: 
@@ -498,10 +602,11 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
                 return pacman_array[pacman_top_closed];
             }
 
-            eputs("Matching texture for pacman not found. NULL returned.\r\n");
+            //eputs("Matching texture for pacman not found. NULL returned.\r\n");
             return NULL;
 
-        default: eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+        default: 
+        //eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
         return NULL;
     }
 }
@@ -525,7 +630,7 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 
     else 
     { 
-        eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
+        //eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
         return NULL;
     }
 }
@@ -538,19 +643,19 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 //Dynamic movement / gameplay functions                          -- Start
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
-                   const uint8_t num_entites_to_animate) {
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+    const uint8_t num_entites_to_animate, bool is_ghost_eaten[]) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
 
         if (!point_array[i]) {
 
-            eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
+            //eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
             return;
         }
     }
-
+ 
     //Ensuring all enums are valid entity types
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
@@ -562,11 +667,11 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             case entity_type_pinky:
             case entity_type_pacman:
                 //Intentional fallthrough
-                //Do nothing all is as expected
+                //All is as expected
                 break;
 
             default:
-                eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
+                //eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
                 return;
         }
     }
@@ -594,13 +699,14 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
     //Velocity for x_pixels
     int8_t dy[num_entites_to_animate];
-    
+  
 //////////////////////////////////////////////////////////////////////////////////////////////////////    
 ////Pixel conversion is done here
 ////Direction calculated here
 ////Textures are assigned here
+////Looking at which ghosts need to be eaten and tracking their state
 ////////////////////////////////////////////////////////////////////////////////////////////////////// 
-
+  
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
         x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
@@ -680,15 +786,15 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     break;
 
                     default:
-                    eputs("Texture could not be found for entity that is standing still\r\n."
-                            "Function move entites aborted.\r\n");
+                    //eputs("Texture could not be found for entity that is standing still\r\n."
+                    //        "Function move entites aborted.\r\n");
                     return;
                 }
             }
         }
         else 
         {
-            eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
+            //eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
             return;
         }
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
@@ -699,19 +805,19 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 ////Looping 8 times since we have 8 frames of animation from one cell to another
 ////Accounts for all movements, grid wrapping and dynamic live eating
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
-
     for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
          current_frame <= 8; 
          ++current_frame, ++forward_offset, --backward_offset)  
     {
-
         //Restoring tiles
         for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
+            if (is_ghost_eaten[i] == true){
+                //Do nothing
+            }
+
             //Moves RIGHT
-            if (dx[i] == 8 && dy[i] == 0) {
+            else if (dx[i] == 8 && dy[i] == 0) {
 
                 //Redrawing the tile we are leaving
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
@@ -770,15 +876,41 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                eputs("Error with movement, function move_entity() did not work.\r\n");
+                //eputs("Error with movement, function move_entity() did not work.\r\n");
             }   
         }
 
         //Drawing ghosts and pacman
         for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
             
+            //The ghost is being eaten by pacman
+            if (is_ghost_eaten[i] == true) {
+
+                if (current_frame == 8) {
+                    
+                    switch (entity_array[i]) {
+
+                    case entity_type_inky:  
+                        putImage(48,80, 8,8 ,inky_array[inky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_blinky: 
+                        putImage(56,80, 8,8 ,blinky_array[blinky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_pinky: 
+                        putImage(64,80, 8,8 ,pinky_array[pinky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_clyde: 
+                        putImage(72,80, 8,8 ,clyde_array[clyde_right_eye], 0,0);
+                        break;
+                    }
+                }  
+            }
+
             //Moves RIGHT
-            if (dx[i] == 8 && dy[i] == 0) {
+            else if (dx[i] == 8 && dy[i] == 0) {
 
                 //Drawing over the tiles in the direction we are moving
                 putImage(x_old_pixel_array[i] + current_frame, y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
@@ -835,12 +967,13 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                eputs("Error with movement, function move_entity() did not work.\r\n");
+                //eputs("Error with movement, function move_entity() did not work.\r\n");
             }  
         } 
         //End of frame, needs to delay now
-        delay(100);
+        delay(75);
     }
+    //redraw_eaten_ghosts() -- HERE
 }
 
 void eat_ghost(const enum entity_type ghost) {
@@ -875,7 +1008,7 @@ void eat_ghost(const enum entity_type ghost) {
         break;    
 
         default:
-        eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
+        //eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
         return;
     }
 
@@ -906,9 +1039,8 @@ void eat_ghost(const enum entity_type ghost) {
             break;
 
         default:
-            eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
-            return;
-        
+            //eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
+            return;  
     }
 }
 

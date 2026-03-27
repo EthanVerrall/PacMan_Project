@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "../include/frontend&drawing/draw_manager.h"
 #include <stdint.h>
 
 #define MOVE_CURSOR_RIGHT 0
