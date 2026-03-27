@@ -19,7 +19,7 @@ void redraw_entire_grid () {
         The below two arrays are used in parallel to define the wall types 
         and how many times they must print.
     */
-
+    
     //Ensuring pacmans mouth is closed at game start
     is_mouth_open = false;
 
@@ -176,7 +176,9 @@ void redraw_entire_grid () {
         }
 
     }
-
+    //Score goes here with player name
+    printText("Ethan Score:",3,0,0xffff,0);
+    printNumber(356,90,0,0xffff,0);
     //Loops through the entire grid and prints all tiles and upscaled 8*8 pixels across the screen
     //accounting for the intial offset in height from pixel 0,0
     for (uint8_t y_pixel = 0 + HEIGHT_OFFSET; y_pixel < SCREEN_HEIGHT; y_pixel += 8) {
@@ -538,8 +540,8 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 //Dynamic movement / gameplay functions                          -- Start
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
-                   const uint8_t num_entites_to_animate) {
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+    const uint8_t num_entites_to_animate, bool is_ghost_eaten[]) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
@@ -550,7 +552,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             return;
         }
     }
-
+ 
     //Ensuring all enums are valid entity types
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
@@ -562,7 +564,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             case entity_type_pinky:
             case entity_type_pacman:
                 //Intentional fallthrough
-                //Do nothing all is as expected
+                //All is as expected
                 break;
 
             default:
@@ -594,13 +596,14 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
     //Velocity for x_pixels
     int8_t dy[num_entites_to_animate];
-    
+  
 //////////////////////////////////////////////////////////////////////////////////////////////////////    
 ////Pixel conversion is done here
 ////Direction calculated here
 ////Textures are assigned here
+////Looking at which ghosts need to be eaten and tracking their state
 ////////////////////////////////////////////////////////////////////////////////////////////////////// 
-
+  
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
         x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
@@ -699,19 +702,19 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 ////Looping 8 times since we have 8 frames of animation from one cell to another
 ////Accounts for all movements, grid wrapping and dynamic live eating
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
-
     for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
          current_frame <= 8; 
          ++current_frame, ++forward_offset, --backward_offset)  
     {
-
         //Restoring tiles
         for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
+            if (is_ghost_eaten[i] == true){
+                //Do nothing
+            }
+
             //Moves RIGHT
-            if (dx[i] == 8 && dy[i] == 0) {
+            else if (dx[i] == 8 && dy[i] == 0) {
 
                 //Redrawing the tile we are leaving
                 putColumn(x_old_pixel_array[i] + forward_offset, y_old_pixel_array[i], static_tiles_array[i], forward_offset);
@@ -777,8 +780,34 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         //Drawing ghosts and pacman
         for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
             
+            //The ghost is being eaten by pacman
+            if (is_ghost_eaten[i] == true) {
+
+                if (current_frame == 8) {
+                    
+                    switch (entity_array[i]) {
+
+                    case entity_type_inky:  
+                        putImage(48,80, 8,8 ,inky_array[inky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_blinky: 
+                        putImage(56,80, 8,8 ,blinky_array[blinky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_pinky: 
+                        putImage(64,80, 8,8 ,pinky_array[pinky_right_eye], 0,0);
+                        break;
+                    
+                    case entity_type_clyde: 
+                        putImage(72,80, 8,8 ,clyde_array[clyde_right_eye], 0,0);
+                        break;
+                    }
+                }  
+            }
+
             //Moves RIGHT
-            if (dx[i] == 8 && dy[i] == 0) {
+            else if (dx[i] == 8 && dy[i] == 0) {
 
                 //Drawing over the tiles in the direction we are moving
                 putImage(x_old_pixel_array[i] + current_frame, y_old_pixel_array[i], 8,8, entity_textures_array[i], 0,0);
@@ -841,6 +870,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         //End of frame, needs to delay now
         delay(100);
     }
+    //redraw_eaten_ghosts() -- HERE
 }
 
 void eat_ghost(const enum entity_type ghost) {
@@ -907,10 +937,10 @@ void eat_ghost(const enum entity_type ghost) {
 
         default:
             eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
-            return;
-        
+            return;  
     }
 }
+
 
 //-------------------------------------------------------------- 
 //Dynamic movement / gameplay functions                          -- end

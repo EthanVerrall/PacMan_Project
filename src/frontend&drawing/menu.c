@@ -51,7 +51,6 @@ void move_cursor(const int8_t cursor_direction) {
             }
             
             //Other features not implemented yet
-            cursor_position = 0;
         break;
         
         case MOVE_CURSOR_DOWN:

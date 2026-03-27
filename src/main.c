@@ -9,7 +9,7 @@
 #include "../include/behaviours/entities&sprites/inky.h"
 
 //This function should work well 
-void check_if_eat_ghost() {
+void check_if_eat_ghost_static() {
 
 	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
 	{	
@@ -69,11 +69,112 @@ void set_scatter_mode_to_chase_mode() {
 	}
 }
 
+void check_if_eat_ghost_real_time(const Point* const point_array[], const int8_t pacmans_move_pos, 
+    const enum entity_type move_order[], bool is_ghost_eaten[], const uint8_t number_of_entities) {
+
+	Point* pacs_current = create_deep_copy(point_array[(pacmans_move_pos*2)]);
+	Point* pacs_target = create_deep_copy(point_array[(pacmans_move_pos*2) + 1]);
+
+	for (uint8_t i = 0; i < number_of_entities; ++i) {
+
+		switch (move_order[i])
+		{
+			case entity_type_blinky:	
+				if (get_blinky_mode() == fright && 
+				compare_points(point_array[(i*2) + 1],pacs_current) &&
+				compare_points(point_array[(i*2)],pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+					
+				break;
+			case entity_type_inky:
+				if (get_inky_mode() == fright &&
+				compare_points(point_array[(i*2) + 1],pacs_current) &&
+				compare_points(point_array[(i*2)],pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+			case entity_type_pinky:
+				if (get_pinky_mode() == fright &&
+				compare_points(point_array[(i*2) + 1],pacs_current) &&
+				compare_points(point_array[(i*2)],pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+			case entity_type_clyde:
+				if (get_clyde_mode() == fright &&
+				compare_points(point_array[(i*2) + 1],pacs_current) &&
+				compare_points(point_array[(i*2)],pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+
+			case entity_type_pacman: is_ghost_eaten[i] = false;
+				break;
+
+			default:
+				eputs("Error with function check_if_eat_ghost_real_time(), unknown entity, function aborted.\r\n");
+				break;
+		}
+	}
+//Freeing points
+	pacs_current = destroy_point(pacs_current);
+	pacs_target = destroy_point(pacs_target);
+}
+
 void set_ghosts_mode(GhostMode mode){
 	set_blinky_mode(mode);
 	set_inky_mode(mode);
 	set_pinky_mode(mode);
 	set_clyde_mode(mode);
+}
+
+void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order[], const uint8_t number_of_entities) {
+
+	for (uint8_t i = 0; i < number_of_entities; ++i) {
+
+		if (is_ghost_eaten[i] == true) {
+
+			switch (move_order[i]) {
+
+			case entity_type_blinky:
+				remove_grid_state_point(get_blinky_position(),cell_blinky);
+				add_grid_state(10,7,cell_blinky);
+				set_blinky_position(10,7);
+				set_blinky_mode(chase);
+				break;
+
+			case entity_type_inky:
+				remove_grid_state_point(get_inky_position(),cell_inky);
+				add_grid_state(10,6,cell_inky);
+				set_inky_position(10,6);
+				set_inky_mode(chase);
+				break;
+
+			case entity_type_pinky:
+				remove_grid_state_point(get_pinky_position(),cell_pinky);
+				add_grid_state(10,8,cell_pinky);
+				set_pinky_position(10,8);
+				set_pinky_mode(chase);
+				break;
+
+			case entity_type_clyde:
+				remove_grid_state_point(get_pinky_position(),cell_clyde);
+				add_grid_state(10,9,cell_clyde);
+				set_clyde_position(10,9);
+				set_clyde_mode(chase);
+				break;
+
+			case entity_type_pacman: 
+				continue;
+
+			default:
+				eputs("Error with reset_eaten_ghosts function, unknown entity type.\r\n");
+				break;
+			}
+		}
+		is_ghost_eaten[i] = false;
+	}
 }
 
 int main()
@@ -144,6 +245,7 @@ int main()
 	uint8_t pellet_count = 111;
 	const Point* target_point = NULL;
 	uint8_t god_mode_timer = 0;
+	bool is_ghost_eaten[] = {false, false, false, false, false};
 
 	turn_on_LEDS();
 	create_reset_grid();
@@ -152,7 +254,6 @@ int main()
 	
 	while (1)
 	{
-		
 		//check for button presses first
 		//for now we would just check directly, but for the case that we would want to save time,
 		//there would be a function that would check a list of numbers representing the button pressed
@@ -255,16 +356,25 @@ int main()
 		remove_grid_state_point(get_clyde_position() ,cell_clyde);
 		add_grid_state_point(entity_move_direction_store[9], cell_clyde);
 
-		move_entities(entity_move_direction_store,entity_move_order,5);
+		if (get_pacman_state() == God) check_if_eat_ghost_real_time(
+			entity_move_direction_store,
+			0,
+			entity_move_order,
+			is_ghost_eaten, 
+			5);
+
+		move_entities(entity_move_direction_store,entity_move_order,5, is_ghost_eaten);
 
 		//set the internal positions of each entity to their new positions
+
 		set_pacman_position(pacman_new_x, pacman_new_y);
 		copy_point_values(get_blinky_position(), entity_move_direction_store[3]);
 		copy_point_values(get_inky_position(), entity_move_direction_store[5]);
 		copy_point_values(get_pinky_position(), entity_move_direction_store[7]);
 		copy_point_values(get_clyde_position(), entity_move_direction_store[9]);
 
-	
+		reset_eaten_ghosts(is_ghost_eaten,entity_move_order,5);
+
 		if (god_mode_timer == 100)
 		{
 			set_ghosts_mode(fright);
@@ -275,7 +385,7 @@ int main()
 		    This eat function occurs after all movement and pacman simply eats all eligible ghosts, 
 			they must be in fright mode in order to be eaten.
 		*/	
-		if (get_pacman_state() == God) {check_if_eat_ghost();}
+		if (get_pacman_state() == God) {check_if_eat_ghost_static();}
 
 		if (god_mode_timer > 0)
 		{
@@ -289,41 +399,6 @@ int main()
 		
 		//This function should only really run once
 		set_scatter_mode_to_chase_mode();
-		
-		for (int i = 1; i <= 4; ++i) {
-
-			switch (entity_move_order[i]) {
-
-				case entity_type_blinky:
-				eputs("Blinky ");
-				if(get_blinky_mode() == fright) eputs("is in fright mode.\r\n");
-				if(get_blinky_mode() == chase) eputs("is in chase mode.\r\n");
-				break;
-
-				case entity_type_clyde: 
-				eputs("Clyde ");
-				if(get_clyde_mode() == fright) eputs("is in fright mode.\r\n");
-				if(get_clyde_mode() == chase) eputs("is in chase mode.\r\n");
-				break;
-
-				case entity_type_inky: 
-				eputs("Inky ");
-				if(get_inky_mode() == fright) eputs("is in fright mode.\r\n");
-				if(get_inky_mode() == chase) eputs("is in chase mode.\r\n");
-				break;
-
-				case entity_type_pinky:
-				eputs("Pinky ");
-				if(get_pinky_mode() == fright) eputs("is in fright mode.\r\n");
-				if(get_pinky_mode() == chase) eputs("is in chase mode.\r\n");
-				break;
-
-				default:
-				eputs("Logs are failing\r\n");
-				break;
-			}
-		}
-		eputs("\r\n");
 
 		if(pellet_count == 0) {
 			//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
@@ -332,6 +407,8 @@ int main()
 		}
 	}	
 	
+	//Free target point and all!!!
+
 	destroy_grid();
 	return 0;
 }

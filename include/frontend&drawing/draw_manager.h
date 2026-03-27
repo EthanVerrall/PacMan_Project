@@ -36,8 +36,8 @@ enum entity_type {
     entity_type_pacman = 5
 };
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[], 
-                    const uint8_t num_entites_to_animate);
+void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+    const uint8_t num_entites_to_animate, bool is_ghost_eaten[]);
 
 void eat_ghost(const enum entity_type ghost);
 
