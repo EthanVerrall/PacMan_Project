@@ -2,7 +2,7 @@
 #include "../include/music&sound/musical_notes.h"
 #include "../include/utils/events.h"
 
-void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
+//void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
 void playNote(uint32_t Freq)
 {	
 	// Counter is running at 65536 Hz 
@@ -25,4 +25,4 @@ void initSound()
 	TIM14->ARR = (48000000UL/(uint32_t)(TIM14->PSC))/((uint32_t)C4);
 	TIM14->CCR1 = TIM14->ARR/2;	
 	TIM14->CNT = 0;
-}
+} 

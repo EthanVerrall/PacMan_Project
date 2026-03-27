@@ -172,3 +172,12 @@ Pinky* _pinky(){
     //else pinky already exists, do not create a new instance
     return current_pinky;
 }
+
+Pinky* destroy_pinky(){
+    //get inky
+    Pinky* pinky = _pinky();
+    destroy_point(get_pinky_position());
+    destroy_point(get_pinky_scatter_position());
+    free(pinky);
+    return NULL;
+}

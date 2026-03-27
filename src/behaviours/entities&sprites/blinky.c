@@ -114,3 +114,12 @@ Blinky* _blinky(){
     //else blinky already exists, do not create a new instance
     return current_blinky;
 }
+
+Blinky* destroy_blinky(){
+    //get blinky
+    Blinky* blinky = _blinky();
+    destroy_point(get_blinky_position());
+    destroy_point(get_blinky_scatter_position());
+    free(blinky);
+    return NULL;
+}

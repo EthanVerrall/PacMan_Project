@@ -41,6 +41,8 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
 void eat_ghost(const enum entity_type ghost);
 
+void draw_pacman_dying(Point* pac_current, Point* ghost_current, enum entity_type ghost);
+
 void draw_current_page();
 
 void flicker_text();

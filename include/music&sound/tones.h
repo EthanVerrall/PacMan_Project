@@ -2,6 +2,7 @@
 #define PACMAN_MUSIC_H
 
 #include "musical_notes.h"
+#include "sound.h"
 #include <stdint.h>
 
 /**
@@ -16,12 +17,16 @@ void _feed();
 
 void pacman_intro_tune();
 
-void pacman_eating_pellet_sound();
+//void pacman_eating_pellet_sound();
 
-void fright_mode_siren();
+//void fright_mode_siren();
 
 void pacman_eating_ghost_sound();
 
 void death_sound();
+
+void waka_waka();
+
+void fright_mode_sound();
 
 #endif //!PACMAN_MUSIC_H

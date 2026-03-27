@@ -1,10 +1,6 @@
 #include "../include/frontend&drawing/draw_manager.h"
 #include "../include/grid.h"
-//from pacman_music
-//#include "../include/music&sound/sound.h"
-//#include "../include/music&sound/musical_notes.h"
-//#include "../include/music&sound/tones.h"
-//#include "serial.h"
+#include "../include/music&sound/tones.h"
 #include "../include/serial.h"
 #include "../include/utils/events.h"
 #include "../include/behaviours/entities&sprites/pacman.h"
@@ -13,30 +9,8 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 #include "../include/behaviours/entities&sprites/inky.h"
 
-//This function should work well 
 void check_if_eat_ghost_static() {
 
-//volatile uint32_t milliseconds;
-
-//int main()
-//{
-	//initClock();
-	//initSysTick();
-	//setupIO();
-	//initSound();
-	
-	//Creating a new grid, default drawing, and then destroying the grid
-	//create_reset_grid();
-	//draw_starting_grid();
-	//destroy_grid();
-
-	//pacman_intro();
-	//while(1){
-		//death_sound();
-		//delay(300);
-	//}
-
-	//return 0;
 	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
 	{	
 		set_blinky_mode(chase);
@@ -207,17 +181,91 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 void restart_game();
 
 //Tomorrow -- cleanup function
-void exit_game();
+void exit_game(Point* entity_store[], bool* play_game) {
+	//free feed
+	_inky_feed_next(false, true);
+	_blinky_feed_next(false, true);
+	_pinky_feed_next(false, true);
+	_clyde_feed_next(false, true);
+	
+	//destroy characters
+	destroy_blinky();
+	destroy_inky();
+	destroy_clyde();
+	destroy_pinky();
+	destroy_pacman();
+	destroy_grid();
+
+	for (uint8_t i = 1; i < 10; i+=2)
+	{
+		destroy_point(entity_store[i]);
+	}
+
+	//go back to the main page
+	set_menu_page(menu_page_home);
+	*play_game = false;
+}
+
+bool is_pacman_dead(Point* points[], enum entity_type entities[]) {
+
+	for (uint8_t i = 0; i < 5; ++i) {
+		if ((entities[i] != entity_type_pacman) &&
+			compare_points(points[(i*2) + 1],points[0]) &&
+			compare_points(points[(i*2)],points[1])) 
+		{
+			//Call death draw function
+			switch (entities[i]) {
+				case entity_type_blinky:
+					if (get_blinky_mode() != fright) 
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				case entity_type_inky:
+					if (get_inky_mode() != fright)
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				case entity_type_pinky:
+					if (get_pinky_mode() != fright)
+					
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+					
+				case entity_type_clyde:
+					if (get_clyde_mode() != fright)
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				default:
+				return false;
+			}	
+		}
+	}
+	
+	return false;
+}
 
 int main()
 {	
 	//set up grid and IO
 	SET_UP_STM();
-	turn_off_LEDS();
-	draw_current_page();
 
 	while (1) {
 
+		turn_off_LEDS();
+		draw_current_page();
 
 		while (get_active_menu_page() == menu_page_home) {
 
@@ -286,10 +334,12 @@ int main()
 		turn_on_LEDS();
 		create_reset_grid();
 		draw_current_page();
-		delay(1000);
+		//pacman_intro_tune();
 
-		while (play_game)
+		//main game loop here
+		while (play_game && get_pacman_life() != 0)
 		{	
+			//Pause menu is here
 			while (get_active_menu_page() == menu_page_pause) {	
 				flicker_text();
 
@@ -322,14 +372,12 @@ int main()
 
 				if (get_active_menu_page() == menu_page_home) {
 
-					//exit_game();
-					play_game = false;
-					draw_current_page();
-					delay(25);
+					exit_game(entity_move_direction_store, &play_game);
 				}
 			}
 			//Break to exit the game
 			if (!play_game) break;
+
 
 			//check for button presses first
 			//for now we would just check directly, but for the case that we would want to save time,
@@ -374,7 +422,7 @@ int main()
 					remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
 					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 
-					god_mode_timer = 15;
+					god_mode_timer = 20;
 					set_pacman_state(God);
 				}
 
@@ -433,6 +481,46 @@ int main()
 				5);
 			}
 
+			//Checking if pacman is dying
+			if (is_pacman_dead(entity_move_direction_store,entity_move_order)) {
+
+				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
+				remove_grid_state_point(entity_move_direction_store[3], cell_blinky);
+				remove_grid_state_point(entity_move_direction_store[5], cell_inky);
+				remove_grid_state_point(entity_move_direction_store[7], cell_pinky);
+				remove_grid_state_point(entity_move_direction_store[9], cell_clyde);
+
+				set_pacman_position(15,7);
+				set_pacman_state(Mortal);
+				god_mode_timer = 0;
+
+				set_blinky_position(10,7);
+				set_blinky_mode(chase);
+
+				set_inky_position(10,6);
+				set_inky_mode(chase);
+
+				set_pinky_position(10,8);
+				set_pinky_mode(chase);
+
+				set_clyde_position(10,9);
+				set_clyde_mode(chase);
+
+				add_grid_state(15,7,cell_pacman);
+				add_grid_state(10,6,cell_inky);
+				add_grid_state(10,7,cell_blinky);
+				add_grid_state(10,8,cell_pinky);
+				add_grid_state(10,9,cell_clyde);
+
+				uint8_t pacmans_life = get_pacman_life();
+				set_pacman_life(--pacmans_life);
+				display_life_LED(pacmans_life);
+				target_point = NULL;
+				draw_current_page();
+				delay(2000);
+				continue;
+			}
+
 			//Visual drawing for this turn of the game
 			move_entities(entity_move_direction_store,entity_move_order,5, is_ghost_eaten);
 
@@ -449,7 +537,7 @@ int main()
 			reset_eaten_ghosts(is_ghost_eaten,entity_move_order,5);
 
 			//Starting the counter for pacmans god mode and setting ghosts to fright mode
-			if (god_mode_timer == 15)
+			if (god_mode_timer == 20)
 			{
 				set_ghosts_mode(fright);
 			}
@@ -478,20 +566,60 @@ int main()
 			if(pellet_count == 0) {
 				//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
 				eputs("Game Completed, you win.\r\n");
+				target_point = NULL;
 				break;
 			}
+
+			//Checking if pacman died
+			/* if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
+
+				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
+				remove_grid_state_point(entity_move_direction_store[3], cell_blinky);
+				remove_grid_state_point(entity_move_direction_store[5], cell_inky);
+				remove_grid_state_point(entity_move_direction_store[7], cell_pinky);
+				remove_grid_state_point(entity_move_direction_store[9], cell_clyde);
+
+				set_pacman_position(15,7);
+				set_pacman_state(Mortal);
+				god_mode_timer = 0;
+
+				set_blinky_position(10,7);
+				set_blinky_mode(scatter);
+
+				set_inky_position(10,6);
+				set_inky_mode(scatter);
+
+				set_pinky_position(10,8);
+				set_pinky_mode(scatter);
+
+				set_clyde_position(10,9);
+				set_clyde_mode(scatter);
+
+				add_grid_state(15,7,cell_pacman);
+				add_grid_state(10,6,cell_inky);
+				add_grid_state(10,7,cell_blinky);
+				add_grid_state(10,8,cell_pinky);
+				add_grid_state(10,9,cell_clyde);
+
+				uint8_t pacmans_life = get_pacman_life();
+				set_pacman_life(--pacmans_life);
+				display_life_LED(pacmans_life);
+				target_point = NULL;
+				draw_current_page();
+				delay(2000);
+				continue;
+			} */
 
 			//Check if the user wants to pause
 			if (is_button_pause_pressed()) {
 				set_menu_page(menu_page_pause);
 				draw_current_page();
 			}
-		}	
 
-		//--------------------------------------------------------------------------
-		//Free target point and all !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//WE MUST STILL DO THIS 	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		//--------------------------------------------------------------------------	
+			target_point = NULL;
+		}	
+		//clean up
+		exit_game(entity_move_direction_store, &play_game);
 	}
 	return 0;	
 }

@@ -42,4 +42,6 @@ const bool get_blinky_behaviour_change();
 
 void set_blinky_behaviour_change(const bool change);
 
+Blinky* destroy_blinky();
+
 #endif

@@ -42,4 +42,6 @@ const bool get_pinky_behaviour_change();
 
 void set_pinky_behaviour_change(const bool change);
 
+Pinky* destroy_pinky();
+
 #endif

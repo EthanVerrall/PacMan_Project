@@ -4,6 +4,7 @@
 #include "stm32f031x6.h"
 #include "../include/music&sound/sound.h"
 #include "../include/frontend&drawing/display.h"
+#include "../include/serial.h"
 #include <stdbool.h>
 
 //Function is so important it deserves to be capitalised

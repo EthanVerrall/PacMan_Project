@@ -40,5 +40,7 @@ const bool get_inky_behaviour_change();
 
 void set_inky_behaviour_change(const bool change);
 
+Inky* destroy_inky();
+
 
 #endif

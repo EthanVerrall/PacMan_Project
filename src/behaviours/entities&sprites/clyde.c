@@ -133,3 +133,12 @@ Clyde* _clyde(){
     //else clyde already exists, do not create a new instance
     return current_clyde;
 }
+
+Clyde* destroy_clyde(){
+    //get clyde
+    Clyde* clyde = _clyde();
+    destroy_point(get_clyde_position());
+    destroy_point(get_clyde_scatter_position());
+    free(clyde);
+    return NULL;
+}

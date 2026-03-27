@@ -7,12 +7,10 @@ void SET_UP_STM() {
     //Initial STM startup
     initClock();
 	initSysTick();
+	setupIO();
     initSerial();
 	initSound();
 
-    //Peripherals startup
-    setupIO();
-	//turn_off_LEDS();
 }
 
 //---------------

@@ -43,5 +43,7 @@ const bool get_clyde_behaviour_change();
 
 void set_clyde_behaviour_change(const bool change);
 
+Clyde* destroy_clyde();
+
 
 #endif

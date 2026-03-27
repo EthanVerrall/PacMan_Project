@@ -218,3 +218,12 @@ Inky* _inky(){
     //else inky already exists, do not create a new instance
     return current_inky;
 }
+
+Inky* destroy_inky(){
+    //get inky
+    Inky* inky = _inky();
+    destroy_point(get_inky_position());
+    destroy_point(get_inky_scatter_position());
+    free(inky);
+    return NULL;
+}

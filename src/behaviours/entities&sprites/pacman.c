@@ -1,8 +1,8 @@
 #include "../../../include/behaviours/entities&sprites/pacman.h"
+#include "../include/serial.h"
 
 struct Pacman
 {
-    //something to do....
     int8_t dx; //change in x direction
     int8_t dy; //change in y direction
     uint8_t lives;
@@ -24,7 +24,6 @@ Pacman* _pacman(){
     pacman->state = Mortal;
     pacman->lives = 4;
 
-    
     return pacman;
 }
 
@@ -91,4 +90,27 @@ void set_pacman_direction(const PacDirection newdirection){
         pacman->dy = 0;
     }
     
+}
+
+uint8_t get_pacman_life(){
+    Pacman* pacman = _pacman();
+    return pacman->lives;
+}
+
+void set_pacman_life(uint8_t life){
+    Pacman* pacman = _pacman();
+    if (life > 4){
+        pacman->lives = 4;
+        return;
+    }
+
+    pacman->lives = life;
+}
+
+Pacman* destroy_pacman(){
+    Pacman* pacman = _pacman();
+    free(pacman->position);
+    pacman->position = NULL;
+    free(pacman);
+    return NULL;
 }

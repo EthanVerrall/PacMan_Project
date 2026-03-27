@@ -39,6 +39,12 @@ int8_t get_pac_dx();
 
 int8_t get_pac_dy();
 
+uint8_t get_pacman_life();
+
+void set_pacman_life(uint8_t life);
+
+Pacman* destroy_pacman();
+
 
 
 #endif//!PACMAN_H

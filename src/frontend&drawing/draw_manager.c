@@ -1044,6 +1044,83 @@ void eat_ghost(const enum entity_type ghost) {
     }
 }
 
+void draw_pacman_dying(Point* pac_current, Point* ghost_current, enum entity_type ghost) {
+
+    uint8_t ghost_x_pixel = get_y_point_coord(ghost_current) * 8;
+    uint8_t ghost_y_pixel = get_x_point_coord(ghost_current) * 8;
+
+    int8_t dx_pixels = (get_y_point_coord(pac_current) * 8) - (get_y_point_coord(ghost_current) * 8);
+    int8_t dy_pixels = (get_x_point_coord(pac_current) * 8) - (get_x_point_coord(ghost_current) * 8);
+
+    uint16_t* ghost_texture = NULL;
+    uint16_t* static_texture = point_at_static_texture(ghost_x_pixel,ghost_y_pixel);
+
+    //Moves RIGHT
+    if (dx_pixels == 8 && dy_pixels == 0) {
+        //Drawing over the tiles in the direction we are moving
+        ghost_texture = point_at_entity_texture(RIGHT,ghost);
+
+        for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
+        current_frame <= 8; 
+        ++current_frame, ++forward_offset, --backward_offset)  {
+            //Redrawing the tile we are leaving
+            putColumn(ghost_x_pixel + forward_offset, ghost_y_pixel, static_texture, forward_offset);
+            //Drawing moving ghost
+            putImage(ghost_x_pixel + current_frame, ghost_y_pixel, 8,8, ghost_texture, 0,0);
+            delay(75);
+        }
+    }
+    
+    //Moves DOWN
+    else if (dx_pixels == 0 && dy_pixels == 8) {
+        //Drawing over the tiles in the direction we are moving
+        ghost_texture = point_at_entity_texture(DOWN,ghost);
+
+        for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
+        current_frame <= 8; 
+        ++current_frame, ++forward_offset, --backward_offset)  {
+            
+            //Redrawing the tile we are leaving
+            putRow(ghost_x_pixel, ghost_y_pixel + forward_offset, static_texture, forward_offset);
+            //Drawing moving ghost
+            putImage(ghost_x_pixel, ghost_y_pixel + current_frame, 8,8, ghost_texture, 0,0);
+            delay(75);
+        }
+    }
+    //Moves LEFT
+    else if (dx_pixels == -8 && dy_pixels == 0) {
+        //Drawing over the tiles in the direction we are moving
+        ghost_texture = point_at_entity_texture(LEFT,ghost);
+
+        for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
+        current_frame <= 8; 
+        ++current_frame, ++forward_offset, --backward_offset)  {
+            
+            //Redrawing the tile we are leaving
+            putColumn(ghost_x_pixel + backward_offset, ghost_y_pixel, static_texture, backward_offset);
+            //Drawing moving ghost
+            putImage(ghost_x_pixel - current_frame, ghost_y_pixel, 8,8, ghost_texture, 0,0);
+            delay(75);
+        }
+    }
+    //Moves UP
+    else if (dx_pixels == 0 && dy_pixels == -8) {
+        //Drawing over the tiles in the direction we are moving
+        ghost_texture = point_at_entity_texture(UP,ghost);
+
+        for (uint8_t current_frame = 1, forward_offset = 0, backward_offset = 7; 
+        current_frame <= 8; 
+        ++current_frame, ++forward_offset, --backward_offset)  {
+            
+            //Redrawing the tile we are leaving
+            putRow(ghost_x_pixel, ghost_y_pixel + backward_offset, static_texture, backward_offset);
+            //Drawing moving ghost
+            putImage(ghost_x_pixel, ghost_y_pixel - current_frame, 8,8, ghost_texture, 0,0);
+            delay(75);
+        }
+    }
+}	
+
 //-------------------------------------------------------------- 
 //Dynamic movement / gameplay functions                          -- end
 //--------------------------------------------------------------

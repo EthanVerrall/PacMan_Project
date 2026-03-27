@@ -100,8 +100,6 @@ void move_cursor(const int8_t cursor_direction) {
             if (cursor_position == 2) {
                 set_menu_page(menu_page_home);
                 cursor_position = 0;
-                //Will need to call a function or have a function pointer perhaps?
-                //Ask joshua about this one???
             }
         break;
         
