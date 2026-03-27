@@ -288,9 +288,35 @@ void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu)
             break;
         }
     }
+   
+    if (active_menu == menu_page_pause) {
+
+        switch (cursor_position) {
+
+            case 0:
+                printText("Resume Game",20,60,0xFFFF,0);
+            break;
+
+            case 1:
+                printText("Restart Game",20,90,0xFFFF,0);
+            break;
+
+            case 2:
+                printText("Exit Game",20,120,0xFFFF,0);
+            break;
+        }
+    }
 }
 
 void draw_home_page() {
+
+    for (uint8_t y_pixel = 0; y_pixel < SCREEN_HEIGHT; ++ y_pixel) {
+        
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+
+            putPixel(x_pixel,y_pixel,0);
+        }
+    }
 
     putImage(7,5,114,32,main_menu_array,0,0);
 
@@ -299,6 +325,26 @@ void draw_home_page() {
     printTextX2("Scoreboard",6,100,0xFFFF,0);
 
     printTextX2("Options",6,130,0xFFFF,0);
+}
+
+void draw_pause_menu() {
+
+    for (uint8_t y_pixel = 0; y_pixel < SCREEN_HEIGHT; ++ y_pixel) {
+        
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+
+            putPixel(x_pixel,y_pixel,0);
+        }
+    }
+
+    printTextX2("Paused", 30,20,0xFFFF,0);
+
+    printText("Resume Game",20,60,0xFFFF,0);
+
+    printText("Restart Game",20,90,0xFFFF,0);
+
+    printText("Exit Game",20,120,0xFFFF,0);
+
 }
 
 void flicker_text() {
@@ -364,6 +410,63 @@ void flicker_text() {
             break;
         }  
     }
+
+    else if (get_active_menu_page() == menu_page_pause) {
+
+        switch (get_cursor_position()) {
+        
+        case 0:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Resume Game",20,60,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Resume Game",20,60,BLUE,0);
+            }
+            break;
+        
+        case 1:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Restart Game",20,90,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Restart Game",20,90,BLUE,0);
+            }
+            break;
+
+        case 2:
+            //Flicker is off
+            if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printText("Exit Game",20,120,YELLOW,0);
+            } 
+            //Flicker on
+            else {
+
+                flicker_switch = 0;
+                printText("Exit Game",20,120,BLUE,0);
+            }
+            break;
+        
+        default:
+            eputs("Unexpected cursor postion when attempting to flicker text on the pause page.\r\n");
+            printDecimal(get_cursor_position());
+            eputs("\r\n");
+            break;
+        }  
+    }
     else  {  
 
         eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
@@ -384,6 +487,10 @@ void draw_current_page() {
 
         case menu_page_game:
         redraw_entire_grid();
+        break;
+
+        case menu_page_pause:
+        draw_pause_menu();
         break;
 
         default:
@@ -868,7 +975,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             }  
         } 
         //End of frame, needs to delay now
-        delay(100);
+        delay(75);
     }
     //redraw_eaten_ghosts() -- HERE
 }

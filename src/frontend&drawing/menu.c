@@ -38,16 +38,16 @@ int8_t get_cursor_position() {
 }
 
 void move_cursor(const int8_t cursor_direction) {
-    //static uint8_t pause_menu_text[];
 
     if (get_active_menu_page() == menu_page_home) {
 
         switch (cursor_direction)
         {
-            case MOVE_CURSOR_RIGHT:
+        case MOVE_CURSOR_RIGHT:
             //Change to game
             if (cursor_position == 0) {
                 set_menu_page(menu_page_game);
+                cursor_position = 0;
             }
             
             //Other features not implemented yet
@@ -73,6 +73,59 @@ void move_cursor(const int8_t cursor_direction) {
 
         default:
             eputs("Unexpected cursor movement on the home page.\r\nCursor value: ");
+            printDecimal(cursor_position);
+        break;
+        }
+    }
+
+    if (get_active_menu_page() == menu_page_pause) {
+
+        switch (cursor_direction) {
+
+            case MOVE_CURSOR_RIGHT:
+            //Resume the game
+            if (cursor_position == 0) {
+                set_menu_page(menu_page_game);
+                cursor_position = 0;
+            }
+            
+            //Restarts the game
+            if (cursor_position == 1) {
+                set_menu_page(menu_page_game);
+                cursor_position = 0;
+                //Will need to call a function or have a function pointer perhaps?
+                //Ask joshua about this one???
+            }
+
+            //Exits the game
+            if (cursor_position == 2) {
+                set_menu_page(menu_page_home);
+                cursor_position = 0;
+                //Will need to call a function or have a function pointer perhaps?
+                //Ask joshua about this one???
+            }
+        break;
+        
+        case MOVE_CURSOR_DOWN:
+            if (cursor_position < 2) {
+                redraw_white_text(cursor_position, menu_page_pause);
+                ++cursor_position;
+            } 
+            break;
+
+        case MOVE_CURSOR_UP:
+            if (cursor_position > 0) {
+                redraw_white_text(cursor_position, menu_page_pause);
+                --cursor_position;
+            }
+            break;    
+        
+        case MOVE_CURSOR_left:
+        //Do nothing
+        break;
+
+        default:
+            eputs("Unexpected cursor movement on the pause page.\r\nCursor value: ");
             printDecimal(cursor_position);
         break;
         }

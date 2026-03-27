@@ -181,7 +181,7 @@ bool is_button_left_pressed() {
 
 bool is_button_pause_pressed() {
 
-	if ((GPIOB->IDR & (1<<1)) == 0) return true;
+	if ((GPIOA->IDR & (1<<1)) == 0) return true;
 	
 	return false;
 }
