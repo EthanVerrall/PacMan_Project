@@ -2,6 +2,7 @@
 #define POINT_H
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define INVALID_POINT 255
 

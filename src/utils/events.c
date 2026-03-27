@@ -1,8 +1,4 @@
 #include "../include/utils/events.h"
-#include "../include/serial.h"
-#include "../include/music&sound/sound.h"
-#include "../include/frontend&drawing/display.h"
-#include <stdbool.h>
 
 volatile uint32_t milliseconds;  //DO NOT TOUCH THIS VARIABLE, CLOCK USES THIS FOR INTERRUPTS AND TIMERS AND TICKS
 
@@ -225,7 +221,7 @@ void display_life_LED(const uint8_t pacman_lives) {
 			break;
 
 		default:
-			eputs("Error when trying to set LEDS using display_life_LED function.\r\n");
+			//eputs("Error when trying to set LEDS using display_life_LED function.\r\n");
 			break;
 	}
 }

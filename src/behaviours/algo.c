@@ -1,6 +1,5 @@
 #include "../include/behaviours/algo.h"
 #include "../include/grid.h"
-#include "../include/serial.h"
 
 void trace_path_a_star(const Point* current, const Point* target, Point* result[]){
 

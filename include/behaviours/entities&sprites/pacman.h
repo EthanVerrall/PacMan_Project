@@ -5,7 +5,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "../include/utils/point.h"
-#include "../include/serial.h"
 
 typedef enum {
     PAC_LEFT,

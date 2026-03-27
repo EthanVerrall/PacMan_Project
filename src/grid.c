@@ -1,10 +1,4 @@
 #include "../include/grid.h"
-#include "../include/serial.h"
-#include "../include/utils/point.h"
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 
 //Global variable to store our one and only grid
 //The entire file always needs to see the state of this pointer, this is the cleanest and simplest solution
@@ -21,7 +15,6 @@ bool create_singleton_grid() {
     //Cannot create a new grid if we already have one
     if (singleton_grid) {
 
-        eputs("Cannot create a new grid, grid is already pointing to valid heap memory.\r\n");
         return false;
     }
     //Making a new grid on the heap
@@ -31,7 +24,6 @@ bool create_singleton_grid() {
 
         if (!singleton_grid) {
 
-            eputs("Error in creating a new grid, function malloc failed to allocate memory!\r\n");
             return false;
         }
 
@@ -45,7 +37,6 @@ bool create_reset_grid() {
     if (!singleton_grid) {
 
         if (!create_singleton_grid()) {
-            eputs("Function create_reset_grid failed!\nGrid was unable to be created.\r\n");
             return false;
         }
     }
@@ -157,9 +148,6 @@ bool create_reset_grid() {
         
         if (safety_check != 320) {
 
-            eputs("Grid was not created, pattern used to fill grid did not contain 320 total cell enteries.\r\n"
-            "Grid was destroyed, heap memory was freed.\r\n");
-
             free(singleton_grid);
             singleton_grid = NULL;
             return false;
@@ -217,7 +205,7 @@ void set_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -226,10 +214,6 @@ void set_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
         {
             singleton_grid->grid_index[row][col] = state_bit_mask;
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, set_grid_state() failed\r\n.");
-        }
     }
 }
 
@@ -238,7 +222,7 @@ void set_grid_state_point(const Point* const point, const uint16_t state_bit_mas
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -250,10 +234,6 @@ void set_grid_state_point(const Point* const point, const uint16_t state_bit_mas
         {
             singleton_grid->grid_index[row][col] = state_bit_mask;
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, set_grid_state() failed\r\n.");
-        }
     }
 }
 
@@ -262,7 +242,7 @@ void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -271,10 +251,6 @@ void add_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
         {
             singleton_grid->grid_index[row][col] |= state_bit_mask;
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, add_grid_state() failed.\r\n");
-        }   
     }
 }
 
@@ -283,7 +259,7 @@ void add_grid_state_point(const Point* const point, const uint16_t state_bit_mas
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -295,10 +271,6 @@ void add_grid_state_point(const Point* const point, const uint16_t state_bit_mas
         {
             singleton_grid->grid_index[row][col] |= state_bit_mask;
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, add_grid_state() failed.\r\n");
-        }   
     }
 }
 
@@ -307,7 +279,7 @@ void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t stat
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -316,10 +288,6 @@ void remove_grid_state(const uint8_t row, const uint8_t col, const uint16_t stat
         {
             singleton_grid->grid_index[row][col] &= ~state_bit_mask;
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, remove_grid_state() failed.\r\n");
-        }   
     }
 }
 
@@ -328,7 +296,7 @@ void remove_grid_state_point(const Point* const point, const uint16_t state_bit_
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to update grid position, grid does not exist!\r\n");
+        return;
     } 
     else {
 
@@ -339,11 +307,7 @@ void remove_grid_state_point(const Point* const point, const uint16_t state_bit_
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
         {
             singleton_grid->grid_index[row][col] &= ~state_bit_mask;
-        } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, remove_grid_state() failed.\r\n");
-        }   
+        }  
     }
 }
 
@@ -351,8 +315,6 @@ uint16_t get_grid_state(const uint8_t row, const uint8_t col) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to retrieve grid positions state, grid does not exist!\r\n");
         
         return 0;
     } 
@@ -363,11 +325,7 @@ uint16_t get_grid_state(const uint8_t row, const uint8_t col) {
         {
             return singleton_grid->grid_index[row][col];
         } 
-        else 
-        {
-            eputs("Out of range for x and y point when accessing the grid, get_grid_state() failed\n.Returned value 0.\r\n");
-            return 0;
-        } 
+        return 0;
     }
 }
 
@@ -375,8 +333,6 @@ uint16_t get_grid_state_point(const Point* const point) {
 
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to retrieve grid positions state, grid does not exist!\r\n");
         
         return 0;
     } 
@@ -392,7 +348,6 @@ uint16_t get_grid_state_point(const Point* const point) {
         } 
         else 
         {
-            eputs("Out of range for x and y point when accessing the grid, get_grid_state() failed\n.Returned value 0.\r\n");
             return 0;
         } 
     }
@@ -403,7 +358,6 @@ bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bi
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to check grid positions state, grid does not exist!\r\n");
         return false;
     } 
     else {
@@ -420,7 +374,6 @@ bool is_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_bi
             }
         } 
 
-        eputs("Out of range for x and y point when accessing the grid, is_grid_state() failed\n.Returned false.\r\n");
         return false;
     }
 }
@@ -430,7 +383,6 @@ bool is_grid_state_point(const Point* const point, const uint16_t state_bit_mask
     //Checking if our grid is created
     if (!singleton_grid) {
 
-        eputs("Unable to check grid positions state, grid does not exist!\r\n");
         return false;
     } 
     else {
@@ -450,7 +402,6 @@ bool is_grid_state_point(const Point* const point, const uint16_t state_bit_mask
             }
         } 
 
-        eputs("Out of range for x and y point when accessing the grid, is_grid_state() failed\n.Returned false.\r\n");
         return false;
     }
 }
@@ -459,8 +410,6 @@ bool has_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
 
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to check grid positions state, grid does not exist!\r\n");
         
         return false;
     } 
@@ -477,8 +426,6 @@ bool has_grid_state(const uint8_t row, const uint8_t col, const uint16_t state_b
                 return false;
             }
         } 
-
-        eputs("Out of range for x and y point when accessing the grid, has_grid_state() failed.\r\nReturned false.\r\n");
         return false;
     }
 }
@@ -487,8 +434,6 @@ bool has_grid_state_point(const Point* const point, const uint16_t state_bit_mas
 
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to check grid positions state, grid does not exist!\r\n");
         
         return false;
     } 
@@ -508,8 +453,6 @@ bool has_grid_state_point(const Point* const point, const uint16_t state_bit_mas
                 return false;
             }
         } 
-
-        eputs("Out of range for x and y point when accessing the grid, has_grid_state() failed.\r\nReturned false.\r\n");
         return false;
     }
 }
@@ -519,8 +462,6 @@ bool compare_grid_states(const uint8_t row_1, const uint8_t col_1,
     
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to compare both grid position states, grid does not exist!\r\n");
         
         return false;
     } 
@@ -538,7 +479,6 @@ bool compare_grid_states(const uint8_t row_1, const uint8_t col_1,
             }  
         }
         
-        eputs("Out of range for x and y point when accessing the grid, compare_grid_states() failed.\r\nReturned false.\r\n");
         return false;
     }
 }
@@ -548,8 +488,6 @@ bool compare_grid_states_point(const Point* const point_1,
     
     //Checking if our grid is created
     if (!singleton_grid) {
-
-        eputs("Unable to compare both grid position states, grid does not exist!\r\n");
         
         return false;
     } 
@@ -573,7 +511,6 @@ bool compare_grid_states_point(const Point* const point_1,
             }  
         }
         
-        eputs("Out of range for x and y point when accessing the grid, compare_grid_states() failed.\r\nReturned false.\r\n");
         return false;
     }
 }
@@ -586,12 +523,6 @@ bool is_grid_alive() {
 }
 
 void destroy_grid() {
-
-    //Checking if our grid is created
-    if (!singleton_grid) {
-
-        eputs("Your grid was already NULL, nothing to free.\r\n");
-    }
     
     //Destroying our grid and marking global variable as NULL
     free(singleton_grid);

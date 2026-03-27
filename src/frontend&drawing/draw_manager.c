@@ -1,9 +1,4 @@
 #include "../include/frontend&drawing/draw_manager.h"
-#include "../include/serial.h"
-#include <stdint.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 
 #define RIGHT 0
 #define DOWN 1
@@ -256,8 +251,8 @@ void redraw_entire_grid () {
                     
                     default:
                         //Grid failed to draw
-                        eputs("Trying to draw unknown cell type.\r\n");
-                        eputs("Grid deleted from memory, draw has been aborted.\r\n");
+                        //eputs("Trying to draw unknown cell type.\r\n");
+                        //eputs("Grid deleted from memory, draw has been aborted.\r\n");
                         destroy_grid();
                     return;
                 }
@@ -404,9 +399,9 @@ void flicker_text() {
         break;
         
         default:
-            eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
-            printDecimal(get_cursor_position());
-            eputs("\r\n");
+            //eputs("Unexpected cursor postion when attempting to flicker text on the home page.\r\n");
+            //printDecimal(get_cursor_position());
+            //eputs("\r\n");
             break;
         }  
     }
@@ -461,15 +456,15 @@ void flicker_text() {
             break;
         
         default:
-            eputs("Unexpected cursor postion when attempting to flicker text on the pause page.\r\n");
-            printDecimal(get_cursor_position());
-            eputs("\r\n");
+            //eputs("Unexpected cursor postion when attempting to flicker text on the pause page.\r\n");
+            //printDecimal(get_cursor_position());
+            //eputs("\r\n");
             break;
         }  
     }
     else  {  
 
-        eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
+        //eputs("Trying to flicker text for a menu_page that can't flicker any text.\r\n");
         return;
     }
     delay(100);
@@ -494,7 +489,7 @@ void draw_current_page() {
         break;
 
         default:
-        eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
+        //eputs("Function draw_current_page failed to find the corresponding menu/page to draw.\r\n");
         break;
     }
 }
@@ -520,7 +515,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return blinky_array[blinky_left_eye];
             if (direction == UP) return blinky_array[blinky_top_eye];
 
-            eputs("Matching texture for blinky not found. NULL returned.\r\n");
+            //eputs("Matching texture for blinky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_clyde: 
@@ -530,7 +525,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return clyde_array[clyde_left_eye];
             if (direction == UP) return clyde_array[clyde_top_eye];
 
-            eputs("Matching texture for clyde not found. NULL returned.\r\n");
+            //eputs("Matching texture for clyde not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_inky:
@@ -540,7 +535,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return inky_array[inky_left_eye];
             if (direction == UP) return inky_array[inky_top_eye];
 
-            eputs("Matching texture for inky not found. NULL returned.\r\n");
+            //eputs("Matching texture for inky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_pinky:
@@ -550,7 +545,7 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
             if (direction == LEFT) return pinky_array[pinky_left_eye];
             if (direction == UP) return pinky_array[pinky_top_eye];
 
-            eputs("Matching texture for pinky not found. NULL returned.\r\n");
+            //eputs("Matching texture for pinky not found. NULL returned.\r\n");
             return NULL;
 
         case entity_type_pacman: 
@@ -607,10 +602,11 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
                 return pacman_array[pacman_top_closed];
             }
 
-            eputs("Matching texture for pacman not found. NULL returned.\r\n");
+            //eputs("Matching texture for pacman not found. NULL returned.\r\n");
             return NULL;
 
-        default: eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
+        default: 
+        //eputs("point_at_texture() was not passed a valid enum entity_type, function aborted, NULL returned.\r\n");
         return NULL;
     }
 }
@@ -634,7 +630,7 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 
     else 
     { 
-        eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
+        //eputs("point_at_static_texture() was unable to find the correct matching static bitmap array.\r\n");
         return NULL;
     }
 }
@@ -655,7 +651,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
         if (!point_array[i]) {
 
-            eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
+            //eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
             return;
         }
     }
@@ -675,7 +671,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 break;
 
             default:
-                eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
+                //eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
                 return;
         }
     }
@@ -790,15 +786,15 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                     break;
 
                     default:
-                    eputs("Texture could not be found for entity that is standing still\r\n."
-                            "Function move entites aborted.\r\n");
+                    //eputs("Texture could not be found for entity that is standing still\r\n."
+                    //        "Function move entites aborted.\r\n");
                     return;
                 }
             }
         }
         else 
         {
-            eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
+            //eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
             return;
         }
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
@@ -880,7 +876,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                eputs("Error with movement, function move_entity() did not work.\r\n");
+                //eputs("Error with movement, function move_entity() did not work.\r\n");
             }   
         }
 
@@ -971,7 +967,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                eputs("Error with movement, function move_entity() did not work.\r\n");
+                //eputs("Error with movement, function move_entity() did not work.\r\n");
             }  
         } 
         //End of frame, needs to delay now
@@ -1012,7 +1008,7 @@ void eat_ghost(const enum entity_type ghost) {
         break;    
 
         default:
-        eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
+        //eputs("Error finding pacmans texture in eat_ghost function. Function aborted\r\n");
         return;
     }
 
@@ -1043,11 +1039,10 @@ void eat_ghost(const enum entity_type ghost) {
             break;
 
         default:
-            eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
+            //eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
             return;  
     }
 }
-
 
 //-------------------------------------------------------------- 
 //Dynamic movement / gameplay functions                          -- end

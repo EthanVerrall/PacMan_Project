@@ -1,5 +1,4 @@
 #include "../include/frontend&drawing/menu.h"
-#include "../include/serial.h"
 
 //Default starting menu for pacman, the home page
 static enum menu_page active_menu = menu_page_home;
@@ -22,7 +21,7 @@ void set_menu_page(const enum menu_page new_menu) {
 
         //Unexpected menu passed to function
         default:
-            eputs("set_menu_page function failed. Invalid enum used, refer to enum menu_page in menu.h file.\r\n");
+            //eputs("set_menu_page function failed. Invalid enum used, refer to enum menu_page in menu.h file.\r\n");
             break;
     }
 }
@@ -72,8 +71,8 @@ void move_cursor(const int8_t cursor_direction) {
         break;
 
         default:
-            eputs("Unexpected cursor movement on the home page.\r\nCursor value: ");
-            printDecimal(cursor_position);
+            //eputs("Unexpected cursor movement on the home page.\r\nCursor value: ");
+            //printDecimal(cursor_position);
         break;
         }
     }
@@ -125,8 +124,8 @@ void move_cursor(const int8_t cursor_direction) {
         break;
 
         default:
-            eputs("Unexpected cursor movement on the pause page.\r\nCursor value: ");
-            printDecimal(cursor_position);
+            //eputs("Unexpected cursor movement on the pause page.\r\nCursor value: ");
+            //printDecimal(cursor_position);
         break;
         }
     }

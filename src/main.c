@@ -113,7 +113,7 @@ void check_if_eat_ghost_real_time(const Point* const point_array[], const int8_t
 				break;
 
 			default:
-				eputs("Error with function check_if_eat_ghost_real_time(), unknown entity, function aborted.\r\n");
+				//Do nothing
 				break;
 		}
 	}
@@ -169,7 +169,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				continue;
 
 			default:
-				eputs("Error with reset_eaten_ghosts function, unknown entity type.\r\n");
+				//Do nothing
 				break;
 			}
 		}

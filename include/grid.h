@@ -3,6 +3,7 @@
 #include "../include/utils/point.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define GRID_ROW_COUNT 20
 #define GRID_COL_COUNT 16
