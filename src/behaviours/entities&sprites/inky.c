@@ -171,35 +171,45 @@ const Point* _inky_feed_next(const bool reset, const bool end){
 }
 
 const Point* get_inky_scatter_position(){
-    return get_ghost_scatter_position(_inky());
+    return get_ghost_scatter_position(_inky(false));
 }
 
 const Point* get_inky_position(){
-    return get_ghost_position(_inky());
+    return get_ghost_position(_inky(false));
 }
 
 const bool set_inky_position(const uint8_t x, const uint8_t y){
-    return set_ghost_position(_inky(), x, y);
+    return set_ghost_position(_inky(false), x, y);
 }
 
 const GhostMode get_inky_mode(){
-    return get_ghost_mode(_inky());
+    return get_ghost_mode(_inky(false));
 }
 
 const void set_inky_mode(GhostMode mode){
-    return set_ghost_mode(_inky(), mode);
+    return set_ghost_mode(_inky(false), mode);
 }
 
 const bool get_inky_behaviour_change(){
-    return get_ghost_behaviour_change(_inky());
+    return get_ghost_behaviour_change(_inky(false));
 }
 
 void set_inky_behaviour_change(const bool change){
-    return set_ghost_behaviour(_inky(), change);
+    return set_ghost_behaviour(_inky(false), change);
 }
 
-Inky* _inky(){
+Inky* _inky(bool destroy){
     static Inky* current_inky = NULL;
+
+    if (destroy)
+    {
+        //destroy blinkys inner structs
+        destroy_point(get_inky_position());
+        destroy_point(get_inky_scatter_position());
+        free(current_inky);
+        current_inky = NULL;
+        return current_inky;
+    }
     
     if (!current_inky)
     {
@@ -221,9 +231,6 @@ Inky* _inky(){
 
 Inky* destroy_inky(){
     //get inky
-    Inky* inky = _inky();
-    destroy_point(get_inky_position());
-    destroy_point(get_inky_scatter_position());
-    free(inky);
+    Inky* inky = _inky(true);
     return NULL;
 }

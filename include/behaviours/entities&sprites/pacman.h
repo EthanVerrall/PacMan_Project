@@ -21,7 +21,7 @@ typedef enum{
 //pacman definition
 typedef struct Pacman Pacman;
 
-Pacman* _pacman();
+Pacman* _pacman(bool destroy);
 
 PacState get_pacman_state();
 

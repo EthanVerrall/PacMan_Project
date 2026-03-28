@@ -125,35 +125,45 @@ const Point* _pinky_feed_next(const bool reset, const bool end){
 }
 
 const Point* get_pinky_scatter_position(){
-    return get_ghost_scatter_position(_pinky());
+    return get_ghost_scatter_position(_pinky(false));
 }
 
 const Point* get_pinky_position(){
-    return get_ghost_position(_pinky());
+    return get_ghost_position(_pinky(false));
 }
 
 const bool set_pinky_position(const uint8_t x, const uint8_t y){
-    return set_ghost_position(_pinky(), x, y);
+    return set_ghost_position(_pinky(false), x, y);
 }
 
 const GhostMode get_pinky_mode(){
-    return get_ghost_mode(_pinky());
+    return get_ghost_mode(_pinky(false));
 }
 
 const void set_pinky_mode(GhostMode mode){
-    return set_ghost_mode(_pinky(), mode);
+    return set_ghost_mode(_pinky(false), mode);
 }
 
 const bool get_pinky_behaviour_change(){
-    return get_ghost_behaviour_change(_pinky());
+    return get_ghost_behaviour_change(_pinky(false));
 }
 
 void set_pinky_behaviour_change(const bool change){
-    return set_ghost_behaviour(_pinky(), change);
+    return set_ghost_behaviour(_pinky(false), change);
 }
 
-Pinky* _pinky(){
+Pinky* _pinky(bool destroy){
     static Pinky* current_pinky = NULL;
+
+    if (destroy)
+    {
+        //destroy blinkys inner structs
+        destroy_point(get_pinky_position());
+        destroy_point(get_pinky_scatter_position());
+        free(current_pinky);
+        current_pinky = NULL;
+        return current_pinky;
+    }
     
     if (!current_pinky)
     {
@@ -175,9 +185,6 @@ Pinky* _pinky(){
 
 Pinky* destroy_pinky(){
     //get inky
-    Pinky* pinky = _pinky();
-    destroy_point(get_pinky_position());
-    destroy_point(get_pinky_scatter_position());
-    free(pinky);
+    Pinky* pinky = _pinky(true);
     return NULL;
 }

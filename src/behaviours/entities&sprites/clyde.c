@@ -84,37 +84,47 @@ const Point* _clyde_feed_next(const bool reset, const bool end){
 }
 
 const Point* get_clyde_scatter_position(){
-    return get_ghost_scatter_position(_clyde());
+    return get_ghost_scatter_position(_clyde(false));
 }
 
 const Point* get_clyde_position(){
-    return get_ghost_position(_clyde());
+    return get_ghost_position(_clyde(false));
 }
 
 
 const bool set_clyde_position(const uint8_t x, const uint8_t y){
-    return set_ghost_position(_clyde(),x, y);
+    return set_ghost_position(_clyde(false),x, y);
 }
 
 const GhostMode get_clyde_mode(){
-    return get_ghost_mode(_clyde());
+    return get_ghost_mode(_clyde(false));
 }
 
 const void set_clyde_mode(GhostMode mode){
-    set_ghost_mode(_clyde(), mode);
+    set_ghost_mode(_clyde(false), mode);
 }
 
 const bool get_clyde_behaviour_change(){
-    return get_ghost_behaviour_change(_clyde());
+    return get_ghost_behaviour_change(_clyde(false));
 }
 
 void set_clyde_behaviour_change(const bool change){
-    return set_ghost_behaviour(_clyde(), change);
+    return set_ghost_behaviour(_clyde(false), change);
 }
 
 
-Clyde* _clyde(){
+Clyde* _clyde(bool destroy){
     static Clyde* current_clyde = NULL;
+
+    if (destroy)
+    {
+        //destroy clyde's inner structs
+        destroy_point(get_clyde_position());
+        destroy_point(get_clyde_scatter_position());
+        free(current_clyde);
+        current_clyde = NULL;
+        return current_clyde;
+    }
     
     if (!current_clyde)
     {
@@ -136,9 +146,6 @@ Clyde* _clyde(){
 
 Clyde* destroy_clyde(){
     //get clyde
-    Clyde* clyde = _clyde();
-    destroy_point(get_clyde_position());
-    destroy_point(get_clyde_scatter_position());
-    free(clyde);
+    Clyde* clyde = _clyde(true);
     return NULL;
 }

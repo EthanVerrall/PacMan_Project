@@ -65,37 +65,48 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
 }
 
 const Point* get_blinky_scatter_position(){
-    return get_ghost_scatter_position(_blinky());
+    return get_ghost_scatter_position(_blinky(false));
 }
 
 const Point* get_blinky_position(){
-    return get_ghost_position(_blinky());
+    return get_ghost_position(_blinky(false));
 }
 
 const bool set_blinky_position(const uint8_t x, const uint8_t y){
-    return set_ghost_position(_blinky(), x, y);
+    return set_ghost_position(_blinky(false), x, y);
 }
 
 const GhostMode get_blinky_mode(){
-    return get_ghost_mode(_blinky());
+    return get_ghost_mode(_blinky(false));
 }
 
 const void set_blinky_mode(GhostMode mode){
-    return set_ghost_mode(_blinky(), mode);
+    return set_ghost_mode(_blinky(false), mode);
 }
 
 const bool get_blinky_behaviour_change(){
-    return get_ghost_behaviour_change(_blinky());
+    return get_ghost_behaviour_change(_blinky(false));
 }
 
 void set_blinky_behaviour_change(const bool change){
-    return set_ghost_behaviour(_blinky(), change);
+    return set_ghost_behaviour(_blinky(false), change);
 }
 
 
 
-Blinky* _blinky(){
+Blinky* _blinky(bool destroy){
     static Blinky* current_blinky = NULL;
+
+    if (destroy)
+    {
+        //destroy blinkys inner structs
+        destroy_point(get_blinky_position());
+        destroy_point(get_blinky_scatter_position());
+        free(current_blinky);
+        current_blinky = NULL;
+        return current_blinky;
+    }
+    
     
     if (!current_blinky)
     {
@@ -116,10 +127,6 @@ Blinky* _blinky(){
 }
 
 Blinky* destroy_blinky(){
-    //get blinky
-    Blinky* blinky = _blinky();
-    destroy_point(get_blinky_position());
-    destroy_point(get_blinky_scatter_position());
-    free(blinky);
+    Blinky* blinky = _blinky(true);
     return NULL;
 }

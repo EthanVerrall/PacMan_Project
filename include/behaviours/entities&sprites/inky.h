@@ -12,7 +12,7 @@
 
 typedef Ghosts Inky;
 
-Inky* _inky();
+Inky* _inky(bool destroy);
 
 const Point* get_inky_scatter_position();
 

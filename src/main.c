@@ -159,7 +159,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				break;
 
 			case entity_type_clyde:
-				remove_grid_state_point(get_pinky_position(),cell_clyde);
+				remove_grid_state_point(get_clyde_position(),cell_clyde);
 				add_grid_state(10,9,cell_clyde);
 				set_clyde_position(10,9);
 				set_clyde_mode(chase);
@@ -289,12 +289,12 @@ int main()
 		}
 
 		//set up ghosts and pacman
-		Pacman* pacman_ref = _pacman();
+		Pacman* pacman_ref = _pacman(false);
 
-		Blinky* blinky_ref = _blinky();
-		Clyde* clyde_ref = _clyde();
-		Pinky* pinky_ref = _pinky();
-		Inky* inky_ref = _inky();
+		Blinky* blinky_ref = _blinky(false);
+		Clyde* clyde_ref = _clyde(false);
+		Pinky* pinky_ref = _pinky(false);
+		Inky* inky_ref = _inky(false);
 
 		Point* entity_move_direction_store[] = {
 
