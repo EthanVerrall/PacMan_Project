@@ -1,11 +1,12 @@
+/* 
 #ifndef STORE_H
 #define STORE_H
 
 #include "stm32f0xx_hal.h"
 #include <stdbool.h>
 
-/* our microcontroller has 32KB Flash. 
-    from the docs i found out that it works with pages 
+    Our microcontroller has 32KB Flash. 
+    from the docs I found out that it works with pages 
     each page are 1KB (1024 bytes) each.
     page 31 (would be the last page) should start at 0x08007C00. far away from code and consts
 
@@ -14,7 +15,7 @@
     By the way, saving it this way means that after the area where we save our data is wasted (about 1kb)... we can try offsetting maybe?
 
     Lets discuss this
-*/
+
 
 
 #define FLASH_USER_START_ADDR   0x08007C00 // page 31
@@ -44,13 +45,14 @@ uint16_t get_score();
 
 uint8_t get_sound_preferences();
 
-/**
+
  * IMPORTANT: because we can only erase by Page, we have to save all variables 
  * at once. Otherwise, setting the score would delete the name and vice versa fore each part stored.
  *
  * apparently the flash has to be locked and unlocked before and after access like a mutex
  * maybe it anticipated a multithreading environment... who knows
- */
+
 void save_all_settings(const char name[], uint16_t score, uint8_t sound_pref);
 
 #endif // STORE_H
+*/

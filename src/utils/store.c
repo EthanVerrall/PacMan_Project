@@ -1,4 +1,4 @@
-#include "../include/utils/store.h"
+/* #include "../include/utils/store.h"
 
 
 void Erase_User_Page() {
@@ -62,4 +62,4 @@ void save_all_settings(const char name[], uint16_t score, uint8_t sound_pref) {
 
     //lock after use
     HAL_FLASH_Lock();
-}
+} */

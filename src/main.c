@@ -330,7 +330,7 @@ int main()
 		const Point* target_point = NULL;
 		uint8_t god_mode_timer = 0;
 		bool is_ghost_eaten[] = {false, false, false, false, false};
-
+		
 		turn_on_LEDS();
 		create_reset_grid();
 		draw_current_page();
@@ -366,13 +366,11 @@ int main()
 				//Exit pause menu and resume the game
 				if (get_active_menu_page() == menu_page_game) {
 					draw_current_page();
-
 					delay(2000);
 				}
-
+				
 				if (get_active_menu_page() == menu_page_home) {
-
-					exit_game(entity_move_direction_store, &play_game);
+					play_game = false;
 				}
 			}
 			//Break to exit the game
@@ -495,16 +493,23 @@ int main()
 				god_mode_timer = 0;
 
 				set_blinky_position(10,7);
-				set_blinky_mode(chase);
+				set_blinky_mode(scatter);
+				//_blinky_feed_next(false,true);
 
 				set_inky_position(10,6);
-				set_inky_mode(chase);
+				set_inky_mode(scatter);
+				//_inky_feed_next(false,true);
+
 
 				set_pinky_position(10,8);
-				set_pinky_mode(chase);
+				set_pinky_mode(scatter);
+				//_pinky_feed_next(false,true);
+
 
 				set_clyde_position(10,9);
-				set_clyde_mode(chase);
+				set_clyde_mode(scatter);
+				//_clyde_feed_next(false,true);
+
 
 				add_grid_state(15,7,cell_pacman);
 				add_grid_state(10,6,cell_inky);
@@ -571,7 +576,7 @@ int main()
 			}
 
 			//Checking if pacman died
-			/* if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
+			if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
 
 				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
 				remove_grid_state_point(entity_move_direction_store[3], cell_blinky);
@@ -608,7 +613,7 @@ int main()
 				draw_current_page();
 				delay(2000);
 				continue;
-			} */
+			}
 
 			//Check if the user wants to pause
 			if (is_button_pause_pressed()) {
