@@ -80,7 +80,11 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
             while(g_cost[x][y] != 0)
             {
                 Point* p = create_point(x, y);
-                push(p, result);
+                if (!push(p, result))  // push failed, list is full
+                {
+                    free(p);
+                    break;
+                }
 
                 bool found = false;
 
