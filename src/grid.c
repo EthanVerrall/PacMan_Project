@@ -23,10 +23,10 @@ bool create_singleton_grid() {
         singleton_grid = malloc(sizeof(Grid));
 
         if (!singleton_grid) {
-
+            
             return false;
         }
-
+        eputs("Grid\r\n");
         return true;
     }
 }

@@ -15,8 +15,9 @@ Ghosts* create_ghost(
     GhostMode current_mode,
     Point* scatter_pos,
     bool is_behaviour_changed
-){
+){  
     Ghosts* ghost = (Ghosts*) malloc(sizeof(Ghosts));
+    eputs("Ghost created\r\n");
     ghost->currentMode = current_mode;
     ghost->ghost_type = ghost_type;
     ghost->position = current_position;

@@ -85,7 +85,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                     free(p);
                     break;
                 }
-
+                eputs("Cache_push\r\n");
                 bool found = false;
 
                 for(int8_t i = -1; i <= 1 && !found; i++)

@@ -26,7 +26,7 @@ Pacman* _pacman(bool destroy){
     if (pacman) return pacman;
 
     pacman = malloc(sizeof(Pacman));
-
+    eputs("Pacman created\r\n");
     pacman->dx = 0;
     pacman->dy = 0;
 

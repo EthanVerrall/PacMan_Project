@@ -869,7 +869,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
             }
 
 
-          //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
+            //We did not move, so we don't need to restore any grid states from beforehand since we still occupy the same cell
             else if (dx[i] == 0 && dy[i] == 0) {   
                 //do nothing
             }
@@ -973,7 +973,6 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         //End of frame, needs to delay now
         delay(75);
     }
-    //redraw_eaten_ghosts() -- HERE
 }
 
 void eat_ghost(const enum entity_type ghost) {
@@ -1087,6 +1086,7 @@ void draw_pacman_dying(Point* pac_current, Point* ghost_current, enum entity_typ
             delay(75);
         }
     }
+
     //Moves LEFT
     else if (dx_pixels == -8 && dy_pixels == 0) {
         //Drawing over the tiles in the direction we are moving

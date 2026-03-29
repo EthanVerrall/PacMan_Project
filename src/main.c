@@ -180,7 +180,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 //Tomorrow -- reset to defaults function
 void restart_game();
 
-//Tomorrow -- cleanup function
+//Cleanup function
 void exit_game(Point* entity_store[], bool* play_game) {
 	//free feed
 	_inky_feed_next(false, true);
