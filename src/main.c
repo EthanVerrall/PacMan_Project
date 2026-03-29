@@ -494,21 +494,21 @@ int main()
 
 				set_blinky_position(10,7);
 				set_blinky_mode(scatter);
-				//_blinky_feed_next(false,true);
+				_blinky_feed_next(false,true);
 
 				set_inky_position(10,6);
 				set_inky_mode(scatter);
-				//_inky_feed_next(false,true);
+				_inky_feed_next(false,true);
 
 
 				set_pinky_position(10,8);
 				set_pinky_mode(scatter);
-				//_pinky_feed_next(false,true);
+				_pinky_feed_next(false,true);
 
 
 				set_clyde_position(10,9);
 				set_clyde_mode(scatter);
-				//_clyde_feed_next(false,true);
+				_clyde_feed_next(false,true);
 
 
 				add_grid_state(15,7,cell_pacman);
@@ -590,15 +590,19 @@ int main()
 
 				set_blinky_position(10,7);
 				set_blinky_mode(scatter);
+				_blinky_feed_next(false,true);
 
 				set_inky_position(10,6);
 				set_inky_mode(scatter);
+				_inky_feed_next(false,true);
 
 				set_pinky_position(10,8);
 				set_pinky_mode(scatter);
+				_pinky_feed_next(false,true);
 
 				set_clyde_position(10,9);
 				set_clyde_mode(scatter);
+				_clyde_feed_next(false,true);
 
 				add_grid_state(15,7,cell_pacman);
 				add_grid_state(10,6,cell_inky);

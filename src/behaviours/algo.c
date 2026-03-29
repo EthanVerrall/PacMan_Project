@@ -7,7 +7,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
     if(!current || !target) return;
 
     //free array
-    free_arr(result); // -- @JOSHUA CHECK THIS ONE PLEASE
+    free_arr(result);
 
     Point* current_copy = create_point(
                 get_x_point_coord(current),
