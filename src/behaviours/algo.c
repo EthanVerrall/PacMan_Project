@@ -5,7 +5,7 @@ void trace_path_a_star(const Point* current, const Point* target, Point result[]
 
     //check for nullness
     if(!current || !target){ 
-        eputs("invalid current or target");
+        //eputs("invalid current or target");
         return;
     }
 
@@ -79,26 +79,10 @@ void trace_path_a_star(const Point* current, const Point* target, Point result[]
 
         //If the current_smallest is the target node, we have reached our target... Yay
         //so we reconstruct path from g_cost array
-        eputs("path::::::::\r\n");
-        eputs("current point::::::::\r\n");
-        printDecimal(current_smallest.x);
-        printDecimal(current_smallest.y);
-        eputs("target point::::::::\r\n");
-        printDecimal(target->x);
-        printDecimal(target->y);
-        eputs("\r\n");
-        /* eputs("open points::::::::\r\n");
-        for (size_t i = 0; i < MAXARRSIZE; i++)
-        {
-            printDecimal(open_points[i].x);
-            printDecimal(open_points[i].y);
-        }
-        eputs("::::::::\r\n"); */
-        
 
         if(compare_points(&current_smallest, target)) {
 
-            eputs("current smallest now equal to target\r\n");
+            //eputs("current smallest now equal to target\r\n");
 
             // Change these from uint8_t to int16_t
             int16_t x = current_smallest.x;
@@ -206,10 +190,30 @@ void trace_path_a_star(const Point* current, const Point* target, Point result[]
                 //but check first if open points is full, 
                 //if it is, don't worry, we return, trace path and then come back to trace the rest of the path
                 //it does not have to be the full path at all times and we have to save space on the microcontroller 
-                if (get_list_size(open_points) >= MAXARRSIZE) continue;
-                if (!search_item(&temp_neighbour,open_points))
-                {
-                    push(&temp_neighbour, open_points);
+                //if (get_list_size(open_points) >= MAXARRSIZE) continue;
+                if (!search_item(&temp_neighbour, open_points)) {
+                    if (get_list_size(open_points) >= MAXARRSIZE) {
+                        //find and replace the node with the highest f cost
+                        uint8_t worst_idx = 0;
+                        uint16_t worst_f = 0;
+                        for (uint8_t k = 0; k < MAXARRSIZE; k++) {
+                            if (!is_point_valid(&open_points[k])) continue;
+                            uint16_t f = g_cost[open_points[k].x][open_points[k].y] 
+                                    + calculate_heuristics_h(&open_points[k], target);
+                            if (f > worst_f) {
+                                worst_f = f;
+                                worst_idx = k;
+                            }
+                        }
+                        //only replace if our new node is actually better
+                        uint16_t new_f = g_cost[temp_neighbour.x][temp_neighbour.y]
+                                    + calculate_heuristics_h(&temp_neighbour, target);
+                        if (new_f < worst_f) {
+                            open_points[worst_idx] = temp_neighbour;
+                        }
+                    } else {
+                        push(&temp_neighbour, open_points);
+                    }
                 }
                 
                 //temp_neighbour = NULL; // open points owns temp_neighbour now

@@ -31,7 +31,7 @@ Point pop(Point list[]){
 
 uint8_t get_list_size(Point list[]){
     uint8_t i = 0;
-    while (i < MAXARRSIZE && is_point_valid(&list[0]))
+    while (i < MAXARRSIZE && is_point_valid(&list[i]))
         i++;
     return i;
 }
@@ -57,7 +57,7 @@ bool push(const Point* const item, Point list[]){
 
 bool search_item(const Point* item, Point list[]){
     uint8_t i = 0;
-    while (i < MAXARRSIZE && is_point_valid(item))
+    while (i < MAXARRSIZE && is_point_valid(&list[i]))
     {
         if (compare_points(item, &list[i])) return true;
         i++; 

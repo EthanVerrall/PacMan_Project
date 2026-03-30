@@ -119,6 +119,13 @@ const Point* get_inky_target_position()
 const Point _inky_feed_next(const bool reset, const bool end){
     static Point feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
     static uint8_t feed_pointer = 1;
+    for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+    {
+        if(feed_cache[i].x == 0 || feed_cache[i].y == 0) {
+            feed_cache[i].x = INVALID_POINT;
+            feed_cache[i].y = INVALID_POINT;
+        } 
+    }
 
     //game is finished, free all memory
     if (end)
