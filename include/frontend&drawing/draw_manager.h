@@ -36,12 +36,12 @@ enum entity_type {
     entity_type_pacman = 5
 };
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+void move_entities(const Point point_array[], const enum entity_type entity_array[],
     const uint8_t num_entites_to_animate, bool is_ghost_eaten[]);
 
 void eat_ghost(const enum entity_type ghost);
 
-void draw_pacman_dying(Point* pac_current, Point* ghost_current, enum entity_type ghost);
+void draw_pacman_dying(const Point pac_current, const Point ghost_current, enum entity_type ghost);
 
 void draw_current_page();
 

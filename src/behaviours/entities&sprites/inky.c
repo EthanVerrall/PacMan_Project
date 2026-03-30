@@ -5,10 +5,7 @@
 const Point* get_inky_target_position()
 {
     if (get_inky_mode() == scatter)
-    {
-        return create_point(get_x_point_coord(get_inky_scatter_position()),
-                            get_y_point_coord(get_inky_scatter_position()));
-    }
+        return create_point(get_inky_scatter_position()->x,get_inky_scatter_position()->y);
 
     if (get_inky_mode() == fright) 
         return get_random_point_on_grid(67); //67 67 67
@@ -17,11 +14,11 @@ const Point* get_inky_target_position()
     const Point* pacman_position = get_pacman_position();
     PacDirection pacman_direction = get_pacman_direction();
 
-    int16_t blinky_x = get_x_point_coord(blinky_position);
-    int16_t blinky_y = get_y_point_coord(blinky_position);
+    int16_t blinky_x = blinky_position->x;
+    int16_t blinky_y = blinky_position->y;
 
-    int16_t ref_x = get_x_point_coord(pacman_position);
-    int16_t ref_y = get_y_point_coord(pacman_position);
+    int16_t ref_x = pacman_position->x;
+    int16_t ref_y = pacman_position->y;
 
     // 2 tiles ahead of Pac-Man
     if (pacman_direction == PAC_LEFT)
@@ -105,10 +102,7 @@ const Point* get_inky_target_position()
 
         if (!is_target_set)
         {
-            return create_point(
-                get_x_point_coord(pacman_position),
-                get_y_point_coord(pacman_position)
-            );
+            return create_point(pacman_position->x,pacman_position->y);
         }
     }
 
@@ -122,29 +116,27 @@ const Point* get_inky_target_position()
  * 
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
 */
-const Point* _inky_feed_next(const bool reset, const bool end){
-    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
+const Point _inky_feed_next(const bool reset, const bool end){
+    static Point feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
     static uint8_t feed_pointer = 1;
 
     //game is finished, free all memory
     if (end)
     {
-        free_arr(feed_cache);
-        return NULL;
+        clear_arr(feed_cache);
+        Point invalid_point = {INVALID_POINT, INVALID_POINT};
+        return invalid_point;
     }
 
-    //-11 4
-    
-
-    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty or reset is passed
+    if (reset || feed_pointer == MAX_FEED_CAPACITY || !is_point_valid(&feed_cache[feed_pointer])) //only force a reset if the feed_cache is actually empty 
+                                                                                 //or reset is passed
     {
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        Point* temp_point = create_point(get_x_point_coord(get_inky_position()),
-                                         get_y_point_coord(get_inky_position()));
-        Point* target = get_inky_target_position();
-        
+        Point* temp_point = create_point(get_inky_position()->x,
+                                         get_inky_position()->y);
+        const Point* target = get_inky_target_position();
         trace_path_a_star(
             temp_point,
             target,
@@ -155,17 +147,16 @@ const Point* _inky_feed_next(const bool reset, const bool end){
         //reset the behaviour change incase a behaviour change cause the reset
         set_inky_behaviour_change(false);
         feed_pointer = 1; //set back to one to restart
-
         //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
         //or in a case where the algorithm was not able to properly get the ghost path, return the current position of the ghost
-        if (!feed_cache[feed_pointer])
+        if (!is_point_valid(&feed_cache[feed_pointer]))
         {
-            Point* position_deep_cpy = create_deep_copy(get_inky_position()); //meaning inky just doesn't move
-            feed_cache[feed_pointer] = position_deep_cpy; //add to feed cache so that it would be freed on the next call to a*
+            feed_cache[feed_pointer] = create_deep_copy_stack(get_inky_position());
             return feed_cache[feed_pointer];
         }
     }
-    Point* curr_point_to_return = feed_cache[feed_pointer];
+    Point curr_point_to_return = feed_cache[feed_pointer];
+    
     feed_pointer++;
     return curr_point_to_return;
 }

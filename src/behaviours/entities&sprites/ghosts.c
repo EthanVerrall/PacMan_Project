@@ -54,8 +54,8 @@ const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y){
     //also make sure the current position is not a wall... sanity check
     if (get_grid_state(x,y) && !is_grid_state(x, y, cell_wall)){
         //set the points using the point functionality
-        set_x_point_coord(x,ghost->position);
-        set_y_point_coord(y,ghost->position);
+        ghost->position->x = x;
+        ghost->position->y = y;
         return true;
     }
     eputs("grid state was not set for the ghost. The ghosts position was out of bounds\r\n");

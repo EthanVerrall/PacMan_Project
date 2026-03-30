@@ -1,15 +1,13 @@
 #include "../include/behaviours/entities&sprites/blinky.h"
+#include "serial.h"
 
 const Point* get_blinky_target_position(){
-    if (get_blinky_mode() == scatter) 
-        return create_point(get_x_point_coord(get_blinky_scatter_position()),
-                            get_y_point_coord(get_blinky_scatter_position()));
+    if (get_blinky_mode() == scatter) return create_deep_copy(get_blinky_scatter_position());
 
     if (get_blinky_mode() == fright) 
         return get_random_point_on_grid(67); //67 67 67
     
-    return create_point(get_x_point_coord(get_pacman_position()),
-                        get_y_point_coord(get_pacman_position())); //chases pacman directly
+    return create_deep_copy(get_pacman_position()); //chases pacman directly
 }
 
 /** 
@@ -19,26 +17,41 @@ const Point* get_blinky_target_position(){
  * 
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
 */
-const Point* _blinky_feed_next(const bool reset, const bool end){
-    static Point* feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
+Point _blinky_feed_next(const bool reset, const bool end){
+    static Point feed_cache[MAX_FEED_CAPACITY]; //use 50 as the max capacity of the feed... 60 bytes
+    for (uint8_t i = 0; i < MAX_FEED_CAPACITY; i++)
+    {
+        if(feed_cache[i].x == 0 || feed_cache[i].y == 0) {
+            feed_cache[i].x = INVALID_POINT;
+            feed_cache[i].y = INVALID_POINT;
+        } 
+    }
+    
     static uint8_t feed_pointer = 1;
+    /* eputs("Printing blinky feed before \r\n");
+    for (size_t i = 0; i < MAX_FEED_CAPACITY; i++)
+    {
+        printDecimal(feed_cache[i].x);   
+        printDecimal(feed_cache[i].y);   
+    }
+    eputs("\r\n"); */
 
     //game is finished, free all memory
     if (end)
     {
-        free_arr(feed_cache);
-        return NULL;
+        clear_arr(feed_cache);
+        Point invalid_point = {INVALID_POINT, INVALID_POINT};
+        return invalid_point;
     }
-
-    if (reset || feed_pointer == MAX_FEED_CAPACITY || !feed_cache[feed_pointer]) //only force a reset if the feed_cache is actually empty 
+    if (reset || feed_pointer == MAX_FEED_CAPACITY || !is_point_valid(&feed_cache[feed_pointer])) //only force a reset if the feed_cache is actually empty 
                                                                                  //or reset is passed
     {
         //get the ghosts target position
         //get the ghosts actual position
         //the algorithm would trace a path based on both positions
-        Point* temp_point = create_point(get_x_point_coord(get_blinky_position()),
-                                         get_y_point_coord(get_blinky_position()));
-        Point* target = get_blinky_target_position();
+        Point* temp_point = create_point(get_blinky_position()->x,
+                                         get_blinky_position()->y);
+        const Point* target = get_blinky_target_position();
         trace_path_a_star(
             temp_point,
             target,
@@ -51,14 +64,22 @@ const Point* _blinky_feed_next(const bool reset, const bool end){
         feed_pointer = 1; //set back to one to restart
         //if the value pointed to be the feed_pointer is NULL, i.e meaning the ghost is on the target or somewhat close,
         //or in a case where the algorithm was not able to properly get the ghost path, return the current position of the ghost
-        if (!feed_cache[feed_pointer])
+        if (!is_point_valid(&feed_cache[feed_pointer]))
         {
-            Point* position_deep_cpy = create_deep_copy(get_blinky_position()); //meaning blinky just doesn't move
-            feed_cache[feed_pointer] = position_deep_cpy; //add to feed cache so that it would be freed on the next call to a*
+            feed_cache[feed_pointer] = create_deep_copy_stack(get_blinky_position());
             return feed_cache[feed_pointer];
         }
     }
-    Point* curr_point_to_return = feed_cache[feed_pointer];
+
+    /* eputs("Printing blinky feed after\r\n");
+    for (size_t i = 0; i < MAX_FEED_CAPACITY; i++)
+    {
+        printDecimal(feed_cache[i].x);   
+        printDecimal(feed_cache[i].y);   
+    }
+    eputs("\r\n"); */
+
+    Point curr_point_to_return = feed_cache[feed_pointer];
     
     feed_pointer++;
     return curr_point_to_return;

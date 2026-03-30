@@ -226,8 +226,8 @@ void set_grid_state_point(const Point* const point, const uint16_t state_bit_mas
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points our in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -263,8 +263,8 @@ void add_grid_state_point(const Point* const point, const uint16_t state_bit_mas
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points our in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -300,8 +300,8 @@ void remove_grid_state_point(const Point* const point, const uint16_t state_bit_
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points are in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -338,8 +338,8 @@ uint16_t get_grid_state_point(const Point* const point) {
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points  in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -387,8 +387,8 @@ bool is_grid_state_point(const Point* const point, const uint16_t state_bit_mask
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points our in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -439,8 +439,8 @@ bool has_grid_state_point(const Point* const point, const uint16_t state_bit_mas
     } 
     else {
 
-        const uint8_t row = get_x_point_coord(point);
-        const uint8_t col = get_y_point_coord(point);
+        const uint8_t row = point->x;
+        const uint8_t col = point->y;
 
         //Checking if our points our in valid arrray bounds
         if (row < GRID_ROW_COUNT && col < GRID_COL_COUNT) 
@@ -493,11 +493,11 @@ bool compare_grid_states_point(const Point* const point_1,
     } 
     else {
 
-        const uint8_t row_1 = get_x_point_coord(point_1);
-        const uint8_t col_1 = get_y_point_coord(point_1);
+        const uint8_t row_1 = point_1->x;
+        const uint8_t col_1 = point_1->y;
 
-        const uint8_t row_2 = get_x_point_coord(point_2);
-        const uint8_t col_2 = get_y_point_coord(point_2);
+        const uint8_t row_2 = point_2->x;
+        const uint8_t col_2 = point_2->y;
 
         //Checking if our points our in valid arrray bounds
         if (row_1 < GRID_ROW_COUNT && row_2 < GRID_ROW_COUNT && col_1 < GRID_COL_COUNT && col_2 < GRID_COL_COUNT) {

@@ -1,11 +1,5 @@
 #include "../include/utils/point.h"
 
-struct Point {
-
-    uint8_t x;
-    uint8_t y;
-};
-
 Point* create_point(const uint8_t x, const uint8_t y) {
 
     Point* const new_point = calloc(1, sizeof(Point));
@@ -43,6 +37,22 @@ Point* create_deep_copy(const Point* const struct_point) {
     }
 }
 
+Point create_deep_copy_stack(const Point* const struct_point) {
+
+    if (!struct_point) {
+
+        Point invalid_point = {INVALID_POINT, INVALID_POINT};
+
+        return invalid_point;
+    }
+
+    Point new_point;
+    new_point.x = struct_point->x;
+    new_point.y = struct_point->y;
+
+    return new_point;
+}
+
 bool copy_point_values(Point* const dest_point, const Point* const source_point) {
 
     if (dest_point && source_point) {
@@ -58,36 +68,6 @@ bool copy_point_values(Point* const dest_point, const Point* const source_point)
     }
 }
 
-
-bool copy_point_x(Point* const dest_point, const Point* const source_point) {
-
-    if (dest_point && source_point) {
-
-        dest_point->x = source_point->x;
-
-        return true;
-    } 
-    else {
-
-        return false;
-    }
-}
-
-bool copy_point_y(Point* const dest_point, const Point* const source_point) {
-
-    if(dest_point && source_point) {
-
-        dest_point->y = source_point->y;
-
-        return true;
-    } 
-    else {
-
-        return false;
-    }
-
-}
-
 bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point) {
 
     if (!struct_point) {
@@ -99,49 +79,6 @@ bool set_point_coord(const uint8_t x, const uint8_t y, Point* const struct_point
         struct_point->y = y;
         return true;
     }
-}
-
-bool set_x_point_coord(const uint8_t x, Point* const struct_point) {
-
-    if (!struct_point) {
-
-        return false;
-    } 
-    else {
-        struct_point->x = x;
-        return true;
-    }
-}
-
-bool set_y_point_coord(const uint8_t y, Point* const struct_point) {
-
-    if (!struct_point) {
-
-        return false;
-    } 
-    else {
-        struct_point->y = y;
-        return true;
-    }
-}
-
-uint8_t get_x_point_coord(const Point* const struct_point) {
-
-    if (!struct_point) {
-
-        return INVALID_POINT;
-    }
-
-    return struct_point->x;
-}
-
-uint8_t get_y_point_coord(const Point* const struct_point) {
-
-    if (!struct_point) {
-
-        return INVALID_POINT;
-    }
-    return struct_point->y;
 }
 
 bool move_point(const int8_t x, const int8_t y, Point* const struct_point) {
@@ -172,6 +109,18 @@ bool compare_points(const Point* const struct_point_1, const Point* const struct
     else {
         return false;
     }
+}
+
+bool is_point_valid(const Point* const struct_point){
+    if (struct_point)
+    {
+        if (struct_point->x == INVALID_POINT || struct_point->y == INVALID_POINT) return false;
+
+        return true;
+    }
+
+    return false;
+    
 }
 
 Point* destroy_point(Point* struct_point) {

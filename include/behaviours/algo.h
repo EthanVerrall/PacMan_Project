@@ -16,7 +16,7 @@
  *  NOTE: Important Information
  * REMEMBER TO FREE THE ARRAY RETURNED BY THE A STAR ALGORITHM
 */
-void trace_path_a_star(const Point* current,const Point* target, Point* result[]);
+void trace_path_a_star(const Point* current,const Point* target, Point result[]);
 
 //since a* works, we decided to not need this function.... 
 //The definition remains in the case where we would want to use later
@@ -28,5 +28,5 @@ void trace_path_a_star(const Point* current,const Point* target, Point* result[]
 uint8_t calculate_heuristics_h(const Point* current, const Point* target);
 
 
-Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]);
+Point find_smallest_heuristic_node(Point list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]);
 #endif //!ALGO_H

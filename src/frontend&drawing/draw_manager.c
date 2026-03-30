@@ -643,15 +643,15 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 //Dynamic movement / gameplay functions                          -- Start
 //--------------------------------------------------------------
 
-void move_entities(const Point* const point_array[], const enum entity_type entity_array[],
+void move_entities(const Point point_array[], const enum entity_type entity_array[],
     const uint8_t num_entites_to_animate, bool is_ghost_eaten[]) {
 
     //Enusring we don't derference a NULL POINTER
     for (uint8_t i = 0; i < (num_entites_to_animate * 2); ++i) {
 
-        if (!point_array[i]) {
+        if (!is_point_valid(&point_array[i])) {
 
-            //eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
+            eputs("Points passed to move_entities function are invalid or NULL. Function aborted!\r\n");
             return;
         }
     }
@@ -671,7 +671,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
                 break;
 
             default:
-                //eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
+                eputs("Entities in entity array are an invalid type, function move_entities aborted!\r\n");
                 return;
         }
     }
@@ -709,11 +709,12 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
   
     for (uint8_t i = 0; i < num_entites_to_animate; ++i) {
 
-        x_old_pixel_array[i] = get_y_point_coord(point_array[i * 2]) * 8;
-        y_old_pixel_array[i] = get_x_point_coord(point_array[i * 2]) * 8;
 
-        x_new_pixel_array[i] = get_y_point_coord(point_array[(i * 2) + 1]) * 8;
-        y_new_pixel_array[i] = get_x_point_coord(point_array[(i * 2) + 1]) * 8;
+        x_old_pixel_array[i] = (point_array[i * 2].y) * 8;
+        y_old_pixel_array[i] = (point_array[i * 2].x) * 8;
+
+        x_new_pixel_array[i] = (point_array[(i * 2) + 1]).y * 8;
+        y_new_pixel_array[i] = (point_array[(i * 2) + 1]).x * 8;
 
         //Target - Original
         dx[i] = x_new_pixel_array[i] - x_old_pixel_array[i];
@@ -794,7 +795,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
         }
         else 
         {
-            //eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
+            eputs("Unexpected dx and dy value function move_entity() aborted.\r\n");
             return;
         }
         static_tiles_array[i] = point_at_static_texture(x_old_pixel_array[i], y_old_pixel_array[i]);
@@ -876,7 +877,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                //eputs("Error with movement, function move_entity() did not work.\r\n");
+                eputs("Error with movement, function move_entity() did not work.\r\n");
             }   
         }
 
@@ -967,7 +968,7 @@ void move_entities(const Point* const point_array[], const enum entity_type enti
 
             //Error case
             else {
-                //eputs("Error with movement, function move_entity() did not work.\r\n");
+                eputs("Error with movement, function move_entity() did not work.\r\n");
             }  
         } 
         //End of frame, needs to delay now
@@ -1011,8 +1012,8 @@ void eat_ghost(const enum entity_type ghost) {
         return;
     }
 
-    const uint8_t pac_x_pixel = get_y_point_coord(get_pacman_position()) * 8;
-    const uint8_t pac_y_pixel = get_x_point_coord(get_pacman_position()) * 8;
+    const uint8_t pac_x_pixel = get_pacman_position()->y * 8;
+    const uint8_t pac_y_pixel = get_pacman_position()->x * 8;
 
     putImage(pac_x_pixel, pac_y_pixel, 8,8, enitity_texture, 0,0);
 
@@ -1043,16 +1044,16 @@ void eat_ghost(const enum entity_type ghost) {
     }
 }
 
-void draw_pacman_dying(Point* pac_current, Point* ghost_current, enum entity_type ghost) {
+void draw_pacman_dying(const Point pac_current, const Point ghost_current, enum entity_type ghost) {
 
-    uint8_t ghost_x_pixel = get_y_point_coord(ghost_current) * 8;
-    uint8_t ghost_y_pixel = get_x_point_coord(ghost_current) * 8;
+    uint8_t ghost_x_pixel = ghost_current.y * 8;
+    uint8_t ghost_y_pixel = ghost_current.x * 8;
 
-    int8_t dx_pixels = (get_y_point_coord(pac_current) * 8) - (get_y_point_coord(ghost_current) * 8);
-    int8_t dy_pixels = (get_x_point_coord(pac_current) * 8) - (get_x_point_coord(ghost_current) * 8);
+    int8_t dx_pixels = (pac_current.y * 8) - (ghost_current.y * 8);
+    int8_t dy_pixels = (pac_current.x * 8) - (ghost_current.x * 8);
 
-    uint16_t* ghost_texture = NULL;
-    uint16_t* static_texture = point_at_static_texture(ghost_x_pixel,ghost_y_pixel);
+    const uint16_t* ghost_texture = NULL;
+    const uint16_t* const static_texture = point_at_static_texture(ghost_x_pixel,ghost_y_pixel);
 
     //Moves RIGHT
     if (dx_pixels == 8 && dy_pixels == 0) {

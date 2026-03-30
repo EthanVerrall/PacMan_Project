@@ -1,18 +1,20 @@
 #include "../include/behaviours/algo.h"
 #include "../include/grid.h"
 
-void trace_path_a_star(const Point* current, const Point* target, Point* result[]){
+void trace_path_a_star(const Point* current, const Point* target, Point result[]){
 
     //check for nullness
-    if(!current || !target) return;
+    if(!current || !target){ 
+        eputs("invalid current or target");
+        return;
+    }
 
     //free array
-    free_arr(result);
+    clear_arr(result);
 
-    Point* current_copy = create_point(
-                get_x_point_coord(current),
-                get_y_point_coord(current)
-            );
+    Point current_copy = create_deep_copy_stack(current);
+
+    
 
     //as per the discussion we had, g_cost grid is now going to be included, 
     //It would be a mutli-dimensional array of the same size as the board, and it would store the g_cost of each point on the board
@@ -22,37 +24,43 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
 
     //initialise the g_cost grid with a default value of 255 (which is the maximum value for an unsigned 8 bit integer, 
     //it is also a value that is not possible to be reached by the g_cost since the maximum path length is 29)
-    for (size_t i = 0; i < GRID_ROW_COUNT; i++)
+    for (uint8_t i = 0; i < GRID_ROW_COUNT; i++)
     {
-        for (size_t j = 0; j < GRID_COL_COUNT; j++)
+        for (uint8_t j = 0; j < GRID_COL_COUNT; j++)
         {
             g_cost[i][j] = 255;
         }
     }
 
     //the g_cost of the starting point is 0 since we are already there
-    g_cost[get_x_point_coord(current_copy)][get_y_point_coord(current_copy)] = 0;
+    g_cost[current_copy.x][current_copy.y] = 0;
 
     //track our open and closed points
     //this is just in the case that max path is changed maybe or removed
     //so that we do not scratch our heads over errors later
     #ifdef MAX_PATH_STORE
-        Point* open_points[MAX_PATH_STORE];
-         for (size_t i = 0; i < MAX_PATH_STORE; i++) open_points[i] = NULL;
+        Point open_points[MAX_PATH_STORE];
+         for (uint8_t i = 0; i < MAX_PATH_STORE; i++) {
+            open_points[i].x = INVALID_POINT;
+            open_points[i].y = INVALID_POINT;
+         }
     #else
-        Point* open_points[30];
-        for (size_t i = 0; i < 30; i++) open_points[i] = NULL;
+        Point open_points[30];
+        for (uint8_t i = 0; i < 30; i++) {
+            open_points[i].x = INVALID_POINT;
+            open_points[i].y = INVALID_POINT;
+        }
     #endif
     
 
-    if(compare_points(current_copy, target)){
+    if(compare_points(&current_copy, target)){
         //this means that we are already at our target
-        push(current_copy, result);
+        push(&current_copy, result);
         return;
     }
 
     //add the current to open_points
-    push(current_copy, open_points);
+    push(&current_copy, open_points);
     
     while (is_not_empty(open_points))
     {
@@ -60,32 +68,52 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
         //find the node with the lowest
         //now we need to also consider the g_cost here as well
         //NOTE: f(n) = g(n) + h(n) .... yup
-        Point* current_smallest = find_smallest_heuristic_node(open_points, target, g_cost);
-        if (!current_smallest) break;
+        Point current_smallest = find_smallest_heuristic_node(open_points, target, g_cost);
+        if (!is_point_valid(&current_smallest)) break;
 
-        uint8_t currents_x = get_x_point_coord(current_smallest);
-        uint8_t currents_y = get_y_point_coord(current_smallest);
+        uint8_t currents_x = current_smallest.x;
+        uint8_t currents_y = current_smallest.y;
 
         //remove from the open points
-        remove_item(current_smallest, open_points);
+        remove_item(&current_smallest, open_points);
 
         //If the current_smallest is the target node, we have reached our target... Yay
         //so we reconstruct path from g_cost array
-        if(compare_points(current_smallest, target)) {
+        eputs("path::::::::\r\n");
+        eputs("current point::::::::\r\n");
+        printDecimal(current_smallest.x);
+        printDecimal(current_smallest.y);
+        eputs("target point::::::::\r\n");
+        printDecimal(target->x);
+        printDecimal(target->y);
+        eputs("\r\n");
+        /* eputs("open points::::::::\r\n");
+        for (size_t i = 0; i < MAXARRSIZE; i++)
+        {
+            printDecimal(open_points[i].x);
+            printDecimal(open_points[i].y);
+        }
+        eputs("::::::::\r\n"); */
+        
+
+        if(compare_points(&current_smallest, target)) {
+
+            eputs("current smallest now equal to target\r\n");
 
             // Change these from uint8_t to int16_t
-            int16_t x = get_x_point_coord(current_smallest);
-            int16_t y = get_y_point_coord(current_smallest);
+            int16_t x = current_smallest.x;
+            int16_t y = current_smallest.y;
 
             while(g_cost[x][y] != 0)
             {
-                Point* p = create_point(x, y);
-                if (!push(p, result))  // push failed, list is full
+                Point p;
+                p.x = x;
+                p.y = y;
+                if (!push(&p, result))  // push failed, list is full
                 {
-                    free(p);
+                    eputs("push failed, list is full\r\n");
                     break;
                 }
-                eputs("Cache_push\r\n");
                 bool found = false;
 
                 for(int8_t i = -1; i <= 1 && !found; i++)
@@ -112,12 +140,13 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 }
                 if (!found) break;
             }
-            Point* start_node = create_point(x, y);  // x,y are now at the start (g_cost == 0)
-            push(start_node, result);
+            Point start_node;  // x,y are now at the start (g_cost == 0)
+            start_node.x = x;
+            start_node.y = y;
+            push(&start_node, result);
             //because we work backwards, we would need to reverse the list so feed can properly get the path forwards
-            free(current_smallest);
             reverse_points(result);
-            free_arr(open_points);
+            //free_arr(open_points);
             return;
         }
 
@@ -142,10 +171,9 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
 
                 //check if the grid position is out of bounds
                 //get grid state returns zero if and only if the grid is out of bound
-                //FLAG: NEEDS TO BE FIXED
 
-                int nx = (int)get_x_point_coord(current_smallest) + i;
-                int ny = (int)get_y_point_coord(current_smallest) + j;
+                int16_t nx = (int16_t)current_smallest.x + i;
+                int16_t ny = (int16_t)current_smallest.y + j;
 
                 if (nx < 0 || ny < 0 || nx >= GRID_ROW_COUNT || ny >= GRID_COL_COUNT)
                     continue;
@@ -163,7 +191,6 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 uint8_t neighbour_x = nx;
                 uint8_t neighbour_y = ny;
 
-
                 //obvivously if the neighbour has a g_cost that is greater than or equal to the g_cost of the current smallest, 
                 //then we ignore it as it is not a better path
                 if (tentative_g >= g_cost[neighbour_x][neighbour_y]) continue;
@@ -171,36 +198,26 @@ void trace_path_a_star(const Point* current, const Point* target, Point* result[
                 //as all the checks have passed, we will now update the g_cost of the neighbour to be the tentative g_cost
                 g_cost[neighbour_x][neighbour_y] = tentative_g;
 
-                Point* temp_neighbour = create_point(
-                    neighbour_x,
-                    neighbour_y
-                );
+                Point temp_neighbour;
+                temp_neighbour.x = neighbour_x;
+                temp_neighbour.y = neighbour_y;
 
                 //just add the neighbour to the open list to be checked in the next iteration
                 //but check first if open points is full, 
                 //if it is, don't worry, we return, trace path and then come back to trace the rest of the path
                 //it does not have to be the full path at all times and we have to save space on the microcontroller 
-                if (get_list_size(open_points) >= MAXARRSIZE) {
-                    free(temp_neighbour);
-                    continue;
-                };
-                if (!search_item(temp_neighbour,open_points))
+                if (get_list_size(open_points) >= MAXARRSIZE) continue;
+                if (!search_item(&temp_neighbour,open_points))
                 {
-                    push(temp_neighbour, open_points);
-                }
-                else
-                {
-                    free(temp_neighbour);
+                    push(&temp_neighbour, open_points);
                 }
                 
-                temp_neighbour = NULL; // open points owns temp_neighbour now
+                //temp_neighbour = NULL; // open points owns temp_neighbour now
             }
         }
-
-        free(current_smallest);
     }
     //free the open points, closed points might be freed by the user of this function
-    free_arr(open_points);
+    //free_arr(open_points);
 
     return;
 }
@@ -217,9 +234,11 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
     //since we heuristic val can be negative, we use an int here to just prevent overflow
     //we would cast to an unsigned int afterwards
 
-    int8_t _heuristic_val_x = get_x_point_coord(current) - get_x_point_coord(target);
+    int8_t _heuristic_val_x = current->x - target->x;
 
-    int8_t _heuristic_val_y = get_y_point_coord(current) - get_y_point_coord(target);
+    int8_t _heuristic_val_y = current->y - target->y;
+
+    
 
     if (_heuristic_val_x < 0) _heuristic_val_x = -_heuristic_val_x;
     if (_heuristic_val_y < 0) _heuristic_val_y = -_heuristic_val_y;
@@ -229,15 +248,18 @@ uint8_t calculate_heuristics_h(const Point* current, const Point* target){
 }
 
 //This algorithm calculates the smallest heuristic node in the a list (most likely the open list)
-Point* find_smallest_heuristic_node(Point* list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]){
-    if (!list || !list[0]) return NULL;
-    uint16_t smallest_heuristic_f = g_cost[get_x_point_coord(list[0])][get_y_point_coord(list[0])] + calculate_heuristics_h(list[0], target);
-    Point* smallest_heuristic_point = list[0];
+Point find_smallest_heuristic_node(Point list[], const Point* target, const uint8_t g_cost[][GRID_COL_COUNT]){
+    if (!list || !is_point_valid(&list[0])) {
+        Point temp = {INVALID_POINT, INVALID_POINT};
+        return temp;
+    }
+    uint16_t smallest_heuristic_f = g_cost[list[0].x][list[0].y] + calculate_heuristics_h(&list[0], target);
+    Point smallest_heuristic_point = list[0];
     for (uint8_t i = 1; i < get_list_size(list); i++)
     {
-        if (list[i]){
-            uint8_t current_heuristic = calculate_heuristics_h(list[i], target);
-            uint8_t current_g = g_cost[get_x_point_coord(list[i])][get_y_point_coord(list[i])];
+        if (is_point_valid(&list[i])){
+            uint8_t current_heuristic = calculate_heuristics_h(&list[i], target);
+            uint8_t current_g = g_cost[list[i].x][list[i].y];
             uint16_t current_f = current_g + current_heuristic;
             if (current_f < smallest_heuristic_f)
             {

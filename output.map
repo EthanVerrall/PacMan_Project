@@ -11,7 +11,7 @@ c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm
 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
                               .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o (malloc)
 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
-                              .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o (memcpy)
+                              .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o (memcpy)
 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
                               c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (memset)
 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
@@ -141,15 +141,15 @@ Discarded input sections
  .text.set_grid_state
                 0x00000000       0x20 .pio\build\nucleo_f031k6\src\grid.o
  .text.set_grid_state_point
-                0x00000000       0x34 .pio\build\nucleo_f031k6\src\grid.o
+                0x00000000       0x24 .pio\build\nucleo_f031k6\src\grid.o
  .text.get_grid_state_point
-                0x00000000       0x34 .pio\build\nucleo_f031k6\src\grid.o
+                0x00000000       0x28 .pio\build\nucleo_f031k6\src\grid.o
  .text.is_grid_state_point
-                0x00000000       0x40 .pio\build\nucleo_f031k6\src\grid.o
+                0x00000000       0x30 .pio\build\nucleo_f031k6\src\grid.o
  .text.compare_grid_states
                 0x00000000       0x3c .pio\build\nucleo_f031k6\src\grid.o
  .text.compare_grid_states_point
-                0x00000000       0x60 .pio\build\nucleo_f031k6\src\grid.o
+                0x00000000       0x44 .pio\build\nucleo_f031k6\src\grid.o
  .text.is_grid_alive
                 0x00000000       0x10 .pio\build\nucleo_f031k6\src\grid.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\main.o
@@ -187,8 +187,6 @@ Discarded input sections
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\serial.o
  .text.egetchar
                 0x00000000       0x14 .pio\build\nucleo_f031k6\src\serial.o
- .text.printDecimal
-                0x00000000       0x46 .pio\build\nucleo_f031k6\src\serial.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
@@ -222,7 +220,7 @@ Discarded input sections
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\arr.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\arr.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\arr.o
- .text.pop      0x00000000       0x2c .pio\build\nucleo_f031k6\src\utils\arr.o
+ .text.pop      0x00000000       0x38 .pio\build\nucleo_f031k6\src\utils\arr.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\events.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\events.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\events.o
@@ -243,10 +241,6 @@ Discarded input sections
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\point.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\point.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\point.o
- .text.copy_point_x
-                0x00000000       0x12 .pio\build\nucleo_f031k6\src\utils\point.o
- .text.copy_point_y
-                0x00000000       0x12 .pio\build\nucleo_f031k6\src\utils\point.o
  .text.move_point
                 0x00000000       0x16 .pio\build\nucleo_f031k6\src\utils\point.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\utils\random.o
@@ -315,12 +309,8 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
  .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
  .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
- .text          0x00000000      0x1d4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
  .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
  .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .debug_frame   0x00000000       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .ARM.attributes
-                0x00000000       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
  .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
  .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
@@ -431,7 +421,7 @@ LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gc
                 0x08000000                g_pfnVectors
                 0x080000c0                . = ALIGN (0x4)
 
-.text           0x080000c0     0x3cf8
+.text           0x080000c0     0x4178
                 0x080000c0                . = ALIGN (0x4)
  *(.text)
  .text          0x080000c0       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
@@ -443,727 +433,730 @@ LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gc
                 0x08000130                __aeabi_uidiv
                 0x08000130                __udivsi3
                 0x0800023c                __aeabi_uidivmod
- .text          0x08000244        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
-                0x08000244                __aeabi_idiv0
-                0x08000244                __aeabi_ldiv0
- .text          0x08000248       0x40 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
-                0x08000248                __aeabi_uldivmod
- .text          0x08000288       0x54 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
-                0x08000288                __muldi3
-                0x08000288                __aeabi_lmul
- .text          0x080002dc      0x184 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-                0x080002dc                __udivmoddi4
- .text          0x08000460       0x18 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
-                0x08000460                __clzdi2
- .text          0x08000478       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
-                0x08000478                __clzsi2
+ .text          0x08000244      0x1d4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+                0x08000244                __divsi3
+                0x08000244                __aeabi_idiv
+                0x08000410                __aeabi_idivmod
+ .text          0x08000418        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                0x08000418                __aeabi_idiv0
+                0x08000418                __aeabi_ldiv0
+ .text          0x0800041c       0x40 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+                0x0800041c                __aeabi_uldivmod
+ .text          0x0800045c       0x54 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+                0x0800045c                __muldi3
+                0x0800045c                __aeabi_lmul
+ .text          0x080004b0      0x184 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                0x080004b0                __udivmoddi4
+ .text          0x08000634       0x18 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+                0x08000634                __clzdi2
+ .text          0x0800064c       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                0x0800064c                __clzsi2
  *(.text*)
  .text.Reset_Handler
-                0x080004b4       0x50 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-                0x080004b4                Reset_Handler
+                0x08000688       0x50 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
+                0x08000688                Reset_Handler
  .text.Default_Handler
-                0x08000504        0x2 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-                0x08000504                TIM1_CC_IRQHandler
-                0x08000504                HardFault_Handler
-                0x08000504                PVD_IRQHandler
-                0x08000504                PendSV_Handler
-                0x08000504                NMI_Handler
-                0x08000504                I2C1_IRQHandler
-                0x08000504                SPI1_IRQHandler
-                0x08000504                EXTI2_3_IRQHandler
-                0x08000504                ADC1_IRQHandler
-                0x08000504                TIM17_IRQHandler
-                0x08000504                RTC_IRQHandler
-                0x08000504                TIM16_IRQHandler
-                0x08000504                TIM3_IRQHandler
-                0x08000504                EXTI4_15_IRQHandler
-                0x08000504                RCC_IRQHandler
-                0x08000504                DMA1_Channel1_IRQHandler
-                0x08000504                Default_Handler
-                0x08000504                TIM14_IRQHandler
-                0x08000504                DMA1_Channel4_5_IRQHandler
-                0x08000504                EXTI0_1_IRQHandler
-                0x08000504                SVC_Handler
-                0x08000504                WWDG_IRQHandler
-                0x08000504                TIM2_IRQHandler
-                0x08000504                DMA1_Channel2_3_IRQHandler
-                0x08000504                FLASH_IRQHandler
-                0x08000504                USART1_IRQHandler
-                0x08000504                TIM1_BRK_UP_TRG_COM_IRQHandler
+                0x080006d8        0x2 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
+                0x080006d8                TIM1_CC_IRQHandler
+                0x080006d8                HardFault_Handler
+                0x080006d8                PVD_IRQHandler
+                0x080006d8                PendSV_Handler
+                0x080006d8                NMI_Handler
+                0x080006d8                I2C1_IRQHandler
+                0x080006d8                SPI1_IRQHandler
+                0x080006d8                EXTI2_3_IRQHandler
+                0x080006d8                ADC1_IRQHandler
+                0x080006d8                TIM17_IRQHandler
+                0x080006d8                RTC_IRQHandler
+                0x080006d8                TIM16_IRQHandler
+                0x080006d8                TIM3_IRQHandler
+                0x080006d8                EXTI4_15_IRQHandler
+                0x080006d8                RCC_IRQHandler
+                0x080006d8                DMA1_Channel1_IRQHandler
+                0x080006d8                Default_Handler
+                0x080006d8                TIM14_IRQHandler
+                0x080006d8                DMA1_Channel4_5_IRQHandler
+                0x080006d8                EXTI0_1_IRQHandler
+                0x080006d8                SVC_Handler
+                0x080006d8                WWDG_IRQHandler
+                0x080006d8                TIM2_IRQHandler
+                0x080006d8                DMA1_Channel2_3_IRQHandler
+                0x080006d8                FLASH_IRQHandler
+                0x080006d8                USART1_IRQHandler
+                0x080006d8                TIM1_BRK_UP_TRG_COM_IRQHandler
  .text.SystemInit
-                0x08000506        0x2 .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o
-                0x08000506                SystemInit
+                0x080006da        0x2 .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o
+                0x080006da                SystemInit
  .text.calculate_heuristics_h
-                0x08000508       0x4e .pio\build\nucleo_f031k6\src\behaviours\algo.o
-                0x08000508                calculate_heuristics_h
+                0x080006dc       0x36 .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                0x080006dc                calculate_heuristics_h
  .text.find_smallest_heuristic_node
-                0x08000556       0x8a .pio\build\nucleo_f031k6\src\behaviours\algo.o
-                0x08000556                find_smallest_heuristic_node
+                0x08000712       0x98 .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                0x08000712                find_smallest_heuristic_node
+ *fill*         0x080007aa        0x2 
  .text.trace_path_a_star
-                0x080005e0      0x26c .pio\build\nucleo_f031k6\src\behaviours\algo.o
-                0x080005e0                trace_path_a_star
- .text._blinky  0x0800084c       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800084c                _blinky
+                0x080007ac      0x28c .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                0x080007ac                trace_path_a_star
+ .text._blinky  0x08000a38       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000a38                _blinky
  .text.get_blinky_scatter_position
-                0x08000890        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x08000890                get_blinky_scatter_position
+                0x08000a7c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000a7c                get_blinky_scatter_position
  .text.get_blinky_position
-                0x0800089e        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800089e                get_blinky_position
+                0x08000a8a        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000a8a                get_blinky_position
  .text._blinky.part.0
-                0x080008ac       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000a98       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
  .text.set_blinky_position
-                0x080008d0       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x080008d0                set_blinky_position
+                0x08000abc       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000abc                set_blinky_position
  .text.get_blinky_mode
-                0x080008e6        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x080008e6                get_blinky_mode
+                0x08000ad2        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000ad2                get_blinky_mode
  .text.get_blinky_target_position
-                0x080008f4       0x46 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x080008f4                get_blinky_target_position
+                0x08000ae0       0x2a .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000ae0                get_blinky_target_position
  .text.set_blinky_mode
-                0x0800093a       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800093a                set_blinky_mode
+                0x08000b0a       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000b0a                set_blinky_mode
  .text.get_blinky_behaviour_change
-                0x0800094c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800094c                get_blinky_behaviour_change
+                0x08000b1c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000b1c                get_blinky_behaviour_change
  .text.set_blinky_behaviour_change
-                0x0800095a       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800095a                set_blinky_behaviour_change
+                0x08000b2a       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000b2a                set_blinky_behaviour_change
  .text._blinky_feed_next
-                0x0800096c       0x94 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x0800096c                _blinky_feed_next
+                0x08000b3c       0xe4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000b3c                _blinky_feed_next
  .text.destroy_blinky
-                0x08000a00        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                0x08000a00                destroy_blinky
- *fill*         0x08000a0a        0x2 
- .text._clyde   0x08000a0c       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000a0c                _clyde
+                0x08000c20        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                0x08000c20                destroy_blinky
+ *fill*         0x08000c2a        0x2 
+ .text._clyde   0x08000c2c       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000c2c                _clyde
  .text.get_clyde_scatter_position
-                0x08000a50        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000a50                get_clyde_scatter_position
+                0x08000c70        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000c70                get_clyde_scatter_position
  .text.get_clyde_position
-                0x08000a5e        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000a5e                get_clyde_position
+                0x08000c7e        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000c7e                get_clyde_position
  .text._clyde.part.0
-                0x08000a6c       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000c8c       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
  .text.set_clyde_position
-                0x08000a90       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000a90                set_clyde_position
+                0x08000cb0       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000cb0                set_clyde_position
  .text.get_clyde_mode
-                0x08000aa6        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000aa6                get_clyde_mode
+                0x08000cc6        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000cc6                get_clyde_mode
  .text.get_clyde_target_position
-                0x08000ab4       0x90 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000ab4                get_clyde_target_position
+                0x08000cd4       0x70 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000cd4                get_clyde_target_position
  .text.set_clyde_mode
-                0x08000b44       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000b44                set_clyde_mode
+                0x08000d44       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000d44                set_clyde_mode
  .text.get_clyde_behaviour_change
-                0x08000b56        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000b56                get_clyde_behaviour_change
+                0x08000d56        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000d56                get_clyde_behaviour_change
  .text.set_clyde_behaviour_change
-                0x08000b64       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000b64                set_clyde_behaviour_change
- *fill*         0x08000b76        0x2 
+                0x08000d64       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000d64                set_clyde_behaviour_change
+ *fill*         0x08000d76        0x2 
  .text._clyde_feed_next
-                0x08000b78       0x94 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000b78                _clyde_feed_next
+                0x08000d78       0xc4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000d78                _clyde_feed_next
  .text.destroy_clyde
-                0x08000c0c        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                0x08000c0c                destroy_clyde
- *fill*         0x08000c16        0x2 
+                0x08000e3c        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x08000e3c                destroy_clyde
+ *fill*         0x08000e46        0x2 
  .text.create_ghost
-                0x08000c18       0x34 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000c18                create_ghost
+                0x08000e48       0x34 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000e48                create_ghost
  .text.get_ghost_scatter_position
-                0x08000c4c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000c4c                get_ghost_scatter_position
+                0x08000e7c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000e7c                get_ghost_scatter_position
  .text.get_ghost_position
-                0x08000c50        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000c50                get_ghost_position
+                0x08000e80        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000e80                get_ghost_position
  .text.set_ghost_position
-                0x08000c54       0x48 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000c54                set_ghost_position
+                0x08000e84       0x3c .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000e84                set_ghost_position
  .text.get_ghost_mode
-                0x08000c9c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000c9c                get_ghost_mode
+                0x08000ec0        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000ec0                get_ghost_mode
  .text.set_ghost_mode
-                0x08000ca0        0x8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000ca0                set_ghost_mode
+                0x08000ec4        0x8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000ec4                set_ghost_mode
  .text.get_ghost_behaviour_change
-                0x08000ca8        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000ca8                get_ghost_behaviour_change
+                0x08000ecc        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000ecc                get_ghost_behaviour_change
  .text.set_ghost_behaviour
-                0x08000cac        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-                0x08000cac                set_ghost_behaviour
- .text._inky    0x08000cb0       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000cb0                _inky
+                0x08000ed0        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08000ed0                set_ghost_behaviour
+ .text._inky    0x08000ed4       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000ed4                _inky
  .text.get_inky_scatter_position
-                0x08000cf4        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000cf4                get_inky_scatter_position
+                0x08000f18        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f18                get_inky_scatter_position
  .text.get_inky_position
-                0x08000d02        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000d02                get_inky_position
+                0x08000f26        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f26                get_inky_position
  .text._inky.part.0
-                0x08000d10       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f34       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
  .text.set_inky_position
-                0x08000d34       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000d34                set_inky_position
+                0x08000f58       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f58                set_inky_position
  .text.get_inky_mode
-                0x08000d4a        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000d4a                get_inky_mode
+                0x08000f6e        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f6e                get_inky_mode
  .text.get_inky_target_position
-                0x08000d58      0x140 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000d58                get_inky_target_position
+                0x08000f7c      0x11c .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08000f7c                get_inky_target_position
  .text.set_inky_mode
-                0x08000e98       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000e98                set_inky_mode
+                0x08001098       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08001098                set_inky_mode
  .text.get_inky_behaviour_change
-                0x08000eaa        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000eaa                get_inky_behaviour_change
+                0x080010aa        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x080010aa                get_inky_behaviour_change
  .text.set_inky_behaviour_change
-                0x08000eb8       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000eb8                set_inky_behaviour_change
- *fill*         0x08000eca        0x2 
+                0x080010b8       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x080010b8                set_inky_behaviour_change
+ *fill*         0x080010ca        0x2 
  .text._inky_feed_next
-                0x08000ecc       0x94 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000ecc                _inky_feed_next
+                0x080010cc       0xc4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x080010cc                _inky_feed_next
  .text.destroy_inky
-                0x08000f60        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                0x08000f60                destroy_inky
- *fill*         0x08000f6a        0x2 
+                0x08001190        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                0x08001190                destroy_inky
+ *fill*         0x0800119a        0x2 
  .text._pacman.part.0
-                0x08000f6c       0x1c .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
- .text._pacman  0x08000f88       0x48 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08000f88                _pacman
+                0x0800119c       0x1c .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+ .text._pacman  0x080011b8       0x48 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080011b8                _pacman
  .text.get_pacman_state
-                0x08000fd0        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08000fd0                get_pacman_state
+                0x08001200        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001200                get_pacman_state
  .text.set_pacman_state
-                0x08000fdc        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08000fdc                set_pacman_state
+                0x0800120c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x0800120c                set_pacman_state
  .text.get_pacman_position
-                0x08000fea        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08000fea                get_pacman_position
+                0x0800121a        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x0800121a                get_pacman_position
  .text.set_pacman_position
-                0x08000ff6       0x18 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08000ff6                set_pacman_position
- *fill*         0x0800100e        0x2 
+                0x08001226       0x18 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001226                set_pacman_position
+ *fill*         0x0800123e        0x2 
  .text.get_pacman_direction
-                0x08001010       0x34 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08001010                get_pacman_direction
+                0x08001240       0x34 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001240                get_pacman_direction
  .text.get_pac_dx
-                0x08001044        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08001044                get_pac_dx
+                0x08001274        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001274                get_pac_dx
  .text.get_pac_dy
-                0x08001052        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08001052                get_pac_dy
+                0x08001282        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001282                get_pac_dy
  .text.set_pacman_direction
-                0x08001060       0x38 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08001060                set_pacman_direction
+                0x08001290       0x38 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x08001290                set_pacman_direction
  .text.get_pacman_life
-                0x08001098        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x08001098                get_pacman_life
+                0x080012c8        0xc .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080012c8                get_pacman_life
  .text.set_pacman_life
-                0x080010a4       0x18 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x080010a4                set_pacman_life
+                0x080012d4       0x18 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080012d4                set_pacman_life
  .text.destroy_pacman
-                0x080010bc        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
-                0x080010bc                destroy_pacman
- *fill*         0x080010c6        0x2 
- .text._pinky   0x080010c8       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x080010c8                _pinky
+                0x080012ec        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080012ec                destroy_pacman
+ *fill*         0x080012f6        0x2 
+ .text._pinky   0x080012f8       0x44 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x080012f8                _pinky
  .text.get_pinky_scatter_position
-                0x0800110c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x0800110c                get_pinky_scatter_position
+                0x0800133c        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x0800133c                get_pinky_scatter_position
  .text.get_pinky_position
-                0x0800111a        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x0800111a                get_pinky_position
+                0x0800134a        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x0800134a                get_pinky_position
  .text._pinky.part.0
-                0x08001128       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x08001358       0x24 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
  .text.set_pinky_position
-                0x0800114c       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x0800114c                set_pinky_position
+                0x0800137c       0x16 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x0800137c                set_pinky_position
  .text.get_pinky_mode
-                0x08001162        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001162                get_pinky_mode
+                0x08001392        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x08001392                get_pinky_mode
  .text.get_pinky_target_position
-                0x08001170       0xd0 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001170                get_pinky_target_position
+                0x080013a0       0xbe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x080013a0                get_pinky_target_position
  .text.set_pinky_mode
-                0x08001240       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001240                set_pinky_mode
+                0x0800145e       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x0800145e                set_pinky_mode
  .text.get_pinky_behaviour_change
-                0x08001252        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001252                get_pinky_behaviour_change
+                0x08001470        0xe .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x08001470                get_pinky_behaviour_change
  .text.set_pinky_behaviour_change
-                0x08001260       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001260                set_pinky_behaviour_change
- *fill*         0x08001272        0x2 
+                0x0800147e       0x12 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x0800147e                set_pinky_behaviour_change
  .text._pinky_feed_next
-                0x08001274       0x94 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001274                _pinky_feed_next
+                0x08001490       0xc4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x08001490                _pinky_feed_next
  .text.destroy_pinky
-                0x08001308        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                0x08001308                destroy_pinky
- .text.CSLow    0x08001312        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
- .text.CSHigh   0x08001320        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
- .text.DCHigh   0x0800132e        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001554        0xa .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                0x08001554                destroy_pinky
+ .text.CSLow    0x0800155e        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+ .text.CSHigh   0x0800156c        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+ .text.DCHigh   0x0800157a        0xe .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
  .text.transferSPI8
-                0x0800133c       0x3c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
- .text.command  0x08001378       0x14 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
- .text.data     0x0800138c       0x10 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001588       0x3c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+ .text.command  0x080015c4       0x14 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+ .text.data     0x080015d8       0x10 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
  .text.openAperture
-                0x0800139c       0x4e .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
- *fill*         0x080013ea        0x2 
+                0x080015e8       0x4e .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+ *fill*         0x08001636        0x2 
  .text.transferSPI16
-                0x080013ec       0x38 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001638       0x38 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
  .text.fillRectangle
-                0x08001424       0x2c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x08001424                fillRectangle
+                0x08001670       0x2c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001670                fillRectangle
  .text.display_begin
-                0x08001450      0x260 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x08001450                display_begin
+                0x0800169c      0x260 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x0800169c                display_begin
  .text.putPixel
-                0x080016b0       0x1c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x080016b0                putPixel
+                0x080018fc       0x1c .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x080018fc                putPixel
  .text.putColumn
-                0x080016cc       0x2a .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x080016cc                putColumn
- .text.putRow   0x080016f6       0x2a .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x080016f6                putRow
+                0x08001918       0x2a .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001918                putColumn
+ .text.putRow   0x08001942       0x2a .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001942                putRow
  .text.putImage
-                0x08001720       0xe8 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x08001720                putImage
+                0x0800196c       0xe8 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x0800196c                putImage
  .text.printText
-                0x08001808       0x98 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x08001808                printText
+                0x08001a54       0x98 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001a54                printText
  .text.printTextX2
-                0x080018a0       0xa0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x080018a0                printTextX2
+                0x08001aec       0xa0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001aec                printTextX2
  .text.printNumber
-                0x08001940       0x80 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-                0x08001940                printNumber
+                0x08001b8c       0x80 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x08001b8c                printNumber
  .text.redraw_entire_grid
-                0x080019c0      0x198 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x080019c0                redraw_entire_grid
+                0x08001c0c      0x198 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08001c0c                redraw_entire_grid
  .text.redraw_white_text
-                0x08001b58       0x98 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001b58                redraw_white_text
+                0x08001da4       0x98 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08001da4                redraw_white_text
  .text.draw_home_page
-                0x08001bf0       0x78 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001bf0                draw_home_page
+                0x08001e3c       0x78 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08001e3c                draw_home_page
  .text.draw_pause_menu
-                0x08001c68       0x6c .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001c68                draw_pause_menu
+                0x08001eb4       0x6c .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08001eb4                draw_pause_menu
  .text.flicker_text
-                0x08001cd4      0x134 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001cd4                flicker_text
+                0x08001f20      0x134 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08001f20                flicker_text
  .text.draw_current_page
-                0x08001e08       0x24 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001e08                draw_current_page
+                0x08002054       0x24 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08002054                draw_current_page
  .text.point_at_entity_texture
-                0x08001e2c      0x170 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001e2c                point_at_entity_texture
+                0x08002078      0x170 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08002078                point_at_entity_texture
  .text.point_at_static_texture
-                0x08001f9c       0x78 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08001f9c                point_at_static_texture
+                0x080021e8       0x78 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x080021e8                point_at_static_texture
  .text.move_entities
-                0x08002014      0x4cc .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x08002014                move_entities
+                0x08002260      0x4ec .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08002260                move_entities
  .text.eat_ghost
-                0x080024e0       0xf0 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x080024e0                eat_ghost
+                0x0800274c       0xec .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x0800274c                eat_ghost
  .text.draw_pacman_dying
-                0x080025d0      0x1ba .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                0x080025d0                draw_pacman_dying
- *fill*         0x0800278a        0x2 
+                0x08002838      0x1a4 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08002838                draw_pacman_dying
  .text.set_menu_page
-                0x0800278c       0x10 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
-                0x0800278c                set_menu_page
+                0x080029dc       0x10 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
+                0x080029dc                set_menu_page
  .text.get_active_menu_page
-                0x0800279c        0xc .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
-                0x0800279c                get_active_menu_page
+                0x080029ec        0xc .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
+                0x080029ec                get_active_menu_page
  .text.get_cursor_position
-                0x080027a8        0xc .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
-                0x080027a8                get_cursor_position
+                0x080029f8        0xc .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
+                0x080029f8                get_cursor_position
  .text.move_cursor
-                0x080027b4       0xd0 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
-                0x080027b4                move_cursor
+                0x08002a04       0xd0 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
+                0x08002a04                move_cursor
  .text.create_singleton_grid
-                0x08002884       0x30 .pio\build\nucleo_f031k6\src\grid.o
-                0x08002884                create_singleton_grid
+                0x08002ad4       0x30 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002ad4                create_singleton_grid
  .text.create_reset_grid
-                0x080028b4       0xb4 .pio\build\nucleo_f031k6\src\grid.o
-                0x080028b4                create_reset_grid
+                0x08002b04       0xb4 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002b04                create_reset_grid
  .text.add_grid_state
-                0x08002968       0x24 .pio\build\nucleo_f031k6\src\grid.o
-                0x08002968                add_grid_state
+                0x08002bb8       0x24 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002bb8                add_grid_state
  .text.add_grid_state_point
-                0x0800298c       0x38 .pio\build\nucleo_f031k6\src\grid.o
-                0x0800298c                add_grid_state_point
+                0x08002bdc       0x28 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002bdc                add_grid_state_point
  .text.remove_grid_state
-                0x080029c4       0x24 .pio\build\nucleo_f031k6\src\grid.o
-                0x080029c4                remove_grid_state
+                0x08002c04       0x24 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002c04                remove_grid_state
  .text.remove_grid_state_point
-                0x080029e8       0x38 .pio\build\nucleo_f031k6\src\grid.o
-                0x080029e8                remove_grid_state_point
+                0x08002c28       0x28 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002c28                remove_grid_state_point
  .text.get_grid_state
-                0x08002a20       0x24 .pio\build\nucleo_f031k6\src\grid.o
-                0x08002a20                get_grid_state
+                0x08002c50       0x24 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002c50                get_grid_state
  .text.is_grid_state
-                0x08002a44       0x2c .pio\build\nucleo_f031k6\src\grid.o
-                0x08002a44                is_grid_state
+                0x08002c74       0x2c .pio\build\nucleo_f031k6\src\grid.o
+                0x08002c74                is_grid_state
  .text.has_grid_state
-                0x08002a70       0x2c .pio\build\nucleo_f031k6\src\grid.o
-                0x08002a70                has_grid_state
+                0x08002ca0       0x2c .pio\build\nucleo_f031k6\src\grid.o
+                0x08002ca0                has_grid_state
  .text.has_grid_state_point
-                0x08002a9c       0x40 .pio\build\nucleo_f031k6\src\grid.o
-                0x08002a9c                has_grid_state_point
+                0x08002ccc       0x30 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002ccc                has_grid_state_point
  .text.destroy_grid
-                0x08002adc       0x14 .pio\build\nucleo_f031k6\src\grid.o
-                0x08002adc                destroy_grid
+                0x08002cfc       0x14 .pio\build\nucleo_f031k6\src\grid.o
+                0x08002cfc                destroy_grid
  .text.check_if_eat_ghost_static
-                0x08002af0      0x100 .pio\build\nucleo_f031k6\src\main.o
-                0x08002af0                check_if_eat_ghost_static
+                0x08002d10      0x100 .pio\build\nucleo_f031k6\src\main.o
+                0x08002d10                check_if_eat_ghost_static
  .text.set_scatter_mode_to_chase_mode
-                0x08002bf0       0x94 .pio\build\nucleo_f031k6\src\main.o
-                0x08002bf0                set_scatter_mode_to_chase_mode
+                0x08002e10       0x94 .pio\build\nucleo_f031k6\src\main.o
+                0x08002e10                set_scatter_mode_to_chase_mode
  .text.check_if_eat_ghost_real_time
-                0x08002c84       0x98 .pio\build\nucleo_f031k6\src\main.o
-                0x08002c84                check_if_eat_ghost_real_time
+                0x08002ea4       0x8a .pio\build\nucleo_f031k6\src\main.o
+                0x08002ea4                check_if_eat_ghost_real_time
  .text.set_ghosts_mode
-                0x08002d1c       0x1c .pio\build\nucleo_f031k6\src\main.o
-                0x08002d1c                set_ghosts_mode
+                0x08002f2e       0x1c .pio\build\nucleo_f031k6\src\main.o
+                0x08002f2e                set_ghosts_mode
  .text.reset_eaten_ghosts
-                0x08002d38       0xbe .pio\build\nucleo_f031k6\src\main.o
-                0x08002d38                reset_eaten_ghosts
+                0x08002f4a       0xbe .pio\build\nucleo_f031k6\src\main.o
+                0x08002f4a                reset_eaten_ghosts
  .text.exit_game
-                0x08002df6       0x5a .pio\build\nucleo_f031k6\src\main.o
-                0x08002df6                exit_game
+                0x08003008       0x5a .pio\build\nucleo_f031k6\src\main.o
+                0x08003008                exit_game
  .text.is_pacman_dead
-                0x08002e50       0x78 .pio\build\nucleo_f031k6\src\main.o
-                0x08002e50                is_pacman_dead
+                0x08003062       0x8a .pio\build\nucleo_f031k6\src\main.o
+                0x08003062                is_pacman_dead
  .text.startup.main
-                0x08002ec8      0x530 .pio\build\nucleo_f031k6\src\main.o
-                0x08002ec8                main
+                0x080030ec      0x6fc .pio\build\nucleo_f031k6\src\main.o
+                0x080030ec                main
  .text.initSound
-                0x080033f8       0x68 .pio\build\nucleo_f031k6\src\music&sound\sound.o
-                0x080033f8                initSound
+                0x080037e8       0x68 .pio\build\nucleo_f031k6\src\music&sound\sound.o
+                0x080037e8                initSound
  .text.initSerial
-                0x08003460       0x98 .pio\build\nucleo_f031k6\src\serial.o
-                0x08003460                initSerial
+                0x08003850       0x98 .pio\build\nucleo_f031k6\src\serial.o
+                0x08003850                initSerial
  .text.eputchar
-                0x080034f8       0x1c .pio\build\nucleo_f031k6\src\serial.o
-                0x080034f8                eputchar
- .text.eputs    0x08003514       0x14 .pio\build\nucleo_f031k6\src\serial.o
-                0x08003514                eputs
+                0x080038e8       0x1c .pio\build\nucleo_f031k6\src\serial.o
+                0x080038e8                eputchar
+ .text.eputs    0x08003904       0x14 .pio\build\nucleo_f031k6\src\serial.o
+                0x08003904                eputs
+ .text.printDecimal
+                0x08003918       0x46 .pio\build\nucleo_f031k6\src\serial.o
+                0x08003918                printDecimal
  .text.is_not_empty
-                0x08003528        0xa .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003528                is_not_empty
+                0x0800395e        0x8 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x0800395e                is_not_empty
  .text.get_list_size
-                0x08003532       0x1a .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003532                get_list_size
- .text.push     0x0800354c       0x34 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x0800354c                push
+                0x08003966       0x1c .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003966                get_list_size
+ .text.push     0x08003982       0x48 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003982                push
  .text.search_item
-                0x08003580       0x24 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003580                search_item
+                0x080039ca       0x2a .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080039ca                search_item
  .text.remove_item
-                0x080035a4       0x50 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080035a4                remove_item
- .text.free_arr
-                0x080035f4       0x1e .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080035f4                free_arr
+                0x080039f4       0x70 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080039f4                remove_item
+ .text.clear_arr
+                0x08003a64       0x12 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003a64                clear_arr
  .text.reverse_points
-                0x08003612       0x2c .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003612                reverse_points
- *fill*         0x0800363e        0x2 
+                0x08003a76       0x3c .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003a76                reverse_points
+ *fill*         0x08003ab2        0x2 
  .text.initSysTick
-                0x08003640       0x1c .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003640                initSysTick
+                0x08003ab4       0x1c .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ab4                initSysTick
  .text.SysTick_Handler
-                0x0800365c       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800365c                SysTick_Handler
+                0x08003ad0       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ad0                SysTick_Handler
  .text.initClock
-                0x0800366c       0x70 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800366c                initClock
- .text.delay    0x080036dc       0x20 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080036dc                delay
+                0x08003ae0       0x70 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ae0                initClock
+ .text.delay    0x08003b50       0x20 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003b50                delay
  .text.enablePullUp
-                0x080036fc       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080036fc                enablePullUp
- .text.pinMode  0x08003714       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003714                pinMode
- .text.setupIO  0x08003728       0xc8 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003728                setupIO
+                0x08003b70       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003b70                enablePullUp
+ .text.pinMode  0x08003b88       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003b88                pinMode
+ .text.setupIO  0x08003b9c       0xc8 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003b9c                setupIO
  .text.SET_UP_STM
-                0x080037f0       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080037f0                SET_UP_STM
+                0x08003c64       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c64                SET_UP_STM
  .text.is_button_up_pressed
-                0x08003808        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003808                is_button_up_pressed
- *fill*         0x08003816        0x2 
+                0x08003c7c        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c7c                is_button_up_pressed
+ *fill*         0x08003c8a        0x2 
  .text.is_button_right_pressed
-                0x08003818       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003818                is_button_right_pressed
+                0x08003c8c       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c8c                is_button_right_pressed
  .text.is_button_down_pressed
-                0x08003828        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003828                is_button_down_pressed
- *fill*         0x08003836        0x2 
+                0x08003c9c        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c9c                is_button_down_pressed
+ *fill*         0x08003caa        0x2 
  .text.is_button_left_pressed
-                0x08003838       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003838                is_button_left_pressed
+                0x08003cac       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cac                is_button_left_pressed
  .text.is_button_pause_pressed
-                0x08003848        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003848                is_button_pause_pressed
- *fill*         0x08003856        0x2 
+                0x08003cbc        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cbc                is_button_pause_pressed
+ *fill*         0x08003cca        0x2 
  .text.turn_off_LEDS
-                0x08003858       0x38 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003858                turn_off_LEDS
+                0x08003ccc       0x38 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ccc                turn_off_LEDS
  .text.turn_on_LEDS
-                0x08003890       0x34 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003890                turn_on_LEDS
+                0x08003d04       0x34 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d04                turn_on_LEDS
  .text.turn_on_low_green_LED
-                0x080038c4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080038c4                turn_on_low_green_LED
+                0x08003d38       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d38                turn_on_low_green_LED
  .text.turn_on_yellow_LED
-                0x080038d4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080038d4                turn_on_yellow_LED
+                0x08003d48       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d48                turn_on_yellow_LED
  .text.turn_on_red_LED
-                0x080038e4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080038e4                turn_on_red_LED
+                0x08003d58       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d58                turn_on_red_LED
  .text.turn_off_high_green_LED
-                0x080038f4       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080038f4                turn_off_high_green_LED
+                0x08003d68       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d68                turn_off_high_green_LED
  .text.turn_off_low_green_LED
-                0x08003908       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003908                turn_off_low_green_LED
+                0x08003d7c       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d7c                turn_off_low_green_LED
  .text.turn_off_yellow_LED
-                0x0800391c       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800391c                turn_off_yellow_LED
+                0x08003d90       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003d90                turn_off_yellow_LED
  .text.display_life_LED
-                0x0800392c       0x46 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800392c                display_life_LED
+                0x08003da0       0x46 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003da0                display_life_LED
  .text.create_point
-                0x08003972       0x18 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003972                create_point
+                0x08003de6       0x18 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003de6                create_point
  .text.create_deep_copy
-                0x0800398a       0x1c .pio\build\nucleo_f031k6\src\utils\point.o
-                0x0800398a                create_deep_copy
+                0x08003dfe       0x1c .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003dfe                create_deep_copy
+ .text.create_deep_copy_stack
+                0x08003e1a       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e1a                create_deep_copy_stack
  .text.copy_point_values
-                0x080039a6       0x14 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039a6                copy_point_values
+                0x08003e3e       0x14 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e3e                copy_point_values
  .text.set_point_coord
-                0x080039ba        0xe .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039ba                set_point_coord
- .text.set_x_point_coord
-                0x080039c8        0xc .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039c8                set_x_point_coord
- .text.set_y_point_coord
-                0x080039d4        0xc .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039d4                set_y_point_coord
- .text.get_x_point_coord
-                0x080039e0        0xc .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039e0                get_x_point_coord
- .text.get_y_point_coord
-                0x080039ec        0xc .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039ec                get_y_point_coord
+                0x08003e52        0xe .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e52                set_point_coord
  .text.compare_points
-                0x080039f8       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x080039f8                compare_points
+                0x08003e60       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e60                compare_points
+ .text.is_point_valid
+                0x08003e84       0x1a .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e84                is_point_valid
  .text.destroy_point
-                0x08003a1c        0xa .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003a1c                destroy_point
- *fill*         0x08003a26        0x2 
+                0x08003e9e        0xa .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003e9e                destroy_point
  .text.linear_congruence_rand
-                0x08003a28       0x68 .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003a28                linear_congruence_rand
+                0x08003ea8       0x68 .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003ea8                linear_congruence_rand
  .text.get_random_number_in_range
-                0x08003a90       0x2a .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003a90                get_random_number_in_range
+                0x08003f10       0x2a .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003f10                get_random_number_in_range
  .text.get_random_point_on_grid
-                0x08003aba       0x8e .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003aba                get_random_point_on_grid
- .text.calloc   0x08003b48       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
-                0x08003b48                calloc
+                0x08003f3a       0x8e .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003f3a                get_random_point_on_grid
+ .text.calloc   0x08003fc8       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+                0x08003fc8                calloc
  .text.__libc_init_array
-                0x08003b5c       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-                0x08003b5c                __libc_init_array
- .text.malloc   0x08003ba4       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-                0x08003ba4                malloc
- .text.free     0x08003bb8       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-                0x08003bb8                free
- .text.memcpy   0x08003bcc       0x12 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
-                0x08003bcc                memcpy
- .text.memset   0x08003bde       0x10 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
-                0x08003bde                memset
+                0x08003fdc       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+                0x08003fdc                __libc_init_array
+ .text.malloc   0x08004024       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x08004024                malloc
+ .text.free     0x08004038       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x08004038                free
+ .text.memcpy   0x0800404c       0x12 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x0800404c                memcpy
+ .text.memset   0x0800405e       0x10 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                0x0800405e                memset
  .text._calloc_r
-                0x08003bee       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
-                0x08003bee                _calloc_r
- *fill*         0x08003c0a        0x2 
- .text._free_r  0x08003c0c       0x94 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-                0x08003c0c                _free_r
+                0x0800406e       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                0x0800406e                _calloc_r
+ *fill*         0x0800408a        0x2 
+ .text._free_r  0x0800408c       0x94 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                0x0800408c                _free_r
  .text._malloc_r
-                0x08003ca0       0xbc c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x08003ca0                _malloc_r
- .text._sbrk_r  0x08003d5c       0x24 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-                0x08003d5c                _sbrk_r
+                0x08004120       0xbc c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x08004120                _malloc_r
+ .text._sbrk_r  0x080041dc       0x24 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                0x080041dc                _sbrk_r
  .text.__malloc_lock
-                0x08003d80        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                0x08003d80                __malloc_lock
+                0x08004200        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x08004200                __malloc_lock
  .text.__malloc_unlock
-                0x08003d82        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                0x08003d82                __malloc_unlock
- .text._sbrk    0x08003d84       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
-                0x08003d84                _sbrk
+                0x08004202        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x08004202                __malloc_unlock
+ .text._sbrk    0x08004204       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x08004204                _sbrk
  *(.glue_7)
- .glue_7        0x08003da0        0x0 linker stubs
+ .glue_7        0x08004220        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08003da0        0x0 linker stubs
+ .glue_7t       0x08004220        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08003da0        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .eh_frame      0x08004220        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
  *(.init)
- .init          0x08003da0        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-                0x08003da0                _init
- .init          0x08003da4        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+ .init          0x08004220        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                0x08004220                _init
+ .init          0x08004224        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
  *(.fini)
- .fini          0x08003dac        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-                0x08003dac                _fini
- .fini          0x08003db0        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
-                0x08003db8                . = ALIGN (0x4)
-                0x08003db8                _etext = .
+ .fini          0x0800422c        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                0x0800422c                _fini
+ .fini          0x08004230        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+                0x08004238                . = ALIGN (0x4)
+                0x08004238                _etext = .
 
-.vfp11_veneer   0x08003db8        0x0
- .vfp11_veneer  0x08003db8        0x0 linker stubs
+.vfp11_veneer   0x08004238        0x0
+ .vfp11_veneer  0x08004238        0x0 linker stubs
 
-.v4_bx          0x08003db8        0x0
- .v4_bx         0x08003db8        0x0 linker stubs
+.v4_bx          0x08004238        0x0
+ .v4_bx         0x08004238        0x0 linker stubs
 
-.iplt           0x08003db8        0x0
- .iplt          0x08003db8        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+.iplt           0x08004238        0x0
+ .iplt          0x08004238        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
 
-.rodata         0x08003db8     0x37f0
-                0x08003db8                . = ALIGN (0x4)
+.rodata         0x08004238     0x399c
+                0x08004238                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08003db8       0x20 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
- .rodata        0x08003dd8      0x244 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
- .rodata        0x0800401c      0x234 .pio\build\nucleo_f031k6\src\grid.o
- .rodata        0x08004250        0x5 .pio\build\nucleo_f031k6\src\main.o
+ .rodata        0x08004238       0x20 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+ .rodata        0x08004258      0x244 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+ .rodata        0x0800449c      0x234 .pio\build\nucleo_f031k6\src\grid.o
+ .rodata        0x080046d0        0x7 .pio\build\nucleo_f031k6\src\main.o
  *(.rodata*)
  .rodata.trace_path_a_star.str1.1
-                0x08004255        0xd .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                0x080046d7       0x9b .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                                 0x9e (size before relaxing)
  .rodata.create_ghost.str1.1
-                0x08004262       0x10 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08004772       0x10 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
  .rodata.set_ghost_position.str1.1
-                0x08004272       0x4e .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08004782       0x4e .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
  .rodata._pacman.str1.1
-                0x080042c0       0x11 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080047d0       0x11 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
  .rodata.Font5x7
-                0x080042d1      0x1e0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x080047e1      0x1e0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
  .rodata.draw_pause_menu.str1.1
-                0x080044b1        0x7 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x080049c1        0x7 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+ .rodata.move_entities.str1.1
+                0x080049c8      0x11a .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.redraw_entire_grid.str1.1
-                0x080044b8        0xd .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08004ae2        0xd .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.redraw_white_text.str1.1
-                0x080044c5       0x40 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08004aef       0x40 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.create_singleton_grid.str1.1
-                0x08004505        0x7 .pio\build\nucleo_f031k6\src\grid.o
+                0x08004b2f        0x7 .pio\build\nucleo_f031k6\src\grid.o
  .rodata.main.str1.1
-                0x0800450c       0x1b .pio\build\nucleo_f031k6\src\main.o
- *fill*         0x08004527        0x1 
+                0x08004b36       0x1b .pio\build\nucleo_f031k6\src\main.o
+ *fill*         0x08004b51        0x1 
  .rodata.blank_array
-                0x08004528       0x80 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
-                0x08004528                blank_array
+                0x08004b52       0x80 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
+                0x08004b52                blank_array
  .rodata.blinky_array
-                0x080045a8      0x200 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
-                0x080045a8                blinky_array
+                0x08004bd2      0x200 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
+                0x08004bd2                blinky_array
  .rodata.clyde_array
-                0x080047a8      0x200 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
-                0x080047a8                clyde_array
+                0x08004dd2      0x200 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
+                0x08004dd2                clyde_array
  .rodata.fright_ghost_array
-                0x080049a8       0x80 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
-                0x080049a8                fright_ghost_array
+                0x08004fd2       0x80 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
+                0x08004fd2                fright_ghost_array
  .rodata.inky_array
-                0x08004a28      0x200 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
-                0x08004a28                inky_array
+                0x08005052      0x200 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
+                0x08005052                inky_array
  .rodata.main_menu_array
-                0x08004c28     0x1c80 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
-                0x08004c28                main_menu_array
+                0x08005252     0x1c80 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
+                0x08005252                main_menu_array
  .rodata.pacman_array
-                0x080068a8      0x400 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
-                0x080068a8                pacman_array
+                0x08006ed2      0x400 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
+                0x08006ed2                pacman_array
  .rodata.pickups_array
-                0x08006ca8      0x180 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
-                0x08006ca8                pickups_array
+                0x080072d2      0x180 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
+                0x080072d2                pickups_array
  .rodata.pinky_array
-                0x08006e28      0x200 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
-                0x08006e28                pinky_array
+                0x08007452      0x200 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
+                0x08007452                pinky_array
  .rodata.wall_array
-                0x08007028      0x580 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
-                0x08007028                wall_array
-                0x080075a8                . = ALIGN (0x4)
+                0x08007652      0x580 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
+                0x08007652                wall_array
+                0x08007bd4                . = ALIGN (0x4)
+ *fill*         0x08007bd2        0x2 
 
-.ARM.extab      0x080075a8        0x0
-                0x080075a8                . = ALIGN (0x4)
+.ARM.extab      0x08007bd4        0x0
+                0x08007bd4                . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x080075a8                . = ALIGN (0x4)
+                0x08007bd4                . = ALIGN (0x4)
 
-.ARM            0x080075a8        0x8
-                0x080075a8                . = ALIGN (0x4)
-                0x080075a8                __exidx_start = .
+.ARM            0x08007bd4        0x8
+                0x08007bd4                . = ALIGN (0x4)
+                0x08007bd4                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x080075a8        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-                0x080075b0                __exidx_end = .
-                0x080075b0                . = ALIGN (0x4)
+ .ARM.exidx     0x08007bd4        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                0x08007bdc                __exidx_end = .
+                0x08007bdc                . = ALIGN (0x4)
 
-.rel.dyn        0x080075b0        0x0
- .rel.iplt      0x080075b0        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+.rel.dyn        0x08007bdc        0x0
+ .rel.iplt      0x08007bdc        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
 
-.preinit_array  0x080075b0        0x0
-                0x080075b0                . = ALIGN (0x4)
-                0x080075b0                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08007bdc        0x0
+                0x08007bdc                . = ALIGN (0x4)
+                0x08007bdc                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x080075b0                PROVIDE (__preinit_array_end, .)
-                0x080075b0                . = ALIGN (0x4)
+                0x08007bdc                PROVIDE (__preinit_array_end, .)
+                0x08007bdc                . = ALIGN (0x4)
 
-.init_array     0x080075b0        0x4
-                0x080075b0                . = ALIGN (0x4)
-                0x080075b0                PROVIDE (__init_array_start, .)
+.init_array     0x08007bdc        0x4
+                0x08007bdc                . = ALIGN (0x4)
+                0x08007bdc                PROVIDE (__init_array_start, .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x080075b0        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-                0x080075b4                PROVIDE (__init_array_end, .)
-                0x080075b4                . = ALIGN (0x4)
+ .init_array    0x08007bdc        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+                0x08007be0                PROVIDE (__init_array_end, .)
+                0x08007be0                . = ALIGN (0x4)
 
-.fini_array     0x080075b4        0x4
-                0x080075b4                . = ALIGN (0x4)
+.fini_array     0x08007be0        0x4
+                0x08007be0                . = ALIGN (0x4)
                 [!provide]                PROVIDE (__fini_array_start, .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x080075b4        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .fini_array    0x08007be0        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
                 [!provide]                PROVIDE (__fini_array_end, .)
-                0x080075b8                . = ALIGN (0x4)
-                0x080075b8                _sidata = LOADADDR (.data)
+                0x08007be4                . = ALIGN (0x4)
+                0x08007be4                _sidata = LOADADDR (.data)
 
-.data           0x20000000       0x70 load address 0x080075b8
+.data           0x20000000       0x70 load address 0x08007be4
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
  *(.data*)
- .data.feed_pointer.5506
-                0x20000000        0x1 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
  .data.feed_pointer.5510
+                0x20000000        0x1 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+ .data.feed_pointer.5500
                 0x20000001        0x1 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
- .data.feed_pointer.5543
+ .data.feed_pointer.5533
                 0x20000002        0x1 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
- .data.feed_pointer.5520
+ .data.feed_pointer.5510
                 0x20000003        0x1 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
  .data.active_menu
                 0x20000004        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
  *fill*         0x20000005        0x3 
- .data.iterator.4882
+ .data.iterator.4872
                 0x20000008        0x4 .pio\build\nucleo_f031k6\src\utils\random.o
  .data._impure_ptr
                 0x2000000c        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
@@ -1175,73 +1168,73 @@ LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gc
                 0x20000070                . = ALIGN (0x4)
                 0x20000070                _edata = .
 
-.igot.plt       0x20000070        0x0 load address 0x08007628
+.igot.plt       0x20000070        0x0 load address 0x08007c54
  .igot.plt      0x20000070        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
                 0x20000070                . = ALIGN (0x4)
 
-.bss            0x20000070      0x374 load address 0x08007628
+.bss            0x20000070      0x1e4 load address 0x08007c54
                 0x20000070                _sbss = .
                 0x20000070                __bss_start__ = _sbss
  *(.bss)
  .bss           0x20000070       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
  *(.bss*)
- .bss.current_blinky.5532
+ .bss.current_blinky.5536
                 0x2000008c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
  .bss.feed_cache.5505
-                0x20000090       0xc8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
- .bss.current_clyde.5536
-                0x20000158        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                0x20000090       0x64 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+ .bss.current_clyde.5526
+                0x200000f4        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+ .bss.feed_cache.5499
+                0x200000f8       0x64 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+ .bss.current_inky.5559
+                0x2000015c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+ .bss.feed_cache.5532
+                0x20000160       0x64 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+ .bss.pacman.4843
+                0x200001c4        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+ .bss.current_pinky.5536
+                0x200001c8        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
  .bss.feed_cache.5509
-                0x2000015c       0xc8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
- .bss.current_inky.5569
-                0x20000224        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
- .bss.feed_cache.5542
-                0x20000228       0xc8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
- .bss.pacman.4853
-                0x200002f0        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
- .bss.current_pinky.5546
-                0x200002f4        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
- .bss.feed_cache.5519
-                0x200002f8       0xc8 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
- .bss.flicker_switch.5792
-                0x200003c0        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x200001cc       0x64 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+ .bss.flicker_switch.5782
+                0x20000230        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .bss.is_mouth_open
-                0x200003c1        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x20000231        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .bss.cursor_position
-                0x200003c2        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
- *fill*         0x200003c3        0x1 
+                0x20000232        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
+ *fill*         0x20000233        0x1 
  .bss.singleton_grid
-                0x200003c4        0x4 .pio\build\nucleo_f031k6\src\grid.o
- .bss.stored_seed.4883
-                0x200003c8        0x8 .pio\build\nucleo_f031k6\src\utils\random.o
+                0x20000234        0x4 .pio\build\nucleo_f031k6\src\grid.o
+ .bss.stored_seed.4873
+                0x20000238        0x8 .pio\build\nucleo_f031k6\src\utils\random.o
  .bss.__malloc_free_list
-                0x200003d0        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x200003d0                __malloc_free_list
+                0x20000240        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000240                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x200003d4        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x200003d4                __malloc_sbrk_start
+                0x20000244        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000244                __malloc_sbrk_start
  .bss.heap_end.4102
-                0x200003d8        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x20000248        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x200003dc        0x4 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x200003dc                milliseconds
- COMMON         0x200003e0        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-                0x200003e0                errno
-                0x200003e4                . = ALIGN (0x4)
-                0x200003e4                _ebss = .
-                0x200003e4                __bss_end__ = _ebss
+ COMMON         0x2000024c        0x4 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x2000024c                milliseconds
+ COMMON         0x20000250        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                0x20000250                errno
+                0x20000254                . = ALIGN (0x4)
+                0x20000254                _ebss = .
+                0x20000254                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x200003e4      0x604 load address 0x08007628
-                0x200003e8                . = ALIGN (0x8)
- *fill*         0x200003e4        0x4 
-                0x200003e8                PROVIDE (end, .)
+                0x20000254      0x604 load address 0x08007c54
+                0x20000258                . = ALIGN (0x8)
+ *fill*         0x20000254        0x4 
+                0x20000258                PROVIDE (end, .)
                 [!provide]                PROVIDE (_end, .)
-                0x200005e8                . = (. + _Min_Heap_Size)
- *fill*         0x200003e8      0x200 
-                0x200009e8                . = (. + _Min_Stack_Size)
- *fill*         0x200005e8      0x400 
-                0x200009e8                . = ALIGN (0x8)
+                0x20000458                . = (. + _Min_Heap_Size)
+ *fill*         0x20000258      0x200 
+                0x20000858                . = (. + _Min_Stack_Size)
+ *fill*         0x20000458      0x400 
+                0x20000858                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -1346,21 +1339,23 @@ LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gc
  .ARM.attributes
                 0x00000844       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
  .ARM.attributes
-                0x00000862       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                0x00000862       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
  .ARM.attributes
-                0x00000880       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+                0x00000880       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x0000089e       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+                0x0000089e       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x000008ca       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                0x000008bc       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
  .ARM.attributes
-                0x000008f6       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+                0x000008e8       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x00000914       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                0x00000914       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
  .ARM.attributes
-                0x00000932       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x00000932       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
  .ARM.attributes
-                0x0000095e       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+                0x00000950       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .ARM.attributes
+                0x0000097c       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
 OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
 
 .comment        0x00000000       0x7e
@@ -1395,7 +1390,7 @@ OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\utils\point.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\utils\random.o
 
-.debug_frame    0x00000000      0x2b4
+.debug_frame    0x00000000      0x2d4
  .debug_frame   0x00000000       0x28 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
  .debug_frame   0x00000028       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
  .debug_frame   0x00000054       0x40 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
@@ -1408,9 +1403,10 @@ OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
  .debug_frame   0x0000018c       0x30 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
  .debug_frame   0x000001bc       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
  .debug_frame   0x00000204       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
- .debug_frame   0x00000224       0x34 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
- .debug_frame   0x00000258       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00000294       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .debug_frame   0x00000224       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x00000244       0x34 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+ .debug_frame   0x00000278       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x000002b4       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
 
 Cross Reference Table
 
@@ -1585,6 +1581,12 @@ check_if_eat_ghost_real_time                      .pio\build\nucleo_f031k6\src\m
 check_if_eat_ghost_static                         .pio\build\nucleo_f031k6\src\main.o
 cleanup_glue                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
 clear                                             .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+clear_arr                                         .pio\build\nucleo_f031k6\src\utils\arr.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 clyde_array                                       .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 compare_grid_states                               .pio\build\nucleo_f031k6\src\grid.o
@@ -1596,14 +1598,17 @@ compare_points                                    .pio\build\nucleo_f031k6\src\u
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
 copy_point_values                                 .pio\build\nucleo_f031k6\src\utils\point.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-copy_point_x                                      .pio\build\nucleo_f031k6\src\utils\point.o
-copy_point_y                                      .pio\build\nucleo_f031k6\src\utils\point.o
 create_deep_copy                                  .pio\build\nucleo_f031k6\src\utils\point.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+create_deep_copy_stack                            .pio\build\nucleo_f031k6\src\utils\point.o
+                                                  .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 create_ghost                                      .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
@@ -1611,13 +1616,11 @@ create_ghost                                      .pio\build\nucleo_f031k6\src\b
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
 create_point                                      .pio\build\nucleo_f031k6\src\utils\point.o
                                                   .pio\build\nucleo_f031k6\src\utils\random.o
-                                                  .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 create_reset_grid                                 .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 create_singleton_grid                             .pio\build\nucleo_f031k6\src\grid.o
@@ -1642,7 +1645,6 @@ destroy_pacman                                    .pio\build\nucleo_f031k6\src\b
 destroy_pinky                                     .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 destroy_point                                     .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
@@ -1669,6 +1671,7 @@ eputchar                                          .pio\build\nucleo_f031k6\src\s
 eputs                                             .pio\build\nucleo_f031k6\src\serial.o
                                                   .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\grid.o
+                                                  .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
@@ -1684,7 +1687,6 @@ flicker_text                                      .pio\build\nucleo_f031k6\src\f
                                                   .pio\build\nucleo_f031k6\src\main.o
 free                                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
                                                   .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
@@ -1692,13 +1694,6 @@ free                                              c:/users/lenovo/.platformio/pa
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
-free_arr                                          .pio\build\nucleo_f031k6\src\utils\arr.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 fright_ghost_array                                .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 fright_mode_sound                                 .pio\build\nucleo_f031k6\src\music&sound\tones.o
@@ -1802,24 +1797,6 @@ get_random_point_on_grid                          .pio\build\nucleo_f031k6\src\u
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-get_x_point_coord                                 .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\main.o
-                                                  .pio\build\nucleo_f031k6\src\grid.o
-                                                  .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
-get_y_point_coord                                 .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\main.o
-                                                  .pio\build\nucleo_f031k6\src\grid.o
-                                                  .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 hardware_init_hook                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 has_grid_state                                    .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\utils\random.o
@@ -1856,6 +1833,14 @@ is_grid_state_point                               .pio\build\nucleo_f031k6\src\g
 is_not_empty                                      .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
 is_pacman_dead                                    .pio\build\nucleo_f031k6\src\main.o
+is_point_valid                                    .pio\build\nucleo_f031k6\src\utils\point.o
+                                                  .pio\build\nucleo_f031k6\src\utils\arr.o
+                                                  .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 linear_congruence_rand                            .pio\build\nucleo_f031k6\src\utils\random.o
 main                                              .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
@@ -1867,10 +1852,15 @@ malloc                                            c:/users/lenovo/.platformio/pa
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
 memcpy                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                                                  .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\music&sound\tones.o
                                                   .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
 memset                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
                                                   c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
                                                   .pio\build\nucleo_f031k6\src\main.o
@@ -1900,6 +1890,7 @@ point_at_entity_texture                           .pio\build\nucleo_f031k6\src\f
 point_at_static_texture                           .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 pop                                               .pio\build\nucleo_f031k6\src\utils\arr.o
 printDecimal                                      .pio\build\nucleo_f031k6\src\serial.o
+                                                  .pio\build\nucleo_f031k6\src\behaviours\algo.o
 printNumber                                       .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 printNumberX2                                     .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
@@ -1983,10 +1974,6 @@ set_point_coord                                   .pio\build\nucleo_f031k6\src\u
                                                   .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
 set_scatter_mode_to_chase_mode                    .pio\build\nucleo_f031k6\src\main.o
-set_x_point_coord                                 .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-set_y_point_coord                                 .pio\build\nucleo_f031k6\src\utils\point.o
-                                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
 setupIO                                           .pio\build\nucleo_f031k6\src\utils\events.o
 software_init_hook                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 toggle_high_green_LED                             .pio\build\nucleo_f031k6\src\utils\events.o

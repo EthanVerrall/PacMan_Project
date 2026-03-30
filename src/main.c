@@ -69,11 +69,11 @@ void set_scatter_mode_to_chase_mode() {
 	}
 }
 
-void check_if_eat_ghost_real_time(const Point* const point_array[], const int8_t pacmans_move_pos, 
+void check_if_eat_ghost_real_time(const Point point_array[], const int8_t pacmans_move_pos, 
     const enum entity_type move_order[], bool is_ghost_eaten[], const uint8_t number_of_entities) {
 
-	Point* pacs_current = create_deep_copy(point_array[(pacmans_move_pos*2)]);
-	Point* pacs_target = create_deep_copy(point_array[(pacmans_move_pos*2) + 1]);
+	const Point pacs_current = create_deep_copy_stack(&point_array[(pacmans_move_pos*2)]);
+	const Point pacs_target = create_deep_copy_stack(&point_array[(pacmans_move_pos*2) + 1]);
 
 	for (uint8_t i = 0; i < number_of_entities; ++i) {
 
@@ -81,30 +81,30 @@ void check_if_eat_ghost_real_time(const Point* const point_array[], const int8_t
 		{
 			case entity_type_blinky:	
 				if (get_blinky_mode() == fright && 
-				compare_points(point_array[(i*2) + 1],pacs_current) &&
-				compare_points(point_array[(i*2)],pacs_target)) {
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
 					is_ghost_eaten[i] = true;
 				}
 					
 				break;
 			case entity_type_inky:
 				if (get_inky_mode() == fright &&
-				compare_points(point_array[(i*2) + 1],pacs_current) &&
-				compare_points(point_array[(i*2)],pacs_target)) {
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],	   &pacs_target)) {
 					is_ghost_eaten[i] = true;
 				}
 				break;
 			case entity_type_pinky:
 				if (get_pinky_mode() == fright &&
-				compare_points(point_array[(i*2) + 1],pacs_current) &&
-				compare_points(point_array[(i*2)],pacs_target)) {
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
 					is_ghost_eaten[i] = true;
 				}
 				break;
 			case entity_type_clyde:
 				if (get_clyde_mode() == fright &&
-				compare_points(point_array[(i*2) + 1],pacs_current) &&
-				compare_points(point_array[(i*2)],pacs_target)) {
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
 					is_ghost_eaten[i] = true;
 				}
 				break;
@@ -117,9 +117,6 @@ void check_if_eat_ghost_real_time(const Point* const point_array[], const int8_t
 				break;
 		}
 	}
-//Freeing points
-	pacs_current = destroy_point(pacs_current);
-	pacs_target = destroy_point(pacs_target);
 }
 
 void set_ghosts_mode(GhostMode mode){
@@ -181,7 +178,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 void restart_game();
 
 //Cleanup function
-void exit_game(Point* entity_store[], bool* play_game) {
+void exit_game(Point entity_store[], bool* play_game) {
 	//free feed
 	_inky_feed_next(false, true);
 	_blinky_feed_next(false, true);
@@ -198,7 +195,8 @@ void exit_game(Point* entity_store[], bool* play_game) {
 
 	for (uint8_t i = 1; i < 10; i+=2)
 	{
-		destroy_point(entity_store[i]);
+		entity_store[i].x = INVALID_POINT;
+		entity_store[i].y = INVALID_POINT;
 	}
 
 	//go back to the main page
@@ -206,12 +204,12 @@ void exit_game(Point* entity_store[], bool* play_game) {
 	*play_game = false;
 }
 
-bool is_pacman_dead(Point* points[], enum entity_type entities[]) {
+bool is_pacman_dead(Point points[], enum entity_type entities[]) {
 
 	for (uint8_t i = 0; i < 5; ++i) {
 		if ((entities[i] != entity_type_pacman) &&
-			compare_points(points[(i*2) + 1],points[0]) &&
-			compare_points(points[(i*2)],points[1])) 
+			compare_points(&points[(i*2) + 1],&points[0]) &&
+			compare_points(&points[(i*2)],    &points[1])) 
 		{
 			//Call death draw function
 			switch (entities[i]) {
@@ -296,29 +294,18 @@ int main()
 		Pinky* pinky_ref = _pinky(false);
 		Inky* inky_ref = _inky(false);
 
-		Point* entity_move_direction_store[] = {
+		Point move_pair[10];
 
-			//pacman movement
-			get_pacman_position(),
-			create_point(0,0),
+		move_pair[0] = create_deep_copy_stack(get_pacman_position());
+		move_pair[2] = create_deep_copy_stack(get_blinky_position());
+		move_pair[4] = create_deep_copy_stack(get_inky_position());
+		move_pair[6] = create_deep_copy_stack(get_pinky_position());
+		move_pair[8] = create_deep_copy_stack(get_clyde_position());
 
-			//blinky movement
-			get_blinky_position(), 
-			create_point(0,0),
-
-			//inky movement
-			get_inky_position(),
-			create_point(0,0),
-
-			//pinky movement
-			get_pinky_position(),
-			create_point(0,0),
-
-			//clyde movement
-			get_clyde_position(),
-			create_point(0,0),
-
-		}; 
+		for (uint8_t i = 0; i < 10; i +=2) {
+			move_pair[i+1].x = INVALID_POINT;
+			move_pair[i+1].y = INVALID_POINT;
+		}
 
 		const enum entity_type entity_move_order[] = {
 			entity_type_pacman, entity_type_blinky, entity_type_inky, entity_type_pinky, entity_type_clyde
@@ -327,7 +314,7 @@ int main()
 		bool play_game = true;
 		bool button_pressed = false;
 		uint8_t pellet_count = 111;
-		const Point* target_point = NULL;
+		Point target_point = {INVALID_POINT,INVALID_POINT};
 		uint8_t god_mode_timer = 0;
 		bool is_ghost_eaten[] = {false, false, false, false, false};
 		
@@ -393,8 +380,8 @@ int main()
 			//Do whatever is easiest tho
 			//we want to change pacman's position
 			//pacman in entity pos is 0 (old), 1 (new)
-			uint8_t pacman_new_x = get_x_point_coord(get_pacman_position()) + get_pac_dx();
-			uint8_t pacman_new_y = get_y_point_coord(get_pacman_position()) + get_pac_dy();
+			uint8_t pacman_new_x = get_pacman_position()->x + get_pac_dx();
+			uint8_t pacman_new_y = get_pacman_position()->y + get_pac_dy();
 
 			//wrapping pacman when he goes offscreen...........
 			pacman_new_y = pacman_new_y == 16 ? 0 : pacman_new_y;
@@ -402,21 +389,21 @@ int main()
 
 			if (!has_grid_state(pacman_new_x, pacman_new_y, cell_wall | cell_gate))
 			{
-				set_point_coord(pacman_new_x, pacman_new_y,entity_move_direction_store[1]);
-				remove_grid_state_point(entity_move_direction_store[0], cell_pacman);
+				set_point_coord(pacman_new_x, pacman_new_y,&move_pair[1]);
+				remove_grid_state_point(&move_pair[0], cell_pacman);
 
-				if(has_grid_state_point(entity_move_direction_store[1],cell_pellet)) {
+				if(has_grid_state_point(&move_pair[1],cell_pellet)) {
 					pellet_count--;
 					remove_grid_state(pacman_new_x, pacman_new_y, cell_pellet);
 					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 				}
 
-				if(has_grid_state_point(entity_move_direction_store[1],cell_cherry)) {
+				if(has_grid_state_point(&move_pair[1],cell_cherry)) {
 					remove_grid_state(pacman_new_x, pacman_new_y, cell_cherry);
 					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 				}
 
-				if(has_grid_state_point(entity_move_direction_store[1],cell_power_up)) {
+				if(has_grid_state_point(&move_pair[1],cell_power_up)) {
 					remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
 					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 
@@ -428,42 +415,57 @@ int main()
 			}
 			else
 			{
-				pacman_new_x = get_x_point_coord(get_pacman_position());
-				pacman_new_y = get_y_point_coord(get_pacman_position());
+				pacman_new_x = get_pacman_position()->x;
+				pacman_new_y = get_pacman_position()->y;
 			}
-		
 
 			//run algo on ghosts based on pacman's current position
 
 			//Blinky
 			target_point = _blinky_feed_next(get_blinky_behaviour_change(),false);
-			copy_point_values(entity_move_direction_store[3],target_point);
+			copy_point_values(&move_pair[3],&target_point);
+			/* eputs("Blinky\r\n");
+			printDecimal(target_point.x);
+			printDecimal(target_point.y);
+			eputs("\r\n\r\n"); */
 
 			//inky
 			target_point = _inky_feed_next(get_inky_behaviour_change(), false);
-			copy_point_values(entity_move_direction_store[5],target_point);
+			copy_point_values(&move_pair[5],&target_point);
+		/* 	eputs("inky\r\n");
+			printDecimal(target_point.x);
+			printDecimal(target_point.y);
+			eputs("\r\n\r\n"); */
 
 			//pinky
 			target_point = _pinky_feed_next(get_pinky_behaviour_change(), false);
-			copy_point_values(entity_move_direction_store[7],target_point);
+			copy_point_values(&move_pair[7],&target_point);
+		/* 	eputs("pinky\r\n");
+			printDecimal(target_point.x);
+			printDecimal(target_point.y);
+			eputs("\r\n\r\n"); */
 
 			//clyde
 			target_point = _clyde_feed_next(get_clyde_behaviour_change(), false);
-			copy_point_values(entity_move_direction_store[9],target_point);
+			copy_point_values(&move_pair[9],&target_point);
+			/* eputs("clyde\r\n");
+			printDecimal(target_point.x);
+			printDecimal(target_point.y);
+			eputs("\r\n\r\n"); */
 
 			//Updating grid states
 
 			remove_grid_state_point(get_blinky_position(), cell_blinky);
- 			add_grid_state_point(entity_move_direction_store[3], cell_blinky);
+ 			add_grid_state_point(&move_pair[3], cell_blinky);
 
 			remove_grid_state_point(get_inky_position(), cell_inky);
- 			add_grid_state_point(entity_move_direction_store[5], cell_inky);
+ 			add_grid_state_point(&move_pair[5], cell_inky);
 
 			remove_grid_state_point(get_pinky_position(), cell_pinky);
- 			add_grid_state_point(entity_move_direction_store[7], cell_pinky);
+ 			add_grid_state_point(&move_pair[7], cell_pinky);
 
 			remove_grid_state_point(get_clyde_position() ,cell_clyde);
-			add_grid_state_point(entity_move_direction_store[9], cell_clyde);
+			add_grid_state_point(&move_pair[9], cell_clyde);
 
 			/*
 				Pacman will check if the direction he is moving too will collide with a ghost
@@ -472,7 +474,7 @@ int main()
 			*/
 
 			if (get_pacman_state() == God) {check_if_eat_ghost_real_time(
-				entity_move_direction_store,
+				move_pair,
 				0,
 				entity_move_order,
 				is_ghost_eaten, 
@@ -480,13 +482,13 @@ int main()
 			}
 
 			//Checking if pacman is dying
-			if (is_pacman_dead(entity_move_direction_store,entity_move_order)) {
+			if (is_pacman_dead(move_pair,entity_move_order)) {
 
 				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
-				remove_grid_state_point(entity_move_direction_store[3], cell_blinky);
-				remove_grid_state_point(entity_move_direction_store[5], cell_inky);
-				remove_grid_state_point(entity_move_direction_store[7], cell_pinky);
-				remove_grid_state_point(entity_move_direction_store[9], cell_clyde);
+				remove_grid_state_point(&move_pair[3], cell_blinky);
+				remove_grid_state_point(&move_pair[5], cell_inky);
+				remove_grid_state_point(&move_pair[7], cell_pinky);
+				remove_grid_state_point(&move_pair[9], cell_clyde);
 
 				set_pacman_position(15,7);
 				set_pacman_state(Mortal);
@@ -520,23 +522,30 @@ int main()
 				uint8_t pacmans_life = get_pacman_life();
 				set_pacman_life(--pacmans_life);
 				display_life_LED(pacmans_life);
-				target_point = NULL;
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
 				draw_current_page();
 				delay(2000);
 				continue;
 			}
 
 			//Visual drawing for this turn of the game
-			move_entities(entity_move_direction_store,entity_move_order,5, is_ghost_eaten);
+			move_entities(move_pair,entity_move_order,2, is_ghost_eaten);
 
 
 			//set the internal positions of each entity to their new positions
 
 			set_pacman_position(pacman_new_x, pacman_new_y);
-			copy_point_values(get_blinky_position(), entity_move_direction_store[3]);
-			copy_point_values(get_inky_position(), entity_move_direction_store[5]);
-			copy_point_values(get_pinky_position(), entity_move_direction_store[7]);
-			copy_point_values(get_clyde_position(), entity_move_direction_store[9]);
+			copy_point_values(get_blinky_position(), &move_pair[3]);
+			copy_point_values(get_inky_position(), &move_pair[5]);
+			copy_point_values(get_pinky_position(), &move_pair[7]);
+			copy_point_values(get_clyde_position(), &move_pair[9]);
+
+			copy_point_values(&move_pair[0], &move_pair[1]);
+			copy_point_values(&move_pair[2], &move_pair[3]);
+			copy_point_values(&move_pair[4], &move_pair[5]);
+			copy_point_values(&move_pair[6], &move_pair[7]);
+			copy_point_values(&move_pair[8], &move_pair[9]);
 
 			//Reset ghosts we collided with
 			reset_eaten_ghosts(is_ghost_eaten,entity_move_order,5);
@@ -571,7 +580,8 @@ int main()
 			if(pellet_count == 0) {
 				//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
 				eputs("Game Completed, you win.\r\n");
-				target_point = NULL;
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
 				break;
 			}
 
@@ -579,10 +589,10 @@ int main()
 			if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
 
 				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
-				remove_grid_state_point(entity_move_direction_store[3], cell_blinky);
-				remove_grid_state_point(entity_move_direction_store[5], cell_inky);
-				remove_grid_state_point(entity_move_direction_store[7], cell_pinky);
-				remove_grid_state_point(entity_move_direction_store[9], cell_clyde);
+				remove_grid_state_point(&move_pair[3], cell_blinky);
+				remove_grid_state_point(&move_pair[5], cell_inky);
+				remove_grid_state_point(&move_pair[7], cell_pinky);
+				remove_grid_state_point(&move_pair[9], cell_clyde);
 
 				set_pacman_position(15,7);
 				set_pacman_state(Mortal);
@@ -613,7 +623,8 @@ int main()
 				uint8_t pacmans_life = get_pacman_life();
 				set_pacman_life(--pacmans_life);
 				display_life_LED(pacmans_life);
-				target_point = NULL;
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
 				draw_current_page();
 				delay(2000);
 				continue;
@@ -625,10 +636,11 @@ int main()
 				draw_current_page();
 			}
 
-			target_point = NULL;
+			target_point.x = INVALID_POINT;
+			target_point.y = INVALID_POINT;
 		}	
 		//clean up
-		exit_game(entity_move_direction_store, &play_game);
+		exit_game(move_pair, &play_game);
 	}
 	return 0;	
 }
