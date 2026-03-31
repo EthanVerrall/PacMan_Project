@@ -15,6 +15,7 @@ void set_menu_page(const enum menu_page new_menu) {
         case menu_page_home:
         case menu_page_game:
         case menu_page_pause:
+        case menu_page_restart:
         //Expected menu passed to function
             active_menu = new_menu;
             break;
@@ -90,16 +91,15 @@ void move_cursor(const int8_t cursor_direction) {
             
             //Restarts the game
             if (cursor_position == 1) {
-                set_menu_page(menu_page_game);
+                set_menu_page(menu_page_restart);
                 cursor_position = 0;
-                //Will need to call a function or have a function pointer perhaps?
-                //Ask joshua about this one???
             }
 
             //Exits the game
             if (cursor_position == 2) {
                 set_menu_page(menu_page_home);
                 cursor_position = 0;
+
             }
         break;
         

@@ -9,7 +9,7 @@
 #include "../include/behaviours/entities&sprites/pinky.h"
 #include "../include/behaviours/entities&sprites/inky.h"
 
-void check_if_eat_ghost_static() {
+void check_if_eat_ghost_static(Point move_pair[]) {
 
 	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
 	{	
@@ -17,16 +17,9 @@ void check_if_eat_ghost_static() {
 		remove_grid_state_point(get_blinky_position(),cell_blinky);
 		set_blinky_position(10,7);
 		add_grid_state_point(get_blinky_position(),cell_blinky);
+		copy_point_values(&move_pair[2],get_blinky_position());
 		eat_ghost(entity_type_blinky);
 		
-	}
-	if (has_grid_state_point(get_pacman_position(),cell_pinky) && (get_pinky_mode() == fright))
-	{
-		set_pinky_mode(chase);
-		remove_grid_state_point(get_pinky_position(),cell_pinky);
-		set_pinky_position(10,8);
-		add_grid_state_point(get_pinky_position(),cell_pinky);
-		eat_ghost(entity_type_pinky);
 	}
 	if (has_grid_state_point(get_pacman_position(),cell_inky) && (get_inky_mode() == fright))
 	{
@@ -34,7 +27,17 @@ void check_if_eat_ghost_static() {
 		remove_grid_state_point(get_inky_position(),cell_inky);
 		set_inky_position(10,6);
 		add_grid_state_point(get_inky_position(),cell_inky);
+		copy_point_values(&move_pair[4],get_inky_position());
 		eat_ghost(entity_type_inky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_pinky) && (get_pinky_mode() == fright))
+	{
+		set_pinky_mode(chase);
+		remove_grid_state_point(get_pinky_position(),cell_pinky);
+		set_pinky_position(10,8);
+		add_grid_state_point(get_pinky_position(),cell_pinky);
+		copy_point_values(&move_pair[6],get_pinky_position());
+		eat_ghost(entity_type_pinky);
 	}
 	if (has_grid_state_point(get_pacman_position(),cell_clyde) && (get_clyde_mode() == fright))
 	{
@@ -42,30 +45,8 @@ void check_if_eat_ghost_static() {
 		remove_grid_state_point(get_clyde_position(),cell_clyde);
 		set_clyde_position(10,9);
 		add_grid_state_point(get_clyde_position(),cell_clyde);
+		copy_point_values(&move_pair[8],get_clyde_position());
 		eat_ghost(entity_type_clyde);
-	}
-}
-
-void set_scatter_mode_to_chase_mode() {
-
-	if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
-	{	
-		set_blinky_mode(chase);
-	}
-
-	if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
-	{	
-		set_inky_mode(chase);
-	}
-
-	if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
-	{	
-		set_pinky_mode(chase);
-	}
-
-	if (get_clyde_mode() == scatter && compare_points(get_clyde_position(),get_clyde_scatter_position()))
-	{	
-		set_clyde_mode(chase);
 	}
 }
 
@@ -119,14 +100,37 @@ void check_if_eat_ghost_real_time(const Point point_array[], const int8_t pacman
 	}
 }
 
-void set_ghosts_mode(GhostMode mode){
+void set_scatter_mode_to_chase_mode() {
+
+	if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
+	{	
+		set_blinky_mode(chase);
+	}
+
+	if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
+	{	
+		set_inky_mode(chase);
+	}
+
+	if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
+	{	
+		set_pinky_mode(chase);
+	}
+
+	if (get_clyde_mode() == scatter && compare_points(get_clyde_position(),get_clyde_scatter_position()))
+	{	
+		set_clyde_mode(chase);
+	}
+}
+
+void set_ghosts_mode(const GhostMode mode){
 	set_blinky_mode(mode);
 	set_inky_mode(mode);
 	set_pinky_mode(mode);
 	set_clyde_mode(mode);
 }
 
-void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order[], const uint8_t number_of_entities) {
+void reset_eaten_ghosts(Point move_pair[], bool is_ghost_eaten[], const enum entity_type move_order[], const uint8_t number_of_entities) {
 
 	for (uint8_t i = 0; i < number_of_entities; ++i) {
 
@@ -139,6 +143,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				add_grid_state(10,7,cell_blinky);
 				set_blinky_position(10,7);
 				set_blinky_mode(chase);
+				copy_point_values(&move_pair[2],get_blinky_position());
 				break;
 
 			case entity_type_inky:
@@ -146,6 +151,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				add_grid_state(10,6,cell_inky);
 				set_inky_position(10,6);
 				set_inky_mode(chase);
+				copy_point_values(&move_pair[4],get_inky_position());
 				break;
 
 			case entity_type_pinky:
@@ -153,6 +159,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				add_grid_state(10,8,cell_pinky);
 				set_pinky_position(10,8);
 				set_pinky_mode(chase);
+				copy_point_values(&move_pair[6],get_pinky_position());
 				break;
 
 			case entity_type_clyde:
@@ -160,6 +167,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 				add_grid_state(10,9,cell_clyde);
 				set_clyde_position(10,9);
 				set_clyde_mode(chase);
+				copy_point_values(&move_pair[8],get_clyde_position());
 				break;
 
 			case entity_type_pacman: 
@@ -174,37 +182,7 @@ void reset_eaten_ghosts(bool is_ghost_eaten[], const enum entity_type move_order
 	}
 }
 
-//Tomorrow -- reset to defaults function
-void restart_game();
-
-//Cleanup function
-void exit_game(Point entity_store[], bool* play_game) {
-	//free feed
-	_inky_feed_next(false, true);
-	_blinky_feed_next(false, true);
-	_pinky_feed_next(false, true);
-	_clyde_feed_next(false, true);
-	
-	//destroy characters
-	destroy_blinky();
-	destroy_inky();
-	destroy_clyde();
-	destroy_pinky();
-	destroy_pacman();
-	destroy_grid();
-
-	for (uint8_t i = 1; i < 10; i+=2)
-	{
-		entity_store[i].x = INVALID_POINT;
-		entity_store[i].y = INVALID_POINT;
-	}
-
-	//go back to the main page
-	set_menu_page(menu_page_home);
-	*play_game = false;
-}
-
-bool is_pacman_dead(Point points[], enum entity_type entities[]) {
+bool is_pacman_dead(const Point points[], enum entity_type entities[]) {
 
 	for (uint8_t i = 0; i < 5; ++i) {
 		if ((entities[i] != entity_type_pacman) &&
@@ -255,6 +233,132 @@ bool is_pacman_dead(Point points[], enum entity_type entities[]) {
 	return false;
 }
 
+void reset_round(Point move_pair[], uint8_t* god_mode_timer) {
+
+	remove_grid_state_point(&move_pair[1], cell_pacman);
+	remove_grid_state_point(&move_pair[3], cell_blinky);
+	remove_grid_state_point(&move_pair[5], cell_inky);
+	remove_grid_state_point(&move_pair[7], cell_pinky);
+	remove_grid_state_point(&move_pair[9], cell_clyde);
+
+	add_grid_state(15,7,cell_pacman);
+	add_grid_state(10,6,cell_inky);
+	add_grid_state(10,7,cell_blinky);
+	add_grid_state(10,8,cell_pinky);
+	add_grid_state(10,9,cell_clyde);
+
+	set_point_coord(15,7,&move_pair[0]);
+	set_point_coord(10,7,&move_pair[2]);
+	set_point_coord(10,6,&move_pair[4]);
+	set_point_coord(10,8,&move_pair[6]);
+	set_point_coord(10,9,&move_pair[8]);
+
+	for (uint8_t i = 1; i < 10; i += 2) {
+
+		move_pair[i].x = INVALID_POINT;
+		move_pair[i].y = INVALID_POINT;
+	}
+
+	set_pacman_position(15,7);
+	set_pacman_state(Mortal);
+	*god_mode_timer = 0;
+
+	set_blinky_position(10,7);
+	_blinky_feed_next(false,true);
+
+	set_inky_position(10,6);
+	_inky_feed_next(false,true);
+
+	set_pinky_position(10,8);
+	_pinky_feed_next(false,true);
+
+	set_clyde_position(10,9);
+	_clyde_feed_next(false,true);
+
+	set_ghosts_mode(scatter);
+
+	uint8_t pacmans_life = get_pacman_life();
+	set_pacman_life(--pacmans_life);
+	display_life_LED(pacmans_life);
+	draw_current_page();
+	delay(2000);
+}
+
+void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const button_pressed, Point* const target_point, 
+				 uint8_t* const god_mode_timer, bool is_ghost_eaten[]) {
+
+	create_reset_grid();
+
+	set_pacman_position(15,7);
+	set_pacman_state(Mortal);
+
+	set_blinky_position(10,7);
+	_blinky_feed_next(false,true);
+
+	set_inky_position(10,6);
+	_inky_feed_next(false,true);
+
+	set_pinky_position(10,8);
+	_pinky_feed_next(false,true);
+
+	set_clyde_position(10,9);
+	_clyde_feed_next(false,true);
+
+	set_ghosts_mode(scatter);
+
+	set_point_coord(15,7,&move_pair[0]);
+	set_point_coord(10,7,&move_pair[2]);
+	set_point_coord(10,6,&move_pair[4]);
+	set_point_coord(10,8,&move_pair[6]);
+	set_point_coord(10,9,&move_pair[8]);
+
+	for (uint8_t i = 1; i < 10; i += 2) {
+
+		move_pair[i].x = INVALID_POINT;
+		move_pair[i].y = INVALID_POINT;
+	}
+
+	*pellet_count = 111;
+	*button_pressed = false;
+	target_point->x = INVALID_POINT;
+	target_point->y = INVALID_POINT;
+	*god_mode_timer = 0;
+
+	for (uint8_t i = 0; i < 5; ++i) {
+		is_ghost_eaten[i] = false;
+	}
+
+	set_pacman_life(4);
+	turn_on_LEDS();
+}
+
+//Cleanup function
+void exit_game(Point entity_store[], bool* play_game) {
+	//free feed
+	_inky_feed_next(false, true);
+	_blinky_feed_next(false, true);
+	_pinky_feed_next(false, true);
+	_clyde_feed_next(false, true);
+	
+	//destroy characters
+	destroy_blinky();
+	destroy_inky();
+	destroy_clyde();
+	destroy_pinky();
+	destroy_pacman();
+	destroy_grid();
+
+	for (uint8_t i = 1; i < 10; i+=2)
+	{
+		entity_store[i].x = INVALID_POINT;
+		entity_store[i].y = INVALID_POINT;
+	}
+
+	//go back to the main page
+	set_menu_page(menu_page_home);
+	*play_game = false;
+}
+
 int main()
 {	
 	//set up grid and IO
@@ -294,6 +398,22 @@ int main()
 		Pinky* pinky_ref = _pinky(false);
 		Inky* inky_ref = _inky(false);
 
+		/*
+			--pacman--
+		Pos = 0 / Target = 1
+
+			--blinky--
+		Pos = 2 / Target = 3
+
+			--inky--
+		Pos = 4 / Target = 5
+
+			--pinky--
+		Pos = 6 / Target = 7
+
+			--clyde--
+		Pos = 8 / Target = 9
+		*/
 		Point move_pair[10];
 
 		move_pair[0] = create_deep_copy_stack(get_pacman_position());
@@ -321,7 +441,7 @@ int main()
 		turn_on_LEDS();
 		create_reset_grid();
 		draw_current_page();
-		//pacman_intro_tune();
+		pacman_intro_tune();
 
 		//main game loop here
 		while (play_game && get_pacman_life() != 0)
@@ -350,7 +470,12 @@ int main()
 				delay(25);
 				}
 
-				//Exit pause menu and resume the game
+				if (get_active_menu_page() == menu_page_restart) {
+					restart_game(move_pair,&pellet_count,&button_pressed,&target_point, &god_mode_timer, is_ghost_eaten);
+					set_menu_page(menu_page_game);
+				}
+
+				
 				if (get_active_menu_page() == menu_page_game) {
 					draw_current_page();
 					delay(2000);
@@ -359,6 +484,7 @@ int main()
 				if (get_active_menu_page() == menu_page_home) {
 					play_game = false;
 				}
+
 			}
 			//Break to exit the game
 			if (!play_game) break;
@@ -417,43 +543,28 @@ int main()
 			{
 				pacman_new_x = get_pacman_position()->x;
 				pacman_new_y = get_pacman_position()->y;
+				move_pair[1].x = pacman_new_x;
+				move_pair[1].y = pacman_new_y;
 			}
 
-			//run algo on ghosts based on pacman's current position
+			//Run algo on ghosts based on pacman's current position
 
 			//Blinky
 			target_point = _blinky_feed_next(get_blinky_behaviour_change(),false);
 			copy_point_values(&move_pair[3],&target_point);
-			/* eputs("Blinky\r\n");
-			printDecimal(target_point.x);
-			printDecimal(target_point.y);
-			eputs("\r\n\r\n"); */
 
 			//inky
 			target_point = _inky_feed_next(get_inky_behaviour_change(), false);
 			copy_point_values(&move_pair[5],&target_point);
-		/* 	eputs("inky\r\n");
-			printDecimal(target_point.x);
-			printDecimal(target_point.y);
-			eputs("\r\n\r\n"); */
 
 			//pinky
 			target_point = _pinky_feed_next(get_pinky_behaviour_change(), false);
 			copy_point_values(&move_pair[7],&target_point);
-		/* 	eputs("pinky\r\n");
-			printDecimal(target_point.x);
-			printDecimal(target_point.y);
-			eputs("\r\n\r\n"); */
 
 			//clyde
 			target_point = _clyde_feed_next(get_clyde_behaviour_change(), false);
 			copy_point_values(&move_pair[9],&target_point);
-			/* eputs("clyde\r\n");
-			printDecimal(target_point.x);
-			printDecimal(target_point.y);
-			eputs("\r\n\r\n"); */
-
-			//Updating grid states
+	
 
 			remove_grid_state_point(get_blinky_position(), cell_blinky);
  			add_grid_state_point(&move_pair[3], cell_blinky);
@@ -484,53 +595,14 @@ int main()
 			//Checking if pacman is dying
 			if (is_pacman_dead(move_pair,entity_move_order)) {
 
-				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
-				remove_grid_state_point(&move_pair[3], cell_blinky);
-				remove_grid_state_point(&move_pair[5], cell_inky);
-				remove_grid_state_point(&move_pair[7], cell_pinky);
-				remove_grid_state_point(&move_pair[9], cell_clyde);
-
-				set_pacman_position(15,7);
-				set_pacman_state(Mortal);
-				god_mode_timer = 0;
-
-				set_blinky_position(10,7);
-				set_blinky_mode(scatter);
-				_blinky_feed_next(false,true);
-
-				set_inky_position(10,6);
-				set_inky_mode(scatter);
-				_inky_feed_next(false,true);
-
-
-				set_pinky_position(10,8);
-				set_pinky_mode(scatter);
-				_pinky_feed_next(false,true);
-
-
-				set_clyde_position(10,9);
-				set_clyde_mode(scatter);
-				_clyde_feed_next(false,true);
-
-
-				add_grid_state(15,7,cell_pacman);
-				add_grid_state(10,6,cell_inky);
-				add_grid_state(10,7,cell_blinky);
-				add_grid_state(10,8,cell_pinky);
-				add_grid_state(10,9,cell_clyde);
-
-				uint8_t pacmans_life = get_pacman_life();
-				set_pacman_life(--pacmans_life);
-				display_life_LED(pacmans_life);
+				reset_round(move_pair, &god_mode_timer);
 				target_point.x = INVALID_POINT;
 				target_point.y = INVALID_POINT;
-				draw_current_page();
-				delay(2000);
 				continue;
 			}
 
 			//Visual drawing for this turn of the game
-			move_entities(move_pair,entity_move_order,2, is_ghost_eaten);
+			move_entities(move_pair,entity_move_order,5, is_ghost_eaten);
 
 
 			//set the internal positions of each entity to their new positions
@@ -548,7 +620,7 @@ int main()
 			copy_point_values(&move_pair[8], &move_pair[9]);
 
 			//Reset ghosts we collided with
-			reset_eaten_ghosts(is_ghost_eaten,entity_move_order,5);
+			reset_eaten_ghosts(move_pair,is_ghost_eaten,entity_move_order,5);
 
 			//Starting the counter for pacmans god mode and setting ghosts to fright mode
 			if (god_mode_timer == 20)
@@ -561,7 +633,7 @@ int main()
 			    This eat function occurs after all movement and pacman simply eats all eligible ghosts, 
 				they must be in fright mode in order to be eaten.
 			*/	
-			if (get_pacman_state() == God) {check_if_eat_ghost_static();}
+			if (get_pacman_state() == God) {check_if_eat_ghost_static(move_pair);}
 
 			if (god_mode_timer > 0)
 			{
@@ -588,45 +660,9 @@ int main()
 			//Checking if pacman died
 			if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
 
-				remove_grid_state(pacman_new_x,pacman_new_y, cell_pacman);
-				remove_grid_state_point(&move_pair[3], cell_blinky);
-				remove_grid_state_point(&move_pair[5], cell_inky);
-				remove_grid_state_point(&move_pair[7], cell_pinky);
-				remove_grid_state_point(&move_pair[9], cell_clyde);
-
-				set_pacman_position(15,7);
-				set_pacman_state(Mortal);
-				god_mode_timer = 0;
-
-				set_blinky_position(10,7);
-				set_blinky_mode(scatter);
-				_blinky_feed_next(false,true);
-
-				set_inky_position(10,6);
-				set_inky_mode(scatter);
-				_inky_feed_next(false,true);
-
-				set_pinky_position(10,8);
-				set_pinky_mode(scatter);
-				_pinky_feed_next(false,true);
-
-				set_clyde_position(10,9);
-				set_clyde_mode(scatter);
-				_clyde_feed_next(false,true);
-
-				add_grid_state(15,7,cell_pacman);
-				add_grid_state(10,6,cell_inky);
-				add_grid_state(10,7,cell_blinky);
-				add_grid_state(10,8,cell_pinky);
-				add_grid_state(10,9,cell_clyde);
-
-				uint8_t pacmans_life = get_pacman_life();
-				set_pacman_life(--pacmans_life);
-				display_life_LED(pacmans_life);
+				reset_round(move_pair, &god_mode_timer);
 				target_point.x = INVALID_POINT;
 				target_point.y = INVALID_POINT;
-				draw_current_page();
-				delay(2000);
 				continue;
 			}
 

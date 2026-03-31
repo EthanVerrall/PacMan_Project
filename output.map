@@ -1,75 +1,75 @@
 Archive member included to satisfy reference by file (symbol)
 
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
                               .pio\build\nucleo_f031k6\src\utils\point.o (calloc)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (exit)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o) (_global_impure_ptr)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (__libc_init_array)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (exit)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (__libc_init_array)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
                               .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o (malloc)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
                               .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o (memcpy)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (memset)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o) (_calloc_r)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_free_r)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_malloc_r)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o) (_sbrk_r)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o) (__malloc_lock)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (errno)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o (memset)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o) (_calloc_r)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_free_r)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_malloc_r)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o) (_sbrk_r)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o) (__malloc_lock)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (errno)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
                               .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o (__gnu_thumb1_case_sqi)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
                               .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o (__gnu_thumb1_case_uqi)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
                               .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o (__aeabi_uidiv)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
                               .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o (__aeabi_idiv)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
                               .pio\build\nucleo_f031k6\src\utils\random.o (__aeabi_uldivmod)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
                               .pio\build\nucleo_f031k6\src\utils\random.o (__aeabi_lmul)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o) (__clzdi2)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o) (__clzsi2)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (_sbrk)
-c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
-                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o) (_exit)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o) (__clzdi2)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o) (__clzsi2)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (_sbrk)
+c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o) (_exit)
 
 Allocating common symbols
 Common symbol       size              file
 
-errno               0x4               c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+errno               0x4               c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
 milliseconds        0x4               .pio\build\nucleo_f031k6\src\utils\events.o
 
 Discarded input sections
 
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
- .data          0x00000000        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
- .text          0x00000000       0x78 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
- .ARM.extab     0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
- .ARM.exidx     0x00000000        0x8 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+ .data          0x00000000        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .text          0x00000000       0x78 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
  .ARM.attributes
-                0x00000000       0x1b c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+                0x00000000       0x1b c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
  .text          0x00000000       0x14 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
@@ -158,8 +158,6 @@ Discarded input sections
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\sound.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\sound.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\sound.o
- .text.playNote
-                0x00000000       0x28 .pio\build\nucleo_f031k6\src\music&sound\sound.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\music&sound\tones.o
@@ -168,8 +166,6 @@ Discarded input sections
  .text.play_falling_frequency
                 0x00000000       0x26 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .text._feed    0x00000000        0x2 .pio\build\nucleo_f031k6\src\music&sound\tones.o
- .text.pacman_intro_tune
-                0x00000000       0x30 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .text.waka_waka
                 0x00000000       0x82 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .text.fright_mode_sound
@@ -178,10 +174,6 @@ Discarded input sections
                 0x00000000       0x14 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .text.death_sound
                 0x00000000       0x30 .pio\build\nucleo_f031k6\src\music&sound\tones.o
- .rodata        0x00000000      0x120 .pio\build\nucleo_f031k6\src\music&sound\tones.o
- .comment       0x00000000       0x7f .pio\build\nucleo_f031k6\src\music&sound\tones.o
- .ARM.attributes
-                0x00000000       0x31 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .text          0x00000000        0x0 .pio\build\nucleo_f031k6\src\serial.o
  .data          0x00000000        0x0 .pio\build\nucleo_f031k6\src\serial.o
  .bss           0x00000000        0x0 .pio\build\nucleo_f031k6\src\serial.o
@@ -256,99 +248,99 @@ Discarded input sections
  .comment       0x00000000       0x7f .pio\build\nucleo_f031k6\src\utils\store.o
  .ARM.attributes
                 0x00000000       0x31 .pio\build\nucleo_f031k6\src\utils\store.o
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
- .text.exit     0x00000000       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
- .debug_frame   0x00000000       0x28 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .debug_frame   0x00000000       0x28 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
  .ARM.attributes
-                0x00000000       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x00000000       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
  .rodata._global_impure_ptr
-                0x00000000        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                0x00000000        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
  .text.cleanup_glue
-                0x00000000       0x1a c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                0x00000000       0x1a c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
  .text._reclaim_reent
-                0x00000000       0xcc c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
- .text          0x00000000      0x1d4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .debug_frame   0x00000000       0x20 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+                0x00000000       0xcc c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .text          0x00000000      0x1d4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x00000000       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
  .ARM.attributes
-                0x00000000       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
- .ARM.extab     0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
- .text._exit    0x00000000        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
- .debug_frame   0x00000000       0x20 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+                0x00000000       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .ARM.extab     0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+ .text._exit    0x00000000        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+ .debug_frame   0x00000000       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
  .ARM.attributes
-                0x00000000       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
- .eh_frame      0x00000000        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+                0x00000000       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+ .eh_frame      0x00000000        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
  .ARM.attributes
-                0x00000000       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
- .text          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
- .data          0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
- .bss           0x00000000        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+                0x00000000       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+ .text          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+ .data          0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+ .bss           0x00000000        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
 
 Memory Configuration
 
@@ -359,9 +351,9 @@ FLASH            0x08000000         0x00008000         xr
 
 Linker script and memory map
 
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 LOAD .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 LOAD .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o
 LOAD .pio\build\nucleo_f031k6\src\behaviours\algo.o
@@ -395,27 +387,27 @@ LOAD .pio\build\nucleo_f031k6\src\utils\point.o
 LOAD .pio\build\nucleo_f031k6\src\utils\random.o
 LOAD .pio\build\nucleo_f031k6\src\utils\store.o
 START GROUP
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libm.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libstdc++_nano.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libm.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libstdc++_nano.a
 END GROUP
 START GROUP
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
 END GROUP
 START GROUP
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
 END GROUP
 START GROUP
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
 END GROUP
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
-LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtend.o
+LOAD c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
                 0x20001000                _estack = (ORIGIN (RAM) + LENGTH (RAM))
                 0x00000200                _Min_Heap_Size = 0x200
                 0x00000400                _Min_Stack_Size = 0x400
@@ -427,31 +419,31 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
                 0x08000000                g_pfnVectors
                 0x080000c0                . = ALIGN (0x4)
 
-.text           0x080000c0     0x3fe4
+.text           0x080000c0     0x40d4
                 0x080000c0                . = ALIGN (0x4)
  *(.text)
- .text          0x080000c0       0x48 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
- .text          0x08000108       0x14 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+ .text          0x080000c0       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .text          0x08000108       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
                 0x08000108                __gnu_thumb1_case_sqi
- .text          0x0800011c       0x14 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .text          0x0800011c       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
                 0x0800011c                __gnu_thumb1_case_uqi
- .text          0x08000130      0x114 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .text          0x08000130      0x114 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
                 0x08000130                __aeabi_uidiv
                 0x08000130                __udivsi3
                 0x0800023c                __aeabi_uidivmod
- .text          0x08000244        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .text          0x08000244        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
                 0x08000244                __aeabi_idiv0
                 0x08000244                __aeabi_ldiv0
- .text          0x08000248       0x40 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+ .text          0x08000248       0x40 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
                 0x08000248                __aeabi_uldivmod
- .text          0x08000288       0x54 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+ .text          0x08000288       0x54 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
                 0x08000288                __muldi3
                 0x08000288                __aeabi_lmul
- .text          0x080002dc      0x184 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .text          0x080002dc      0x184 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
                 0x080002dc                __udivmoddi4
- .text          0x08000460       0x18 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+ .text          0x08000460       0x18 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
                 0x08000460                __clzdi2
- .text          0x08000478       0x3c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .text          0x08000478       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
                 0x08000478                __clzsi2
  *(.text*)
  .text.Reset_Handler
@@ -820,324 +812,338 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
                 0x08002bac       0x14 .pio\build\nucleo_f031k6\src\grid.o
                 0x08002bac                destroy_grid
  .text.check_if_eat_ghost_static
-                0x08002bc0      0x100 .pio\build\nucleo_f031k6\src\main.o
+                0x08002bc0      0x13a .pio\build\nucleo_f031k6\src\main.o
                 0x08002bc0                check_if_eat_ghost_static
- .text.set_scatter_mode_to_chase_mode
-                0x08002cc0       0x94 .pio\build\nucleo_f031k6\src\main.o
-                0x08002cc0                set_scatter_mode_to_chase_mode
  .text.check_if_eat_ghost_real_time
-                0x08002d54       0x8a .pio\build\nucleo_f031k6\src\main.o
-                0x08002d54                check_if_eat_ghost_real_time
+                0x08002cfa       0x8a .pio\build\nucleo_f031k6\src\main.o
+                0x08002cfa                check_if_eat_ghost_real_time
+ .text.set_scatter_mode_to_chase_mode
+                0x08002d84       0x94 .pio\build\nucleo_f031k6\src\main.o
+                0x08002d84                set_scatter_mode_to_chase_mode
  .text.set_ghosts_mode
-                0x08002dde       0x1c .pio\build\nucleo_f031k6\src\main.o
-                0x08002dde                set_ghosts_mode
+                0x08002e18       0x1c .pio\build\nucleo_f031k6\src\main.o
+                0x08002e18                set_ghosts_mode
  .text.reset_eaten_ghosts
-                0x08002dfa       0xbe .pio\build\nucleo_f031k6\src\main.o
-                0x08002dfa                reset_eaten_ghosts
- .text.exit_game
-                0x08002eb8       0x5a .pio\build\nucleo_f031k6\src\main.o
-                0x08002eb8                exit_game
+                0x08002e34       0xec .pio\build\nucleo_f031k6\src\main.o
+                0x08002e34                reset_eaten_ghosts
  .text.is_pacman_dead
-                0x08002f12       0x8a .pio\build\nucleo_f031k6\src\main.o
-                0x08002f12                is_pacman_dead
+                0x08002f20       0x8a .pio\build\nucleo_f031k6\src\main.o
+                0x08002f20                is_pacman_dead
+ .text.reset_round
+                0x08002faa      0x128 .pio\build\nucleo_f031k6\src\main.o
+                0x08002faa                reset_round
+ .text.restart_game
+                0x080030d2       0xd4 .pio\build\nucleo_f031k6\src\main.o
+                0x080030d2                restart_game
+ .text.exit_game
+                0x080031a6       0x5a .pio\build\nucleo_f031k6\src\main.o
+                0x080031a6                exit_game
  .text.startup.main
-                0x08002f9c      0x6fc .pio\build\nucleo_f031k6\src\main.o
-                0x08002f9c                main
+                0x08003200      0x530 .pio\build\nucleo_f031k6\src\main.o
+                0x08003200                main
+ .text.playNote
+                0x08003730       0x28 .pio\build\nucleo_f031k6\src\music&sound\sound.o
+                0x08003730                playNote
  .text.initSound
-                0x08003698       0x68 .pio\build\nucleo_f031k6\src\music&sound\sound.o
-                0x08003698                initSound
+                0x08003758       0x68 .pio\build\nucleo_f031k6\src\music&sound\sound.o
+                0x08003758                initSound
+ .text.pacman_intro_tune
+                0x080037c0       0x30 .pio\build\nucleo_f031k6\src\music&sound\tones.o
+                0x080037c0                pacman_intro_tune
  .text.initSerial
-                0x08003700       0x98 .pio\build\nucleo_f031k6\src\serial.o
-                0x08003700                initSerial
+                0x080037f0       0x98 .pio\build\nucleo_f031k6\src\serial.o
+                0x080037f0                initSerial
  .text.eputchar
-                0x08003798       0x1c .pio\build\nucleo_f031k6\src\serial.o
-                0x08003798                eputchar
- .text.eputs    0x080037b4       0x14 .pio\build\nucleo_f031k6\src\serial.o
-                0x080037b4                eputs
+                0x08003888       0x1c .pio\build\nucleo_f031k6\src\serial.o
+                0x08003888                eputchar
+ .text.eputs    0x080038a4       0x14 .pio\build\nucleo_f031k6\src\serial.o
+                0x080038a4                eputs
  .text.is_not_empty
-                0x080037c8        0x8 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080037c8                is_not_empty
+                0x080038b8        0x8 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080038b8                is_not_empty
  .text.get_list_size
-                0x080037d0       0x1e .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080037d0                get_list_size
- .text.push     0x080037ee       0x48 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080037ee                push
+                0x080038c0       0x1e .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080038c0                get_list_size
+ .text.push     0x080038de       0x48 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080038de                push
  .text.search_item
-                0x08003836       0x2a .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003836                search_item
+                0x08003926       0x2a .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003926                search_item
  .text.remove_item
-                0x08003860       0x70 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x08003860                remove_item
+                0x08003950       0x70 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x08003950                remove_item
  .text.clear_arr
-                0x080038d0       0x12 .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080038d0                clear_arr
+                0x080039c0       0x12 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080039c0                clear_arr
  .text.reverse_points
-                0x080038e2       0x3c .pio\build\nucleo_f031k6\src\utils\arr.o
-                0x080038e2                reverse_points
- *fill*         0x0800391e        0x2 
+                0x080039d2       0x3c .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x080039d2                reverse_points
+ *fill*         0x08003a0e        0x2 
  .text.initSysTick
-                0x08003920       0x1c .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003920                initSysTick
+                0x08003a10       0x1c .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003a10                initSysTick
  .text.SysTick_Handler
-                0x0800393c       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800393c                SysTick_Handler
+                0x08003a2c       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003a2c                SysTick_Handler
  .text.initClock
-                0x0800394c       0x70 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x0800394c                initClock
- .text.delay    0x080039bc       0x20 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080039bc                delay
+                0x08003a3c       0x70 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003a3c                initClock
+ .text.delay    0x08003aac       0x20 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003aac                delay
  .text.enablePullUp
-                0x080039dc       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080039dc                enablePullUp
- .text.pinMode  0x080039f4       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x080039f4                pinMode
- .text.setupIO  0x08003a08       0xc8 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003a08                setupIO
+                0x08003acc       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003acc                enablePullUp
+ .text.pinMode  0x08003ae4       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ae4                pinMode
+ .text.setupIO  0x08003af8       0xc8 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003af8                setupIO
  .text.SET_UP_STM
-                0x08003ad0       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003ad0                SET_UP_STM
+                0x08003bc0       0x18 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003bc0                SET_UP_STM
  .text.is_button_up_pressed
-                0x08003ae8        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003ae8                is_button_up_pressed
- *fill*         0x08003af6        0x2 
+                0x08003bd8        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003bd8                is_button_up_pressed
+ *fill*         0x08003be6        0x2 
  .text.is_button_right_pressed
-                0x08003af8       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003af8                is_button_right_pressed
+                0x08003be8       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003be8                is_button_right_pressed
  .text.is_button_down_pressed
-                0x08003b08        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003b08                is_button_down_pressed
- *fill*         0x08003b16        0x2 
+                0x08003bf8        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003bf8                is_button_down_pressed
+ *fill*         0x08003c06        0x2 
  .text.is_button_left_pressed
-                0x08003b18       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003b18                is_button_left_pressed
+                0x08003c08       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c08                is_button_left_pressed
  .text.is_button_pause_pressed
-                0x08003b28        0xe .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003b28                is_button_pause_pressed
- *fill*         0x08003b36        0x2 
+                0x08003c18        0xe .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c18                is_button_pause_pressed
+ *fill*         0x08003c26        0x2 
  .text.turn_off_LEDS
-                0x08003b38       0x38 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003b38                turn_off_LEDS
+                0x08003c28       0x38 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c28                turn_off_LEDS
  .text.turn_on_LEDS
-                0x08003b70       0x34 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003b70                turn_on_LEDS
+                0x08003c60       0x34 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c60                turn_on_LEDS
  .text.turn_on_low_green_LED
-                0x08003ba4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003ba4                turn_on_low_green_LED
+                0x08003c94       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003c94                turn_on_low_green_LED
  .text.turn_on_yellow_LED
-                0x08003bb4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003bb4                turn_on_yellow_LED
+                0x08003ca4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003ca4                turn_on_yellow_LED
  .text.turn_on_red_LED
-                0x08003bc4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003bc4                turn_on_red_LED
+                0x08003cb4       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cb4                turn_on_red_LED
  .text.turn_off_high_green_LED
-                0x08003bd4       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003bd4                turn_off_high_green_LED
+                0x08003cc4       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cc4                turn_off_high_green_LED
  .text.turn_off_low_green_LED
-                0x08003be8       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003be8                turn_off_low_green_LED
+                0x08003cd8       0x14 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cd8                turn_off_low_green_LED
  .text.turn_off_yellow_LED
-                0x08003bfc       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003bfc                turn_off_yellow_LED
+                0x08003cec       0x10 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cec                turn_off_yellow_LED
  .text.display_life_LED
-                0x08003c0c       0x46 .pio\build\nucleo_f031k6\src\utils\events.o
-                0x08003c0c                display_life_LED
+                0x08003cfc       0x46 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x08003cfc                display_life_LED
  .text.create_point
-                0x08003c52       0x18 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003c52                create_point
+                0x08003d42       0x18 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003d42                create_point
  .text.create_deep_copy
-                0x08003c6a       0x1c .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003c6a                create_deep_copy
+                0x08003d5a       0x1c .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003d5a                create_deep_copy
  .text.create_deep_copy_stack
-                0x08003c86       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003c86                create_deep_copy_stack
+                0x08003d76       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003d76                create_deep_copy_stack
  .text.copy_point_values
-                0x08003caa       0x14 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003caa                copy_point_values
+                0x08003d9a       0x14 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003d9a                copy_point_values
  .text.set_point_coord
-                0x08003cbe        0xe .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003cbe                set_point_coord
+                0x08003dae        0xe .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003dae                set_point_coord
  .text.compare_points
-                0x08003ccc       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003ccc                compare_points
+                0x08003dbc       0x24 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003dbc                compare_points
  .text.is_point_valid
-                0x08003cf0       0x1a .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003cf0                is_point_valid
+                0x08003de0       0x1a .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003de0                is_point_valid
  .text.destroy_point
-                0x08003d0a        0xa .pio\build\nucleo_f031k6\src\utils\point.o
-                0x08003d0a                destroy_point
+                0x08003dfa        0xa .pio\build\nucleo_f031k6\src\utils\point.o
+                0x08003dfa                destroy_point
  .text.linear_congruence_rand
-                0x08003d14       0x68 .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003d14                linear_congruence_rand
+                0x08003e04       0x68 .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003e04                linear_congruence_rand
  .text.get_random_number_in_range
-                0x08003d7c       0x2a .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003d7c                get_random_number_in_range
+                0x08003e6c       0x2a .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003e6c                get_random_number_in_range
  .text.get_random_point_on_grid
-                0x08003da6       0x8e .pio\build\nucleo_f031k6\src\utils\random.o
-                0x08003da6                get_random_point_on_grid
- .text.calloc   0x08003e34       0x14 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
-                0x08003e34                calloc
+                0x08003e96       0x8e .pio\build\nucleo_f031k6\src\utils\random.o
+                0x08003e96                get_random_point_on_grid
+ .text.calloc   0x08003f24       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+                0x08003f24                calloc
  .text.__libc_init_array
-                0x08003e48       0x48 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-                0x08003e48                __libc_init_array
- .text.malloc   0x08003e90       0x14 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-                0x08003e90                malloc
- .text.free     0x08003ea4       0x14 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-                0x08003ea4                free
- .text.memcpy   0x08003eb8       0x12 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
-                0x08003eb8                memcpy
- .text.memset   0x08003eca       0x10 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
-                0x08003eca                memset
+                0x08003f38       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+                0x08003f38                __libc_init_array
+ .text.malloc   0x08003f80       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x08003f80                malloc
+ .text.free     0x08003f94       0x14 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x08003f94                free
+ .text.memcpy   0x08003fa8       0x12 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x08003fa8                memcpy
+ .text.memset   0x08003fba       0x10 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                0x08003fba                memset
  .text._calloc_r
-                0x08003eda       0x1c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
-                0x08003eda                _calloc_r
- *fill*         0x08003ef6        0x2 
- .text._free_r  0x08003ef8       0x94 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-                0x08003ef8                _free_r
+                0x08003fca       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                0x08003fca                _calloc_r
+ *fill*         0x08003fe6        0x2 
+ .text._free_r  0x08003fe8       0x94 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                0x08003fe8                _free_r
  .text._malloc_r
-                0x08003f8c       0xbc c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                0x08003f8c                _malloc_r
- .text._sbrk_r  0x08004048       0x24 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-                0x08004048                _sbrk_r
+                0x0800407c       0xbc c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x0800407c                _malloc_r
+ .text._sbrk_r  0x08004138       0x24 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                0x08004138                _sbrk_r
  .text.__malloc_lock
-                0x0800406c        0x2 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                0x0800406c                __malloc_lock
+                0x0800415c        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x0800415c                __malloc_lock
  .text.__malloc_unlock
-                0x0800406e        0x2 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                0x0800406e                __malloc_unlock
- .text._sbrk    0x08004070       0x1c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
-                0x08004070                _sbrk
+                0x0800415e        0x2 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x0800415e                __malloc_unlock
+ .text._sbrk    0x08004160       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x08004160                _sbrk
  *(.glue_7)
- .glue_7        0x0800408c        0x0 linker stubs
+ .glue_7        0x0800417c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800408c        0x0 linker stubs
+ .glue_7t       0x0800417c        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800408c        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .eh_frame      0x0800417c        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
  *(.init)
- .init          0x0800408c        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-                0x0800408c                _init
- .init          0x08004090        0x8 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+ .init          0x0800417c        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                0x0800417c                _init
+ .init          0x08004180        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
  *(.fini)
- .fini          0x08004098        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-                0x08004098                _fini
- .fini          0x0800409c        0x8 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
-                0x080040a4                . = ALIGN (0x4)
-                0x080040a4                _etext = .
+ .fini          0x08004188        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                0x08004188                _fini
+ .fini          0x0800418c        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+                0x08004194                . = ALIGN (0x4)
+                0x08004194                _etext = .
 
-.vfp11_veneer   0x080040a4        0x0
- .vfp11_veneer  0x080040a4        0x0 linker stubs
+.vfp11_veneer   0x08004194        0x0
+ .vfp11_veneer  0x08004194        0x0 linker stubs
 
-.v4_bx          0x080040a4        0x0
- .v4_bx         0x080040a4        0x0 linker stubs
+.v4_bx          0x08004194        0x0
+ .v4_bx         0x08004194        0x0 linker stubs
 
-.iplt           0x080040a4        0x0
- .iplt          0x080040a4        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+.iplt           0x08004194        0x0
+ .iplt          0x08004194        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
 
-.rodata         0x080040a4     0x391c
-                0x080040a4                . = ALIGN (0x4)
+.rodata         0x08004194     0x3a3c
+                0x08004194                . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x080040a4       0x20 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
- .rodata        0x080040c4      0x244 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
- .rodata        0x08004308      0x234 .pio\build\nucleo_f031k6\src\grid.o
- .rodata        0x0800453c        0x7 .pio\build\nucleo_f031k6\src\main.o
+ .rodata        0x08004194       0x20 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
+ .rodata        0x080041b4      0x244 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+ .rodata        0x080043f8      0x234 .pio\build\nucleo_f031k6\src\grid.o
+ .rodata        0x0800462c        0x7 .pio\build\nucleo_f031k6\src\main.o
+ *fill*         0x08004633        0x1 
+ .rodata        0x08004634      0x120 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  *(.rodata*)
  .rodata.trace_path_a_star.str1.1
-                0x08004543       0x1c .pio\build\nucleo_f031k6\src\behaviours\algo.o
+                0x08004754       0x1c .pio\build\nucleo_f031k6\src\behaviours\algo.o
  .rodata.create_ghost.str1.1
-                0x0800455f       0x10 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08004770       0x10 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
  .rodata.set_ghost_position.str1.1
-                0x0800456f       0x4e .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
+                0x08004780       0x4e .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
  .rodata._pacman.str1.1
-                0x080045bd       0x11 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
+                0x080047ce       0x11 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
  .rodata.Font5x7
-                0x080045ce      0x1e0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
+                0x080047df      0x1e0 .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
  .rodata.draw_pause_menu.str1.1
-                0x080047ae        0x7 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x080049bf        0x7 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.move_entities.str1.1
-                0x080047b5      0x11a .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x080049c6      0x11a .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.redraw_entire_grid.str1.1
-                0x080048cf        0xd .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08004ae0        0xd .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.redraw_white_text.str1.1
-                0x080048dc       0x40 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
+                0x08004aed       0x40 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .rodata.create_singleton_grid.str1.1
-                0x0800491c        0x7 .pio\build\nucleo_f031k6\src\grid.o
+                0x08004b2d        0x7 .pio\build\nucleo_f031k6\src\grid.o
  .rodata.main.str1.1
-                0x08004923       0x1b .pio\build\nucleo_f031k6\src\main.o
+                0x08004b34       0x1b .pio\build\nucleo_f031k6\src\main.o
+ *fill*         0x08004b4f        0x1 
  .rodata.blank_array
-                0x0800493e       0x80 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
-                0x0800493e                blank_array
+                0x08004b50       0x80 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
+                0x08004b50                blank_array
  .rodata.blinky_array
-                0x080049be      0x200 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
-                0x080049be                blinky_array
+                0x08004bd0      0x200 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
+                0x08004bd0                blinky_array
  .rodata.clyde_array
-                0x08004bbe      0x200 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
-                0x08004bbe                clyde_array
+                0x08004dd0      0x200 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
+                0x08004dd0                clyde_array
  .rodata.fright_ghost_array
-                0x08004dbe       0x80 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
-                0x08004dbe                fright_ghost_array
+                0x08004fd0       0x80 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
+                0x08004fd0                fright_ghost_array
  .rodata.inky_array
-                0x08004e3e      0x200 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
-                0x08004e3e                inky_array
+                0x08005050      0x200 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
+                0x08005050                inky_array
  .rodata.main_menu_array
-                0x0800503e     0x1c80 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
-                0x0800503e                main_menu_array
+                0x08005250     0x1c80 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
+                0x08005250                main_menu_array
  .rodata.pacman_array
-                0x08006cbe      0x400 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
-                0x08006cbe                pacman_array
+                0x08006ed0      0x400 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
+                0x08006ed0                pacman_array
  .rodata.pickups_array
-                0x080070be      0x180 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
-                0x080070be                pickups_array
+                0x080072d0      0x180 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
+                0x080072d0                pickups_array
  .rodata.pinky_array
-                0x0800723e      0x200 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
-                0x0800723e                pinky_array
+                0x08007450      0x200 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
+                0x08007450                pinky_array
  .rodata.wall_array
-                0x0800743e      0x580 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
-                0x0800743e                wall_array
-                0x080079c0                . = ALIGN (0x4)
- *fill*         0x080079be        0x2 
+                0x08007650      0x580 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
+                0x08007650                wall_array
+                0x08007bd0                . = ALIGN (0x4)
 
-.ARM.extab      0x080079c0        0x0
-                0x080079c0                . = ALIGN (0x4)
+.ARM.extab      0x08007bd0        0x0
+                0x08007bd0                . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x080079c0                . = ALIGN (0x4)
+                0x08007bd0                . = ALIGN (0x4)
 
-.ARM            0x080079c0        0x8
-                0x080079c0                . = ALIGN (0x4)
-                0x080079c0                __exidx_start = .
+.ARM            0x08007bd0        0x8
+                0x08007bd0                . = ALIGN (0x4)
+                0x08007bd0                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x080079c0        0x8 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-                0x080079c8                __exidx_end = .
-                0x080079c8                . = ALIGN (0x4)
+ .ARM.exidx     0x08007bd0        0x8 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                0x08007bd8                __exidx_end = .
+                0x08007bd8                . = ALIGN (0x4)
 
-.rel.dyn        0x080079c8        0x0
- .rel.iplt      0x080079c8        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+.rel.dyn        0x08007bd8        0x0
+ .rel.iplt      0x08007bd8        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
 
-.preinit_array  0x080079c8        0x0
-                0x080079c8                . = ALIGN (0x4)
-                0x080079c8                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08007bd8        0x0
+                0x08007bd8                . = ALIGN (0x4)
+                0x08007bd8                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x080079c8                PROVIDE (__preinit_array_end, .)
-                0x080079c8                . = ALIGN (0x4)
+                0x08007bd8                PROVIDE (__preinit_array_end, .)
+                0x08007bd8                . = ALIGN (0x4)
 
-.init_array     0x080079c8        0x4
-                0x080079c8                . = ALIGN (0x4)
-                0x080079c8                PROVIDE (__init_array_start, .)
+.init_array     0x08007bd8        0x4
+                0x08007bd8                . = ALIGN (0x4)
+                0x08007bd8                PROVIDE (__init_array_start, .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x080079c8        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-                0x080079cc                PROVIDE (__init_array_end, .)
-                0x080079cc                . = ALIGN (0x4)
+ .init_array    0x08007bd8        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+                0x08007bdc                PROVIDE (__init_array_end, .)
+                0x08007bdc                . = ALIGN (0x4)
 
-.fini_array     0x080079cc        0x4
-                0x080079cc                . = ALIGN (0x4)
+.fini_array     0x08007bdc        0x4
+                0x08007bdc                . = ALIGN (0x4)
                 [!provide]                PROVIDE (__fini_array_start, .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x080079cc        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .fini_array    0x08007bdc        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
                 [!provide]                PROVIDE (__fini_array_end, .)
-                0x080079d0                . = ALIGN (0x4)
-                0x080079d0                _sidata = LOADADDR (.data)
+                0x08007be0                . = ALIGN (0x4)
+                0x08007be0                _sidata = LOADADDR (.data)
 
-.data           0x20000000       0x70 load address 0x080079d0
+.data           0x20000000       0x70 load address 0x08007be0
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -1156,24 +1162,24 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
  .data.iterator.4872
                 0x20000008        0x4 .pio\build\nucleo_f031k6\src\utils\random.o
  .data._impure_ptr
-                0x2000000c        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x2000000c        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
                 0x2000000c                _impure_ptr
  .data.impure_data
-                0x20000010       0x60 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x20000010       0x60 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
  *(.RamFunc)
  *(.RamFunc*)
                 0x20000070                . = ALIGN (0x4)
                 0x20000070                _edata = .
 
-.igot.plt       0x20000070        0x0 load address 0x08007a40
- .igot.plt      0x20000070        0x0 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+.igot.plt       0x20000070        0x0 load address 0x08007c50
+ .igot.plt      0x20000070        0x0 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
                 0x20000070                . = ALIGN (0x4)
 
-.bss            0x20000070      0x1e4 load address 0x08007a40
+.bss            0x20000070      0x1e4 load address 0x08007c50
                 0x20000070                _sbss = .
                 0x20000070                __bss_start__ = _sbss
  *(.bss)
- .bss           0x20000070       0x1c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+ .bss           0x20000070       0x1c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
  *(.bss*)
  .bss.current_blinky.5536
                 0x2000008c        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
@@ -1193,7 +1199,7 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
                 0x200001c8        0x4 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
  .bss.feed_cache.5509
                 0x200001cc       0x64 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
- .bss.flicker_switch.5782
+ .bss.flicker_switch.5783
                 0x20000230        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
  .bss.is_mouth_open
                 0x20000231        0x1 .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
@@ -1205,24 +1211,24 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
  .bss.stored_seed.4873
                 0x20000238        0x8 .pio\build\nucleo_f031k6\src\utils\random.o
  .bss.__malloc_free_list
-                0x20000240        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000240        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
                 0x20000240                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x20000244        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000244        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
                 0x20000244                __malloc_sbrk_start
  .bss.heap_end.4102
-                0x20000248        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x20000248        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
  *(COMMON)
  COMMON         0x2000024c        0x4 .pio\build\nucleo_f031k6\src\utils\events.o
                 0x2000024c                milliseconds
- COMMON         0x20000250        0x4 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ COMMON         0x20000250        0x4 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
                 0x20000250                errno
                 0x20000254                . = ALIGN (0x4)
                 0x20000254                _ebss = .
                 0x20000254                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000254      0x604 load address 0x08007a40
+                0x20000254      0x604 load address 0x08007c50
                 0x20000258                . = ALIGN (0x8)
  *fill*         0x20000254        0x4 
                 0x20000258                PROVIDE (end, .)
@@ -1242,9 +1248,9 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
                 0x00000000       0x28
  *(.ARM.attributes)
  .ARM.attributes
-                0x00000000       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                0x00000000       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
  .ARM.attributes
-                0x0000001e       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+                0x0000001e       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
  .ARM.attributes
                 0x0000004a       0x21 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
  .ARM.attributes
@@ -1276,81 +1282,83 @@ LOAD c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/..
  .ARM.attributes
                 0x000002e8       0x31 .pio\build\nucleo_f031k6\src\music&sound\sound.o
  .ARM.attributes
-                0x00000319       0x31 .pio\build\nucleo_f031k6\src\serial.o
+                0x00000319       0x31 .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .ARM.attributes
-                0x0000034a       0x31 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
+                0x0000034a       0x31 .pio\build\nucleo_f031k6\src\serial.o
  .ARM.attributes
-                0x0000037b       0x31 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
+                0x0000037b       0x31 .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
  .ARM.attributes
-                0x000003ac       0x31 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
+                0x000003ac       0x31 .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
  .ARM.attributes
-                0x000003dd       0x31 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
+                0x000003dd       0x31 .pio\build\nucleo_f031k6\src\texture_src\clyde_textures.o
  .ARM.attributes
-                0x0000040e       0x31 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
+                0x0000040e       0x31 .pio\build\nucleo_f031k6\src\texture_src\fright_ghost_textures.o
  .ARM.attributes
-                0x0000043f       0x31 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
+                0x0000043f       0x31 .pio\build\nucleo_f031k6\src\texture_src\inky_textures.o
  .ARM.attributes
-                0x00000470       0x31 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
+                0x00000470       0x31 .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
  .ARM.attributes
-                0x000004a1       0x31 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
+                0x000004a1       0x31 .pio\build\nucleo_f031k6\src\texture_src\pacman_textures.o
  .ARM.attributes
-                0x000004d2       0x31 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
+                0x000004d2       0x31 .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
  .ARM.attributes
-                0x00000503       0x31 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
+                0x00000503       0x31 .pio\build\nucleo_f031k6\src\texture_src\pinky_textures.o
  .ARM.attributes
-                0x00000534       0x31 .pio\build\nucleo_f031k6\src\utils\arr.o
+                0x00000534       0x31 .pio\build\nucleo_f031k6\src\texture_src\wall_textures.o
  .ARM.attributes
-                0x00000565       0x31 .pio\build\nucleo_f031k6\src\utils\events.o
+                0x00000565       0x31 .pio\build\nucleo_f031k6\src\utils\arr.o
  .ARM.attributes
-                0x00000596       0x31 .pio\build\nucleo_f031k6\src\utils\point.o
+                0x00000596       0x31 .pio\build\nucleo_f031k6\src\utils\events.o
  .ARM.attributes
-                0x000005c7       0x31 .pio\build\nucleo_f031k6\src\utils\random.o
+                0x000005c7       0x31 .pio\build\nucleo_f031k6\src\utils\point.o
  .ARM.attributes
-                0x000005f8       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+                0x000005f8       0x31 .pio\build\nucleo_f031k6\src\utils\random.o
  .ARM.attributes
-                0x00000624       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x00000629       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
  .ARM.attributes
-                0x00000650       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+                0x00000655       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x0000067c       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x00000681       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x000006a8       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x000006ad       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
  .ARM.attributes
-                0x000006d4       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                0x000006d9       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x00000700       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                0x00000705       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x0000072c       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                0x00000731       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
  .ARM.attributes
-                0x00000758       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000075d       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
  .ARM.attributes
-                0x00000784       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                0x00000789       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
  .ARM.attributes
-                0x000007b0       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x000007b5       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
  .ARM.attributes
-                0x000007dc       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                0x000007e1       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
  .ARM.attributes
-                0x00000808       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+                0x0000080d       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
  .ARM.attributes
-                0x00000826       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+                0x00000839       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
  .ARM.attributes
-                0x00000844       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+                0x00000857       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
  .ARM.attributes
-                0x00000862       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                0x00000875       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
  .ARM.attributes
-                0x00000880       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+                0x00000893       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x0000089e       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+                0x000008b1       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
  .ARM.attributes
-                0x000008ca       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                0x000008cf       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
  .ARM.attributes
-                0x000008f6       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+                0x000008fb       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
  .ARM.attributes
-                0x00000914       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                0x00000927       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
  .ARM.attributes
-                0x00000932       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x00000945       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
  .ARM.attributes
-                0x0000095e       0x1e c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
+                0x00000963       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .ARM.attributes
+                0x0000098f       0x1e c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtn.o
 OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
 
 .comment        0x00000000       0x7e
@@ -1369,6 +1377,7 @@ OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\grid.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\main.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\music&sound\sound.o
+ .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\music&sound\tones.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\serial.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
@@ -1386,21 +1395,21 @@ OUTPUT(.pio\build\nucleo_f031k6\firmware.elf elf32-littlearm)
  .comment       0x0000007e       0x7f .pio\build\nucleo_f031k6\src\utils\random.o
 
 .debug_frame    0x00000000      0x2b4
- .debug_frame   0x00000000       0x28 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
- .debug_frame   0x00000028       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
- .debug_frame   0x00000054       0x40 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x00000094       0x28 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x000000bc       0x20 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
- .debug_frame   0x000000dc       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
- .debug_frame   0x00000108       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00000134       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00000160       0x2c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x0000018c       0x30 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x000001bc       0x48 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
- .debug_frame   0x00000204       0x20 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
- .debug_frame   0x00000224       0x34 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
- .debug_frame   0x00000258       0x3c c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00000294       0x20 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .debug_frame   0x00000000       0x28 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+ .debug_frame   0x00000028       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+ .debug_frame   0x00000054       0x40 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x00000094       0x28 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000000bc       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x000000dc       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+ .debug_frame   0x00000108       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000134       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00000160       0x2c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000018c       0x30 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x000001bc       0x48 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x00000204       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000224       0x34 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+ .debug_frame   0x00000258       0x3c c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00000294       0x20 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
 
 Cross Reference Table
 
@@ -1444,76 +1453,76 @@ TIM2_IRQHandler                                   .pio\build\nucleo_f031k6\Frame
 TIM3_IRQHandler                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 USART1_IRQHandler                                 .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 WWDG_IRQHandler                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-__aeabi_idiv                                      c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+__aeabi_idiv                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
                                                   .pio\build\nucleo_f031k6\src\serial.o
                                                   .pio\build\nucleo_f031k6\src\music&sound\sound.o
                                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o
-__aeabi_idiv0                                     c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
-__aeabi_idivmod                                   c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+__aeabi_idiv0                                     c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+__aeabi_idivmod                                   c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
                                                   .pio\build\nucleo_f031k6\src\serial.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-__aeabi_ldiv0                                     c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
-__aeabi_lmul                                      c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+__aeabi_ldiv0                                     c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+__aeabi_lmul                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
                                                   .pio\build\nucleo_f031k6\src\utils\random.o
-__aeabi_uidiv                                     c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+__aeabi_uidiv                                     c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
                                                   .pio\build\nucleo_f031k6\src\music&sound\sound.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
                                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\system_stm32f0xx.o
-__aeabi_uidivmod                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+__aeabi_uidivmod                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
-__aeabi_uldivmod                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+__aeabi_uldivmod                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
                                                   .pio\build\nucleo_f031k6\src\utils\random.o
-__bss_end__                                       c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-__bss_start__                                     c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-__call_exitprocs                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
-__clzdi2                                          c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-__clzsi2                                          c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
-__deregister_frame_info                           c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-__divsi3                                          c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
-__dso_handle                                      c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-__gnu_thumb1_case_sqi                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
+__bss_end__                                       c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+__bss_start__                                     c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+__call_exitprocs                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+__clzdi2                                          c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+__clzsi2                                          c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzdi2.o)
+__deregister_frame_info                           c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+__divsi3                                          c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+__dso_handle                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+__gnu_thumb1_case_sqi                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_sqi.o)
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-__gnu_thumb1_case_uqi                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+__gnu_thumb1_case_uqi                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
                                                   .pio\build\nucleo_f031k6\src\utils\events.o
                                                   .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-__init_array_end                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-__init_array_start                                c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-__libc_fini_array                                 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-__libc_init_array                                 c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+__init_array_end                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+__init_array_start                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+__libc_fini_array                                 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+__libc_init_array                                 c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
                                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-__malloc_free_list                                c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-__malloc_lock                                     c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-__malloc_sbrk_start                               c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-__malloc_unlock                                   c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-__muldi3                                          c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
-__preinit_array_end                               c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-__preinit_array_start                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
-__register_frame_info                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
-__sf_fake_stderr                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-__sf_fake_stdin                                   c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-__sf_fake_stdout                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-__stack                                           c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-__udivmoddi4                                      c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
-__udivsi3                                         c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+__malloc_free_list                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+__malloc_lock                                     c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+__malloc_sbrk_start                               c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+__malloc_unlock                                   c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+__muldi3                                          c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_muldi3.o)
+__preinit_array_end                               c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+__preinit_array_start                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+__register_frame_info                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crtbegin.o
+__sf_fake_stderr                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+__sf_fake_stdin                                   c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+__sf_fake_stdout                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+__stack                                           c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+__udivmoddi4                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivmoddi4.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_aeabi_uldivmod.o)
+__udivsi3                                         c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
 _blinky                                           .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 _blinky_feed_next                                 .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-_calloc_r                                         c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+_calloc_r                                         c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
 _clyde                                            .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 _clyde_feed_next                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
@@ -1521,59 +1530,59 @@ _clyde_feed_next                                  .pio\build\nucleo_f031k6\src\b
 _ebss                                             .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 _edata                                            .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 _estack                                           .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-_exit                                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+_exit                                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(_exit.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
 _feed                                             .pio\build\nucleo_f031k6\src\music&sound\tones.o
-_fini                                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-_free_r                                           c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-_global_impure_ptr                                c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
-_impure_ptr                                       c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
-_init                                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
+_fini                                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+_free_r                                           c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+_global_impure_ptr                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+_impure_ptr                                       c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+_init                                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m/crti.o
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-init.o)
 _inky                                             .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 _inky_feed_next                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-_mainCRTStartup                                   c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
-_malloc_r                                         c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+_mainCRTStartup                                   c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+_malloc_r                                         c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
 _pacman                                           .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 _pinky                                            .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 _pinky_feed_next                                  .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-_reclaim_reent                                    c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-_sbrk                                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-_sbrk_r                                           c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+_reclaim_reent                                    c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+_sbrk                                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+_sbrk_r                                           c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
 _sbss                                             .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 _sdata                                            .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
 _sidata                                           .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-_start                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+_start                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 add_grid_state                                    .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\main.o
 add_grid_state_point                              .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-atexit                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+atexit                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 blank_array                                       .pio\build\nucleo_f031k6\src\texture_src\blank_textures.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 blinky_array                                      .pio\build\nucleo_f031k6\src\texture_src\blinky_textures.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 calculate_heuristics_h                            .pio\build\nucleo_f031k6\src\behaviours\algo.o
-calloc                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
+calloc                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-calloc.o)
                                                   .pio\build\nucleo_f031k6\src\utils\point.o
 check_if_eat_ghost_real_time                      .pio\build\nucleo_f031k6\src\main.o
 check_if_eat_ghost_static                         .pio\build\nucleo_f031k6\src\main.o
-cleanup_glue                                      c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+cleanup_glue                                      c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
 clear                                             .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
 clear_arr                                         .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
@@ -1660,7 +1669,7 @@ eat_ghost                                         .pio\build\nucleo_f031k6\src\f
                                                   .pio\build\nucleo_f031k6\src\main.o
 egetchar                                          .pio\build\nucleo_f031k6\src\serial.o
 enablePullUp                                      .pio\build\nucleo_f031k6\src\utils\events.o
-end                                               c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+end                                               c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
 eputchar                                          .pio\build\nucleo_f031k6\src\serial.o
 eputs                                             .pio\build\nucleo_f031k6\src\serial.o
                                                   .pio\build\nucleo_f031k6\src\main.o
@@ -1669,17 +1678,17 @@ eputs                                             .pio\build\nucleo_f031k6\src\s
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
-errno                                             c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
-exit                                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+errno                                             c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+exit                                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-exit.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 exit_game                                         .pio\build\nucleo_f031k6\src\main.o
 fillCircle                                        .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
 fillRectangle                                     .pio\build\nucleo_f031k6\src\frontend&drawing\display.o
 find_smallest_heuristic_node                      .pio\build\nucleo_f031k6\src\behaviours\algo.o
 flicker_text                                      .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
                                                   .pio\build\nucleo_f031k6\src\main.o
-free                                              c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+free                                              c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
                                                   .pio\build\nucleo_f031k6\src\utils\point.o
                                                   .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pinky.o
@@ -1791,7 +1800,7 @@ get_random_point_on_grid                          .pio\build\nucleo_f031k6\src\u
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-hardware_init_hook                                c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+hardware_init_hook                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 has_grid_state                                    .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\utils\random.o
                                                   .pio\build\nucleo_f031k6\src\main.o
@@ -1838,14 +1847,14 @@ is_point_valid                                    .pio\build\nucleo_f031k6\src\u
 linear_congruence_rand                            .pio\build\nucleo_f031k6\src\utils\random.o
 main                                              .pio\build\nucleo_f031k6\src\main.o
                                                   .pio\build\nucleo_f031k6\FrameworkCMSIS\gcc\startup_stm32f031x6.o
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 main_menu_array                                   .pio\build\nucleo_f031k6\src\texture_src\main_menu_title.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
-malloc                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+malloc                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
                                                   .pio\build\nucleo_f031k6\src\grid.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\ghosts.o
-memcpy                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+memcpy                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
                                                   .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\music&sound\tones.o
                                                   .pio\build\nucleo_f031k6\src\main.o
@@ -1855,10 +1864,10 @@ memcpy                                            c:/users/administrator/.platfo
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\inky.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\clyde.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\blinky.o
-memset                                            c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
+memset                                            c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-callocr.o)
                                                   .pio\build\nucleo_f031k6\src\main.o
-                                                  c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+                                                  c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 milliseconds                                      .pio\build\nucleo_f031k6\src\utils\events.o
 move_cursor                                       .pio\build\nucleo_f031k6\src\frontend&drawing\menu.o
                                                   .pio\build\nucleo_f031k6\src\main.o
@@ -1869,6 +1878,7 @@ pacman_array                                      .pio\build\nucleo_f031k6\src\t
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 pacman_eating_ghost_sound                         .pio\build\nucleo_f031k6\src\music&sound\tones.o
 pacman_intro_tune                                 .pio\build\nucleo_f031k6\src\music&sound\tones.o
+                                                  .pio\build\nucleo_f031k6\src\main.o
 pickups_array                                     .pio\build\nucleo_f031k6\src\texture_src\pickups_textures.o
                                                   .pio\build\nucleo_f031k6\src\frontend&drawing\draw_manager.o
 pinMode                                           .pio\build\nucleo_f031k6\src\utils\events.o
@@ -1911,6 +1921,8 @@ remove_grid_state_point                           .pio\build\nucleo_f031k6\src\g
 remove_item                                       .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
 reset_eaten_ghosts                                .pio\build\nucleo_f031k6\src\main.o
+reset_round                                       .pio\build\nucleo_f031k6\src\main.o
+restart_game                                      .pio\build\nucleo_f031k6\src\main.o
 reverse_points                                    .pio\build\nucleo_f031k6\src\utils\arr.o
                                                   .pio\build\nucleo_f031k6\src\behaviours\algo.o
 search_item                                       .pio\build\nucleo_f031k6\src\utils\arr.o
@@ -1968,7 +1980,7 @@ set_point_coord                                   .pio\build\nucleo_f031k6\src\u
                                                   .pio\build\nucleo_f031k6\src\behaviours\entities&sprites\pacman.o
 set_scatter_mode_to_chase_mode                    .pio\build\nucleo_f031k6\src\main.o
 setupIO                                           .pio\build\nucleo_f031k6\src\utils\events.o
-software_init_hook                                c:/users/administrator/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
+software_init_hook                                c:/users/lenovo/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/crt0.o
 toggle_high_green_LED                             .pio\build\nucleo_f031k6\src\utils\events.o
 toggle_low_green_LED                              .pio\build\nucleo_f031k6\src\utils\events.o
 toggle_red_LED                                    .pio\build\nucleo_f031k6\src\utils\events.o

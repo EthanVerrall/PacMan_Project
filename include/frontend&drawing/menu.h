@@ -12,7 +12,8 @@ enum menu_page {
 
     menu_page_home = 1,
     menu_page_game = 2,
-    menu_page_pause = 3
+    menu_page_pause = 3,
+    menu_page_restart = 4
     //More to follow
 };
 
