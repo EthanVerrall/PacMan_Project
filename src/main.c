@@ -1,211 +1,682 @@
-#include <stm32f031x6.h>
-#include "../include/display.h"
-void initClock(void);
-void initSysTick(void);
-void SysTick_Handler(void);
-void delay(volatile uint32_t dly);
-void setupIO();
-int isInside(uint16_t x1, uint16_t y1, uint16_t w, uint16_t h, uint16_t px, uint16_t py);
-void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber);
-void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
+#include "../include/frontend&drawing/draw_manager.h"
+#include "../include/grid.h"
+#include "../include/music&sound/tones.h"
+#include "../include/serial.h"
+#include "../include/utils/events.h"
+#include "../include/behaviours/entities&sprites/pacman.h"
+#include "../include/behaviours/entities&sprites/blinky.h"
+#include "../include/behaviours/entities&sprites/clyde.h"
+#include "../include/behaviours/entities&sprites/pinky.h"
+#include "../include/behaviours/entities&sprites/inky.h"
 
-volatile uint32_t milliseconds;
+void check_if_eat_ghost_static(Point move_pair[]) {
 
-const uint16_t deco1[]=
-{
-0,0,0,0,4,4,4,4,4,0,0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,65415,65415,65415,248,65415,0,0,0,0,0,0,0,65415,65415,65415,65415,65415,8068,0,0,0,0,0,0,65415,65415,65415,4096,4096,0,0,0,0,0,0,0,0,65415,65415,65415,0,0,0,0,0,0,0,0,0,7936,7936,7936,0,0,0,0,0,0,0,0,7936,7936,65535,7936,0,0,0,0,0,0,0,0,7936,7936,65535,7936,7936,7936,7936,0,0,0,0,0,7936,7936,65535,65535,65535,65535,7936,0,0,0,0,0,7936,7936,7936,7936,7936,7936,7936,0,0,0,0,0,7936,7936,7936,7936,0,0,0,0,0,0,0,0,0,7936,65535,7936,0,0,0,0,0,0,0,0,0,7936,65535,7936,0,0,0,0,0,0,0,0,0,7936,65535,7936,0,0,0,0,0,0,0,0,0,7940,7940,7940,7940,0,0,0,
-};
-const uint16_t deco2[]= 
+	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
+	{	
+		set_blinky_mode(chase);
+		remove_grid_state_point(get_blinky_position(),cell_blinky);
+		set_blinky_position(10,7);
+		add_grid_state_point(get_blinky_position(),cell_blinky);
+		copy_point_values(&move_pair[2],get_blinky_position());
+		eat_ghost(entity_type_blinky);
+		
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_inky) && (get_inky_mode() == fright))
 	{
-0,0,0,0,0,4,4,4,4,4,0,0,0,0,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,65415,65415,65415,248,65415,0,0,0,0,0,0,0,65415,65415,65415,65415,65415,8068,0,0,0,0,0,0,65415,65415,65415,4096,4096,0,0,0,0,0,0,0,0,65415,65415,65415,0,0,0,0,0,0,0,0,7936,7936,7936,0,0,0,0,0,0,0,0,7936,7936,65535,7936,0,0,0,0,0,0,0,0,7936,7936,65535,7936,7936,7936,7936,0,0,0,0,0,7936,7936,65535,65535,65535,65535,7936,0,0,0,0,0,7936,7936,7936,7936,7936,7936,7936,0,0,0,0,0,7936,7936,7936,7936,0,0,0,0,0,0,0,0,0,40224,7936,65535,7936,0,0,0,0,0,0,0,40224,40224,7936,65535,7936,0,0,0,0,0,0,65315,40224,40224,7936,65535,40224,0,0,0,0,0,0,0,65315,0,65315,65315,65315,65315,0,0,
-	};
-const uint16_t deco3[]= 
-{
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,0,0,4,4,4,4,0,0,0,0,0,0,0,4,4,4,4,4,4,0,0,0,0,7936,7936,4,4,4,4,4,4,7936,7936,0,0,65535,65535,4,4,4,4,4,4,65535,65535,0,0,7936,7936,4,4,4,4,4,4,7936,7936,0,0,0,0,0,4,4,4,4,0,0,0,0,0,0,0,0,0,24327,24327,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-};
-const uint16_t dg1[]=
-{
-	0,0,16142,16142,16142,16142,16142,16142,16142,16142,0,0,0,0,0,16142,16142,16142,16142,16142,16142,0,0,0,0,0,16142,16142,16142,16142,16142,16142,16142,16142,0,0,0,0,16142,16142,16142,1994,1994,16142,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,1994,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,1994,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,1994,16142,16142,0,0,0,0,16142,16142,16142,1994,1994,16142,16142,16142,0,0,0,0,16142,16142,16142,16142,16142,16142,16142,16142,0,0,0,0,16142,16142,16142,1994,1994,1994,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,16142,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,16142,16142,16142,0,0,0,0,16142,16142,16142,1994,16142,1994,16142,16142,0,0,0,0,16142,16142,16142,1994,1994,1994,16142,16142,0,0,0,0,0,16142,16142,16142,16142,16142,16142,0,0,0,0,0,0,16142,16142,16142,16142,16142,16142,0,0,0,
-};
+		set_inky_mode(chase);
+		remove_grid_state_point(get_inky_position(),cell_inky);
+		set_inky_position(10,6);
+		add_grid_state_point(get_inky_position(),cell_inky);
+		copy_point_values(&move_pair[4],get_inky_position());
+		eat_ghost(entity_type_inky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_pinky) && (get_pinky_mode() == fright))
+	{
+		set_pinky_mode(chase);
+		remove_grid_state_point(get_pinky_position(),cell_pinky);
+		set_pinky_position(10,8);
+		add_grid_state_point(get_pinky_position(),cell_pinky);
+		copy_point_values(&move_pair[6],get_pinky_position());
+		eat_ghost(entity_type_pinky);
+	}
+	if (has_grid_state_point(get_pacman_position(),cell_clyde) && (get_clyde_mode() == fright))
+	{
+		set_clyde_mode(chase);
+		remove_grid_state_point(get_clyde_position(),cell_clyde);
+		set_clyde_position(10,9);
+		add_grid_state_point(get_clyde_position(),cell_clyde);
+		copy_point_values(&move_pair[8],get_clyde_position());
+		eat_ghost(entity_type_clyde);
+	}
+}
+
+void check_if_eat_ghost_real_time(const Point point_array[], const int8_t pacmans_move_pos, 
+    const enum entity_type move_order[], bool is_ghost_eaten[], const uint8_t number_of_entities) {
+
+	const Point pacs_current = create_deep_copy_stack(&point_array[(pacmans_move_pos*2)]);
+	const Point pacs_target = create_deep_copy_stack(&point_array[(pacmans_move_pos*2) + 1]);
+
+	for (uint8_t i = 0; i < number_of_entities; ++i) {
+
+		switch (move_order[i])
+		{
+			case entity_type_blinky:	
+				if (get_blinky_mode() == fright && 
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+					
+				break;
+			case entity_type_inky:
+				if (get_inky_mode() == fright &&
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],	   &pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+			case entity_type_pinky:
+				if (get_pinky_mode() == fright &&
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+			case entity_type_clyde:
+				if (get_clyde_mode() == fright &&
+				compare_points(&point_array[(i*2) + 1],&pacs_current) &&
+				compare_points(&point_array[(i*2)],    &pacs_target)) {
+					is_ghost_eaten[i] = true;
+				}
+				break;
+
+			case entity_type_pacman: is_ghost_eaten[i] = false;
+				break;
+
+			default:
+				//Do nothing
+				break;
+		}
+	}
+}
+
+void set_scatter_mode_to_chase_mode() {
+
+	if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
+	{	
+		set_blinky_mode(chase);
+	}
+
+	if (get_inky_mode() == scatter && compare_points(get_inky_position(),get_inky_scatter_position()))
+	{	
+		set_inky_mode(chase);
+	}
+
+	if (get_pinky_mode() == scatter && compare_points(get_pinky_position(),get_pinky_scatter_position()))
+	{	
+		set_pinky_mode(chase);
+	}
+
+	if (get_clyde_mode() == scatter && compare_points(get_clyde_position(),get_clyde_scatter_position()))
+	{	
+		set_clyde_mode(chase);
+	}
+}
+
+void set_ghosts_mode(const GhostMode mode){
+	set_blinky_mode(mode);
+	set_inky_mode(mode);
+	set_pinky_mode(mode);
+	set_clyde_mode(mode);
+}
+
+void reset_eaten_ghosts(Point move_pair[], bool is_ghost_eaten[], const enum entity_type move_order[], const uint8_t number_of_entities) {
+
+	for (uint8_t i = 0; i < number_of_entities; ++i) {
+
+		if (is_ghost_eaten[i] == true) {
+
+			switch (move_order[i]) {
+
+			case entity_type_blinky:
+				remove_grid_state_point(get_blinky_position(),cell_blinky);
+				add_grid_state(10,7,cell_blinky);
+				set_blinky_position(10,7);
+				set_blinky_mode(chase);
+				copy_point_values(&move_pair[2],get_blinky_position());
+				break;
+
+			case entity_type_inky:
+				remove_grid_state_point(get_inky_position(),cell_inky);
+				add_grid_state(10,6,cell_inky);
+				set_inky_position(10,6);
+				set_inky_mode(chase);
+				copy_point_values(&move_pair[4],get_inky_position());
+				break;
+
+			case entity_type_pinky:
+				remove_grid_state_point(get_pinky_position(),cell_pinky);
+				add_grid_state(10,8,cell_pinky);
+				set_pinky_position(10,8);
+				set_pinky_mode(chase);
+				copy_point_values(&move_pair[6],get_pinky_position());
+				break;
+
+			case entity_type_clyde:
+				remove_grid_state_point(get_clyde_position(),cell_clyde);
+				add_grid_state(10,9,cell_clyde);
+				set_clyde_position(10,9);
+				set_clyde_mode(chase);
+				copy_point_values(&move_pair[8],get_clyde_position());
+				break;
+
+			case entity_type_pacman: 
+				continue;
+
+			default:
+				//Do nothing
+				break;
+			}
+		}
+		is_ghost_eaten[i] = false;
+	}
+}
+
+bool is_pacman_dead(const Point points[], enum entity_type entities[]) {
+
+	for (uint8_t i = 0; i < 5; ++i) {
+		if ((entities[i] != entity_type_pacman) &&
+			compare_points(&points[(i*2) + 1],&points[0]) &&
+			compare_points(&points[(i*2)],    &points[1])) 
+		{
+			//Call death draw function
+			switch (entities[i]) {
+				case entity_type_blinky:
+					if (get_blinky_mode() != fright) 
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				case entity_type_inky:
+					if (get_inky_mode() != fright)
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				case entity_type_pinky:
+					if (get_pinky_mode() != fright)
+					
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+					
+				case entity_type_clyde:
+					if (get_clyde_mode() != fright)
+					{
+						draw_pacman_dying(points[0],points[(i*2)],entities[i]);
+						return true;
+					}
+					break;
+
+				default:
+				return false;
+			}	
+		}
+	}
+	
+	return false;
+}
+
+void reset_round(Point move_pair[], uint8_t* god_mode_timer) {
+
+	remove_grid_state_point(&move_pair[1], cell_pacman);
+	remove_grid_state_point(&move_pair[3], cell_blinky);
+	remove_grid_state_point(&move_pair[5], cell_inky);
+	remove_grid_state_point(&move_pair[7], cell_pinky);
+	remove_grid_state_point(&move_pair[9], cell_clyde);
+
+	add_grid_state(15,7,cell_pacman);
+	add_grid_state(10,6,cell_inky);
+	add_grid_state(10,7,cell_blinky);
+	add_grid_state(10,8,cell_pinky);
+	add_grid_state(10,9,cell_clyde);
+
+	set_point_coord(15,7,&move_pair[0]);
+	set_point_coord(10,7,&move_pair[2]);
+	set_point_coord(10,6,&move_pair[4]);
+	set_point_coord(10,8,&move_pair[6]);
+	set_point_coord(10,9,&move_pair[8]);
+
+	for (uint8_t i = 1; i < 10; i += 2) {
+
+		move_pair[i].x = INVALID_POINT;
+		move_pair[i].y = INVALID_POINT;
+	}
+
+	set_pacman_position(15,7);
+	set_pacman_state(Mortal);
+	*god_mode_timer = 0;
+
+	set_blinky_position(10,7);
+	_blinky_feed_next(false,true);
+
+	set_inky_position(10,6);
+	_inky_feed_next(false,true);
+
+	set_pinky_position(10,8);
+	_pinky_feed_next(false,true);
+
+	set_clyde_position(10,9);
+	_clyde_feed_next(false,true);
+
+	set_ghosts_mode(scatter);
+
+	uint8_t pacmans_life = get_pacman_life();
+	set_pacman_life(--pacmans_life);
+	display_life_LED(pacmans_life);
+	draw_current_page();
+	delay(2000);
+}
+
+void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const button_pressed, Point* const target_point, 
+				 uint8_t* const god_mode_timer, bool is_ghost_eaten[]) {
+
+	create_reset_grid();
+
+	set_pacman_position(15,7);
+	set_pacman_state(Mortal);
+
+	set_blinky_position(10,7);
+	_blinky_feed_next(false,true);
+
+	set_inky_position(10,6);
+	_inky_feed_next(false,true);
+
+	set_pinky_position(10,8);
+	_pinky_feed_next(false,true);
+
+	set_clyde_position(10,9);
+	_clyde_feed_next(false,true);
+
+	set_ghosts_mode(scatter);
+
+	set_point_coord(15,7,&move_pair[0]);
+	set_point_coord(10,7,&move_pair[2]);
+	set_point_coord(10,6,&move_pair[4]);
+	set_point_coord(10,8,&move_pair[6]);
+	set_point_coord(10,9,&move_pair[8]);
+
+	for (uint8_t i = 1; i < 10; i += 2) {
+
+		move_pair[i].x = INVALID_POINT;
+		move_pair[i].y = INVALID_POINT;
+	}
+
+	*pellet_count = 111;
+	*button_pressed = false;
+	target_point->x = INVALID_POINT;
+	target_point->y = INVALID_POINT;
+	*god_mode_timer = 0;
+
+	for (uint8_t i = 0; i < 5; ++i) {
+		is_ghost_eaten[i] = false;
+	}
+
+	set_pacman_life(4);
+	turn_on_LEDS();
+}
+
+//Cleanup function
+void exit_game(Point entity_store[], bool* play_game) {
+	//free feed
+	_inky_feed_next(false, true);
+	_blinky_feed_next(false, true);
+	_pinky_feed_next(false, true);
+	_clyde_feed_next(false, true);
+	
+	//destroy characters
+	destroy_blinky();
+	destroy_inky();
+	destroy_clyde();
+	destroy_pinky();
+	destroy_pacman();
+	destroy_grid();
+
+	for (uint8_t i = 1; i < 10; i+=2)
+	{
+		entity_store[i].x = INVALID_POINT;
+		entity_store[i].y = INVALID_POINT;
+	}
+
+	//go back to the main page
+	set_menu_page(menu_page_home);
+	*play_game = false;
+}
 
 int main()
-{
-	int hinverted = 0;
-	int vinverted = 0;
-	int toggle = 0;
-	int hmoved = 0;
-	int vmoved = 0;
-	uint16_t x = 50;
-	uint16_t y = 50;
-	uint16_t oldx = x;
-	uint16_t oldy = y;
-	initClock();
-	initSysTick();
-	setupIO();
-	putImage(20,80,12,16,dg1,0,0);
-	while(1)
-	{
-		hmoved = vmoved = 0;
-		hinverted = vinverted = 0;
-		if ((GPIOB->IDR & (1 << 4))==0) // right pressed
-		{					
-			if (x < 110)
-			{
-				x = x + 1;
-				hmoved = 1;
-				hinverted=0;
-			}						
-		}
-		if ((GPIOB->IDR & (1 << 5))==0) // left pressed
-		{			
-			
-			if (x > 10)
-			{
-				x = x - 1;
-				hmoved = 1;
-				hinverted=1;
-			}			
-		}
-		if ( (GPIOA->IDR & (1 << 11)) == 0) // down pressed
-		{
-			if (y < 140)
-			{
-				y = y + 1;			
-				vmoved = 1;
-				vinverted = 0;
+{	
+	//set up grid and IO
+	SET_UP_STM();
+
+	while (1) {
+
+		turn_off_LEDS();
+		draw_current_page();
+
+		while (get_active_menu_page() == menu_page_home) {
+
+			flicker_text();
+			if (is_button_up_pressed()) {
+				move_cursor(MOVE_CURSOR_UP);
+				delay(25);
+			}
+			if (is_button_right_pressed()) {
+				move_cursor(MOVE_CURSOR_RIGHT);
+				delay(25);
+			}
+			if (is_button_down_pressed()) {
+				move_cursor(MOVE_CURSOR_DOWN);
+				delay(25);
+			}
+			if (is_button_left_pressed()) {
+				move_cursor(MOVE_CURSOR_left);
+				delay(25);
 			}
 		}
-		if ( (GPIOA->IDR & (1 << 8)) == 0) // up pressed
-		{			
-			if (y > 16)
-			{
-				y = y - 1;
-				vmoved = 1;
-				vinverted = 1;
-			}
+
+		//set up ghosts and pacman
+		Pacman* pacman_ref = _pacman(false);
+
+		Blinky* blinky_ref = _blinky(false);
+		Clyde* clyde_ref = _clyde(false);
+		Pinky* pinky_ref = _pinky(false);
+		Inky* inky_ref = _inky(false);
+
+		/*
+			--pacman--
+		Pos = 0 / Target = 1
+
+			--blinky--
+		Pos = 2 / Target = 3
+
+			--inky--
+		Pos = 4 / Target = 5
+
+			--pinky--
+		Pos = 6 / Target = 7
+
+			--clyde--
+		Pos = 8 / Target = 9
+		*/
+		Point move_pair[10];
+
+		move_pair[0] = create_deep_copy_stack(get_pacman_position());
+		move_pair[2] = create_deep_copy_stack(get_blinky_position());
+		move_pair[4] = create_deep_copy_stack(get_inky_position());
+		move_pair[6] = create_deep_copy_stack(get_pinky_position());
+		move_pair[8] = create_deep_copy_stack(get_clyde_position());
+
+		for (uint8_t i = 0; i < 10; i +=2) {
+			move_pair[i+1].x = INVALID_POINT;
+			move_pair[i+1].y = INVALID_POINT;
 		}
-		if ((vmoved) || (hmoved))
-		{
-			// only redraw if there has been some movement (reduces flicker)
-			fillRectangle(oldx,oldy,12,16,0);
-			oldx = x;
-			oldy = y;					
-			if (hmoved)
-			{
-				if (toggle)
-					putImage(x,y,12,16,deco1,hinverted,0);
-				else
-					putImage(x,y,12,16,deco2,hinverted,0);
+
+		const enum entity_type entity_move_order[] = {
+			entity_type_pacman, entity_type_blinky, entity_type_inky, entity_type_pinky, entity_type_clyde
+		};
+
+		bool play_game = true;
+		bool button_pressed = false;
+		uint8_t pellet_count = 111;
+		Point target_point = {INVALID_POINT,INVALID_POINT};
+		uint8_t god_mode_timer = 0;
+		bool is_ghost_eaten[] = {false, false, false, false, false};
+		
+		turn_on_LEDS();
+		create_reset_grid();
+		draw_current_page();
+		pacman_intro_tune();
+
+		//main game loop here
+		while (play_game && get_pacman_life() != 0)
+		{	
+			//Pause menu is here
+			while (get_active_menu_page() == menu_page_pause) {	
+				flicker_text();
+
+				if (is_button_up_pressed()) {
+				move_cursor(MOVE_CURSOR_UP);
+				delay(25);
+				}
+
+				if (is_button_right_pressed()) {
+				move_cursor(MOVE_CURSOR_RIGHT);
+				delay(25);
+				}
+
+				if (is_button_down_pressed()) {
+				move_cursor(MOVE_CURSOR_DOWN);
+				delay(25);
+				}
+
+				if (is_button_left_pressed()) {
+				move_cursor(MOVE_CURSOR_left);
+				delay(25);
+				}
+
+				if (get_active_menu_page() == menu_page_restart) {
+					restart_game(move_pair,&pellet_count,&button_pressed,&target_point, &god_mode_timer, is_ghost_eaten);
+					set_menu_page(menu_page_game);
+				}
+
 				
-				toggle = toggle ^ 1;
+				if (get_active_menu_page() == menu_page_game) {
+					draw_current_page();
+					delay(2000);
+				}
+				
+				if (get_active_menu_page() == menu_page_home) {
+					play_game = false;
+				}
+
+			}
+			//Break to exit the game
+			if (!play_game) break;
+
+
+			//check for button presses first
+			//for now we would just check directly, but for the case that we would want to save time,
+			//there would be a function that would check a list of numbers representing the button pressed
+
+			//all buttons (arrow buttons and not pause) do in the game page: chang`e pacmans dx and dy
+			//Should  act like a toggle tho, so we only care about one press per loop
+			if(button_pressed = is_button_down_pressed()) set_pacman_direction(PAC_BOTTOM);
+			else if(button_pressed = is_button_right_pressed()) set_pacman_direction(PAC_RIGHT);
+			else if(button_pressed = is_button_left_pressed()) set_pacman_direction(PAC_LEFT);
+			else if(button_pressed = is_button_up_pressed()) set_pacman_direction(PAC_TOP);
+
+			//BIG NOTE: We would need to decide if the ghosts come out immediately or if not, we set a timer for each ghost to leave their posts
+			//I like the timer idea, they could just start in scatter mode tbh and they go straight to their courners
+			//Do whatever is easiest tho
+			//we want to change pacman's position
+			//pacman in entity pos is 0 (old), 1 (new)
+			uint8_t pacman_new_x = get_pacman_position()->x + get_pac_dx();
+			uint8_t pacman_new_y = get_pacman_position()->y + get_pac_dy();
+
+			//wrapping pacman when he goes offscreen...........
+			pacman_new_y = pacman_new_y == 16 ? 0 : pacman_new_y;
+			pacman_new_y = pacman_new_y == 255 ? 15 : pacman_new_y;
+
+			if (!has_grid_state(pacman_new_x, pacman_new_y, cell_wall | cell_gate))
+			{
+				set_point_coord(pacman_new_x, pacman_new_y,&move_pair[1]);
+				remove_grid_state_point(&move_pair[0], cell_pacman);
+
+				if(has_grid_state_point(&move_pair[1],cell_pellet)) {
+					pellet_count--;
+					remove_grid_state(pacman_new_x, pacman_new_y, cell_pellet);
+					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
+				}
+
+				if(has_grid_state_point(&move_pair[1],cell_cherry)) {
+					remove_grid_state(pacman_new_x, pacman_new_y, cell_cherry);
+					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
+				}
+
+				if(has_grid_state_point(&move_pair[1],cell_power_up)) {
+					remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
+					add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
+
+					god_mode_timer = 20;
+					set_pacman_state(God);
+				}
+
+				add_grid_state(pacman_new_x, pacman_new_y, cell_pacman);
 			}
 			else
 			{
-				putImage(x,y,12,16,deco3,0,vinverted);
+				pacman_new_x = get_pacman_position()->x;
+				pacman_new_y = get_pacman_position()->y;
+				move_pair[1].x = pacman_new_x;
+				move_pair[1].y = pacman_new_y;
 			}
-			// Now check for an overlap by checking to see if ANY of the 4 corners of deco are within the target area
-			if (isInside(20,80,12,16,x,y) || isInside(20,80,12,16,x+12,y) || isInside(20,80,12,16,x,y+16) || isInside(20,80,12,16,x+12,y+16) )
+
+			//Run algo on ghosts based on pacman's current position
+
+			//Blinky
+			target_point = _blinky_feed_next(get_blinky_behaviour_change(),false);
+			copy_point_values(&move_pair[3],&target_point);
+
+			//inky
+			target_point = _inky_feed_next(get_inky_behaviour_change(), false);
+			copy_point_values(&move_pair[5],&target_point);
+
+			//pinky
+			target_point = _pinky_feed_next(get_pinky_behaviour_change(), false);
+			copy_point_values(&move_pair[7],&target_point);
+
+			//clyde
+			target_point = _clyde_feed_next(get_clyde_behaviour_change(), false);
+			copy_point_values(&move_pair[9],&target_point);
+	
+
+			remove_grid_state_point(get_blinky_position(), cell_blinky);
+ 			add_grid_state_point(&move_pair[3], cell_blinky);
+
+			remove_grid_state_point(get_inky_position(), cell_inky);
+ 			add_grid_state_point(&move_pair[5], cell_inky);
+
+			remove_grid_state_point(get_pinky_position(), cell_pinky);
+ 			add_grid_state_point(&move_pair[7], cell_pinky);
+
+			remove_grid_state_point(get_clyde_position() ,cell_clyde);
+			add_grid_state_point(&move_pair[9], cell_clyde);
+
+			/*
+				Pacman will check if the direction he is moving too will collide with a ghost
+				therefore he will simply eat the ghost if it is ellgibale to be eaten.
+				This checks for moving ghosts, dynamic moving eat function
+			*/
+
+			if (get_pacman_state() == God) {check_if_eat_ghost_real_time(
+				move_pair,
+				0,
+				entity_move_order,
+				is_ghost_eaten, 
+				5);
+			}
+
+			//Checking if pacman is dying
+			if (is_pacman_dead(move_pair,entity_move_order)) {
+
+				reset_round(move_pair, &god_mode_timer);
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
+				continue;
+			}
+
+			//Visual drawing for this turn of the game
+			move_entities(move_pair,entity_move_order,5, is_ghost_eaten);
+
+
+			//set the internal positions of each entity to their new positions
+
+			set_pacman_position(pacman_new_x, pacman_new_y);
+			copy_point_values(get_blinky_position(), &move_pair[3]);
+			copy_point_values(get_inky_position(), &move_pair[5]);
+			copy_point_values(get_pinky_position(), &move_pair[7]);
+			copy_point_values(get_clyde_position(), &move_pair[9]);
+
+			copy_point_values(&move_pair[0], &move_pair[1]);
+			copy_point_values(&move_pair[2], &move_pair[3]);
+			copy_point_values(&move_pair[4], &move_pair[5]);
+			copy_point_values(&move_pair[6], &move_pair[7]);
+			copy_point_values(&move_pair[8], &move_pair[9]);
+
+			//Reset ghosts we collided with
+			reset_eaten_ghosts(move_pair,is_ghost_eaten,entity_move_order,5);
+
+			//Starting the counter for pacmans god mode and setting ghosts to fright mode
+			if (god_mode_timer == 20)
 			{
-				printTextX2("GLUG!", 10, 20, RGBToWord(0xff,0xff,0), 0);
+				set_ghosts_mode(fright);
 			}
-		}		
-		delay(50);
+
+			/*
+				Static_movement eat function checker, this checks if pacman is sharing a cell with a ghost
+			    This eat function occurs after all movement and pacman simply eats all eligible ghosts, 
+				they must be in fright mode in order to be eaten.
+			*/	
+			if (get_pacman_state() == God) {check_if_eat_ghost_static(move_pair);}
+
+			if (god_mode_timer > 0)
+			{
+				god_mode_timer--;
+			}
+			else if (get_pacman_state() == God)
+			{
+				set_ghosts_mode(chase);
+				set_pacman_state(Mortal);
+			}
+
+			//This function should only really run once - once ghosts reach their scatter position after the start of the game
+			//they will switch to chase mode and go after pacman, this will reset their feed cache and run our algorithm and A* again
+			set_scatter_mode_to_chase_mode();
+
+			if(pellet_count == 0) {
+				//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
+				eputs("Game Completed, you win.\r\n");
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
+				break;
+			}
+
+			//Checking if pacman died
+			if (has_grid_state_point(get_pacman_position(), cell_blinky | cell_pinky | cell_inky | cell_clyde)) {
+
+				reset_round(move_pair, &god_mode_timer);
+				target_point.x = INVALID_POINT;
+				target_point.y = INVALID_POINT;
+				continue;
+			}
+
+			//Check if the user wants to pause
+			if (is_button_pause_pressed()) {
+				set_menu_page(menu_page_pause);
+				draw_current_page();
+			}
+
+			target_point.x = INVALID_POINT;
+			target_point.y = INVALID_POINT;
+		}	
+		//clean up
+		exit_game(move_pair, &play_game);
 	}
-	return 0;
-}
-
-void initSysTick(void)
-{
-	SysTick->LOAD = 48000;
-	SysTick->CTRL = 7;
-	SysTick->VAL = 10;
-	__asm(" cpsie i "); // enable interrupts
-}
-
-void SysTick_Handler(void)
-{
-	milliseconds++;
-}
-
-void initClock(void)
-{
-// This is potentially a dangerous function as it could
-// result in a system with an invalid clock signal - result: a stuck system
-        // Set the PLL up
-        // First ensure PLL is disabled
-        RCC->CR &= ~(1u<<24);
-        while( (RCC->CR & (1 <<25))); // wait for PLL ready to be cleared
-        
-// Warning here: if system clock is greater than 24MHz then wait-state(s) need to be
-// inserted into Flash memory interface
-				
-        FLASH->ACR |= (1 << 0);
-        FLASH->ACR &=~((1u << 2) | (1u<<1));
-        // Turn on FLASH prefetch buffer
-        FLASH->ACR |= (1 << 4);
-        // set PLL multiplier to 12 (yielding 48MHz)
-        RCC->CFGR &= ~((1u<<21) | (1u<<20) | (1u<<19) | (1u<<18));
-        RCC->CFGR |= ((1<<21) | (1<<19) ); 
-
-        // Need to limit ADC clock to below 14MHz so will change ADC prescaler to 4
-        RCC->CFGR |= (1<<14);
-
-        // and turn the PLL back on again
-        RCC->CR |= (1<<24);        
-        // set PLL as system clock source 
-        RCC->CFGR |= (1<<1);
-}
-
-void delay(volatile uint32_t dly)
-{
-	uint32_t end_time = dly + milliseconds;
-	while(milliseconds != end_time)
-		__asm(" wfi "); // sleep
-}
-
-void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber)
-{
-	Port->PUPDR = Port->PUPDR &~(3u << BitNumber*2); // clear pull-up resistor bits
-	Port->PUPDR = Port->PUPDR | (1u << BitNumber*2); // set pull-up bit
-}
-
-void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
-{
-	/*
-	*/
-	uint32_t mode_value = Port->MODER;
-	Mode = Mode << (2 * BitNumber);
-	mode_value = mode_value & ~(3u << (BitNumber * 2));
-	mode_value = mode_value | Mode;
-	Port->MODER = mode_value;
-}
-
-int isInside(uint16_t x1, uint16_t y1, uint16_t w, uint16_t h, uint16_t px, uint16_t py)
-{
-	// checks to see if point px,py is within the rectange defined by x,y,w,h
-	uint16_t x2,y2;
-	x2 = x1+w;
-	y2 = y1+h;
-	int rvalue = 0;
-	if ( (px >= x1) && (px <= x2))
-	{
-		// ok, x constraint met
-		if ( (py >= y1) && (py <= y2))
-			rvalue = 1;
-	}
-	return rvalue;
-}
-
-void setupIO()
-{
-	RCC->AHBENR |= (1 << 18) + (1 << 17); // enable Ports A and B
-	display_begin();
-	pinMode(GPIOB,4,0);
-	pinMode(GPIOB,5,0);
-	pinMode(GPIOA,8,0);
-	pinMode(GPIOA,11,0);
-	enablePullUp(GPIOB,4);
-	enablePullUp(GPIOB,5);
-	enablePullUp(GPIOA,11);
-	enablePullUp(GPIOA,8);
+	return 0;	
 }
