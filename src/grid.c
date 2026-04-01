@@ -26,7 +26,6 @@ bool create_singleton_grid() {
             
             return false;
         }
-        eputs("Grid\r\n");
         return true;
     }
 }

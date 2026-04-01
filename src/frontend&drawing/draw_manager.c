@@ -15,7 +15,7 @@ void redraw_entire_grid () {
         and how many times they must print.
     */
     
-    //Ensuring pacmans mouth is closed at game start
+    //Ensuring pacmans mouth is closed at game start / forcing his mouth closed when we resume game as well
     is_mouth_open = false;
 
     const uint16_t* wall_type_pair[] = 
@@ -172,8 +172,9 @@ void redraw_entire_grid () {
 
     }
     //Score goes here with player name
-    printText("Ethan Score:",3,0,0xffff,0);
-    printNumber(356,90,0,0xffff,0);
+    const char* user_name = get_user_name();
+    printText(user_name,3,0,0xffff,0);
+    printNumber(get_score(),90,0,0xffff,0);
     //Loops through the entire grid and prints all tiles and upscaled 8*8 pixels across the screen
     //accounting for the intial offset in height from pixel 0,0
     for (uint8_t y_pixel = 0 + HEIGHT_OFFSET; y_pixel < SCREEN_HEIGHT; y_pixel += 8) {
@@ -197,19 +198,40 @@ void redraw_entire_grid () {
             const uint16_t* next_draw = NULL;
             
             if (has_grid_state(y_pixel / 8, x_pixel / 8, cell_pacman)) {
-                next_draw = pacman_array[pacman_right_closed];
+                const PacDirection pac_direction = get_pacman_direction();
+               
+                switch (pac_direction) {
+                    case PAC_RIGHT: next_draw = pacman_array[pacman_right_closed];
+                    break;
+
+                    case PAC_LEFT: next_draw = pacman_array[pacman_left_closed];
+                    break;
+
+                    case PAC_TOP: next_draw = pacman_array[pacman_top_closed];
+                    break;
+
+                    case PAC_BOTTOM: next_draw = pacman_array[pacman_bottom_closed];
+                    break;
+
+                    case PAC_NONE: next_draw = pacman_array[pacman_right_closed];
+                    break;
+                }
             } 
             else if (has_grid_state(y_pixel / 8, x_pixel / 8, cell_blinky)) {
-                next_draw = blinky_array[blinky_right_eye];
+                if (get_blinky_mode() == fright) next_draw = fright_ghost_array;
+                else next_draw = blinky_array[blinky_right_eye];
             }
             else if (has_grid_state(y_pixel / 8, x_pixel / 8, cell_inky)) {
-                next_draw = inky_array[inky_right_eye];
+                if (get_inky_mode() == fright) next_draw = fright_ghost_array;
+                else next_draw = inky_array[inky_right_eye];
             }
             else if (has_grid_state(y_pixel / 8, x_pixel / 8, cell_pinky)) {
-                next_draw = pinky_array[pinky_right_eye];
+                if (get_pinky_mode() == fright) next_draw = fright_ghost_array;
+                else next_draw = pinky_array[pinky_right_eye];
             }
             else if (has_grid_state(y_pixel / 8, x_pixel / 8, cell_clyde)) {
-                next_draw = clyde_array[clyde_right_eye];
+                if (get_clyde_mode() == fright) next_draw = fright_ghost_array;
+                else next_draw = clyde_array[clyde_right_eye];
             }
            else {
                 const uint16_t cell_bitmask = get_grid_state(y_pixel / 8, x_pixel / 8);
@@ -313,7 +335,19 @@ void draw_home_page() {
         }
     }
 
-    putImage(7,5,114,32,main_menu_array,0,0);
+    #define MAIN_MENU_ROWS 32
+    #define MAIN_MENU_COLS 114
+
+    for (uint8_t i = 0; i < MAIN_MENU_ROWS; ++i) {
+        
+        for (uint8_t j = 0; j < MAIN_MENU_COLS; ++j) {
+
+            const uint16_t nex_colour = find_main_menu_colour(main_menu_array[(i * MAIN_MENU_COLS) + j]);
+            putPixel(7+j, 5+i, nex_colour);
+        }
+    }
+
+    //putImage(7,5,114,32,main_menu_array,0,0);
 
     printTextX2("Play Game",6,70,0xFFFF,0);
 
@@ -496,6 +530,8 @@ void draw_current_page() {
 
 //---------------------------------MENUS------------------------------------------
 
+
+
 //--------------------------------------------------------------
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
@@ -638,6 +674,8 @@ const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 //--------------------------------------------------------------
 //Helper functions -- must be declared before void move_entity() -- end
 //--------------------------------------------------------------
+
+
 
 //-------------------------------------------------------------- 
 //Dynamic movement / gameplay functions                          -- Start
@@ -974,6 +1012,8 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
         //End of frame, needs to delay now
         delay(75);
     }
+    //Draw users score
+    printNumber(get_score(),90,0,0xffff,0);
 }
 
 void eat_ghost(const enum entity_type ghost) {
@@ -1042,6 +1082,8 @@ void eat_ghost(const enum entity_type ghost) {
             //eputs("Error finding ghost texture in eat_ghost function. Function aborted\r\n");
             return;  
     }
+    //Draw users score
+    printNumber(get_score(),90,0,0xffff,0);
 }
 
 void draw_pacman_dying(const Point pac_current, const Point ghost_current, enum entity_type ghost) {
