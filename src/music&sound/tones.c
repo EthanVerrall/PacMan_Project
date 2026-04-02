@@ -43,44 +43,52 @@ void pacman_intro_tune(){
     }
 }
 
-void waka_waka(){
-    playNote(F2);
-    delay(30);
-    playNote(A2);
-    delay(30);
-    playNote(D3);
-    delay(30);
-    playNote(F4);
-    delay(30);
-    playNote(0);
-    delay(30);
 
-    playNote(CS4_Db4);
-    delay(30);
-    playNote(F4);
-    delay(30);
-    playNote(D3);
-    delay(30);
-    playNote(A2);
-    delay(30);
-    playNote(0);
-    delay(30);
+
+uint16_t waka_waka(){
+    static uint8_t counter = 0;
+    const uint16_t notes[] = {
+        // 4 8th notes per line
+        F2,40, A2,40, D3,40, F4,40, 0,40,
+        CS4_Db4,40, F4,40, D3,40, A2,40, 0,40,
+    };
+    counter++;
+    if(counter >= 20) counter = 0;
+    return notes[counter];
 }
 
-void fright_mode_sound(){
-    playNote(CS6_Db6);
-    delay(40);
-    playNote(E6);
-    delay(40);
-    playNote(GS6_Ab6);
-    delay(40);
-    playNote(CS7_Db7);
-    delay(40);
-    playNote(0);
+
+uint16_t fright_mode_sound(){
+    static uint8_t counter = 0;
+    const uint16_t notes[] = {
+        // 4 8th notes per line
+        F6, E6, CS6_Db6, 0,
+        F6, E6, CS6_Db6, 0,
+    };
+
+    counter++;
+    if(counter >= 8) counter = 0;
+    return notes[counter];
 }
 
 void pacman_eating_ghost_sound(){
     play_rising_frequency(A1, E6, 5);
+}
+
+void winning_music(){
+    const uint16_t notes[] = {
+        // 4 8th notes per line
+        F6,40, E6,40, CS6_Db6,40, 0,40,
+        F6,40, E6,40, CS6_Db6,40, 0,40,
+        F6,40, E6,40, CS6_Db6,40, 0,40,
+        F6,40, E6,40, CS6_Db6,40, 0,40,
+    };
+
+    for (uint16_t i = 0; i < 32; i+=2)
+    {
+        playNote(notes[i]);
+        delay(notes[i + 1]);
+    }   
 }
 
 // UNFINISHED
@@ -99,7 +107,7 @@ void death_sound(){
         0,1
     };
 
-    for (uint16_t i = 0; i < 64; i+=2)
+    for (uint16_t i = 0; i < 62; i+=2)
     {
         playNote(notes[i]);
         delay(notes[i + 1]);

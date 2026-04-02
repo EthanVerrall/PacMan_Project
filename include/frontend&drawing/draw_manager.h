@@ -22,6 +22,7 @@
 #include "../include/utils/point.h"
 #include "../include/frontend&drawing/menu.h"
 #include "../include/game_play/scoreboard.h"
+#include "../include/music&sound/tones.h"
 #include <stdbool.h>
 #include <stdint.h>
 

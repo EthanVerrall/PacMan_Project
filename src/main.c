@@ -2,11 +2,14 @@
 #include "../include/frontend&drawing/draw_manager.h"
 #include "../include/frontend&drawing/menu.h"
 #include "../include/game_play/game_logic.h"
+#include "../include/music&sound/tones.h"
 
 int main()
 {	
 	//Turn on IO and setup micro-controller
 	SET_UP_STM();
+	
+	
 
 	while (1) {
 
@@ -35,6 +38,7 @@ int main()
 		}
 
 		play_game();
+		//playNote(0);
 	}
 	return 0;	
 }

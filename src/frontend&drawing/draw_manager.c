@@ -1010,7 +1010,32 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
             }  
         } 
         //End of frame, needs to delay now
-        delay(75);
+        //insert sound here
+        if(get_pacman_state() == God){
+            playNote(fright_mode_sound());
+            delay(25);
+            playNote(fright_mode_sound());
+            delay(25);
+            playNote(fright_mode_sound());
+            delay(25);
+        }
+        else if (get_pacman_state() == Mortal)
+        {
+            playNote(waka_waka());
+            delay(15);
+            playNote(waka_waka());
+            delay(15);
+            playNote(waka_waka());
+            delay(15);
+            playNote(waka_waka());
+            delay(15);
+        }
+        else
+        {
+            playNote(0);
+            delay(75);
+        }
+        
     }
     //Draw users score
     printNumber(get_score(),90,0,0xffff,0);

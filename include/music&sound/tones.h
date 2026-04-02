@@ -25,8 +25,8 @@ void pacman_eating_ghost_sound();
 
 void death_sound();
 
-void waka_waka();
+uint16_t waka_waka();
 
-void fright_mode_sound();
+uint16_t fright_mode_sound();
 
 #endif //!PACMAN_MUSIC_H

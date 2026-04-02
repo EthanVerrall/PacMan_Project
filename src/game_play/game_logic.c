@@ -5,7 +5,8 @@ void pac_eats_target_cell(Point move_pair[], uint8_t pacman_new_x, uint8_t pacma
 
 		if (is_cell_eaten[0] == true) {
 
-			*pellet_count--;
+			//dereference pellet count and decrement
+			(*pellet_count)--;
 			update_score(score_pellet);
 			remove_grid_state(pacman_new_x, pacman_new_y, cell_pellet);
 			add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
@@ -21,12 +22,12 @@ void pac_eats_target_cell(Point move_pair[], uint8_t pacman_new_x, uint8_t pacma
 			is_cell_eaten[1] = false;
 		}
 		else if (is_cell_eaten[2] == true) {
-			
+			//*pellet_count--;
 			update_score(score_powerup);
 			remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
 			add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
 			*god_mode_timer = 10;
-			set_pacman_state(God);
+			//set_pacman_state(God);
 
 			is_cell_eaten[2] = false;
 		}
@@ -323,8 +324,10 @@ void reset_round(Point move_pair[], uint8_t* god_mode_timer, bool* button_presse
 	uint8_t pacmans_life = get_pacman_life();
 	set_pacman_life(--pacmans_life);
 	display_life_LED(pacmans_life);
+	death_sound();
+	playNote(0);
 	draw_current_page();
-	delay(2000);
+	delay(400);
 }
 
 void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const button_pressed, Point* const target_point, 
@@ -467,6 +470,8 @@ void play_game() {
 	{	
 		//Pause menu is here
 		while (get_active_menu_page() == menu_page_pause) {	
+			//stop any sounds from the speakers
+			playNote(0);
 			flicker_text();
 			if (is_button_up_pressed()) {
 			move_cursor(MOVE_CURSOR_UP);
@@ -609,6 +614,7 @@ void play_game() {
 		if (god_mode_timer == 10)
 		{
 			set_ghosts_mode(fright);
+			set_pacman_state(God);
 		}
 		/*
 			Static_movement eat function checker, this checks if pacman is sharing a cell with a ghost
@@ -633,6 +639,7 @@ void play_game() {
 			update_score(score_life * get_pacman_life());
 			target_point.x = INVALID_POINT;
 			target_point.y = INVALID_POINT;
+			winning_music();
 			break;
 		}
 		//Checking if pacman died -- static
