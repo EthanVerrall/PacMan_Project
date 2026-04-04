@@ -258,7 +258,6 @@ void putColumn(uint16_t x,
     openAperture(x, y, x, y + 7);
     DCHigh();
     
-    //This is the row
     for (uint8_t offset = 0; offset < 8; ++offset) 
     {
         colour = Image[column_index + (8 * offset)];
@@ -277,7 +276,6 @@ void putRow(uint16_t x,
     openAperture(x, y, x + 7, y);
     DCHigh();
     
-    //This is the row
     for (uint8_t offset = 0; offset < 8; ++offset) 
     {
         colour = Image[(8 * row_index) + offset];

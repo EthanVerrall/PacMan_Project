@@ -219,8 +219,7 @@ void display_life_LED(const uint8_t pacman_lives) {
 			break;
 
 		default:
-			//eputs("Error when trying to set LEDS using display_life_LED function.\r\n");
-			break;
+		break;
 	}
 }
 

@@ -22,12 +22,10 @@ void pac_eats_target_cell(Point move_pair[], uint8_t pacman_new_x, uint8_t pacma
 			is_cell_eaten[1] = false;
 		}
 		else if (is_cell_eaten[2] == true) {
-			//*pellet_count--;
 			update_score(score_powerup);
 			remove_grid_state(pacman_new_x, pacman_new_y, cell_power_up);
 			add_grid_state(pacman_new_x, pacman_new_y, cell_blank);
-			*god_mode_timer = 10;
-			//set_pacman_state(God);
+			*god_mode_timer = 15;
 
 			is_cell_eaten[2] = false;
 		}
@@ -324,10 +322,13 @@ void reset_round(Point move_pair[], uint8_t* god_mode_timer, bool* button_presse
 	uint8_t pacmans_life = get_pacman_life();
 	set_pacman_life(--pacmans_life);
 	display_life_LED(pacmans_life);
-	death_sound();
+
+	if (get_music_setting()) {
+		death_sound();
+	}
 	playNote(0);
 	draw_current_page();
-	delay(400);
+	delay(2000);
 }
 
 void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const button_pressed, Point* const target_point, 
@@ -416,7 +417,11 @@ void exit_game(Point entity_store[], bool* play_game) {
 void play_game() {
 
 	//New game - Ask the user to enter their name
-	//input_user_name();
+	draw_current_page();
+	input_user_name();
+
+	//Set to game page so we can draw the grid
+	set_menu_page(menu_page_game);
 
     //set up ghosts and pacman
 	Pacman* pacman_ref = _pacman(false);
@@ -463,7 +468,15 @@ void play_game() {
 	turn_on_LEDS();
 	create_reset_grid();
 	draw_current_page();
-	pacman_intro_tune();
+
+	if (get_music_setting()) {
+		
+		pacman_intro_tune();
+	}
+	else {
+		delay(2000);
+	}
+	
 
 	//main game loop here
 	while (play_game && get_pacman_life() != 0)
@@ -477,18 +490,22 @@ void play_game() {
 			move_cursor(MOVE_CURSOR_UP);
 			delay(25);
 			}
+
 			if (is_button_right_pressed()) {
 			move_cursor(MOVE_CURSOR_RIGHT);
 			delay(25);
 			}
+
 			if (is_button_down_pressed()) {
 			move_cursor(MOVE_CURSOR_DOWN);
 			delay(25);
 			}
+
 			if (is_button_left_pressed()) {
 			move_cursor(MOVE_CURSOR_left);
 			delay(25);
 			}
+			
 			if (get_active_menu_page() == menu_page_restart) {
 				restart_game(move_pair,&pellet_count,&button_pressed,&target_point, &god_mode_timer, is_ghost_eaten, is_cell_eaten);
 				set_menu_page(menu_page_game);
@@ -611,7 +628,7 @@ void play_game() {
 		reset_eaten_ghosts(move_pair,is_ghost_eaten,entity_move_order,5);
 
 		//Starting the counter for pacmans god mode and setting ghosts to fright mode
-		if (god_mode_timer == 10)
+		if (god_mode_timer == 15)
 		{
 			set_ghosts_mode(fright);
 			set_pacman_state(God);
@@ -634,12 +651,17 @@ void play_game() {
 		//This function should only really run once - once ghosts reach their scatter position after the start of the game
 		//they will switch to chase mode and go after pacman, this will reset their feed cache and run our algorithm and A* again
 		set_scatter_mode_to_chase_mode();
+
 		if(pellet_count == 0) {
-			//normally we would go to a game ended or victory page and clean up, but for now we just clean up only
 			update_score(score_life * get_pacman_life());
 			target_point.x = INVALID_POINT;
 			target_point.y = INVALID_POINT;
-			winning_music();
+			
+			if (get_music_setting()) {
+				winning_music();
+			}
+
+			//Fun light bulb stuff maybe?
 			break;
 		}
 		//Checking if pacman died -- static

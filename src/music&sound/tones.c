@@ -1,5 +1,16 @@
 #include "../../include/music&sound/tones.h"
 
+static bool is_music_on = true;
+
+void turn_on_music(const bool music_flag) {
+    is_music_on = music_flag;
+}
+
+bool get_music_setting() {
+
+    return is_music_on;
+}
+
 void play_rising_frequency(uint16_t start_pitch, uint16_t end_pitch, uint16_t grain){
     for (uint16_t i = start_pitch; i < end_pitch; i+=grain)
     {

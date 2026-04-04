@@ -13,8 +13,10 @@ enum menu_page {
     menu_page_home = 1,
     menu_page_game = 2,
     menu_page_pause = 3,
-    menu_page_restart = 4
-    //More to follow
+    menu_page_restart = 4,
+    menu_page_options = 5,
+    menu_page_name_request = 6,
+    menu_page_scoreboard = 7,
 };
 
 void set_menu_page(const enum menu_page new_menu);

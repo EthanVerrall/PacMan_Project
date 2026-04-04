@@ -16,7 +16,9 @@ int main()
 		turn_off_LEDS();
 		draw_current_page();
 
-		while (get_active_menu_page() == menu_page_home) {
+		while ( 
+			(get_active_menu_page() == menu_page_home) || (get_active_menu_page() == menu_page_options)
+			) {
 
 			flicker_text();
 			if (is_button_up_pressed()) {
@@ -36,9 +38,8 @@ int main()
 				delay(25);
 			}
 		}
-
+		
 		play_game();
-		//playNote(0);
 	}
 	return 0;	
 }

@@ -1,4 +1,5 @@
 #include "../include/frontend&drawing/menu.h"
+#include <stdbool.h>
 
 //Default starting menu for pacman, the home page
 static enum menu_page active_menu = menu_page_home;
@@ -6,7 +7,19 @@ static enum menu_page active_menu = menu_page_home;
 //Position for the cursor
 static int8_t cursor_position = 0;
 
-void redraw_white_text(int8_t cursor_position, const enum menu_page active_menu);
+//Forward declares,  these functions are needed from draw manager to be able to seamlessly
+//switch between menus and redraw text as white while the cursor moves
+
+void draw_current_page();
+
+void reset_text(int8_t cursor_position, const enum menu_page active_menu);
+
+//Also need the functions that let me toggle the music setting on and off
+
+void turn_on_music(const bool music_flag);
+
+bool get_music_setting();
+
 
 void set_menu_page(const enum menu_page new_menu) {
 
@@ -16,14 +29,17 @@ void set_menu_page(const enum menu_page new_menu) {
         case menu_page_game:
         case menu_page_pause:
         case menu_page_restart:
+        case menu_page_options:
+        case menu_page_name_request:
+        case menu_page_scoreboard:
         //Expected menu passed to function
             active_menu = new_menu;
             break;
 
         //Unexpected menu passed to function
+        //Abort the function
         default:
-            //eputs("set_menu_page function failed. Invalid enum used, refer to enum menu_page in menu.h file.\r\n");
-            break;
+        break;
     }
 }
 
@@ -43,40 +59,49 @@ void move_cursor(const int8_t cursor_direction) {
 
         switch (cursor_direction)
         {
-        case MOVE_CURSOR_RIGHT:
-            //Change to game
-            if (cursor_position == 0) {
-                set_menu_page(menu_page_game);
-                cursor_position = 0;
-            }
+            case MOVE_CURSOR_RIGHT:
+
+                //Change to game menu
+                if (cursor_position == 0) {
+                    set_menu_page(menu_page_name_request);
+                    cursor_position = 0;
+                }
             
+                //Change to options menu
+                if (cursor_position == 2) {
+                    set_menu_page(menu_page_options);
+                    cursor_position = 0;
+                    draw_current_page();
+                }
             //Other features not implemented yet
-        break;
+            break;
         
-        case MOVE_CURSOR_DOWN:
-            if (cursor_position < 2) {
-                redraw_white_text(cursor_position, menu_page_home);
-                ++cursor_position;
-            } 
+            case MOVE_CURSOR_DOWN:
+
+                if (cursor_position < 2) {
+                    reset_text(cursor_position, menu_page_home);
+                    ++cursor_position;
+                } 
             break;
 
-        case MOVE_CURSOR_UP:
-            if (cursor_position > 0) {
-                redraw_white_text(cursor_position, menu_page_home);
-                --cursor_position;
-            }
+            case MOVE_CURSOR_UP:
+            
+                if (cursor_position > 0) {
+                    reset_text(cursor_position, menu_page_home);
+                    --cursor_position;
+                }
             break;    
         
-        case MOVE_CURSOR_left:
-        //Do nothing
-        break;
+            case MOVE_CURSOR_left:
+            //Do nothing
+            break;
 
-        default:
-            //eputs("Unexpected cursor movement on the home page.\r\nCursor value: ");
-            //printDecimal(cursor_position);
-        break;
+            default:
+            break;
         }
+        return;
     }
+    
 
     if (get_active_menu_page() == menu_page_pause) {
 
@@ -99,32 +124,69 @@ void move_cursor(const int8_t cursor_direction) {
             if (cursor_position == 2) {
                 set_menu_page(menu_page_home);
                 cursor_position = 0;
-
             }
-        break;
+            break;
         
-        case MOVE_CURSOR_DOWN:
+            case MOVE_CURSOR_DOWN:
             if (cursor_position < 2) {
-                redraw_white_text(cursor_position, menu_page_pause);
+                reset_text(cursor_position, menu_page_pause);
                 ++cursor_position;
             } 
             break;
 
-        case MOVE_CURSOR_UP:
+            case MOVE_CURSOR_UP:
             if (cursor_position > 0) {
-                redraw_white_text(cursor_position, menu_page_pause);
+                reset_text(cursor_position, menu_page_pause);
                 --cursor_position;
             }
             break;    
         
-        case MOVE_CURSOR_left:
-        //Do nothing
-        break;
-
-        default:
-            //eputs("Unexpected cursor movement on the pause page.\r\nCursor value: ");
-            //printDecimal(cursor_position);
-        break;
+            case MOVE_CURSOR_left:
+            //Do nothing
+            break;
+            
+            default:
+            break;
         }
+        return;
     }
+
+
+    if (get_active_menu_page() == menu_page_options) {
+
+        switch (cursor_direction) {
+
+            case MOVE_CURSOR_UP:
+            //do nothing
+            break;
+
+            case MOVE_CURSOR_DOWN:
+            //do nothing
+            break;
+
+            case MOVE_CURSOR_RIGHT:
+
+                //Toggling music on and off
+                if (get_music_setting()) {
+                    turn_on_music(false);
+                }
+                else {
+                    turn_on_music(true);
+                }
+                reset_text(0,menu_page_options);
+                break;
+
+            case MOVE_CURSOR_left:
+                set_menu_page(menu_page_home);
+                //Cursor should be zero anyways but lets reset it to be safe
+                cursor_position = 0;
+                draw_current_page();
+                break;
+
+            default:
+            break;
+        }
+        return;
+    }
+    
 }
