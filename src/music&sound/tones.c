@@ -11,27 +11,7 @@ bool get_music_setting() {
     return is_music_on;
 }
 
-void play_rising_frequency(uint16_t start_pitch, uint16_t end_pitch, uint16_t grain){
-    for (uint16_t i = start_pitch; i < end_pitch; i+=grain)
-    {
-        playNote(i);
-        delay(3);
-    }
-    playNote(0);
-}
-void play_falling_frequency(uint16_t start_pitch, uint16_t end_pitch, uint16_t grain){
-    for (uint16_t i = start_pitch; i < end_pitch; i-=grain)
-    {
-        playNote(i);
-        delay(3);
-    }
-    playNote(0);
-}
-
-void _feed(){}
-
 //note | frequency
-
 
 void pacman_intro_tune(){
     const uint16_t notes[] = {
@@ -53,8 +33,6 @@ void pacman_intro_tune(){
         delay(notes[i + 1]);
     }
 }
-
-
 
 uint16_t waka_waka(){
     static uint8_t counter = 0;
@@ -82,10 +60,6 @@ uint16_t fright_mode_sound(){
     return notes[counter];
 }
 
-void pacman_eating_ghost_sound(){
-    play_rising_frequency(A1, E6, 5);
-}
-
 void winning_music(){
     const uint16_t notes[] = {
         // 4 8th notes per line
@@ -102,7 +76,6 @@ void winning_music(){
     }   
 }
 
-// UNFINISHED
 void death_sound(){
     const uint16_t notes[] = {
         // 4 8th notes per line

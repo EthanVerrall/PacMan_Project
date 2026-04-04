@@ -5,7 +5,7 @@ const Point* get_clyde_target_position(){
     if (get_clyde_mode() == scatter) return create_deep_copy(get_clyde_scatter_position());
 
     if (get_clyde_mode() == fright) 
-        return get_random_point_on_grid(67); //67 67 67
+        return get_random_point_on_grid(67); 
     
     const Point* pacman_position = get_pacman_position();
 

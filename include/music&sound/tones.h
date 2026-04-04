@@ -13,17 +13,6 @@
  * therefore transversals would be in 
 */
 
-//
-void _feed();
-
-void pacman_intro_tune();
-
-//void pacman_eating_pellet_sound();
-
-//void fright_mode_siren();
-
-void pacman_eating_ghost_sound();
-
 void death_sound();
 
 uint16_t waka_waka();

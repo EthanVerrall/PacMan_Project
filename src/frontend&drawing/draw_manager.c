@@ -427,6 +427,37 @@ void draw_name_request_menu() {
     printText("your name?",7,76,WHITE_TEXT,0);
 }
 
+void draw_scoreboard_menu() {
+    
+    //Clear the screen to black
+    for (uint8_t y_pixel = 0; y_pixel < SCREEN_HEIGHT; ++ y_pixel) {
+        
+        for (uint8_t x_pixel = 0; x_pixel < SCREEN_WIDTH; ++x_pixel) {
+
+            putPixel(x_pixel,y_pixel,0);
+        }
+    }
+    
+    printTextX2("Scoreboard:",7,5,WHITE_TEXT,0);
+
+    for (uint8_t i = 0; i < 3; ++i) {
+
+        const char* next_name = get_scoreboard_names(i);
+        const uint16_t next_score = get_scoreboard_scores(i);
+
+        if (*next_name == '\0' || next_score == 0) {
+            printText("No score yet",7,40 + (30*i),WHITE_TEXT,0);
+        }
+        else 
+        {
+            printText(next_name,7,40 + (30*i),WHITE_TEXT,0);
+            printNumber(next_score,90,40 + (30*i),WHITE_TEXT,0);
+        }
+    }
+
+    printText("Left = home page",7,144,WHITE_TEXT,0);
+}
+
 void flicker_text() {
 
     const uint16_t YELLOW = 57095 ;
@@ -575,6 +606,20 @@ void flicker_text() {
         }
     }
 
+    else if (get_active_menu_page() == menu_page_scoreboard) {
+
+        if (!flicker_switch) {
+
+                flicker_switch = 1;
+                printTextX2("Scoreboard:",7,5,YELLOW,0);
+            }
+            else 
+            {      
+                flicker_switch = 0;
+                printTextX2("Scoreboard:",7,5,BLUE,0);
+            }
+    }
+
     else  {  
 
         //Error - Trying to flicker text for a menu_page that can't flicker any text.
@@ -607,6 +652,10 @@ void draw_current_page() {
 
         case menu_page_name_request:
         draw_name_request_menu();
+        break;
+
+        case menu_page_scoreboard:
+        draw_scoreboard_menu();
         break;
 
         default:

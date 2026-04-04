@@ -89,7 +89,6 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
 	Port->MODER = mode_value;
 }
 
-//No clue what this does thb? - Ask lecturer about this one
 int isInside(uint16_t x1, uint16_t y1, uint16_t w, uint16_t h, uint16_t px, uint16_t py)
 {
 	// checks to see if point px,py is within the rectange defined by x,y,w,h
@@ -128,8 +127,6 @@ void setupIO()
 	enablePullUp(GPIOA,8);  // Up 
 	enablePullUp(GPIOA,11); // Left
 	enablePullUp(GPIOA,1); //Pause button
-
-	//note g
 
 	//Turning on LEDS;
 	pinMode(GPIOA,9,1); //HIGH GREEN LED
@@ -237,26 +234,6 @@ void turn_on_LEDS() {
 	GPIOA->ODR |= (1<<10);
 	GPIOB->ODR |= (1<<0); 
 	GPIOA->ODR |= (1<<12);  
-}
-
-void toggle_high_green_LED() {
-
-	GPIOA->ODR ^= (1<<9); 
-}
-
-void toggle_low_green_LED() {
-
-	GPIOA->ODR ^= (1<<10); 
-}
-
-void toggle_yellow_LED() {
-
-	GPIOB->ODR ^= (1<<0); 
-}
-
-void toggle_red_LED() {
-
-	GPIOA->ODR ^= (1<<12); 
 }
 
 void turn_on_high_green_LED() {

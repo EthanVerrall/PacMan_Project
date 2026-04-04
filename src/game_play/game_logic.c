@@ -477,7 +477,6 @@ void play_game() {
 		delay(2000);
 	}
 	
-
 	//main game loop here
 	while (play_game && get_pacman_life() != 0)
 	{	
@@ -502,7 +501,7 @@ void play_game() {
 			}
 
 			if (is_button_left_pressed()) {
-			move_cursor(MOVE_CURSOR_left);
+			move_cursor(MOVE_CURSOR_LEFT);
 			delay(25);
 			}
 			
@@ -522,20 +521,12 @@ void play_game() {
 		}
 		//Break to exit the game
 		if (!play_game) break;
-		//check for button presses first
-		//for now we would just check directly, but for the case that we would want to save time,
-		//there would be a function that would check a list of numbers representing the button pressed
-		//all buttons (arrow buttons and not pause) do in the game page: chang`e pacmans dx and dy
-		//Should  act like a toggle tho, so we only care about one press per loop
+		
 		if(button_pressed = is_button_down_pressed()) set_pacman_direction(PAC_BOTTOM);
 		else if(button_pressed = is_button_right_pressed()) set_pacman_direction(PAC_RIGHT);
 		else if(button_pressed = is_button_left_pressed()) set_pacman_direction(PAC_LEFT);
 		else if(button_pressed = is_button_up_pressed()) set_pacman_direction(PAC_TOP);
-		//BIG NOTE: We would need to decide if the ghosts come out immediately or if not, we set a timer for each ghost to leave their posts
-		//I like the timer idea, they could just start in scatter mode tbh and they go straight to their courners
-		//Do whatever is easiest tho
-		//we want to change pacman's position
-		//pacman in entity pos is 0 (old), 1 (new)
+		
 		uint8_t pacman_new_x = get_pacman_position()->x + get_pac_dx();
 		uint8_t pacman_new_y = get_pacman_position()->y + get_pac_dy();
 		//wrapping pacman when he goes offscreen...........
@@ -661,7 +652,13 @@ void play_game() {
 				winning_music();
 			}
 
-			//Fun light bulb stuff maybe?
+			if (update_highscores()) {
+				eputs("You win - new highscore.\r\n");
+			}
+			else {
+				eputs("You win\r\n");
+			}
+			
 			break;
 		}
 		//Checking if pacman died -- static
@@ -679,6 +676,10 @@ void play_game() {
 		target_point.x = INVALID_POINT;
 		target_point.y = INVALID_POINT;
 	}	
-	//clean up
+	
+	if (get_pacman_life() == 0) {
+		eputs("You lose, no more lives remaining\r\n");
+	}
+
 	exit_game(move_pair, &play_game);
 }

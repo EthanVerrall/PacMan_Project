@@ -66,14 +66,21 @@ void move_cursor(const int8_t cursor_direction) {
                     set_menu_page(menu_page_name_request);
                     cursor_position = 0;
                 }
-            
+                
+                //Change to scoreboard menu
+                if (cursor_position == 1) {
+                    set_menu_page(menu_page_scoreboard);
+                    cursor_position = 0;
+                    draw_current_page();
+                }
+
                 //Change to options menu
                 if (cursor_position == 2) {
                     set_menu_page(menu_page_options);
                     cursor_position = 0;
                     draw_current_page();
                 }
-            //Other features not implemented yet
+            
             break;
         
             case MOVE_CURSOR_DOWN:
@@ -92,7 +99,7 @@ void move_cursor(const int8_t cursor_direction) {
                 }
             break;    
         
-            case MOVE_CURSOR_left:
+            case MOVE_CURSOR_LEFT:
             //Do nothing
             break;
 
@@ -141,7 +148,7 @@ void move_cursor(const int8_t cursor_direction) {
             }
             break;    
         
-            case MOVE_CURSOR_left:
+            case MOVE_CURSOR_LEFT:
             //Do nothing
             break;
             
@@ -176,7 +183,7 @@ void move_cursor(const int8_t cursor_direction) {
                 reset_text(0,menu_page_options);
                 break;
 
-            case MOVE_CURSOR_left:
+            case MOVE_CURSOR_LEFT:
                 set_menu_page(menu_page_home);
                 //Cursor should be zero anyways but lets reset it to be safe
                 cursor_position = 0;
@@ -184,6 +191,33 @@ void move_cursor(const int8_t cursor_direction) {
                 break;
 
             default:
+            break;
+        }
+        return;
+    }
+
+    if (get_active_menu_page() == menu_page_scoreboard) {
+
+        switch (cursor_direction) {
+
+            case MOVE_CURSOR_LEFT:
+
+                set_menu_page(menu_page_home);
+                //Cursor should be zero anyways but lets reset it to be safe
+                cursor_position = 0;    
+                draw_current_page();
+                break;
+
+            case MOVE_CURSOR_UP:
+            //do nothing
+            break;
+
+            case MOVE_CURSOR_RIGHT:
+            //do nothing
+            break;
+            
+            case MOVE_CURSOR_DOWN:
+            //do nothing
             break;
         }
         return;

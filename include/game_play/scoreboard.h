@@ -4,6 +4,7 @@
 #include "../include/serial.h"
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 
 enum Score {
 
@@ -34,5 +35,14 @@ const char* get_user_name();
 
 void reset_user_name();
 
+//-----------------------------------
+//Scoreboard functions
+//-----------------------------------
+
+const char* get_scoreboard_names(const uint8_t name_number);
+
+uint16_t  get_scoreboard_scores(const uint8_t score_number);
+
+bool update_highscores();
 
 #endif //!SCOREBOARD_H

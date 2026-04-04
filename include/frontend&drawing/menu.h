@@ -5,7 +5,7 @@
 
 #define MOVE_CURSOR_RIGHT 0
 #define MOVE_CURSOR_DOWN 1
-#define MOVE_CURSOR_left 2
+#define MOVE_CURSOR_LEFT 2
 #define MOVE_CURSOR_UP 3
 
 enum menu_page {

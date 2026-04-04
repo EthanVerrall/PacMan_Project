@@ -8,7 +8,7 @@ const Point* get_inky_target_position()
         return create_point(get_inky_scatter_position()->x,get_inky_scatter_position()->y);
 
     if (get_inky_mode() == fright) 
-        return get_random_point_on_grid(67); //67 67 67
+        return get_random_point_on_grid(67);
 
     const Point* blinky_position = get_blinky_position();
     const Point* pacman_position = get_pacman_position();

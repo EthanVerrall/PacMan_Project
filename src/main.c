@@ -8,8 +8,6 @@ int main()
 {	
 	//Turn on IO and setup micro-controller
 	SET_UP_STM();
-	
-	
 
 	while (1) {
 
@@ -17,7 +15,9 @@ int main()
 		draw_current_page();
 
 		while ( 
-			(get_active_menu_page() == menu_page_home) || (get_active_menu_page() == menu_page_options)
+			(get_active_menu_page() == menu_page_home) || 
+			(get_active_menu_page() == menu_page_options) ||
+			(get_active_menu_page() == menu_page_scoreboard)
 			) {
 
 			flicker_text();
@@ -34,11 +34,11 @@ int main()
 				delay(25);
 			}
 			if (is_button_left_pressed()) {
-				move_cursor(MOVE_CURSOR_left);
+				move_cursor(MOVE_CURSOR_LEFT);
 				delay(25);
 			}
 		}
-		
+
 		play_game();
 	}
 	return 0;	
