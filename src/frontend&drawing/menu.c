@@ -20,7 +20,6 @@ void turn_on_music(const bool music_flag);
 
 bool get_music_setting();
 
-
 void set_menu_page(const enum menu_page new_menu) {
 
     switch (new_menu) {

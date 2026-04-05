@@ -10,6 +10,8 @@ static bool is_mouth_open = false;
 
 //---------------------------------MENUS------------------------------------------
 
+//This draws the entire grid on the screen based on the states at each grid index
+//assure all masks are updated before using this function to draw an up to date grid
 void redraw_entire_grid () {
     /*
         The below two arrays are used in parallel to define the wall types 
@@ -285,6 +287,9 @@ void redraw_entire_grid () {
     //Grid drawn properly
 }
 
+//Resets text we have moved away from when in cursor menu mode as white,
+//we reset the text as white since it would be yellow or blue if we moved off the text after it finished
+//flickering, it makes things look fun and like you are operating a real arcade machine
 void reset_text(int8_t cursor_position, const enum menu_page active_menu) {
 
     if (active_menu == menu_page_home) {
@@ -333,6 +338,7 @@ void reset_text(int8_t cursor_position, const enum menu_page active_menu) {
     }
 }
 
+//Describes how the home page is and should be drawn
 void draw_home_page() {
     
     //Clear the screen to black
@@ -345,6 +351,7 @@ void draw_home_page() {
     }
 
     //Uncompress the main_menu_logo using my switch case map function and pass the the uint16_t colour to draw
+    //Based off the huffman compression algorithm
     #define MAIN_MENU_ROWS 32
     #define MAIN_MENU_COLS 114
 
@@ -364,6 +371,7 @@ void draw_home_page() {
     printTextX2("Options",6,130,WHITE_TEXT,0);
 }
 
+//Describes how the pause page is and should be drawn
 void draw_pause_menu() {
 
     //Clear the screen to black
@@ -385,6 +393,7 @@ void draw_pause_menu() {
 
 }
 
+//Describes how the options page is and should be drawn
 void draw_options_menu() {
 
     //Clear the screen to black
@@ -411,6 +420,7 @@ void draw_options_menu() {
     
 }
 
+//Describes how the name_request page is and should be drawn
 void draw_name_request_menu() {
 
     //Clear the screen to black
@@ -427,6 +437,7 @@ void draw_name_request_menu() {
     printText("your name?",7,76,WHITE_TEXT,0);
 }
 
+//Describes how the scoreboard page is and should be drawn
 void draw_scoreboard_menu() {
     
     //Clear the screen to black
@@ -440,6 +451,8 @@ void draw_scoreboard_menu() {
     
     printTextX2("Scoreboard:",7,5,WHITE_TEXT,0);
 
+    //Fetch the top three scores and draw them, if no score is found we mention "No score yet"
+    //otherwise we draw the persons name and their score
     for (uint8_t i = 0; i < 3; ++i) {
 
         const char* next_name = get_scoreboard_names(i);
@@ -458,6 +471,8 @@ void draw_scoreboard_menu() {
     printText("Left = home page",7,144,WHITE_TEXT,0);
 }
 
+//This function looks at which menu page we are on, where the cursor is currently positioned
+//and flickers that text as yellow and white, gives a classic arcade style feeling
 void flicker_text() {
 
     const uint16_t YELLOW = 57095 ;
@@ -628,6 +643,7 @@ void flicker_text() {
     delay(100);
 } 
 
+//This function looks at which menu is currently active and draws from the matching above type menu description function
 void draw_current_page() {
 
     const enum menu_page menu_to_draw = get_active_menu_page();
@@ -672,6 +688,7 @@ void draw_current_page() {
 //Helper functions -- must be declared before void move_entity() -- start
 //--------------------------------------------------------------
 
+//Helps find the correct entity texture based on direction
 const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_type entity) {
 
     //direction just defines which way we are moving
@@ -775,6 +792,8 @@ const uint16_t* point_at_entity_texture(uint8_t direction, const enum entity_typ
     }
 }
 
+//Helps find which texture to restore as we leave a tile, 
+//uses the grid to figure out the type from the current saved mask
 const uint16_t* point_at_static_texture(uint8_t x_pixel, uint8_t y_pixel) {
 
     //Changing pixels to correctly reflect grid indexing
@@ -918,7 +937,7 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
         }
 
         //Not moving, need to redraw ourselves in the same spot, in the case that something moves away next turn but
-        //we are still standing still
+        //we are still standing still (OTHERWISE it would seem we just disappeared)
         else if (dx[i] == 0 && dy[i] == 0) 
         {
 
@@ -1139,6 +1158,9 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
         } 
         //End of frame, needs to delay now
         //insert sound here
+        //Only play sound if the sound setting is on, otherwise we just use a normal delay
+        //All sounds and delays add up to 60 ms for each frame
+
         if(get_pacman_state() == God && get_music_setting()){
             playNote(fright_mode_sound());
             delay(20);
@@ -1169,6 +1191,7 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
     printNumber(get_score(),90,0,WHITE_TEXT,0);
 }
 
+//Redrawing eaten ghosts in the middle of the screen, based off their starting positions
 void eat_ghost(const enum entity_type ghost) {
 
     const uint16_t* enitity_texture = NULL;
@@ -1239,6 +1262,7 @@ void eat_ghost(const enum entity_type ghost) {
     printNumber(get_score(),90,0,WHITE_TEXT,0);
 }
 
+//Cool animation of pacman dying
 void draw_pacman_dying(const Point pac_current, const Point ghost_current, enum entity_type ghost) {
 
     uint8_t ghost_x_pixel = ghost_current.y * 8;
