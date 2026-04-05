@@ -177,12 +177,6 @@ bool is_button_pause_pressed() {
 	return false;
 }
 
-/**
- *  NOTE: for the red LED, we are going to manually set its port, 
- * Luckily for us, the red LED is the last LED to go off, 
- * Therefore in the case that there is just one life left we can just turn 
- * 
-*/
 void display_life_LED(const uint8_t pacman_lives) {
 	
 	switch (pacman_lives) {

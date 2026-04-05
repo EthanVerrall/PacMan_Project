@@ -4,11 +4,13 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+//Return this value when there is an error with a point function
+//or if you want to set the point to "false/NULL" - mimics the behaviour of a pointer
 #define INVALID_POINT 255
 
 /*  
-    Struct for point, will be used for all elements in the program.
-    Ghosts and pacman will have a point, board will have many points.
+    Struct for point, will be used for all entities in the program.
+    Ghosts and pacman will have a point.
 
     A point correlates directly to grid indexing.
     For example: grid[x_point][y_point] 
@@ -50,6 +52,7 @@ bool move_point(const int8_t x, const int8_t y, Point* const struct_point);
 //Returns false if not Identical 
 bool compare_points(const Point* const struct_point_1, const Point* const struct_point_2);
 
+//Checks if our point has valid values, therefore x != 255 && y != 255
 bool is_point_valid(const Point* const struct_point);
 
 /*

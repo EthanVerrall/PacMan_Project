@@ -1,9 +1,10 @@
 #include "../include/game_play/scoreboard.h"
 
+//Scorebaord holding the top 3 names and scores
 static char scoreboard_names[3][6] = {"\0", "\0", "\0"};
 static uint16_t scoreboard_scores[3] = {100,0,0};
 
-
+//The current user who is playing a match of pacman
 static uint16_t current_score = 0;
 static char current_user_name[13] = {"\0"};
 

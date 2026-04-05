@@ -1,11 +1,12 @@
 #include "../include/game_play/game_logic.h"
 
+//Checks the type of cell pacman is moving onto, determines what must be done based off of what he is eating
+//blank cells we do nothing since you cannot eat a blank cell
 void pac_eats_target_cell(Point move_pair[], uint8_t pacman_new_x, uint8_t pacman_new_y,
 	bool is_cell_eaten[], uint8_t* pellet_count, uint8_t* god_mode_timer) {
 
 		if (is_cell_eaten[0] == true) {
 
-			//dereference pellet count and decrement
 			(*pellet_count)--;
 			update_score(score_pellet);
 			remove_grid_state(pacman_new_x, pacman_new_y, cell_pellet);
@@ -31,6 +32,9 @@ void pac_eats_target_cell(Point move_pair[], uint8_t pacman_new_x, uint8_t pacma
 		}
 }
 
+//After all movement we check if pacman is sharing a cell with a ghost
+//If pacman can eat the ghost then we draw the ghost back in his box
+//Give the user points and reset the ghost to chase mode
 void check_if_eat_ghost_static(Point move_pair[]) {
 
 	if (has_grid_state_point(get_pacman_position(),cell_blinky) && (get_blinky_mode() == fright))
@@ -75,6 +79,8 @@ void check_if_eat_ghost_static(Point move_pair[]) {
 	}
 }
 
+//If the next turn pacman were to collide with a ghost and we can eat this ghost
+//We take note of the ghost being eaten and update points, move_entities() function will handle the rest
 void check_if_eat_ghost_real_time(const Point point_array[], const int8_t pacmans_move_pos, 
     const enum entity_type move_order[], bool is_ghost_eaten[], const uint8_t number_of_entities) {
 
@@ -131,6 +137,7 @@ void check_if_eat_ghost_real_time(const Point point_array[], const int8_t pacman
 	}
 }
 
+//Sets ghosts to chase mode after they have reached their scatter position
 void set_scatter_mode_to_chase_mode() {
 
 	if (get_blinky_mode() == scatter && compare_points(get_blinky_position(),get_blinky_scatter_position()))
@@ -154,6 +161,7 @@ void set_scatter_mode_to_chase_mode() {
 	}
 }
 
+//Sets all ghosts modes -- This will force a cache reset for all ghosts
 void set_ghosts_mode(const GhostMode mode){
 	set_blinky_mode(mode);
 	set_inky_mode(mode);
@@ -161,6 +169,7 @@ void set_ghosts_mode(const GhostMode mode){
 	set_clyde_mode(mode);
 }
 
+//If we ate a ghost, we reset it to chase and draw the ghost in its correct starting position
 void reset_eaten_ghosts(Point move_pair[], bool is_ghost_eaten[], const enum entity_type move_order[], const uint8_t number_of_entities) {
 
 	for (uint8_t i = 0; i < number_of_entities; ++i) {
@@ -213,6 +222,7 @@ void reset_eaten_ghosts(Point move_pair[], bool is_ghost_eaten[], const enum ent
 	}
 }
 
+//Checking if pacman is dying this turn, a ghost ate him
 bool is_pacman_dead(const Point points[], enum entity_type entities[]) {
 
 	for (uint8_t i = 0; i < 5; ++i) {
@@ -264,6 +274,7 @@ bool is_pacman_dead(const Point points[], enum entity_type entities[]) {
 	return false;
 }
 
+//When pacman dies we reset to round start values for positions and ghost/pacman modes and states
 void reset_round(Point move_pair[], uint8_t* god_mode_timer, bool* button_pressed, bool is_ghost_eaten[], bool is_cell_eaten[]) {
 
 	remove_grid_state_point(&move_pair[1], cell_pacman);
@@ -331,6 +342,7 @@ void reset_round(Point move_pair[], uint8_t* god_mode_timer, bool* button_presse
 	delay(2000);
 }
 
+//This restarts the entire game, everything goes back to default starting values
 void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const button_pressed, Point* const target_point, 
 				 uint8_t* const god_mode_timer, bool is_ghost_eaten[], bool is_cell_eaten[]) {
 
@@ -385,7 +397,7 @@ void restart_game(Point move_pair[], uint8_t* const pellet_count, bool* const bu
 	turn_on_LEDS();
 }
 
-//Cleanup function
+//Cleanup function game is over, we need to go back to main menu after this function is called
 void exit_game(Point entity_store[], bool* play_game) {
 	//free feed
 	_inky_feed_next(false, true);
@@ -480,11 +492,12 @@ void play_game() {
 	//main game loop here
 	while (play_game && get_pacman_life() != 0)
 	{	
-		//Pause menu is here
+		//Pause menu is here -- Start
 		while (get_active_menu_page() == menu_page_pause) {	
 			//stop any sounds from the speakers
 			playNote(0);
 			flicker_text();
+
 			if (is_button_up_pressed()) {
 			move_cursor(MOVE_CURSOR_UP);
 			delay(25);
@@ -519,19 +532,29 @@ void play_game() {
 				play_game = false;
 			}
 		}
+		//Pause menu is here -- Start
+
 		//Break to exit the game
 		if (!play_game) break;
 		
+		//Listen for button pressed events, determines pacmans direction he will move in
+		//Essentially sets pacmans direction in pacman struct
 		if(button_pressed = is_button_down_pressed()) set_pacman_direction(PAC_BOTTOM);
 		else if(button_pressed = is_button_right_pressed()) set_pacman_direction(PAC_RIGHT);
 		else if(button_pressed = is_button_left_pressed()) set_pacman_direction(PAC_LEFT);
 		else if(button_pressed = is_button_up_pressed()) set_pacman_direction(PAC_TOP);
 		
+		//Pacmans target point based off his direction and current position
 		uint8_t pacman_new_x = get_pacman_position()->x + get_pac_dx();
 		uint8_t pacman_new_y = get_pacman_position()->y + get_pac_dy();
+
 		//wrapping pacman when he goes offscreen...........
 		pacman_new_y = pacman_new_y == 16 ? 0 : pacman_new_y;
 		pacman_new_y = pacman_new_y == 255 ? 15 : pacman_new_y;
+
+		//Look at the tile type which pacman will be moving on
+		//If it is a wall pacman does not move this turn -- he cannot go through walls or enter the ghost box
+		//Updates pacman mask on the grid, removes where he was and adds where he is going to
 		if (!has_grid_state(pacman_new_x, pacman_new_y, cell_wall | cell_gate))
 		{
 			set_point_coord(pacman_new_x, pacman_new_y,&move_pair[1]);
@@ -549,6 +572,7 @@ void play_game() {
 			add_grid_state(pacman_new_x, pacman_new_y, cell_pacman);
 		}
 		else
+		//Pacman did not move target == current_position
 		{
 			pacman_new_x = get_pacman_position()->x;
 			pacman_new_y = get_pacman_position()->y;
@@ -569,6 +593,7 @@ void play_game() {
 		target_point = _clyde_feed_next(get_clyde_behaviour_change(), false);
 		copy_point_values(&move_pair[9],&target_point);
 
+		//Updating grid masks for the ghosts
 		remove_grid_state_point(get_blinky_position(), cell_blinky);
  		add_grid_state_point(&move_pair[3], cell_blinky);
 		remove_grid_state_point(get_inky_position(), cell_inky);
@@ -578,7 +603,7 @@ void play_game() {
 		remove_grid_state_point(get_clyde_position() ,cell_clyde);
 		add_grid_state_point(&move_pair[9], cell_clyde);
 		/*
-			Pacman will check if the direction he is moving too will collide with a ghost
+			Pacman will check if the direction he is moving to will collide with a ghost
 			therefore he will simply eat the ghost if it is ellgibale to be eaten.
 			This checks for moving ghosts, dynamic moving eat function
 		*/
@@ -600,7 +625,7 @@ void play_game() {
 		//If pacman does not die this turn because he didnt collided with a ghost, then we can update grid states and scores
 		pac_eats_target_cell(move_pair,pacman_new_x, pacman_new_y,is_cell_eaten,&pellet_count,&god_mode_timer);
 
-		//Visual drawing for this turn of the game
+		//Visual drawing for this turn of the game - 8 frame animation always. GAME is 8 frames
 		move_entities(move_pair,entity_move_order,5, is_ghost_eaten);
 
 		//set the internal positions of each entity to their new positions
@@ -643,6 +668,7 @@ void play_game() {
 		//they will switch to chase mode and go after pacman, this will reset their feed cache and run our algorithm and A* again
 		set_scatter_mode_to_chase_mode();
 
+		//Checking if the user has won the game yet
 		if(pellet_count == 0) {
 			update_score(score_life * get_pacman_life());
 			target_point.x = INVALID_POINT;
@@ -677,6 +703,7 @@ void play_game() {
 		target_point.y = INVALID_POINT;
 	}	
 	
+	//The user ran out of lives, print message in serial monitor
 	if (get_pacman_life() == 0) {
 		eputs("You lose, no more lives remaining\r\n");
 	}

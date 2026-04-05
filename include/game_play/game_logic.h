@@ -16,6 +16,13 @@
 #include "../include/serial.h"
 #include "../include/utils/events.h"
 
+/*
+    This function starts the game, it sets up all ghosts and pacman
+    Creates a new grid, creates caches for our A* Algorithms to use
+    Creates all other variables on the stack to track gameplay
+    
+    //Further helper functions are encapsulated in the c file
+*/
 void play_game();
 
 #endif //!GAME_LOGIC_H
