@@ -15,6 +15,16 @@
 
 typedef Ghosts Clyde;
 
+/** 
+ * Constructor for clyde
+ * 
+ * Clyde is set to be a singleton, meaning that only one instance of Clyde can exist at a time,
+ * this prevents wasteful memory allocation and prevents bugs, 
+ * also logically there should be only one instance of Clyde in the game.
+ *
+ * @param destroy a boolean that determines whether the function should destroy the existing clyde instead, and return null
+ * @returns a pointer to the clyde struct, which contains all the information about clyde such as its current position, mode and scatter position
+ */
 Clyde* _clyde(bool destroy);
 
 const Point* get_clyde_scatter_position();
@@ -30,6 +40,10 @@ const Point* get_clyde_target_position();
  * 
  * The feed next takes a reset boolean that determines if it should force a call to the pathfinding algorithm or it should use the cache
  * end is a boolean that is sent to the function to free the cache... i.e in the case that the game is ended
+ * 
+ * @param reset a boolean that determines if the function should force a call to the pathfinding algorithm or it should use the cache
+ * @param end a boolean that is sent to the function to free the cache... i.e in the case that the game is ended
+ * @return the next position that Clyde is to move to based on its behaviour
 */
 const Point _clyde_feed_next(const bool reset, const bool end);
 
@@ -43,6 +57,12 @@ const bool get_clyde_behaviour_change();
 
 void set_clyde_behaviour_change(const bool change);
 
+/** 
+ * Destructor for clyde 
+ * 
+ * Frees the memory allocated for clyde and sets the pointer to null to prevent dangling pointers. 
+ * This function should be called when clyde is no longer needed, such as when the game is exited or when clyde is reset.
+*/
 Clyde* destroy_clyde();
 
 

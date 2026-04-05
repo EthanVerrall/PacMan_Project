@@ -5,7 +5,7 @@ const Point* get_blinky_target_position(){
     if (get_blinky_mode() == scatter) return create_deep_copy(get_blinky_scatter_position());
 
     if (get_blinky_mode() == fright) 
-        return get_random_point_on_grid(67); //67 67 67
+        return get_random_point_on_grid(67); 
     
     return create_deep_copy(get_pacman_position()); //chases pacman directly
 }
@@ -28,13 +28,6 @@ Point _blinky_feed_next(const bool reset, const bool end){
     }
     
     static uint8_t feed_pointer = 1;
-    /* eputs("Printing blinky feed before \r\n");
-    for (size_t i = 0; i < MAX_FEED_CAPACITY; i++)
-    {
-        printDecimal(feed_cache[i].x);   
-        printDecimal(feed_cache[i].y);   
-    }
-    eputs("\r\n"); */
 
     //game is finished, free all memory
     if (end)
@@ -70,14 +63,6 @@ Point _blinky_feed_next(const bool reset, const bool end){
             return feed_cache[feed_pointer];
         }
     }
-
-    /* eputs("Printing blinky feed after\r\n");
-    for (size_t i = 0; i < MAX_FEED_CAPACITY; i++)
-    {
-        printDecimal(feed_cache[i].x);   
-        printDecimal(feed_cache[i].y);   
-    }
-    eputs("\r\n"); */
 
     Point curr_point_to_return = feed_cache[feed_pointer];
     

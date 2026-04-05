@@ -1,6 +1,6 @@
 #include "../include/grid.h"
 
-//Global variable to store our one and only grid
+//Static variable to store our one and only grid
 //The entire file always needs to see the state of this pointer, this is the cleanest and simplest solution
 static Grid* singleton_grid = NULL;   
 
@@ -26,7 +26,6 @@ bool create_singleton_grid() {
             
             return false;
         }
-        eputs("Grid\r\n");
         return true;
     }
 }

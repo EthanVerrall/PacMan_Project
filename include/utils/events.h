@@ -7,11 +7,9 @@
 #include "../include/serial.h"
 #include <stdbool.h>
 
-//Function is so important it deserves to be capitalised
-//Turns everything on...
-//The clock, the screen, buttons, makes the universe spin round at this point
-//-
+
 //ALWAYS CALL THIS FUNCTION FIRST IN MAIN, LINE ONE IF POSSIBLE
+//turns on the micro-controller
 void SET_UP_STM();
 
 //---------------
@@ -53,13 +51,6 @@ void display_life_LED(const uint8_t pacman_lives);
 
 void turn_off_LEDS();
 void turn_on_LEDS();
-
-//Functions to turn LEDS on and off --Toggling
-
-void toggle_high_green_LED();
-void toggle_low_green_LED();
-void toggle_yellow_LED();
-void toggle_red_LED();
 
 //Turn LEDS on or off manually
 

@@ -17,7 +17,6 @@ Ghosts* create_ghost(
     bool is_behaviour_changed
 ){  
     Ghosts* ghost = (Ghosts*) malloc(sizeof(Ghosts));
-    eputs("Ghost created\r\n");
     ghost->currentMode = current_mode;
     ghost->ghost_type = ghost_type;
     ghost->position = current_position;
@@ -58,7 +57,6 @@ const bool set_ghost_position(Ghosts* ghost, const uint8_t x, const uint8_t y){
         ghost->position->y = y;
         return true;
     }
-    eputs("grid state was not set for the ghost. The ghosts position was out of bounds\r\n");
     return false;
 }
 

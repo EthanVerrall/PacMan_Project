@@ -1,2 +1,2 @@
 # PacMan_Project
-Joshua will fill this part out later!!!
+Ethan will create a readme document after project submission
