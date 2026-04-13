@@ -38,11 +38,11 @@ uint16_t waka_waka(){
     static uint8_t counter = 0;
     const uint16_t notes[] = {
         // 4 8th notes per line
-        F2,40, A2,40, D3,40, F4,40, 0,40,
-        CS4_Db4,40, F4,40, D3,40, A2,40, 0,40,
+        E3, GS3_Ab3, FS4_Gb4, AS4_Bb4, 0,
+        B4, DS4_Eb4, A3, F3, 0
     };
     counter++;
-    if(counter >= 20) counter = 0;
+    if(counter >= 10) counter = 0;
     return notes[counter];
 }
 

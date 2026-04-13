@@ -1172,13 +1172,13 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
         else if (get_pacman_state() == Mortal && get_music_setting())
         {
             playNote(waka_waka());
+            delay(30);
+            playNote(waka_waka());
+            delay(30);
+/*             playNote(waka_waka());
             delay(15);
             playNote(waka_waka());
-            delay(15);
-            playNote(waka_waka());
-            delay(15);
-            playNote(waka_waka());
-            delay(15);
+            delay(15); */
         }
         else
         {   
