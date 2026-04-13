@@ -1175,10 +1175,6 @@ void move_entities(const Point point_array[], const enum entity_type entity_arra
             delay(30);
             playNote(waka_waka());
             delay(30);
-/*             playNote(waka_waka());
-            delay(15);
-            playNote(waka_waka());
-            delay(15); */
         }
         else
         {   
