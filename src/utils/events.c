@@ -10,7 +10,6 @@ void SET_UP_STM() {
 	setupIO();
     initSerial();
 	initSound();
-
 }
 
 //---------------
